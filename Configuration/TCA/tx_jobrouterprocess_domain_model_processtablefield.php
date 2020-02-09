@@ -15,7 +15,7 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'name, description, type, decimal_places',
+        'showRecordFieldList' => 'name, description, type',
     ],
     'columns' => [
         'pid' => [
@@ -74,35 +74,8 @@ return [
                         'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.integer',
                         \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::INTEGER
                     ],
-                    [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.decimal',
-                        \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::DECIMAL
-                    ],
-                    [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.datetime',
-                        \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::DATETIME
-                    ],
                 ],
                 'eval' => 'required',
-            ],
-        ],
-        'decimal_places' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.decimal_places',
-            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::DECIMAL,
-            'config' => [
-                'type' => 'input',
-                'size' => 3,
-                'eval' => 'int,trim',
-                'range' => [
-                    'lower' => 1,
-                    'upper' => 10,
-                ],
-                'slider' => [
-                    'step' => 1,
-                    'width' => 200,
-                ],
-                'default' => 2,
             ],
         ],
     ],
@@ -117,6 +90,6 @@ return [
     ],
     'palettes' => [
         'nameDescription' => ['showitem' => 'name, description'],
-        'type' => ['showitem' => 'type, decimal_places'],
+        'type' => ['showitem' => 'type'],
     ],
 ];

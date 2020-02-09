@@ -23,9 +23,6 @@ class Processtablefield extends AbstractEntity
     /** @var int */
     protected $type = 0;
 
-    /** @var int */
-    protected $decimalPlaces = 0;
-
     public function getName(): string
     {
         return $this->name;
@@ -54,15 +51,5 @@ class Processtablefield extends AbstractEntity
     public function setType(int $type): void
     {
         $this->type = $type;
-    }
-
-    public function getDecimalPlaces(): int
-    {
-        return $this->decimalPlaces;
-    }
-
-    public function setDecimalPlaces(int $decimalPlaces): void
-    {
-        $this->decimalPlaces = $decimalPlaces;
     }
 }

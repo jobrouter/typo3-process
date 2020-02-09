@@ -10,10 +10,8 @@ namespace Brotkrueml\JobRouterProcess\Enumeration;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class ProcessTableFieldTypeEnumeration
+final class ProcessTableFieldTypeEnumeration
 {
     public const TEXT = 1;
     public const INTEGER = 2;
-    public const DECIMAL = 3;
-    public const DATETIME = 4;
 }
