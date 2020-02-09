@@ -53,7 +53,12 @@
                                 <td>
                                     <ul>
                                         <f:for each="{process.processtablefields}" as="field">
-                                            <li>{field.name}</li>
+                                            <li>
+                                                <f:if condition="{field.description}">
+                                                    <f:then>{field.description}</f:then>
+                                                    <f:else>{field.name}</f:else>
+                                                </f:if>
+                                            </li>
                                         </f:for>
                                     </ul>
                                 </td>
