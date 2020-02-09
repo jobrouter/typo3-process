@@ -1,0 +1,17 @@
+module.tx_jobrouterprocess {
+   view {
+      templateRootPaths {
+         0 = EXT:jobrouter_process/Resources/Private/Templates/Backend/
+      }
+
+      partialRootPaths {
+         0 = EXT:jobrouter_process/Resources/Private/Partials/Backend/
+      }
+
+      layoutRootPaths {
+         0 = EXT:jobrouter_process/Resources/Private/Layouts/
+      }
+   }
+
+   persistence.storagePid = 0
+}

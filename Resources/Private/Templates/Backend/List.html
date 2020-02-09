@@ -1,0 +1,140 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:layout name="BackendAdministration"/>
+
+    <f:section name="headline">
+        <h1><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+    </f:section>
+
+    <f:section name="content">
+        <f:render section="processes" arguments="{processes: processes}"/>
+
+        <f:if condition="{processes}">
+            <f:render section="instances" arguments="{instances: instances}"/>
+        </f:if>
+    </f:section>
+
+    <f:section name="processes">
+        <h2>
+            <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_title"/>
+            <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_process" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_process')}">
+                <core:icon identifier="actions-add"/>
+            </be:link.newRecord>
+        </h2>
+
+        <f:if condition="{processes}">
+            <f:then>
+                <table class="table table-vertical-top table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.name"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.description"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.connection"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.processtablefields"/></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{processes}" as="process">
+                            <f:variable name="manageProcessLink">{process.connection.baseUrl}?cmd=OpenDesigner&processname={process.name}</f:variable>
+                            <tr>
+                                <td>
+                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
+                                    <f:if condition="{process.disabled}">
+                                        ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                                    </f:if>
+                                </td>
+                                <td>{process.description}</td>
+                                <td>{process.connection.name}</td>
+                                <td>
+                                    <ul>
+                                        <f:for each="{process.processtablefields}" as="field">
+                                            <li>{field.name}</li>
+                                        </f:for>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <be:link.editRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">
+                                            <core:icon identifier="actions-open"/>
+                                        </be:link.editRecord>
+                                        <f:link.external class="btn btn-default" uri="{manageProcessLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.open_designer')}">
+                                            <core:icon identifier="action-open-designer"/>
+                                        </f:link.external>
+                                    </div>
+                                </td>
+                            </tr>
+                        </f:for>
+                    </tbody>
+                </table>
+
+            </f:then>
+            <f:else>
+                <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.title')}">
+                    <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.message"/></p>
+                    <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_process">
+                        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:process_link_create"/>
+                    </be:link.newRecord>
+                </f:be.infobox>
+            </f:else>
+        </f:if>
+    </f:section>
+
+    <f:section name="instances">
+        <h2>
+            <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_title"/>
+            <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_instance" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_instance')}">
+                <core:icon identifier="actions-add"/>
+            </be:link.newRecord>
+        </h2>
+
+        <f:if condition="{instances}">
+            <f:then>
+                <table class="table table-vertical-top table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.identifier"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.name"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.process"/></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{instances}" as="instance">
+                            <tr>
+                                <td>
+                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_instance" uid="{instance.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_instance')}">{instance.identifier}</be:link.editRecord>
+                                    <f:if condition="{instance.disabled}">
+                                        ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                                    </f:if>
+                                </td>
+                                <td>{instance.name}</td>
+                                <td>{instance.process.name}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <be:link.editRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_instance" uid="{instance.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_instance')}">
+                                            <core:icon identifier="actions-open"/>
+                                        </be:link.editRecord>
+                                    </div>
+                                </td>
+                            </tr>
+                        </f:for>
+                    </tbody>
+                </table>
+
+            </f:then>
+            <f:else>
+                <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_not_found.title')}">
+                    <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_not_found.message"/></p>
+                    <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_instance">
+                        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instance_link_create"/>
+                    </be:link.newRecord>
+                </f:be.infobox>
+            </f:else>
+        </f:if>
+    </f:section>
+</html>

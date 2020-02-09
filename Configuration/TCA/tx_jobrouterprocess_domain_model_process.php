@@ -2,7 +2,8 @@
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process',
-        'label' => 'name',
+        'label' => 'description',
+        'label_alt' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -15,7 +16,7 @@ return [
         'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'name, connection',
+        'showRecordFieldList' => 'name, description, connection, processtablefields',
     ],
     'columns' => [
         'disabled' => [
@@ -41,7 +42,17 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'required,trim'
+                'eval' => 'alphanum_x,required,trim'
+            ],
+        ],
+        'description' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.description',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max' => 255,
+                'eval' => 'trim'
             ],
         ],
         'connection' => [
@@ -81,7 +92,7 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-            name, connection, processtablefields,
+            name, description, connection, processtablefields,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled
         '

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf" date="2020-02-09T10:24:11Z" product-name="jobrouter_process">
+		<header/>
+		<body>
+			<trans-unit id="mlang_labels_tablabel">
+				<source><![CDATA[JobRouter Process]]></source>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<source><![CDATA[Connect JobRouter processes with TYPO3]]></source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab">
+				<source><![CDATA[Processes]]></source>
+			</trans-unit>
+			<trans-unit id="heading_text">
+				<source><![CDATA[Processes]]></source>
+			</trans-unit>
+
+			<trans-unit id="instances_title">
+				<source><![CDATA[Instance Links]]></source>
+			</trans-unit>
+			<trans-unit id="instances_not_found.title">
+				<source><![CDATA[No instance links found]]></source>
+			</trans-unit>
+			<trans-unit id="instances_not_found.message">
+				<source><![CDATA[There are currently no instance links defined.]]></source>
+			</trans-unit>
+			<trans-unit id="instance_link_create">
+				<source><![CDATA[Create new instance link]]></source>
+			</trans-unit>
+
+			<trans-unit id="processes_title">
+				<source><![CDATA[Process Links]]></source>
+			</trans-unit>
+			<trans-unit id="processes_not_found.title">
+				<source><![CDATA[No process links found]]></source>
+			</trans-unit>
+			<trans-unit id="processes_not_found.message">
+				<source><![CDATA[There are currently no process links defined.]]></source>
+			</trans-unit>
+			<trans-unit id="process_link_create">
+				<source><![CDATA[Create new process link]]></source>
+			</trans-unit>
+
+			<trans-unit id="action.add_instance">
+				<source><![CDATA[Add instance link]]></source>
+			</trans-unit>
+			<trans-unit id="action.edit_instance">
+				<source><![CDATA[Edit instance link]]></source>
+			</trans-unit>
+
+			<trans-unit id="action.add_process">
+				<source><![CDATA[Add process link]]></source>
+			</trans-unit>
+			<trans-unit id="action.edit_process">
+				<source><![CDATA[Edit process link]]></source>
+			</trans-unit>
+			<trans-unit id="action.open_designer">
+				<source><![CDATA[Open JobRouter Designer]]></source>
+			</trans-unit>
+
+			<trans-unit id="status.disabled">
+				<source><![CDATA[disabled]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,5 +1,6 @@
 CREATE TABLE tx_jobrouterprocess_domain_model_process (
 	name varchar(50) DEFAULT '' NOT NULL,
+	description varchar(255) DEFAULT '' NOT NULL,
 	connection int(11) unsigned DEFAULT '0' NOT NULL,
 	processtablefields int(11) unsigned DEFAULT '0' NOT NULL
 );
