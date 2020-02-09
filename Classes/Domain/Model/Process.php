@@ -32,6 +32,11 @@ class Process extends AbstractEntity
      */
     protected $processtablefields;
 
+    public function __construct()
+    {
+        $this->initStorageObjects();
+    }
+
     protected function initStorageObjects(): void
     {
         $this->processtablefields = new ObjectStorage();

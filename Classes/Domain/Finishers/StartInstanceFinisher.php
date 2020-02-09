@@ -76,7 +76,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         }
     }
 
-    private function process()
+    private function process(): void
     {
         $this->determineInstance($this->parseOption('handle'));
         $this->defaultOptions = $this->instance->getDefaultParameters();
@@ -189,7 +189,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         return $processTableFields;
     }
 
-    private function storeInTransferTable()
+    private function storeInTransferTable(): void
     {
         $this->preparer->store(
             $this->instance->getUid(),

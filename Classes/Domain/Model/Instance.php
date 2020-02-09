@@ -81,6 +81,13 @@ class Instance extends AbstractEntity
 
     public function setStep(int $step): void
     {
+        if ($step < 1) {
+            throw new \InvalidArgumentException(
+                \sprintf('Step has to be a positive integer, "%d" given', $step),
+                1581282590
+            );
+        }
+
         $this->step = $step;
     }
 
@@ -131,6 +138,13 @@ class Instance extends AbstractEntity
 
     public function setPriority(int $priority): void
     {
+        if ($priority < 1 || $priority > 3) {
+            throw new \InvalidArgumentException(
+                \sprintf('Priority has to be between 1 and 3, "%d" given', $priority),
+                1581282986
+            );
+        }
+
         $this->priority = $priority;
     }
 
@@ -141,6 +155,13 @@ class Instance extends AbstractEntity
 
     public function setPool(int $pool): void
     {
+        if ($pool < 1) {
+            throw new \InvalidArgumentException(
+                \sprintf('Pool has to be a positive integer, "%d" given', $pool),
+                1581283150
+            );
+        }
+
         $this->pool = $pool;
     }
 
