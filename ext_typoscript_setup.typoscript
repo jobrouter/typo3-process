@@ -9,3 +9,19 @@ module.tx_jobrouterprocess {
     }
   }
 }
+
+module.tx_form {
+  settings {
+    yamlConfigurations {
+      1581265491 = EXT:jobrouter_process/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}
+
+plugin.tx_form {
+  settings {
+    yamlConfigurations {
+      1581265491 = EXT:jobrouter_process/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}

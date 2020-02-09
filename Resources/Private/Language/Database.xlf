@@ -12,8 +12,8 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_instance">
 				<source><![CDATA[JobRouter Process Instance Link]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.identifier">
-				<source><![CDATA[Identifier]]></source>
+			<trans-unit id="tx_jobrouterprocess_domain_model_instance.handle">
+				<source><![CDATA[Handle]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_instance.initiator">
 				<source><![CDATA[Initiator]]></source>

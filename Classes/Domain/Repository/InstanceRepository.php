@@ -17,7 +17,7 @@ class InstanceRepository extends Repository
 {
     protected $defaultOrderings = [
         'disabled' => QueryInterface::ORDER_ASCENDING,
-        'identifier' => QueryInterface::ORDER_ASCENDING,
+        'handle' => QueryInterface::ORDER_ASCENDING,
     ];
 
     public function findAllWithHidden()

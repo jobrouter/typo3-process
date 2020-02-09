@@ -11,11 +11,11 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'identifier,name,processname,initiator,username,jobfunction,summary',
+        'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary',
         'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_instance.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'identifier, name, processname, step, initiator, username, jobfunction, summary, priority, pool',
+        'showRecordFieldList' => 'handle, name, processname, step, initiator, username, jobfunction, summary, priority, pool',
     ],
     'columns' => [
         'disabled' => [
@@ -34,9 +34,9 @@ return [
             ]
         ],
 
-        'identifier' => [
+        'handle' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.identifier',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.handle',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -155,7 +155,7 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-            identifier, name, process, step,
+            handle, name, process, step,
             --div--;LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tab.parameters,
             --palette--;;defaultParameters,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,

@@ -15,16 +15,13 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Instance extends AbstractEntity
 {
     /** @var string */
-    protected $identifier = '';
+    protected $handle = '';
 
     /** @var string */
     protected $name = '';
 
     /** @var \Brotkrueml\JobRouterProcess\Domain\Model\Process|null */
     protected $process;
-
-    /** @var string */
-    protected $processname = '';
 
     /** @var int */
     protected $step = 0;
@@ -41,17 +38,20 @@ class Instance extends AbstractEntity
     /** @var string */
     protected $summary = '';
 
-    /** @var string */
-    protected $pool = '';
+    /** @var int */
+    protected $priority = 2;
 
-    public function getIdentifier(): string
+    /** @var int */
+    protected $pool = 1;
+
+    public function getHandle(): string
     {
-        return $this->identifier;
+        return $this->handle;
     }
 
-    public function setIdentifier(string $identifier): void
+    public function setHandle(string $handle): void
     {
-        $this->identifier = $identifier;
+        $this->handle = $handle;
     }
 
     public function getName(): string
@@ -124,13 +124,54 @@ class Instance extends AbstractEntity
         $this->summary = $summary;
     }
 
-    public function getPool(): string
+    public function getPriority(): int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(int $priority): void
+    {
+        $this->priority = $priority;
+    }
+
+    public function getPool(): int
     {
         return $this->pool;
     }
 
-    public function setPool(string $pool): void
+    public function setPool(int $pool): void
     {
         $this->pool = $pool;
+    }
+
+    public function getDefaultParameters(): array
+    {
+        $parameters = [];
+
+        if (!empty($this->initiator)) {
+            $parameters['initiator'] = $this->initiator;
+        }
+
+        if (!empty($this->username)) {
+            $parameters['username'] = $this->username;
+        }
+
+        if (!empty($this->jobfunction)) {
+            $parameters['jobfunction'] = $this->jobfunction;
+        }
+
+        if (!empty($this->summary)) {
+            $parameters['summary'] = $this->summary;
+        }
+
+        if ($this->priority !== 2) {
+            $parameters['priority'] = $this->priority;
+        }
+
+        if ($this->pool > 1) {
+            $parameters['pool'] = $this->pool;
+        }
+
+        return $parameters;
     }
 }
