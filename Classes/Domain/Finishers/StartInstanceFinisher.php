@@ -13,7 +13,9 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 use Brotkrueml\JobRouterProcess\Domain\Model\Instance;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Repository\InstanceRepository;
+use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\InstanceNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
@@ -170,17 +172,34 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             }
 
             if (isset($configuration['mapOnFormField']) && isset($formValues[$configuration['mapOnFormField']])) {
-                // @todo Check type
-                $this->data['processtable'][$processTableField] = $formValues[$configuration['mapOnFormField']];
+                $this->data['processtable'][$processTableField] = $this->considerTypeForFieldValue(
+                    $formValues[$configuration['mapOnFormField']],
+                    $processTableFields[$processTableField]->getType()
+                );
                 continue;
             }
 
             if (isset($configuration['staticValue'])) {
-                $this->data['processtable'][$processTableField] = $configuration['staticValue'];
+                $this->data['processtable'][$processTableField] = $this->considerTypeForFieldValue(
+                    $configuration['staticValue'],
+                    $processTableFields[$processTableField]->getType()
+                );
+                continue;
             }
+
+            throw new MissingFinisherOptionException(
+                \sprintf(
+                    'The process table field "%s" has to be configured with either "mapOnFormField" or "staticValue"',
+                    $processTableField
+                ),
+                1581345018
+            );
         }
     }
 
+    /**
+     * @return Processtablefield[]
+     */
     private function prepareProcessTableFields(): array
     {
         /** @var Processtablefield[] $fields */
@@ -192,6 +211,21 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         }
 
         return $processTableFields;
+    }
+
+    private function considerTypeForFieldValue($value, int $type)
+    {
+        switch ($type) {
+            case ProcessTableFieldTypeEnumeration::TEXT:
+                return $value;
+            case ProcessTableFieldTypeEnumeration::INTEGER:
+                return (int)$value;
+        }
+
+        throw new InvalidFieldTypeException(
+            \sprintf('The field type "%d" is invalid', $type),
+            1581344823
+        );
     }
 
     private function storeInTransferTable(): void
