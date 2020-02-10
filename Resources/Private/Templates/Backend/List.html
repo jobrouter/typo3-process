@@ -14,7 +14,7 @@
         <f:render section="processes" arguments="{processes: processes}"/>
 
         <f:if condition="{processes}">
-            <f:render section="instances" arguments="{instances: instances}"/>
+            <f:render section="steps" arguments="{steps: steps}"/>
         </f:if>
     </f:section>
 
@@ -89,41 +89,41 @@
         </f:if>
     </f:section>
 
-    <f:section name="instances">
+    <f:section name="steps">
         <h2>
-            <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_title"/>
-            <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_instance" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_instance')}">
+            <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_title"/>
+            <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_step" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_step')}">
                 <core:icon identifier="actions-add"/>
             </be:link.newRecord>
         </h2>
 
-        <f:if condition="{instances}">
+        <f:if condition="{steps}">
             <f:then>
                 <table class="table table-vertical-top table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.handle"/></th>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.name"/></th>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.process"/></th>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.step"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.process"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.step_number"/></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <f:for each="{instances}" as="instance">
+                        <f:for each="{steps}" as="step">
                             <tr>
                                 <td>
-                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_instance" uid="{instance.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_instance')}">{instance.handle}</be:link.editRecord>
-                                    <f:if condition="{instance.disabled}">
+                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">{step.handle}</be:link.editRecord>
+                                    <f:if condition="{step.disabled}">
                                         ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
                                     </f:if>
                                 </td>
-                                <td>{instance.name}</td>
-                                <td>{instance.process.name}</td>
-                                <td>{instance.step}</td>
+                                <td>{step.name}</td>
+                                <td>{step.process.name}</td>
+                                <td>{step.stepNumber}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <be:link.editRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_instance" uid="{instance.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_instance')}">
+                                        <be:link.editRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">
                                             <core:icon identifier="actions-open"/>
                                         </be:link.editRecord>
                                     </div>
@@ -135,10 +135,10 @@
 
             </f:then>
             <f:else>
-                <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_not_found.title')}">
-                    <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instances_not_found.message"/></p>
-                    <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_instance">
-                        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:instance_link_create"/>
+                <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_not_found.title')}">
+                    <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_not_found.message"/></p>
+                    <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_step">
+                        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:step_link_create"/>
                     </be:link.newRecord>
                 </f:be.infobox>
             </f:else>

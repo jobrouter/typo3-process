@@ -13,11 +13,11 @@ CREATE TABLE tx_jobrouterprocess_domain_model_processtablefield (
 	decimal_places smallint(5) unsigned DEFAULT '0' NOT NULL
 );
 
-CREATE TABLE tx_jobrouterprocess_domain_model_instance (
+CREATE TABLE tx_jobrouterprocess_domain_model_step (
 	handle varchar(30) DEFAULT '' NOT NULL,
 	name varchar(255) DEFAULT '' NOT NULL,
 	process int(11) unsigned DEFAULT '0' NOT NULL,
-	step smallint(5) unsigned DEFAULT '0' NOT NULL,
+	step_number smallint(5) unsigned DEFAULT '0' NOT NULL,
 	initiator varchar(50) DEFAULT '' NOT NULL,
 	username varchar(50) DEFAULT '' NOT NULL,
 	jobfunction varchar(50) DEFAULT '' NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE tx_jobrouterprocess_domain_model_instance (
 );
 
 CREATE TABLE tx_jobrouterprocess_domain_model_transfer (
-	instance_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	step_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	identifier VARCHAR(255) DEFAULT '' NOT NULL,
 	data text,
 	transmit_success tinyint(1) unsigned DEFAULT '0' NOT NULL,

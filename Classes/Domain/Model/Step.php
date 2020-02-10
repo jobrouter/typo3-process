@@ -12,7 +12,7 @@ namespace Brotkrueml\JobRouterProcess\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class Instance extends AbstractEntity
+class Step extends AbstractEntity
 {
     /** @var string */
     protected $handle = '';
@@ -24,7 +24,7 @@ class Instance extends AbstractEntity
     protected $process;
 
     /** @var int */
-    protected $step = 0;
+    protected $stepNumber = 0;
 
     /** @var string */
     protected $initiator = '';
@@ -74,21 +74,21 @@ class Instance extends AbstractEntity
         $this->process = $process;
     }
 
-    public function getStep(): int
+    public function getStepNumber(): int
     {
-        return $this->step;
+        return $this->stepNumber;
     }
 
-    public function setStep(int $step): void
+    public function setStepNumber(int $stepNumber): void
     {
-        if ($step < 1) {
+        if ($stepNumber < 1) {
             throw new \InvalidArgumentException(
-                \sprintf('Step has to be a positive integer, "%d" given', $step),
+                \sprintf('Step number has to be a positive integer, "%d" given', $stepNumber),
                 1581282590
             );
         }
 
-        $this->step = $step;
+        $this->stepNumber = $stepNumber;
     }
 
     public function getInitiator(): string

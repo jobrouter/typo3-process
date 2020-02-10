@@ -19,13 +19,13 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetInstanceUidImplementedCorrectly(): void
+    public function getAndSetStepUidImplementedCorrectly(): void
     {
-        self::assertSame(0, $this->subject->getInstanceUid());
+        self::assertSame(0, $this->subject->getStepUid());
 
-        $this->subject->setInstanceUid(42);
+        $this->subject->setStepUid(42);
 
-        self::assertSame(42, $this->subject->getInstanceUid());
+        self::assertSame(42, $this->subject->getStepUid());
     }
 
     /**

@@ -6,17 +6,3 @@ TYPO3:
           finishersDefinition:
             JobRouterStartInstance:
               implementationClassName: 'Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher'
-#                options:
-#                  -
-#                    handle: <instance handle>
-#                    initiator: 'some initiator'
-#                    username: 'some username'
-#                    jobfunction: 'some jobfunction'
-#                    summary: 'some summary'
-#                    priority: 2
-#                    pool: 1
-#                    processtable:
-#                      <processTableField>:
-#                        mapOnFormField: '<formElementIdentifier>'
-#                      <processTableField>:
-#                        staticValue: 'some static value'

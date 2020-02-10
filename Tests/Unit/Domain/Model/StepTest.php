@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Model;
 
-use Brotkrueml\JobRouterProcess\Domain\Model\Instance;
+use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use PHPUnit\Framework\TestCase;
 
-class InstanceTest extends TestCase
+class StepTest extends TestCase
 {
-    /** @var Instance */
+    /** @var Step */
     protected $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new Instance();
+        $this->subject = new Step();
     }
 
     /**
@@ -57,35 +57,35 @@ class InstanceTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetStep(): void
+    public function getAndSetStepNumber(): void
     {
-        self::assertSame(0, $this->subject->getStep());
+        self::assertSame(0, $this->subject->getStepNumber());
 
-        $this->subject->setStep(42);
+        $this->subject->setStepNumber(42);
 
-        self::assertSame(42, $this->subject->getStep());
+        self::assertSame(42, $this->subject->getStepNumber());
     }
 
     /**
      * @test
      */
-    public function setStepThrowsExceptionWhen0IsSet(): void
+    public function setStepNumberThrowsExceptionWhen0IsSet(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionCode(1581282590);
 
-        $this->subject->setStep(0);
+        $this->subject->setStepNumber(0);
     }
 
     /**
      * @test
      */
-    public function setStepThrowsExceptionWhenANegativeNumberIsSet(): void
+    public function setStepNumberThrowsExceptionWhenANegativeNumberIsSet(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionCode(1581282590);
 
-        $this->subject->setStep(-42);
+        $this->subject->setStepNumber(-42);
     }
 
     /**

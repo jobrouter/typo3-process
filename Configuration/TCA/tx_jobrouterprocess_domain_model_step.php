@@ -1,7 +1,7 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance',
+        'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step',
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -12,7 +12,7 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary',
-        'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_instance.svg'
+        'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'handle, name, processname, step, initiator, username, jobfunction, summary, priority, pool',
@@ -36,7 +36,7 @@ return [
 
         'handle' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.handle',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -46,7 +46,7 @@ return [
         ],
         'name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.name',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -56,7 +56,7 @@ return [
         ],
         'process' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.process',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.process',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -65,9 +65,9 @@ return [
                 'eval' => 'int,required',
             ],
         ],
-        'step' => [
+        'step_number' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.step',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.step_number',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -77,7 +77,7 @@ return [
         ],
         'initiator' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.initiator',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.initiator',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -87,7 +87,7 @@ return [
         ],
         'username' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.username',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.username',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -97,7 +97,7 @@ return [
         ],
         'jobfunction' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.jobfunction',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.jobfunction',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -107,7 +107,7 @@ return [
         ],
         'summary' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.summary',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.summary',
             'config' => [
                 'type' => 'input',
                 'size' => 48,
@@ -117,7 +117,7 @@ return [
         ],
         'priority' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.priority',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -127,15 +127,15 @@ return [
                         0
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.priority.1',
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.1',
                         1
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.priority.2',
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.2',
                         2
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.priority.3',
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.3',
                         3
                     ],
                 ],
@@ -143,7 +143,7 @@ return [
         ],
         'pool' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_instance.pool',
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.pool',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -155,7 +155,7 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-            handle, name, process, step,
+            handle, name, process, step_number,
             --div--;LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tab.parameters,
             --palette--;;defaultParameters,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,

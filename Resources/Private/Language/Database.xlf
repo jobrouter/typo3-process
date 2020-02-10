@@ -9,46 +9,46 @@
 			<trans-unit id="tab.parameters">
 				<source><![CDATA[Parameters]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance">
-				<source><![CDATA[JobRouter Process Instance Link]]></source>
+			<trans-unit id="tx_jobrouterprocess_domain_model_step">
+				<source><![CDATA[JobRouter Process Step Link]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.handle">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.handle">
 				<source><![CDATA[Handle]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.initiator">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.initiator">
 				<source><![CDATA[Initiator]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.jobfunction">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.jobfunction">
 				<source><![CDATA[Job Function]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.name">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.pool">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.pool">
 				<source><![CDATA[Pool]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.priority">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority">
 				<source><![CDATA[Priority]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.priority.1">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.1">
 				<source><![CDATA[low]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.priority.2">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.2">
 				<source><![CDATA[normal]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.priority.3">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.3">
 				<source><![CDATA[high]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.process">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.process">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.step">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.step_number">
 				<source><![CDATA[Step Number]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.summary">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.summary">
 				<source><![CDATA[Summary]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_instance.username">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.username">
 				<source><![CDATA[Username]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process">

@@ -8,10 +8,10 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'instance_uid, identifier, transmit_success, transmit_date, transmit_message',
+        'showRecordFieldList' => 'step_uid, identifier, transmit_success, transmit_date, transmit_message',
     ],
     'columns' => [
-        'instance_uid' => [
+        'step_uid' => [
             'label' => 'Table',
             'config' => [
                 'type' => 'input',
@@ -49,6 +49,6 @@ return [
         ],
     ],
     'types' => [
-        '1' => ['showitem' => 'instance_uid, identifier, data, transmit_success, transmit_date, transmit_message'],
+        '1' => ['showitem' => 'step_uid, identifier, data, transmit_success, transmit_date, transmit_message'],
     ],
 ];

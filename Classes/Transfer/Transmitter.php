@@ -14,12 +14,12 @@ use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-use Brotkrueml\JobRouterProcess\Domain\Model\Instance;
+use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Repository\InstanceRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\InstanceNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -34,7 +34,7 @@ class Transmitter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private const INSTANCES_RESOURCE_TEMPLATE = '/application/incidents/%s';
+    private const INCIDENTS_RESOURCE_TEMPLATE = '/application/incidents/%s';
 
     /** @var PersistenceManagerInterface */
     private $persistenceManager;
@@ -42,8 +42,8 @@ class Transmitter implements LoggerAwareInterface
     /** @var TransferRepository */
     private $transferRepository;
 
-    /** @var InstanceRepository */
-    private $instanceRepository;
+    /** @var StepRepository */
+    private $stepRepository;
 
     /** @var RestClientFactory */
     private $restClientFactory;
@@ -56,12 +56,12 @@ class Transmitter implements LoggerAwareInterface
     public function __construct(
         PersistenceManagerInterface $persistenceManager = null,
         TransferRepository $transferRepository = null,
-        InstanceRepository $instanceRepository = null
+        StepRepository $stepRepository = null
     ) {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->persistenceManager = $persistenceManager ?? $objectManager->get(PersistenceManagerInterface::class);
         $this->transferRepository = $transferRepository ?? $objectManager->get(TransferRepository::class);
-        $this->instanceRepository = $instanceRepository ?? $objectManager->get(InstanceRepository::class);
+        $this->stepRepository = $stepRepository ?? $objectManager->get(StepRepository::class);
     }
 
     public function run(): array
@@ -111,13 +111,13 @@ class Transmitter implements LoggerAwareInterface
 
     private function transmitTransfer(Transfer $transfer): void
     {
-        $instance = $this->getInstance($transfer->getInstanceUid());
-        $incident = $this->createIncidentFromTransferItem($instance->getStep(), $transfer);
+        $step = $this->getStep($transfer->getStepUid());
+        $incident = $this->createIncidentFromTransferItem($step->getStepNumber(), $transfer);
 
-        $client = $this->getRestClientForInstance($instance);
+        $client = $this->getRestClientForStep($step);
         $response = $client->request(
             'POST',
-            \sprintf(self::INSTANCES_RESOURCE_TEMPLATE, $instance->getProcess()->getName()),
+            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->getProcess()->getName()),
             $incident
         );
 
@@ -135,32 +135,32 @@ class Transmitter implements LoggerAwareInterface
         );
     }
 
-    private function getInstance(int $instanceUid): Instance
+    private function getStep(int $stepUid): Step
     {
-        /** @var Instance $instance */
-        $instance = $this->instanceRepository->findByIdentifier($instanceUid);
+        /** @var Step $step */
+        $step = $this->stepRepository->findByIdentifier($stepUid);
 
-        if (empty($instance)) {
-            throw new InstanceNotFoundException(
+        if (empty($step)) {
+            throw new StepNotFoundException(
                 \sprintf(
-                    'Instance link with uid "%d" is not available',
-                    $instanceUid
+                    'Step link with uid "%d" is not available',
+                    $stepUid
                 ),
                 1581331820
             );
         }
 
-        return $instance;
+        return $step;
     }
 
-    private function getRestClientForInstance(Instance $instance): IncidentsClientDecorator
+    private function getRestClientForStep(Step $step): IncidentsClientDecorator
     {
-        $process = $instance->getProcess();
+        $process = $step->getProcess();
         if (empty($process)) {
             throw new ProcessNotFoundException(
                 \sprintf(
-                    'Process for instance link with handle "%s" is not available',
-                    $instance->getHandle()
+                    'Process for step link with handle "%s" is not available',
+                    $step->getHandle()
                 ),
                 1581331785
             );

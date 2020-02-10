@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class InstanceRepository extends Repository
+class StepRepository extends Repository
 {
     protected $defaultOrderings = [
         'disabled' => QueryInterface::ORDER_ASCENDING,

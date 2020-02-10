@@ -17,7 +17,7 @@ class Transfer extends AbstractEntity
     /**
      * @var int
      */
-    protected $instanceUid = 0;
+    protected $stepUid = 0;
 
     /**
      * @var string
@@ -44,14 +44,14 @@ class Transfer extends AbstractEntity
      */
     protected $transmitMessage = '';
 
-    public function getInstanceUid(): int
+    public function getStepUid(): int
     {
-        return $this->instanceUid;
+        return $this->stepUid;
     }
 
-    public function setInstanceUid(int $instanceUid): void
+    public function setStepUid(int $stepUid): void
     {
-        $this->instanceUid = $instanceUid;
+        $this->stepUid = $stepUid;
     }
 
     public function getIdentifier(): string

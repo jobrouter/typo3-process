@@ -10,11 +10,11 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterProcess\Domain\Model\Instance;
+use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
-use Brotkrueml\JobRouterProcess\Domain\Repository\InstanceRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
-use Brotkrueml\JobRouterProcess\Exception\InstanceNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
@@ -28,8 +28,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 {
     use LoggerAwareTrait;
 
-    /** @var InstanceRepository */
-    private $instanceRepository;
+    /** @var StepRepository */
+    private $stepRepository;
 
     /** @var Preparer */
     private $preparer;
@@ -44,8 +44,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         'username',
     ];
 
-    /** @var Instance */
-    private $instance;
+    /** @var Step */
+    private $step;
 
     private $data = [];
 
@@ -56,9 +56,9 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
      */
     private $formRequestId = '';
 
-    public function injectInstanceRepository(InstanceRepository $instanceRepository): void
+    public function injectStepRepository(StepRepository $stepRepository): void
     {
-        $this->instanceRepository = $instanceRepository;
+        $this->stepRepository = $stepRepository;
     }
 
     protected function executeInternal()
@@ -80,18 +80,18 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private function process(): void
     {
-        $this->determineInstance($this->parseOption('handle'));
-        $this->defaultOptions = $this->instance->getDefaultParameters();
+        $this->determineStep($this->parseOption('handle'));
+        $this->defaultOptions = $this->step->getDefaultParameters();
 
         $this->prepareData();
         $this->storeInTransferTable();
     }
 
-    private function determineInstance(?string $handle): void
+    private function determineStep(?string $handle): void
     {
         if (empty($handle)) {
             $message = \sprintf(
-                'Instance handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
+                'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
                 $this->getFormIdentifier()
             );
 
@@ -100,24 +100,23 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             throw new MissingFinisherOptionException($message, 1581270462);
         }
 
-        /** @var Instance $instance */
-        $this->instance = $this->instanceRepository->findOneByHandle($handle);
+        $this->step = $this->stepRepository->findOneByHandle($handle);
 
-        if (empty($this->instance)) {
+        if (empty($this->step)) {
             $message = \sprintf(
-                'Instance with handle "%s" is not available, defined in form with identifier "%s"',
+                'Step with handle "%s" is not available, defined in form with identifier "%s"',
                 $handle,
                 $this->getFormIdentifier()
             );
 
             $this->logger->critical($message);
 
-            throw new InstanceNotFoundException($message, 1581270832);
+            throw new StepNotFoundException($message, 1581270832);
         }
 
-        if (empty($this->instance->getProcess())) {
+        if (empty($this->step->getProcess())) {
             $message = \sprintf(
-                'Process for instance with handle "%s" is not available, defined in form with identifier "%s"',
+                'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
                 $handle,
                 $this->getFormIdentifier()
             );
@@ -165,7 +164,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                         'Process table field "%s" is used in form with identifier "%s" but not defined in process "%s"',
                         $processTableField,
                         $this->getFormIdentifier(),
-                        $this->instance->getProcess()->getName()
+                        $this->step->getProcess()->getName()
                     )
                 );
                 continue;
@@ -203,7 +202,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     private function prepareProcessTableFields(): array
     {
         /** @var Processtablefield[] $fields */
-        $fields = $this->instance->getProcess()->getProcesstablefields();
+        $fields = $this->step->getProcess()->getProcesstablefields();
 
         $processTableFields = [];
         foreach ($fields as $field) {
@@ -231,7 +230,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     private function storeInTransferTable(): void
     {
         $this->preparer->store(
-            $this->instance->getUid(),
+            $this->step->getUid(),
             $this->getFormIdentifier() . '_' . $this->formRequestId,
             \json_encode($this->data)
         );

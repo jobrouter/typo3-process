@@ -16,17 +16,17 @@
 				<source><![CDATA[Processes]]></source>
 			</trans-unit>
 
-			<trans-unit id="instances_title">
-				<source><![CDATA[Instance Links]]></source>
+			<trans-unit id="steps_title">
+				<source><![CDATA[Step Links]]></source>
 			</trans-unit>
-			<trans-unit id="instances_not_found.title">
-				<source><![CDATA[No instance links found]]></source>
+			<trans-unit id="steps_not_found.title">
+				<source><![CDATA[No step links found]]></source>
 			</trans-unit>
-			<trans-unit id="instances_not_found.message">
-				<source><![CDATA[There are currently no instance links defined.]]></source>
+			<trans-unit id="steps_not_found.message">
+				<source><![CDATA[There are currently no step links defined.]]></source>
 			</trans-unit>
-			<trans-unit id="instance_link_create">
-				<source><![CDATA[Create new instance link]]></source>
+			<trans-unit id="step_link_create">
+				<source><![CDATA[Create new step link]]></source>
 			</trans-unit>
 
 			<trans-unit id="processes_title">
@@ -42,11 +42,11 @@
 				<source><![CDATA[Create new process link]]></source>
 			</trans-unit>
 
-			<trans-unit id="action.add_instance">
-				<source><![CDATA[Add instance link]]></source>
+			<trans-unit id="action.add_step">
+				<source><![CDATA[Add step link]]></source>
 			</trans-unit>
-			<trans-unit id="action.edit_instance">
-				<source><![CDATA[Edit instance link]]></source>
+			<trans-unit id="action.edit_step">
+				<source><![CDATA[Edit step link]]></source>
 			</trans-unit>
 
 			<trans-unit id="action.add_process">

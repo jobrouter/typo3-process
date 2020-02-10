@@ -10,6 +10,6 @@ namespace Brotkrueml\JobRouterProcess\Exception;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class InstanceNotFoundException extends \RuntimeException
+class StepNotFoundException extends \RuntimeException
 {
 }

@@ -43,7 +43,7 @@ class PreparerTest extends TestCase
     {
         $transfer = new Transfer();
         $transfer->setPid(0);
-        $transfer->setInstanceUid(42);
+        $transfer->setStepUid(42);
         $transfer->setIdentifier('some identifier');
         $transfer->setData('some data');
 

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\InstanceRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -22,8 +22,8 @@ class TransmitterTest extends TestCase
     /** @var MockObject|TransferRepository */
     private $transferRepositoryMock;
 
-    /** @var MockObject|InstanceRepository */
-    private $instanceRepositoryMock;
+    /** @var MockObject|StepRepository */
+    private $stepRepositoryMock;
 
     protected function setUp(): void
     {
@@ -35,14 +35,14 @@ class TransmitterTest extends TestCase
             ->onlyMethods(['update'])
             ->getMock();
 
-        $this->instanceRepositoryMock = $this->getMockBuilder(InstanceRepository::class)
+        $this->stepRepositoryMock = $this->getMockBuilder(StepRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->subject = new Transmitter(
             $this->persistenceManagerMock,
             $this->transferRepositoryMock,
-            $this->instanceRepositoryMock
+            $this->stepRepositoryMock
         );
         $this->subject->setLogger(new NullLogger());
     }

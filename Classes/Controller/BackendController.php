@@ -10,7 +10,7 @@ namespace Brotkrueml\JobRouterProcess\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\InstanceRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -33,8 +33,8 @@ class BackendController extends ActionController
     /** @var ProcessRepository */
     private $processRepository;
 
-    /** @var InstanceRepository */
-    private $instanceRepository;
+    /** @var StepRepository */
+    private $stepRepository;
 
     /** @var IconFactory */
     private $iconFactory;
@@ -53,9 +53,9 @@ class BackendController extends ActionController
         $this->processRepository = $processRepository;
     }
 
-    public function injectInstanceRepository(InstanceRepository $instanceRepository): void
+    public function injectStepRepository(StepRepository $stepRepository): void
     {
-        $this->instanceRepository = $instanceRepository;
+        $this->stepRepository = $stepRepository;
     }
 
     public function injectIconFactory(IconFactory $iconFactory): void
@@ -82,10 +82,10 @@ class BackendController extends ActionController
     public function listAction(): void
     {
         $processes = $this->processRepository->findAllWithHidden();
-        $instances = $this->instanceRepository->findAllWithHidden();
+        $steps = $this->stepRepository->findAllWithHidden();
 
         $this->view->assign('processes', $processes);
-        $this->view->assign('instances', $instances);
+        $this->view->assign('steps', $steps);
     }
 
     protected function createRefreshHeaderButton(): void
