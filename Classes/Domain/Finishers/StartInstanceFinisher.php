@@ -171,7 +171,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
             if (isset($configuration['mapOnFormField']) && isset($formValues[$configuration['mapOnFormField']])) {
                 // @todo Check type
-                $this->data['processtable'][$processTableField] = $configuration['mapOnFormField'];
+                $this->data['processtable'][$processTableField] = $formValues[$configuration['mapOnFormField']];
+                continue;
+            }
+
+            if (isset($configuration['staticValue'])) {
+                $this->data['processtable'][$processTableField] = $configuration['staticValue'];
             }
         }
     }
