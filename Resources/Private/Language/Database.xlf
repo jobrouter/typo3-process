@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-02-09T10:29:03Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-02-10T16:11:39Z" product-name="jobrouter_process">
 		<header/>
 		<body>
 			<trans-unit id="palette.default_parameters">
@@ -60,11 +60,17 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.description">
 				<source><![CDATA[Description]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.description">
+				<source><![CDATA[Description]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.name">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.name.description">
+				<source><![CDATA[The process name must be written exactly as in the JobRouter installation.]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.processtablefields">
-				<source><![CDATA[Fields]]></source>
+				<source><![CDATA[Process Table Fields]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields">
 				<source><![CDATA[JobRouter Process Table]]></source>
@@ -77,6 +83,9 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name">
 				<source><![CDATA[Name]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name.description">
+				<source><![CDATA[The field name must be written exactly as in the JobRouter process table definition.]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type">
 				<source><![CDATA[Type]]></source>

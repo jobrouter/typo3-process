@@ -38,6 +38,7 @@ return [
         'name' => [
             'exclude' => true,
             'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.name',
+            'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.name.description',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
