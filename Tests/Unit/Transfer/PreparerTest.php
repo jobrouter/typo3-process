@@ -42,15 +42,14 @@ class PreparerTest extends TestCase
     public function storePersistsRecordCorrectly(): void
     {
         $transfer = new Transfer();
-        $transfer->setPid(0);
         $transfer->setStepUid(42);
         $transfer->setIdentifier('some identifier');
-        $transfer->setData('some data');
+        $transfer->setProcesstable('some data');
 
         $this->persistenceManager->persistAll()->shouldBeCalled();
         $this->transferRepository->add($transfer)->shouldBeCalled();
 
-        $this->subject->store(42, 'some identifier', 'some data');
+        $this->subject->store($transfer);
     }
 
     /**
@@ -63,6 +62,6 @@ class PreparerTest extends TestCase
 
         $this->transferRepository->add(Argument::any())->willThrow(\Exception::class);
 
-        $this->subject->store(42, 'some identifier', 'some data');
+        $this->subject->store(new Transfer());
     }
 }

@@ -12,8 +12,10 @@ namespace Brotkrueml\JobRouterProcess\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class Transfer extends AbstractEntity
+class Transfer extends AbstractEntity implements CommonStepParameterInterface
 {
+    use CommonStepParameterTrait;
+
     /**
      * @var int
      */
@@ -27,7 +29,7 @@ class Transfer extends AbstractEntity
     /**
      * @var string
      */
-    protected $data = '';
+    protected $processtable = '';
 
     /**
      * @var bool
@@ -43,6 +45,11 @@ class Transfer extends AbstractEntity
      * @var string
      */
     protected $transmitMessage = '';
+
+    public function __construct()
+    {
+        $this->setPid(0);
+    }
 
     public function getStepUid(): int
     {
@@ -64,14 +71,14 @@ class Transfer extends AbstractEntity
         $this->identifier = $identifier;
     }
 
-    public function getData(): string
+    public function getProcesstable(): string
     {
-        return $this->data;
+        return $this->processtable;
     }
 
-    public function setData(string $data): void
+    public function setProcesstable(string $processtable): void
     {
-        $this->data = $data;
+        $this->processtable = $processtable;
     }
 
     public function isTransmitSuccess(): bool

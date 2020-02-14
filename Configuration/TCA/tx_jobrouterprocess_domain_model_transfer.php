@@ -23,7 +23,43 @@ return [
                 'type' => 'input',
             ],
         ],
-        'data' => [
+        'initiator' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'username' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'jobfunction' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'summary' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'priority' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'pool' => [
+            'label' => 'Data',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'processtable' => [
             'label' => 'Data',
             'config' => [
                 'type' => 'input',

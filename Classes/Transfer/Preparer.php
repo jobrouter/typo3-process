@@ -39,14 +39,8 @@ class Preparer implements LoggerAwareInterface
         $this->transferRepository = $transferRepository ?? $objectManager->get(TransferRepository::class);
     }
 
-    public function store(int $stepUid, string $identifier, string $data): void
+    public function store(Transfer $transfer): void
     {
-        $transfer = new Transfer();
-        $transfer->setPid(0);
-        $transfer->setStepUid($stepUid);
-        $transfer->setIdentifier($identifier);
-        $transfer->setData($data);
-
         try {
             $this->transferRepository->add($transfer);
             $this->persistenceManager->persistAll();

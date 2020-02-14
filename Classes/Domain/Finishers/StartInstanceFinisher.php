@@ -12,8 +12,10 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
@@ -47,7 +49,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     /** @var Step */
     private $step;
 
-    private $data = [];
+    /** @var Transfer */
+    private $transfer;
 
     /**
      * Because there can be more than one instance to start, a form request id is generated
@@ -83,8 +86,10 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $this->determineStep($this->parseOption('handle'));
         $this->defaultOptions = $this->step->getDefaultParameters();
 
-        $this->prepareData();
-        $this->storeInTransferTable();
+        $this->initialiseTransfer();
+        $this->prepareCommonParametersForTransfer();
+        $this->prepareProcessTableForTransfer();
+        $this->preparer->store($this->transfer);
     }
 
     private function determineStep(?string $handle): void
@@ -127,6 +132,13 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         }
     }
 
+    private function initialiseTransfer(): void
+    {
+        $this->transfer = new Transfer();
+        $this->transfer->setStepUid($this->step->getUid());
+        $this->transfer->setIdentifier($this->getFormIdentifier() . '_' . $this->formRequestId);
+    }
+
     private function getFormIdentifier(): string
     {
         return $this
@@ -136,9 +148,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             ->getIdentifier();
     }
 
-    private function prepareData(): void
+    private function prepareCommonParametersForTransfer(): void
     {
-        $this->data = [];
         foreach ($this->commonParameters as $parameter) {
             $value = $this->parseOption($parameter);
 
@@ -146,16 +157,28 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 continue;
             }
 
-            $this->data[$parameter] = $value;
-        }
+            $setter = 'set' . \ucfirst($parameter);
+            if (!\method_exists($this->transfer, $setter)) {
+                throw new CommonParameterNotFoundException(
+                    \sprintf('Method "%s" in Transfer domain model not found', $setter),
+                    1581703904
+                );
+            }
 
+            $this->transfer->{'set' . \ucfirst($parameter)}($value);
+        }
+    }
+
+    private function prepareProcessTableForTransfer(): void
+    {
         if (!isset($this->options['processtable']) || !\is_array($this->options['processtable'])) {
             return;
         }
 
-        $this->data['processtable'] = [];
         $formValues = $this->finisherContext->getFormValues();
         $processTableFields = $this->prepareProcessTableFields();
+
+        $processTable = [];
 
         foreach ($this->options['processtable'] as $processTableField => $configuration) {
             if (!\array_key_exists($processTableField, $processTableFields)) {
@@ -171,7 +194,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             }
 
             if (isset($configuration['mapOnFormField']) && isset($formValues[$configuration['mapOnFormField']])) {
-                $this->data['processtable'][$processTableField] = $this->considerTypeForFieldValue(
+                $processTable[$processTableField] = $this->considerTypeForFieldValue(
                     $formValues[$configuration['mapOnFormField']],
                     $processTableFields[$processTableField]->getType()
                 );
@@ -179,7 +202,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             }
 
             if (isset($configuration['staticValue'])) {
-                $this->data['processtable'][$processTableField] = $this->considerTypeForFieldValue(
+                $processTable[$processTableField] = $this->considerTypeForFieldValue(
                     $configuration['staticValue'],
                     $processTableFields[$processTableField]->getType()
                 );
@@ -194,6 +217,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 1581345018
             );
         }
+
+        $this->transfer->setProcesstable(\json_encode($processTable));
     }
 
     /**
@@ -224,15 +249,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         throw new InvalidFieldTypeException(
             \sprintf('The field type "%d" is invalid', $type),
             1581344823
-        );
-    }
-
-    private function storeInTransferTable(): void
-    {
-        $this->preparer->store(
-            $this->step->getUid(),
-            $this->getFormIdentifier() . '_' . $this->formRequestId,
-            \json_encode($this->data)
         );
     }
 }

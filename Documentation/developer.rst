@@ -42,23 +42,27 @@ you can use the :php:`Preparer` class within TYPO3:
 ::
 
    <?php
+   use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
    use Brotkrueml\JobRouterProcess\Exception\PrepareException;
    use Brotkrueml\JobRouterProcess\Transfer\Preparer;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+   // Define the transfer domain model with your parameters
+   // Have a look in the Transfer model to see the available setters
+   $transfer = new Transfer();
+   $transfer->setSummary('My summary')
+   $transfer->setProcesstable(json_encode([
+      'name' => 'John Doe',
+      'company' => 'Acme Ltd.',
+      'email_address' => 'jdoe@example.com',
+      'message' => 'Please send my information.',
+   }));
 
    // It's important to use the makeInstance method to inject all necessary
    // dependencies
    $preparer = GeneralUtility::makeInstance(Preparer::class);
    try {
-
-      $preparer->store(
-          // The step link uid
-         1,
-         // Some descriptive identifier for the source of the instance
-         'some identifier',
-         // Your JSON encoded daa
-         '{"initiator":"some initiator","summary":"some summary","jobfunction":"sales","processtable":{"name":"John Doe"}}'
-      );
+      $preparer->store($transfer);
    } catch (PrepareException $e) {
       // In some rare cases an exception can be thrown
       var_dump($e->getMessage());
@@ -68,7 +72,7 @@ The :ref:`transmit command <configuration-transmit-command>` must be activated
 with a cron job to periodically start instances in the JobRouter
 installation(s).
 
-.. important::
+Instead of the :php:`Preparer` class, you can also use the
+:php:`Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository` to store
+transfer records in the database.
 
-   Do not insert the data sets directly into the transfer table, as the table
-   schema can be changed without notice. Use the API described above.

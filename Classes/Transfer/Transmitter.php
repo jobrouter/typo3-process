@@ -199,30 +199,33 @@ class Transmitter implements LoggerAwareInterface
 
     private function createIncidentFromTransferItem(int $step, Transfer $transfer): Incident
     {
-        $transferData = \json_decode($transfer->getData(), true);
-
         $incident = new Incident();
         $incident->setStep($step);
-        if (isset($transferData['initiator'])) {
-            $incident->setInitiator($transferData['initiator']);
+        if (!empty($transfer->getInitiator())) {
+            $incident->setInitiator($transfer->getInitiator());
         }
-        if (isset($transferData['username'])) {
-            $incident->setUsername($transferData['username']);
+        if (!empty($transfer->getUsername())) {
+            $incident->setUsername($transfer->getUsername());
         }
-        if (isset($transferData['jobfunction'])) {
-            $incident->setJobfunction($transferData['jobfunction']);
+        if (!empty($transfer->getJobfunction())) {
+            $incident->setJobfunction($transfer->getJobfunction());
         }
-        if (isset($transferData['summary'])) {
-            $incident->setSummary($transferData['summary']);
+        if (!empty($transfer->getSummary())) {
+            $incident->setSummary($transfer->getSummary());
         }
-        if (isset($transferData['priority'])) {
-            $incident->setPriority((int)$transferData['priority']);
+        if (!empty($transfer->getPriority())) {
+            $incident->setPriority($transfer->getPriority());
         }
-        if (isset($transferData['pool'])) {
-            $incident->setPool((int)$transferData['pool']);
+        if (!empty($transfer->getPool())) {
+            $incident->setPool($transfer->getPool());
         }
-        foreach ($transferData['processtable'] ?? [] as $name => $value) {
-            $incident->setProcessTableField($name, $value);
+
+        if (!empty($transfer->getProcesstable())) {
+            $processTable = \json_decode($transfer->getProcesstable(), true);
+
+            foreach ($processTable ?? [] as $name => $value) {
+                $incident->setProcessTableField($name, $value);
+            }
         }
 
         return $incident;

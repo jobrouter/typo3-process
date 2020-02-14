@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Model;
 
+use Brotkrueml\JobRouterProcess\Domain\Model\CommonStepParameterInterface;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use PHPUnit\Framework\TestCase;
 
@@ -14,6 +15,14 @@ class TransferTest extends TestCase
     protected function setUp(): void
     {
         $this->subject = new Transfer();
+    }
+
+    /**
+     * @test
+     */
+    public function getPidReturns0(): void
+    {
+        self::assertSame(0, $this->subject->getPid());
     }
 
     /**
@@ -43,13 +52,13 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetDataImplementedCorrectly(): void
+    public function getAndSetProcesstableImplementedCorrectly(): void
     {
-        self::assertSame('', $this->subject->getData());
+        self::assertSame('', $this->subject->getProcesstable());
 
-        $this->subject->setData('some data');
+        $this->subject->setProcesstable('some data');
 
-        self::assertSame('some data', $this->subject->getData());
+        self::assertSame('some data', $this->subject->getProcesstable());
     }
 
     /**
@@ -87,5 +96,13 @@ class TransferTest extends TestCase
         $this->subject->setTransmitMessage('some transmit message');
 
         self::assertSame('some transmit message', $this->subject->getTransmitMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function defaultStepParameterInterfaceIsImplemented(): void
+    {
+        self::assertInstanceOf(CommonStepParameterInterface::class, $this->subject);
     }
 }
