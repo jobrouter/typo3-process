@@ -121,10 +121,13 @@ class Transmitter implements LoggerAwareInterface
             $incident
         );
 
-        $successMessage = $response->getBody()->getContents();
+        $successMessage = '';
+        if ($body = \json_decode($response->getBody()->getContents(), true)) {
+            $successMessage = $body['incidents'][0] ?? '';
+        }
 
         $transfer->setTransmitSuccess(true);
-        $transfer->setTransmitMessage($successMessage);
+        $transfer->setTransmitMessage(\is_array($successMessage) ? \json_encode($successMessage) : $successMessage);
 
         $this->logger->info(
             \sprintf(
