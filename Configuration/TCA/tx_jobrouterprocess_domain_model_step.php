@@ -127,16 +127,16 @@ return [
                         0
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.1',
-                        1
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::LOW,
+                        \Brotkrueml\JobRouterProcess\Enumeration\Priority::LOW
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.2',
-                        2
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::NORMAL,
+                        \Brotkrueml\JobRouterProcess\Enumeration\Priority::NORMAL
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.3',
-                        3
+                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::HIGH,
+                        \Brotkrueml\JobRouterProcess\Enumeration\Priority::HIGH
                     ],
                 ],
             ],

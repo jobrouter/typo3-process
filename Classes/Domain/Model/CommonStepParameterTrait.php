@@ -10,6 +10,8 @@ namespace Brotkrueml\JobRouterProcess\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterProcess\Enumeration\Priority;
+
 trait CommonStepParameterTrait
 {
     /** @var string */
@@ -148,7 +150,7 @@ trait CommonStepParameterTrait
             $parameters['summary'] = $this->summary;
         }
 
-        if ($this->priority !== 2) {
+        if ($this->priority !== Priority::NORMAL) {
             $parameters['priority'] = $this->priority;
         }
 
