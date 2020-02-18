@@ -58,6 +58,9 @@
                                                     <f:then>{field.description}</f:then>
                                                     <f:else>{field.name}</f:else>
                                                 </f:if>
+                                                <f:if condition="{field.type} == 1 && {field.fieldSize}">
+                                                    ({field.fieldSize})
+                                                </f:if>
                                             </li>
                                         </f:for>
                                     </ul>

@@ -9,13 +9,14 @@ return [
         'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'sortby' => 'sorting',
+        'type' => 'type',
         'rootLevel' => 1,
         'searchFields' => 'name,description',
         'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_processtablefields.svg',
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'name, description, type',
+        'showRecordFieldList' => 'name, description, type, field_size',
     ],
     'columns' => [
         'pid' => [
@@ -61,11 +62,11 @@ return [
         'type' => [
             'exclude' => true,
             'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', ''],
                     [
                         'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.text',
                         \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::TEXT
@@ -78,18 +79,39 @@ return [
                 'eval' => 'required',
             ],
         ],
+        'field_size' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.field_size',
+            'config' => [
+                'type' => 'input',
+                'size' => 5,
+                'max' => 5,
+                'range' => [
+                    'lower' => 0,
+                ],
+                'eval' => 'int',
+                'default' => 0,
+            ],
+        ],
     ],
     'types' => [
-        '0' => [
+        '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
-                --palette--;;type,
+                --palette--;;textType,
+            '
+        ],
+        '2' => [
+            'showitem' => '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                --palette--;;nameDescription,
+                type,
             '
         ],
     ],
     'palettes' => [
         'nameDescription' => ['showitem' => 'name, description'],
-        'type' => ['showitem' => 'type'],
+        'textType' => ['showitem' => 'type, field_size'],
     ],
 ];

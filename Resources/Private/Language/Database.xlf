@@ -75,11 +75,11 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields">
 				<source><![CDATA[JobRouter Process Table]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.decimal_places">
-				<source><![CDATA[Decimal Places]]></source>
-			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.description">
 				<source><![CDATA[Description]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.field_size">
+				<source><![CDATA[Field Size]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name">
 				<source><![CDATA[Name]]></source>

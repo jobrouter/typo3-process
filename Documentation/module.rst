@@ -65,16 +65,23 @@ General
 
    :aspect:`Name (required)`
 
-   The name of the process table field as defined in the JobRouter Designer.
+      The name of the process table field as defined in the JobRouter Designer.
 
    :aspect:`Description (optional)`
 
-   A description of the process table field.
+      A description of the process table field.
 
    :aspect:`Type (required)`
 
-   Select the column type (for now are available: `Text`, `Integer`). When using
-   the form finisher, the value is casted to this type.
+      Select the column type (for now are available: `Text`, `Integer`). When
+      using the form finisher, the value is casted to this type.
+
+   :aspect:`Field Size (required)`
+
+      This option is only shown with type :guilabel:`Text`. Enter the size
+      of the field. When :ref:`transmitting <configuration-transmit-command>`
+      the fields the values are truncated if too long to prevent errors when
+      starting an instance. To disable the truncation enter `0`.
 
    .. note::
 

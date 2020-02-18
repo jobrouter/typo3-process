@@ -10,7 +10,7 @@ CREATE TABLE tx_jobrouterprocess_domain_model_processtablefield (
 	name varchar(20) DEFAULT '' NOT NULL,
 	description varchar(255) DEFAULT '' NOT NULL,
 	type smallint(5) unsigned DEFAULT '0' NOT NULL,
-	decimal_places smallint(5) unsigned DEFAULT '0' NOT NULL
+	field_size smallint(5) unsigned DEFAULT '0' NOT NULL,
 );
 
 CREATE TABLE tx_jobrouterprocess_domain_model_step (

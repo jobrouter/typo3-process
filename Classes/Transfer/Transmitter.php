@@ -14,11 +14,15 @@ use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterProcess\Domain\Model\Process;
+use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
+use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Psr\Log\LoggerAwareInterface;
@@ -112,7 +116,7 @@ class Transmitter implements LoggerAwareInterface
     private function transmitTransfer(Transfer $transfer): void
     {
         $step = $this->getStep($transfer->getStepUid());
-        $incident = $this->createIncidentFromTransferItem($step->getStepNumber(), $transfer);
+        $incident = $this->createIncidentFromTransferItem($step, $transfer);
 
         $client = $this->getRestClientForStep($step);
         $response = $client->request(
@@ -200,10 +204,10 @@ class Transmitter implements LoggerAwareInterface
         return $this->restClientFactory = new RestClientFactory();
     }
 
-    private function createIncidentFromTransferItem(int $step, Transfer $transfer): Incident
+    private function createIncidentFromTransferItem(Step $step, Transfer $transfer): Incident
     {
         $incident = new Incident();
-        $incident->setStep($step);
+        $incident->setStep($step->getStepNumber());
         if (!empty($transfer->getInitiator())) {
             $incident->setInitiator($transfer->getInitiator());
         }
@@ -227,10 +231,41 @@ class Transmitter implements LoggerAwareInterface
             $processTable = \json_decode($transfer->getProcesstable(), true);
 
             foreach ($processTable ?? [] as $name => $value) {
+                $configuredProcessTableField = $this->getProcessTableField($name, $step->getProcess());
+
+                if ($configuredProcessTableField->getType() === ProcessTableFieldTypeEnumeration::TEXT
+                    && $configuredProcessTableField->getFieldSize()
+                ) {
+                    $value = \substr($value, 0, $configuredProcessTableField->getFieldSize());
+                }
+
                 $incident->setProcessTableField($name, $value);
             }
         }
 
         return $incident;
+    }
+
+    private function getProcessTableField(string $name, Process $process): Processtablefield
+    {
+        $configuredProcessTableFields = $process->getProcesstablefields()->toArray();
+
+        $processTableField = \array_filter($configuredProcessTableFields, function ($field) use ($name) {
+            /** @var Processtablefield $field */
+            return $name === $field->getName();
+        });
+
+        if (empty($processTableField)) {
+            throw new ProcessTableFieldNotFoundException(
+                \sprintf(
+                    'Process table field "%s" is not configured in process link "%s"',
+                    $name,
+                    $process->getName()
+                ),
+                1582053551
+            );
+        }
+
+        return \array_shift($processTableField);
     }
 }
