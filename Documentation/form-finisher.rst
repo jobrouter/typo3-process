@@ -31,7 +31,7 @@ configuration of the specific form:
          identifier: JobRouterStartInstance
          options:
             handle: 'start_website_contact'
-            summary: Demo Contact
+            summary: 'Demo Contact'
             processtable:
                name:
                   mapOnFormField: name
@@ -70,5 +70,5 @@ As you can see, you can define some options. These are:
 
 .. note::
 
-   Only process table fields can be used that are defined in the
+   Only process table fields can be used that are configured in the
    :ref:`process link <module-create-process-link>`.
