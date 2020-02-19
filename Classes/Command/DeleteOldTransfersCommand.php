@@ -39,8 +39,11 @@ final class DeleteOldTransfersCommand extends Command
         $this
             ->setDescription('Delete old entries in the transfer table')
             ->setHelp($help)
-            ->addArgument(self::ARGUMENT_AGE_IN_DAYS, InputArgument::OPTIONAL,
-                'The age in days (optional). Set to 0 to delete all successful transfers.');;
+            ->addArgument(
+                self::ARGUMENT_AGE_IN_DAYS,
+                InputArgument::OPTIONAL,
+                'The age in days (optional). Set to 0 to delete all successful transfers.'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
