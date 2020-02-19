@@ -87,3 +87,9 @@ If an error occurs, the command issues a warning:
 Other transfer starts are not affected by an error in one start. According
 to your :ref:`logging configuration <configuration-extension>`, the error is
 also logged.
+
+.. note::
+
+   Only one start command can run at a time. If the command starts while
+   another is in progress, the second command is terminated and a warning
+   is displayed.
