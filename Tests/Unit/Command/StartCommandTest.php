@@ -35,7 +35,7 @@ class StartCommandTest extends TestCase
 
         GeneralUtility::setSingletonInstance(LockFactory::class, $lockFactoryStub);
 
-        $this->starterMock = $this->createStub(Starter::class);
+        $this->starterMock = $this->createMock(Starter::class);
         GeneralUtility::addInstance(Starter::class, $this->starterMock);
 
         $this->commandTester = new CommandTester(new StartCommand());
