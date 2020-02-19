@@ -22,7 +22,7 @@ What does it do?
 
 TYPO3 JobRouter Process is a TYPO3 extension for
 
-* Managing process and instance links to JobRouter installations with a
+* Managing process links and step links to JobRouter installations in a
   :ref:`module <module>`
 * Providing a :ref:`form finisher <form-finisher>` to start a process instance
 
@@ -34,5 +34,7 @@ extension as a requirement to define connections to JobRouter installations.
 Current limitations
 ===================
 
-Only process table fields can be used. Subtable fields are not handled by this
-extension by now. This is planned in future releases.
+- Only process table fields can be used in the form finisher. Subtable
+  fields are not handled by now.
+- Only text and integer types are available for process table fields in the
+  process link configuration.
