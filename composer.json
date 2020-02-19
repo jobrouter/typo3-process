@@ -12,6 +12,7 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "ext-pdo": "*",
         "brotkrueml/jobrouter-client": "^0.8",
         "brotkrueml/typo3-jobrouter-connector": "^0.8",
         "typo3/cms-core": "^9.5",
