@@ -79,9 +79,10 @@ General
    :aspect:`Field Size (required)`
 
       This option is only shown with type :guilabel:`Text`. Enter the size
-      of the field. When :ref:`transmitting <configuration-transmit-command>`
-      the fields the values are truncated if too long to prevent errors when
-      starting an instance. To disable the truncation enter `0`.
+      of the field. When :ref:`starting an instance via the transfer table
+      <configuration-start-command>` the fields the values are truncated if too
+      long to prevent errors when starting an instance. To disable the
+      truncation enter `0`.
 
    .. note::
 

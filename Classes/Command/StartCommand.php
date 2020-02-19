@@ -10,14 +10,14 @@ namespace Brotkrueml\JobRouterProcess\Command;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterProcess\Transfer\Transmitter;
+use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-final class TransmitCommand extends Command
+final class StartCommand extends Command
 {
     protected function configure(): void
     {
@@ -28,18 +28,18 @@ final class TransmitCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $transmitter = GeneralUtility::makeInstance(Transmitter::class);
-        [$total, $errors] = $transmitter->run();
+        $starter = GeneralUtility::makeInstance(Starter::class);
+        [$total, $errors] = $starter->run();
 
         $outputStyle = new SymfonyStyle($input, $output);
         if ($errors) {
             $outputStyle->warning(
-                \sprintf('%d out of %d transfer(s) had errors on transmission', $errors, $total)
+                \sprintf('%d out of %d transfer(s) had errors on start', $errors, $total)
             );
             return 1;
         }
 
-        $outputStyle->success(\sprintf('%d transfer(s) transmitted successfully', $total));
+        $outputStyle->success(\sprintf('%d transfer(s) started successfully', $total));
 
         return 0;
     }

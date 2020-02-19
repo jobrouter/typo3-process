@@ -8,7 +8,7 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'step_uid, identifier, transmit_success, transmit_date, transmit_message',
+        'showRecordFieldList' => 'step_uid, identifier, start_success, start_date, start_message',
     ],
     'columns' => [
         'step_uid' => [
@@ -65,26 +65,26 @@ return [
                 'type' => 'input',
             ],
         ],
-        'transmit_success' => [
-            'label' => 'Transmit success',
+        'start_success' => [
+            'label' => 'Start success',
             'config' => [
                 'type' => 'input',
             ],
         ],
-        'transmit_date' => [
-            'label' => 'Transmit date',
+        'start_date' => [
+            'label' => 'Start date',
             'config' => [
                 'type' => 'input',
             ],
         ],
-        'transmit_message' => [
-            'label' => 'Transmit message',
+        'start_message' => [
+            'label' => 'Start message',
             'config' => [
                 'type' => 'input',
             ],
         ],
     ],
     'types' => [
-        '1' => ['showitem' => 'step_uid, identifier, data, transmit_success, transmit_date, transmit_message'],
+        '1' => ['showitem' => 'step_uid, identifier, data, start_success, start_date, start_message'],
     ],
 ];

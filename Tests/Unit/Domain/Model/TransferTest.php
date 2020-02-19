@@ -64,38 +64,38 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function isAndSetTransmitSuccessImplementedCorrectly(): void
+    public function isAndSetStartSuccessImplementedCorrectly(): void
     {
-        self::assertFalse($this->subject->isTransmitSuccess());
+        self::assertFalse($this->subject->isStartSuccess());
 
-        $this->subject->setTransmitSuccess(true);
+        $this->subject->setStartSuccess(true);
 
-        self::assertTrue($this->subject->isTransmitSuccess());
+        self::assertTrue($this->subject->isStartSuccess());
     }
 
     /**
      * @test
      */
-    public function getAndSetTransmitDateImplementedCorrectly(): void
+    public function getAndSetStartDateImplementedCorrectly(): void
     {
-        self::assertNull($this->subject->getTransmitDate());
+        self::assertNull($this->subject->getStartDate());
 
         $date = new \DateTime();
-        $this->subject->setTransmitDate($date);
+        $this->subject->setStartDate($date);
 
-        self::assertSame($date, $this->subject->getTransmitDate());
+        self::assertSame($date, $this->subject->getStartDate());
     }
 
     /**
      * @test
      */
-    public function getAndSetTransmitMessageImplementedCorrectly(): void
+    public function getAndSetStartMessageImplementedCorrectly(): void
     {
-        self::assertSame('', $this->subject->getTransmitMessage());
+        self::assertSame('', $this->subject->getStartMessage());
 
-        $this->subject->setTransmitMessage('some transmit message');
+        $this->subject->setStartMessage('some start message');
 
-        self::assertSame('some transmit message', $this->subject->getTransmitMessage());
+        self::assertSame('some start message', $this->subject->getStartMessage());
     }
 
     /**

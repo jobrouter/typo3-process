@@ -1,7 +1,7 @@
 <?php
 return [
-    'jobrouter:process:transmit' => [
-        'class' => \Brotkrueml\JobRouterProcess\Command\TransmitCommand::class,
+    'jobrouter:process:start' => [
+        'class' => \Brotkrueml\JobRouterProcess\Command\StartCommand::class,
         'schedulable' => true,
     ],
 ];

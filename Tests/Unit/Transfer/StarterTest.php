@@ -5,15 +5,15 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Transfer\Transmitter;
+use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
-class TransmitterTest extends TestCase
+class StarterTest extends TestCase
 {
-    /** @var Transmitter */
+    /** @var Starter */
     private $subject;
 
     /** @var MockObject|PersistenceManagerInterface */
@@ -31,7 +31,7 @@ class TransmitterTest extends TestCase
 
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
-            ->addMethods(['findByTransmitSuccess'])
+            ->addMethods(['findByStartSuccess'])
             ->onlyMethods(['update'])
             ->getMock();
 
@@ -39,7 +39,7 @@ class TransmitterTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->subject = new Transmitter(
+        $this->subject = new Starter(
             $this->persistenceManagerMock,
             $this->transferRepositoryMock,
             $this->stepRepositoryMock
@@ -50,10 +50,10 @@ class TransmitterTest extends TestCase
     /**
      * @test
      */
-    public function transmitWithNoTransfersAvailableReturns0TotalsAndErrors(): void
+    public function startWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
         $this->transferRepositoryMock
-            ->method('findByTransmitSuccess')
+            ->method('findByStartSuccess')
             ->willReturn([]);
 
         [$total, $errors] = $this->subject->run();

@@ -3,27 +3,27 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Command;
 
-use Brotkrueml\JobRouterProcess\Command\TransmitCommand;
-use Brotkrueml\JobRouterProcess\Transfer\Transmitter;
+use Brotkrueml\JobRouterProcess\Command\StartCommand;
+use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class TransmitCommandTest extends TestCase
+class StartCommandTest extends TestCase
 {
     /** @var CommandTester */
     private $commandTester;
 
-    /** @var Transmitter|Stub */
-    private $transmitterStub;
+    /** @var Starter|Stub */
+    private $starterStub;
 
     protected function setUp(): void
     {
-        $this->transmitterStub = $this->createStub(Transmitter::class);
-        GeneralUtility::addInstance(Transmitter::class, $this->transmitterStub);
+        $this->starterStub = $this->createStub(Starter::class);
+        GeneralUtility::addInstance(Starter::class, $this->starterStub);
 
-        $this->commandTester = new CommandTester(new TransmitCommand());
+        $this->commandTester = new CommandTester(new StartCommand());
     }
 
     /**
@@ -31,7 +31,7 @@ class TransmitCommandTest extends TestCase
      */
     public function okIsDisplayedWithNoTransfersAvailable(): void
     {
-        $this->transmitterStub
+        $this->starterStub
             ->method('run')
             ->willReturn([0, 0]);
 
@@ -39,7 +39,7 @@ class TransmitCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        self::assertSame('[OK] 0 transfer(s) transmitted successfully', \trim($actual));
+        self::assertSame('[OK] 0 transfer(s) started successfully', \trim($actual));
     }
 
     /**
@@ -47,7 +47,7 @@ class TransmitCommandTest extends TestCase
      */
     public function okIsDisplayedWithTransfersAvailableAndNoErrors(): void
     {
-        $this->transmitterStub
+        $this->starterStub
             ->method('run')
             ->willReturn([3, 0]);
 
@@ -55,7 +55,7 @@ class TransmitCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        self::assertSame('[OK] 3 transfer(s) transmitted successfully', \trim($actual));
+        self::assertSame('[OK] 3 transfer(s) started successfully', \trim($actual));
     }
 
     /**
@@ -63,7 +63,7 @@ class TransmitCommandTest extends TestCase
      */
     public function warningIsDisplayedWithErrorsOccured(): void
     {
-        $this->transmitterStub
+        $this->starterStub
             ->method('run')
             ->willReturn([3, 1]);
 
@@ -71,6 +71,6 @@ class TransmitCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        self::assertSame('[WARNING] 1 out of 3 transfer(s) had errors on transmission', \trim($actual));
+        self::assertSame('[WARNING] 1 out of 3 transfer(s) had errors on start', \trim($actual));
     }
 }

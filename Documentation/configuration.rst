@@ -59,31 +59,31 @@ Surely you want to execute the commands regularly. Simply set up cron jobs that
 will execute the commands regularly, e.g. once an hour or once a day, depending
 on your needs.
 
-.. _configuration-transmit-command:
+.. _configuration-start-command:
 
 Starting instances
 ------------------
 
 If you rely on the :ref:`form finisher <form-finisher>` or use the
 :ref:`transfer table <developer-start-instance>` directly to start
-instances in JobRouter installations, you have to activate the transmit command:
+instances in JobRouter installations, you have to use the start command:
 
 ::
 
-   vendor/bin/typo3 jobrouter:process:transmit
+   vendor/bin/typo3 jobrouter:process:start
 
 In general you should receive a successful answer:
 
 ::
 
-   [OK] 18 transfer(s) transmitted successfully
+   [OK] 18 transfer(s) started successfully
 
 If an error occurs, the command issues a warning:
 
 ::
 
-   [WARNING] 4 out of 11 transfer(s) had errors on transmission
+   [WARNING] 4 out of 11 transfer(s) had errors on start
 
-Other transmissions are not affected by an error in one transmission. According
+Other transfer starts are not affected by an error in one start. According
 to your :ref:`logging configuration <configuration-extension>`, the error is
 also logged.

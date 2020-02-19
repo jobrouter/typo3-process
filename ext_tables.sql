@@ -38,9 +38,9 @@ CREATE TABLE tx_jobrouterprocess_domain_model_transfer (
 	priority tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	pool smallint(5) unsigned DEFAULT '0' NOT NULL,
 	processtable text,
-	transmit_success tinyint(1) unsigned DEFAULT '0' NOT NULL,
-	transmit_date int(11) unsigned DEFAULT '0' NOT NULL,
-	transmit_message text,
+	start_success tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	start_date int(11) unsigned DEFAULT '0' NOT NULL,
+	start_message text,
 
-	KEY transmit_success (transmit_success)
+	KEY start_success (start_success)
 );

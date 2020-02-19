@@ -34,17 +34,17 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
     /**
      * @var bool
      */
-    protected $transmitSuccess = false;
+    protected $startSuccess = false;
 
     /**
      * @var \DateTime
      */
-    protected $transmitDate;
+    protected $startDate;
 
     /**
      * @var string
      */
-    protected $transmitMessage = '';
+    protected $startMessage = '';
 
     public function __construct()
     {
@@ -81,33 +81,33 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
         $this->processtable = $processtable;
     }
 
-    public function isTransmitSuccess(): bool
+    public function isStartSuccess(): bool
     {
-        return $this->transmitSuccess;
+        return $this->startSuccess;
     }
 
-    public function setTransmitSuccess(bool $transmitSuccess): void
+    public function setStartSuccess(bool $startSuccess): void
     {
-        $this->transmitSuccess = $transmitSuccess;
+        $this->startSuccess = $startSuccess;
     }
 
-    public function getTransmitDate(): ?\DateTime
+    public function getStartDate(): ?\DateTime
     {
-        return $this->transmitDate;
+        return $this->startDate;
     }
 
-    public function setTransmitDate(\DateTime $transmitDate): void
+    public function setStartDate(\DateTime $startDate): void
     {
-        $this->transmitDate = $transmitDate;
+        $this->startDate = $startDate;
     }
 
-    public function getTransmitMessage(): string
+    public function getStartMessage(): string
     {
-        return $this->transmitMessage;
+        return $this->startMessage;
     }
 
-    public function setTransmitMessage(string $transmitMessage): void
+    public function setStartMessage(string $startMessage): void
     {
-        $this->transmitMessage = $transmitMessage;
+        $this->startMessage = $startMessage;
     }
 }

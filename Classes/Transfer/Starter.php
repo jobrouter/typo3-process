@@ -22,9 +22,9 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -34,7 +34,7 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
  */
-class Transmitter implements LoggerAwareInterface
+class Starter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -71,7 +71,7 @@ class Transmitter implements LoggerAwareInterface
     public function run(): array
     {
         $this->logger->info('Start instances');
-        $transfers = $this->transferRepository->findByTransmitSuccess(0);
+        $transfers = $this->transferRepository->findByStartSuccess(0);
 
         $this->totalNumbersOfTransfers = 0;
         $this->erroneousNumbersOfTransfers = 0;
@@ -96,7 +96,7 @@ class Transmitter implements LoggerAwareInterface
 
         $this->totalNumbersOfTransfers++;
         try {
-            $this->transmitTransfer($transfer);
+            $this->startTransfer($transfer);
         } catch (\Exception $e) {
             $this->erroneousNumbersOfTransfers++;
             $context = [
@@ -105,15 +105,15 @@ class Transmitter implements LoggerAwareInterface
                 'exception code' => $e->getCode(),
             ];
             $this->logger->error($e->getMessage(), $context);
-            $transfer->setTransmitMessage($e->getMessage());
+            $transfer->setStartMessage($e->getMessage());
         }
 
-        $transfer->setTransmitDate(new \DateTime());
+        $transfer->setStartDate(new \DateTime());
         $this->transferRepository->update($transfer);
         $this->persistenceManager->persistAll();
     }
 
-    private function transmitTransfer(Transfer $transfer): void
+    private function startTransfer(Transfer $transfer): void
     {
         $step = $this->getStep($transfer->getStepUid());
         $incident = $this->createIncidentFromTransferItem($step, $transfer);
@@ -130,12 +130,12 @@ class Transmitter implements LoggerAwareInterface
             $successMessage = $body['incidents'][0] ?? '';
         }
 
-        $transfer->setTransmitSuccess(true);
-        $transfer->setTransmitMessage(\is_array($successMessage) ? \json_encode($successMessage) : $successMessage);
+        $transfer->setStartSuccess(true);
+        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage) : $successMessage);
 
-        $this->logger->info(
+        $this->logger->debug(
             \sprintf(
-                'Response of transmission of transfer with uid "%d": "%s"',
+                'Response of starting the transfer with uid "%d": "%s"',
                 $transfer->getUid(),
                 $successMessage
             )
@@ -233,10 +233,13 @@ class Transmitter implements LoggerAwareInterface
             foreach ($processTable ?? [] as $name => $value) {
                 $configuredProcessTableField = $this->getProcessTableField($name, $step->getProcess());
 
-                if ($configuredProcessTableField->getType() === ProcessTableFieldTypeEnumeration::TEXT
-                    && $configuredProcessTableField->getFieldSize()
-                ) {
-                    $value = \substr($value, 0, $configuredProcessTableField->getFieldSize());
+                if ($configuredProcessTableField->getType() === ProcessTableFieldTypeEnumeration::TEXT) {
+                    // A numeric static value in form finisher can be an integer
+                    $value = (string)$value;
+
+                    if ($configuredProcessTableField->getFieldSize()) {
+                        $value = \substr($value, 0, $configuredProcessTableField->getFieldSize());
+                    }
                 }
 
                 $incident->setProcessTableField($name, $value);
