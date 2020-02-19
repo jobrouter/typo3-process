@@ -41,6 +41,11 @@ class StartCommandTest extends TestCase
         $this->commandTester = new CommandTester(new StartCommand());
     }
 
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+    }
+
     /**
      * @test
      */

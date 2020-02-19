@@ -36,6 +36,11 @@ class StartInstanceFinisherTest extends TestCase
         GeneralUtility::addInstance(Preparer::class, $this->preparerMock);
     }
 
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+    }
+
     /**
      * @test
      */
