@@ -52,12 +52,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     /** @var Transfer */
     private $transfer;
 
-    /**
-     * Because there can be more than one instance to start, a form request id is generated
-     * and used in addition to the form identifier to identify associated instances.
-     * @var string
-     */
-    private $formRequestId = '';
+    private $transferIdentifier = '';
 
     public function injectStepRepository(StepRepository $stepRepository): void
     {
@@ -67,7 +62,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     protected function executeInternal()
     {
         $this->preparer = GeneralUtility::makeInstance(Preparer::class);
-        $this->formRequestId = \substr(md5(uniqid('', true)), 0, 13);
+        $this->buildTransferIdentifier();
 
         if (isset($this->options['handle'])) {
             $options = [$this->options];
@@ -79,6 +74,18 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             $this->options = $option;
             $this->process();
         }
+    }
+
+    private function buildTransferIdentifier(): void
+    {
+        $this->transferIdentifier = \implode(
+            '_',
+            [
+                'form',
+                $this->getFormIdentifier(),
+                \substr(\md5(\uniqid('', true)), 0, 13),
+            ]
+        );
     }
 
     private function process(): void
@@ -136,7 +143,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     {
         $this->transfer = new Transfer();
         $this->transfer->setStepUid($this->step->getUid());
-        $this->transfer->setIdentifier($this->getFormIdentifier() . '_' . $this->formRequestId);
+        $this->transfer->setIdentifier($this->transferIdentifier);
     }
 
     private function getFormIdentifier(): string
@@ -165,8 +172,15 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 );
             }
 
+            $value = $this->resolveVariables($value);
+
             $this->transfer->{'set' . \ucfirst($parameter)}($value);
         }
+    }
+
+    private function resolveVariables(string $value): string
+    {
+        return \str_replace('{__transferIdentifier}', $this->transferIdentifier, $value);
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -241,6 +255,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     {
         switch ($type) {
             case ProcessTableFieldTypeEnumeration::TEXT:
+                $value = $this->resolveVariables($value);
                 return $value;
             case ProcessTableFieldTypeEnumeration::INTEGER:
                 return (int)$value;
