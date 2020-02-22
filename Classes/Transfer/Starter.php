@@ -38,7 +38,7 @@ class Starter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private const INCIDENTS_RESOURCE_TEMPLATE = '/application/incidents/%s';
+    private const INCIDENTS_RESOURCE_TEMPLATE = 'application/incidents/%s';
 
     /** @var PersistenceManagerInterface */
     private $persistenceManager;
