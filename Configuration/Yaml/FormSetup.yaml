@@ -3,6 +3,32 @@ TYPO3:
     Form:
       prototypes:
         standard:
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      1581265491:
+                        value: 'JobRouterStartInstance'
+                        label: 'Start JobRouter Instance'
+                propertyCollections:
+                  finishers:
+                    1581265491:
+                      identifier: 'JobRouterStartInstance'
+                      editors:
+                        100:
+                          identifier: 'header'
+                          label: 'Start JobRouter Instance'
+                          templateName: 'Inspector-CollectionElementHeaderEditor'
+                        9999:
+                          identifier: 'removeButton'
+                          templateName: 'Inspector-RemoveElementEditor'
           finishersDefinition:
             JobRouterStartInstance:
               implementationClassName: 'Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher'
+              formEditor:
+                iconIdentifier: 'form-finisher'
+                label: 'Start JobRouter Instance'
+                predefinedDefaults:
+                  options: []
