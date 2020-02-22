@@ -9,6 +9,9 @@ Form Finisher
 Target group: **Integrators**, **Developers**
 
 
+Start an Instance
+=================
+
 A form finisher `JobRouterStartInstance` is available to start a JobRouter
 process instance. After submitting a form, the form values are stored in a
 transfer table. A command, hopefully executed regularly, takes these transfer
@@ -72,3 +75,41 @@ As you can see, you can define some options. These are:
 
    Only process table fields can be used that are configured in the
    :ref:`process link <module-create-process-link>`.
+
+
+Start Multiple Instances
+========================
+
+It is also possible to start multiple instances – even on different JobRouter
+installations. Just use the array notation in :yaml:`options`:
+
+.. code-block:: yaml
+
+   finishers:
+      -
+         identifier: JobRouterStartInstance
+         options:
+            -
+               handle: 'start_website_contact'
+               summary: 'Demo Contact'
+               processtable:
+                  name:
+                     mapOnFormField: name
+                  company:
+                     mapOnFormField: company
+                  email_address:
+                     mapOnFormField: email
+                  phone_number:
+                     mapOnFormField: phone
+                  message:
+                     mapOnFormField: message
+                  form_identifier:
+                     staticValue: 'www.example.com/demo'
+            -
+               handle: 'collect_anonymous_messages'
+               summary: 'Demo Contact'
+               processtable:
+                  ANON_MESSAGE:
+                     mapOnFormField: message
+                  FROM_URL:
+                     staticValue: 'https://www.example.com/demo'

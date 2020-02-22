@@ -4,6 +4,8 @@
 .. role:: aspect(strong)
 .. role:: php(code)
    :language: php
+.. role:: yaml(code)
+   :language: yaml
 
 
 .. default-role:: code
