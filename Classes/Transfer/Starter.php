@@ -19,7 +19,7 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
@@ -233,7 +233,7 @@ class Starter implements LoggerAwareInterface
             foreach ($processTable ?? [] as $name => $value) {
                 $configuredProcessTableField = $this->getProcessTableField($name, $step->getProcess());
 
-                if ($configuredProcessTableField->getType() === ProcessTableFieldTypeEnumeration::TEXT) {
+                if ($configuredProcessTableField->getType() === FieldTypeEnumeration::TEXT) {
                     // A numeric static value in form finisher can be an integer
                     $value = (string)$value;
 

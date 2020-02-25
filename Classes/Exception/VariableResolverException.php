@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterProcess\Enumeration;
+namespace Brotkrueml\JobRouterProcess\Exception;
 
 /*
  * This file is part of the "jobrouter_process" extension for TYPO3 CMS.
@@ -10,8 +10,6 @@ namespace Brotkrueml\JobRouterProcess\Enumeration;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-final class ProcessTableFieldTypeEnumeration
+class VariableResolverException extends \RuntimeException
 {
-    public const TEXT = 1;
-    public const INTEGER = 2;
 }

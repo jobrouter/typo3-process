@@ -14,7 +14,9 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolverInterface;
+use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
@@ -172,15 +174,35 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 );
             }
 
-            $value = $this->resolveVariables($value);
+            $value = $this->resolveVariables(FieldTypeEnumeration::TEXT, $value);
 
             $this->transfer->{'set' . \ucfirst($parameter)}($value);
         }
     }
 
-    private function resolveVariables(string $value): string
+    private function resolveVariables(int $fieldType, $value): string
     {
-        return \str_replace('{__transferIdentifier}', $this->transferIdentifier, $value);
+        $event = new ResolveFinisherVariableEvent($fieldType, $value, $this->transferIdentifier);
+
+        foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/jobrouter_process']['variableResolvers'] ?? [] as $resolverClass) {
+            /** @var VariableResolverInterface $resolver */
+            $resolver = new $resolverClass();
+
+            if (!$resolver instanceof VariableResolverInterface) {
+                throw new \DomainException(
+                    \sprintf(
+                        'Class "%s" must implement the "%s" interface',
+                        $resolverClass,
+                        VariableResolverInterface::class
+                    ),
+                    1582658728
+                );
+            }
+
+            $resolver->resolve($event);
+        }
+
+        return $event->getValue();
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -254,10 +276,10 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     private function considerTypeForFieldValue($value, int $type)
     {
         switch ($type) {
-            case ProcessTableFieldTypeEnumeration::TEXT:
-                $value = $this->resolveVariables($value);
+            case FieldTypeEnumeration::TEXT:
+                $value = $this->resolveVariables($type, $value);
                 return $value;
-            case ProcessTableFieldTypeEnumeration::INTEGER:
+            case FieldTypeEnumeration::INTEGER:
                 return (int)$value;
         }
 

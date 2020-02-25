@@ -69,11 +69,11 @@ return [
                 'items' => [
                     [
                         'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.text',
-                        \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::TEXT
+                        \Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration::TEXT
                     ],
                     [
                         'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.integer',
-                        \Brotkrueml\JobRouterProcess\Enumeration\ProcessTableFieldTypeEnumeration::INTEGER
+                        \Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration::INTEGER
                     ],
                 ],
                 'eval' => 'required',
