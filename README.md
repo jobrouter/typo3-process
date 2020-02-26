@@ -8,7 +8,7 @@
 platform which links processes, data and documents.
 
 What this extension does:
-  * Manage process and instance links to JobRouter installations
+  * Manage process and step links to JobRouter installations
   * Provide a form finisher to start a process instance
 
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/process/)

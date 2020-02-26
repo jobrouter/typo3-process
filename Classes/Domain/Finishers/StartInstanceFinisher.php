@@ -264,7 +264,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             );
         }
 
-        $this->transfer->setProcesstable(\json_encode($processTable));
+        $this->transfer->setProcesstable($processTable);
     }
 
     /**

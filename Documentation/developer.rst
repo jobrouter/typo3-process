@@ -52,12 +52,12 @@ you can use the :php:`Preparer` class within TYPO3:
    // Have a look in the Transfer model to see the available setters
    $transfer = new Transfer();
    $transfer->setSummary('My summary')
-   $transfer->setProcesstable(json_encode([
+   $transfer->setProcesstable([
       'name' => 'John Doe',
       'company' => 'Acme Ltd.',
       'email_address' => 'jdoe@example.com',
-      'message' => 'Please send my information.',
-   }));
+      'message' => 'Please send me information.',
+   ]);
 
    // It's important to use the makeInstance method to inject all necessary
    // dependencies

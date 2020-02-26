@@ -76,9 +76,29 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
         return $this->processtable;
     }
 
-    public function setProcesstable(string $processtable): void
+    /**
+     * @param array|string $processtable
+     * @throws \InvalidArgumentException
+     */
+    public function setProcesstable($processtable): void
     {
-        $this->processtable = $processtable;
+        if (\is_array($processtable)) {
+            $this->processtable = \json_encode($processtable);
+            return;
+        }
+
+        if (\is_string($processtable)) {
+            $this->processtable = $processtable;
+            return;
+        }
+
+        throw new \InvalidArgumentException(
+            \sprintf(
+                'Argument "processtable" must be either a string or an array, "%s" given',
+                \gettype($processtable)
+            ),
+            1582744898
+        );
     }
 
     public function isStartSuccess(): bool

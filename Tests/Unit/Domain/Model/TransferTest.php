@@ -52,13 +52,35 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetProcesstableImplementedCorrectly(): void
+    public function getAndSetProcesstableWithStringAsArgumentImplementedCorrectly(): void
     {
         self::assertSame('', $this->subject->getProcesstable());
 
         $this->subject->setProcesstable('some data');
 
         self::assertSame('some data', $this->subject->getProcesstable());
+    }
+
+    /**
+     * @test
+     */
+    public function setProcesstableWithArrayAsArgumentImplementedCorrectly(): void
+    {
+        $this->subject->setProcesstable(['some' => 'data']);
+
+        self::assertSame('{"some":"data"}', $this->subject->getProcesstable());
+    }
+
+    /**
+     * @test
+     */
+    public function setProcessTableWithNotAllowedTypeAsArgumentThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1582744898);
+        $this->expectExceptionMessage('Argument "processtable" must be either a string or an array, "object" given');
+
+        $this->subject->setProcesstable(new \stdClass());
     }
 
     /**
