@@ -182,6 +182,10 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private function resolveVariables(int $fieldType, $value): string
     {
+        if (\strpos($value, '{__') === false) {
+            return $value;
+        }
+
         $event = new ResolveFinisherVariableEvent($fieldType, $value, $this->transferIdentifier);
 
         foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/jobrouter_process']['variableResolvers'] ?? [] as $resolverClass) {
@@ -242,6 +246,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                     $configuration['staticValue'],
                     $processTableFields[$processTableField]->getType()
                 );
+
+                $processTable[$processTableField] = $this->resolveVariables(
+                    $processTableFields[$processTableField]->getType(),
+                    $processTable[$processTableField]
+                );
+
                 continue;
             }
 
@@ -277,8 +287,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     {
         switch ($type) {
             case FieldTypeEnumeration::TEXT:
-                $value = $this->resolveVariables($type, $value);
-                return $value;
+                return (string)$value;
             case FieldTypeEnumeration::INTEGER:
                 return (int)$value;
         }

@@ -23,4 +23,6 @@ defined('TYPO3_MODE') || die('Access denied.');
     // @todo Use PSR-14 events in TYPO3 v10
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/' . $extensionKey]['variableResolvers'][] =
         \Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariableResolver::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/' . $extensionKey]['variableResolvers'][] =
+        \Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver::class;
 })();

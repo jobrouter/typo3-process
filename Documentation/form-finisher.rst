@@ -124,9 +124,8 @@ Variables
 You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields that map to a static value.
 
-Variables look like: :yaml:`{__variableName}`.
-
-Currently, one variable is available:
+Variables look like: :yaml:`{__variableName}` or
+:yaml:`{__variableName.subKey}`.
 
 Transfer Identifier
 ~~~~~~~~~~~~~~~~~~~
@@ -165,3 +164,67 @@ Use the :yaml:`{__transferIdentifier}` variable to add the transfer identifier:
                   mapOnFormField: message
                form_identifier:
                   staticValue: '{__transferIdentifier}'
+
+
+Language Information
+~~~~~~~~~~~~~~~~~~~~
+
+The language information defined in the Site Configuration can be used, namely:
+
+{__language.base}
+   The base URL for the language, e.g. `https://example.org/en/`.
+
+{__language.direction}
+   The language direction: `ltr` (left to right) or `rtl` (right to left).
+
+{__language.flagIdentifier}
+   The defined TYPO3 flag identifier used in TYPO3's backend, e.g. `flags-gb`.
+
+{__language.hreflang}
+   Language tag for the language defined by RFC 1766 / 3066 for `lang`
+   `hreflang` attributes, e.g. `en-gb`.
+
+{__language.languageId}
+   The language ID defined in the TYPO3 installation. It is the uid in the
+   `sys_language` table.
+
+{__language.locale}
+   The used locale, e.g. `en_GB.UTF-8`.
+
+{__language.navigationTitle}
+   The navigation title defined in the site configuration, used as label
+   within language menus, e.g. `English`.
+
+{__language.title}
+   The title defined in the site configuration, e.g. `English`.
+
+{__language.twoLetterIsoCode}
+   The `ISO-639-1 <https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>`_
+   language ISO code, e.g. `en`.
+
+{__language.typo3Language}
+   `default` for English, otherwise one of TYPO3's internal language keys.
+
+Example:
+
+.. code-block:: yaml
+
+   finishers:
+      -
+         identifier: JobRouterStartInstance
+         options:
+            handle: 'start_website_contact'
+            summary: 'Demo Contact ({__language.navigationTitle})'
+            processtable:
+               name:
+                  mapOnFormField: name
+               company:
+                  mapOnFormField: company
+               email_address:
+                  mapOnFormField: email
+               phone_number:
+                  mapOnFormField: phone
+               message:
+                  mapOnFormField: message
+               from_website:
+                  staticValue: '{__language.base}'
