@@ -8,12 +8,12 @@ Form Finisher
 
 Target group: **Integrators**, **Developers**
 
+.. contents:: Table of Contents
+   :depth: 3
+   :local:
 
 Start Instances
 ===============
-
-Start One Instance
-------------------
 
 A form finisher `JobRouterStartInstance` is available to start a JobRouter
 process instance. After submitting a form, the form values are stored in a
@@ -26,6 +26,10 @@ problems. Also the submitting of a form should be as fast as possible.
 
    The finisher can only be used in the form definition directly, not in the
    :guilabel:`Form` module.
+
+
+Start One Instance
+------------------
 
 So, let's start with an example. The form finisher is defined in the YAML
 configuration of the specific form:

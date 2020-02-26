@@ -8,6 +8,9 @@ Module
 
 Target group: **Integrators, Administrators**
 
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
 
 The links to processes and instances in JobRouter installations are managed in
 the module :guilabel:`JobRouter` > :guilabel:`Process`.

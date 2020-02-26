@@ -10,6 +10,9 @@ Configuration
 
 Target group: **Administrators**
 
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
 
 .. _configuration-extension:
 
