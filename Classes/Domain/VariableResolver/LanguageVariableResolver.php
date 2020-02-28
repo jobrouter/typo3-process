@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
 final class LanguageVariableResolver implements VariableResolverInterface
 {
-    private $allowedLanguageVariables = [
+    private $validLanguageVariables = [
         'base',
         'direction',
         'flagIdentifier',
@@ -45,19 +45,18 @@ final class LanguageVariableResolver implements VariableResolverInterface
             return;
         }
 
-        \preg_match('/{__language\.(\w+)}/', $event->getValue(), $matches);
-
-        if (!($matches[1] ?? false)) {
+        if (!\preg_match_all('/{__language\.(\w+)}/', $event->getValue(), $matches)) {
             return;
         }
 
-        if (!\in_array($matches[1], $this->allowedLanguageVariables)) {
-            return;
-        }
+        foreach ($matches[1] as $index => $match) {
+            if (!\in_array($match, $this->validLanguageVariables)) {
+                continue;
+            }
 
-        $methodToCall = 'get' . \ucfirst($matches[1]);
-        $search = \sprintf('{__language.%s}', $matches[1]);
-        $event->setValue(\str_replace($search, $language->$methodToCall(), $event->getValue()));
+            $methodToCall = 'get' . \ucfirst($match);
+            $event->setValue(\str_replace($matches[0][$index], $language->$methodToCall(), $event->getValue()));
+        }
     }
 
     private function checkValidFieldTypes(ResolveFinisherVariableEvent $event): void

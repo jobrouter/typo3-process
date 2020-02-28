@@ -176,6 +176,22 @@ class LanguageVariableResolverTest extends TestCase
     /**
      * @test
      */
+    public function multipleLanguageVariablesAreResolved(): void
+    {
+        $event = new ResolveFinisherVariableEvent(
+            FieldTypeEnumeration::TEXT,
+            '{__language.twoLetterIsoCode} {__language.direction}',
+            ''
+        );
+
+        $this->subject->resolve($event);
+
+        self::assertSame('de ltr', $event->getValue());
+    }
+
+    /**
+     * @test
+     */
     public function onlyLanguageVariablesAreResolved(): void
     {
         $event = new ResolveFinisherVariableEvent(

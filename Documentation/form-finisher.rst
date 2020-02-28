@@ -225,3 +225,5 @@ The language information defined in the Site Configuration can be used, namely:
 
 {__language.typo3Language}
    `default` for English, otherwise one of TYPO3's internal language keys.
+
+Multiple language variables can be used in one value.
