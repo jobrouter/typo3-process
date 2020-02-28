@@ -25,4 +25,17 @@ defined('TYPO3_MODE') || die('Access denied.');
         \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         ['source' => 'EXT:' . $extensionKey . '/Resources/Public/Icons/action-open-designer.svg']
     );
+    $iconRegistry->registerIcon(
+        'jobrouter-process-toolbar',
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:' . $extensionKey . '/Resources/Public/Icons/jobrouter-process-toolbar.svg']
+    );
+
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
+        ->connect(
+            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
+            'getSystemInformation',
+            \Brotkrueml\JobRouterProcess\SystemInformation\ToolbarItemProvider::class,
+            'getItem'
+        );
 })();

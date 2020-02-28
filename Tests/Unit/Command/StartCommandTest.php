@@ -11,6 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
+use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class StartCommandTest extends TestCase
@@ -23,6 +24,9 @@ class StartCommandTest extends TestCase
 
     /** @var Starter|MockObject */
     private $starterMock;
+
+    /** @var MockObject|Registry */
+    private $registryMock;
 
     protected function setUp(): void
     {
@@ -37,6 +41,9 @@ class StartCommandTest extends TestCase
 
         $this->starterMock = $this->createMock(Starter::class);
         GeneralUtility::addInstance(Starter::class, $this->starterMock);
+
+        $this->registryMock = $this->createMock(Registry::class);
+        GeneralUtility::setSingletonInstance(Registry::class, $this->registryMock);
 
         $this->commandTester = new CommandTester(new StartCommand());
     }
@@ -64,6 +71,19 @@ class StartCommandTest extends TestCase
             ->expects(self::once())
             ->method('run')
             ->willReturn([0, 0]);
+
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_process',
+                'startCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
 
         $this->commandTester->execute([]);
 
@@ -93,6 +113,19 @@ class StartCommandTest extends TestCase
             ->method('run')
             ->willReturn([3, 0]);
 
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_process',
+                'startCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
+
         $this->commandTester->execute([]);
 
         self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
@@ -120,6 +153,19 @@ class StartCommandTest extends TestCase
             ->expects(self::once())
             ->method('run')
             ->willReturn([3, 1]);
+
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_process',
+                'startCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START;
+                    }
+                )
+            );
 
         $this->commandTester->execute([]);
 

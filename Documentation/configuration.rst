@@ -97,6 +97,14 @@ also logged.
    another is in progress, the second command is terminated and a warning
    is displayed.
 
+The last run of the command is shown in the system information toolbar
+(:guilabel:`Last Instance Start`):
+
+.. figure:: _images/system-information.png
+   :alt: System information with last run of the start command
+
+   System information with last run of the start command
+
 
 .. _configuration-deleteoldtransfers-command:
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T18:43:11Z" product-name="jobrouter_process">
+		<header/>
+		<body>
+			<trans-unit id="startCommand.lastRunLabel">
+				<source><![CDATA[Last Instance Start]]></source>
+			</trans-unit>
+			<trans-unit id="startCommand.lastRunMessage">
+				<source><![CDATA[%s at %s (%s)]]></source>
+			</trans-unit>
+			<trans-unit id="startCommand.neverRun">
+				<source><![CDATA[The start command has never been executed.]]></source>
+			</trans-unit>
+			<trans-unit id="status.overdue">
+				<source><![CDATA[overdue]]></source>
+			</trans-unit>
+			<trans-unit id="status.success">
+				<source><![CDATA[success]]></source>
+			</trans-unit>
+			<trans-unit id="status.warning">
+				<source><![CDATA[warnings]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
