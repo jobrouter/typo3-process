@@ -25,4 +25,6 @@ defined('TYPO3_MODE') || die('Access denied.');
         \Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariableResolver::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/' . $extensionKey]['variableResolvers'][] =
         \Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/' . $extensionKey]['variableResolvers'][] =
+        \Brotkrueml\JobRouterProcess\Domain\VariableResolver\LocalisedLabelVariableResolver::class;
 })();
