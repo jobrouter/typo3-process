@@ -18,6 +18,8 @@ use TYPO3\CMS\Lang\LanguageService;
 
 final class ToolbarItemProvider
 {
+    private $llPrefix = 'LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf';
+
     /** @var array|null */
     private $lastRunInformation;
 
@@ -30,7 +32,7 @@ final class ToolbarItemProvider
     public function getItem(SystemInformationToolbarItem $systemInformationToolbarItem): void
     {
         $systemInformationToolbarItem->addSystemInformation(
-            $this->getLanguageService()->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:startCommand.lastRunLabel'),
+            $this->getLanguageService()->sL($this->llPrefix . ':startCommand.lastRunLabel'),
             $this->getMessage(),
             'jobrouter-process-toolbar',
             $this->getSeverity()
@@ -39,22 +41,22 @@ final class ToolbarItemProvider
 
     protected function getMessage(): string
     {
-        if ($this->lastRunInformation === null) {
-            return $this->getLanguageService()->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:startCommand.neverRun');
-        }
-
         $languageService = $this->getLanguageService();
 
+        if ($this->lastRunInformation === null) {
+            return $languageService->sL($this->llPrefix . ':startCommand.neverRun');
+        }
+
         if ($this->isWarning()) {
-            $status = $languageService->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:status.warning');
+            $status = $languageService->sL($this->llPrefix . ':status.warning');
         } elseif ($this->isOverdue()) {
-            $status = $languageService->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:status.overdue');
+            $status = $languageService->sL($this->llPrefix . ':status.overdue');
         } else {
-            $status = $languageService->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:status.success');
+            $status = $languageService->sL($this->llPrefix . ':status.success');
         }
 
         return \sprintf(
-            $languageService->sL('LLL:EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf:startCommand.lastRunMessage'),
+            $languageService->sL($this->llPrefix . ':startCommand.lastRunMessage'),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'], $this->lastRunInformation['start']),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'], $this->lastRunInformation['start']),
             $status
