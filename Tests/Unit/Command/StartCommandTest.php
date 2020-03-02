@@ -194,6 +194,10 @@ class StartCommandTest extends TestCase
             ->expects(self::never())
             ->method('run');
 
+        $this->registryMock
+            ->expects(self::never())
+            ->method('set');
+
         $this->commandTester->execute([]);
 
         self::assertSame(StartCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
