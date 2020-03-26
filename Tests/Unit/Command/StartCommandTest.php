@@ -89,7 +89,7 @@ class StartCommandTest extends TestCase
 
         self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[OK] 0 transfer(s) started successfully',
+            '[OK] 0 incident(s) started successfully',
             $this->commandTester->getDisplay()
         );
     }
@@ -130,7 +130,7 @@ class StartCommandTest extends TestCase
 
         self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[OK] 3 transfer(s) started successfully',
+            '[OK] 3 incident(s) started successfully',
             $this->commandTester->getDisplay()
         );
     }
@@ -171,7 +171,7 @@ class StartCommandTest extends TestCase
 
         self::assertSame(StartCommand::EXIT_CODE_ERRORS_ON_START, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[WARNING] 1 out of 3 transfer(s) had errors on start',
+            '[WARNING] 1 out of 3 incident(s) had errors on start',
             $this->commandTester->getDisplay()
         );
     }

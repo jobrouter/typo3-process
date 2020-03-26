@@ -73,14 +73,14 @@ final class StartCommand extends Command
             return [
                 self::EXIT_CODE_ERRORS_ON_START,
                 'warning',
-                \sprintf('%d out of %d transfer(s) had errors on start', $errors, $total),
+                \sprintf('%d out of %d incident(s) had errors on start', $errors, $total),
             ];
         }
 
         return [
             self::EXIT_CODE_OK,
             'success',
-            \sprintf('%d transfer(s) started successfully', $total),
+            \sprintf('%d incident(s) started successfully', $total),
         ];
     }
 
