@@ -76,8 +76,12 @@ As you can see, you can define some options. These are:
 
 .. note::
 
-   Only process table fields can be used that are configured in the
-   :ref:`process link <module-create-process-link>`.
+   Only process table fields that are configured in the :ref:`process link
+   <module-create-process-link>` are considered. If a process table field
+   is used that is not defined, it is ignored.
+
+   Inputs that are longer than the defined process table field length are
+   shortened to the maximum length.
 
 
 Start Multiple Instances

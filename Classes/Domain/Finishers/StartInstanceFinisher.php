@@ -245,7 +245,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
-                $processTableFields[$processTableField]->getType()
+                $processTableFields[$processTableField]->getType(),
+                $processTableFields[$processTableField]->getFieldSize()
             );
         }
 
@@ -289,11 +290,17 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         return $processTableFields;
     }
 
-    private function considerTypeForFieldValue($value, int $type)
+    private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
         switch ($type) {
             case FieldTypeEnumeration::TEXT:
-                return (string)$value;
+                $value = (string)$value;
+
+                if ($fieldSize) {
+                    $value = \substr($value, 0, $fieldSize);
+                }
+
+                return $value;
             case FieldTypeEnumeration::INTEGER:
                 return (int)$value;
         }
