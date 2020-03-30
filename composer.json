@@ -15,6 +15,7 @@
         "ext-pdo": "*",
         "brotkrueml/jobrouter-client": "^0.9",
         "brotkrueml/typo3-jobrouter-connector": "^0.9",
+        "symfony/polyfill-php80": "^1.15",
         "typo3/cms-core": "^9.5",
         "typo3/cms-extbase": "^9.5",
         "typo3/cms-fluid": "^9.5",

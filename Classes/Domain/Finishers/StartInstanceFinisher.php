@@ -182,7 +182,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private function resolveVariables(int $fieldType, $value): string
     {
-        if (\strpos($value, '{__') === false) {
+        if (!\str_contains($value, '{__')) {
             return $value;
         }
 

@@ -33,7 +33,7 @@ final class LanguageVariableResolver implements VariableResolverInterface
 
     public function resolve(ResolveFinisherVariableEvent $event): void
     {
-        if (\strpos($event->getValue(), '{__language.') === false) {
+        if (!\str_contains($event->getValue(), '{__language.')) {
             return;
         }
 

@@ -19,7 +19,7 @@ final class LocalisedLabelVariableResolver implements VariableResolverInterface
 {
     public function resolve(ResolveFinisherVariableEvent $event): void
     {
-        if (\strpos($event->getValue(), '{__LLL:') === false) {
+        if (!\str_contains($event->getValue(), '{__LLL:')) {
             return;
         }
 
