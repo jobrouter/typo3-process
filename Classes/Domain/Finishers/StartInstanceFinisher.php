@@ -215,12 +215,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             return;
         }
 
-        $formValues = $this->finisherContext->getFormValues();
+        $formValues = $this->prepareFormValuesForSubstitution();
         $processTableFields = $this->prepareProcessTableFields();
 
         $processTable = [];
 
-        foreach ($this->options['processtable'] as $processTableField => $configuration) {
+        foreach ($this->options['processtable'] as $processTableField => $value) {
             if (!\array_key_exists($processTableField, $processTableFields)) {
                 $this->logger->warning(
                     \sprintf(
@@ -233,38 +233,44 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 continue;
             }
 
-            if (isset($configuration['mapOnFormField']) && isset($formValues[$configuration['mapOnFormField']])) {
-                $processTable[$processTableField] = $this->considerTypeForFieldValue(
-                    $formValues[$configuration['mapOnFormField']],
-                    $processTableFields[$processTableField]->getType()
-                );
-                continue;
-            }
+            $value = $this->resolveVariables(
+                $processTableFields[$processTableField]->getType(),
+                $value
+            );
 
-            if (isset($configuration['staticValue'])) {
-                $processTable[$processTableField] = $this->considerTypeForFieldValue(
-                    $configuration['staticValue'],
-                    $processTableFields[$processTableField]->getType()
-                );
+            $value = $this->resolveFormFields(
+                $formValues,
+                $value
+            );
 
-                $processTable[$processTableField] = $this->resolveVariables(
-                    $processTableFields[$processTableField]->getType(),
-                    $processTable[$processTableField]
-                );
-
-                continue;
-            }
-
-            throw new MissingFinisherOptionException(
-                \sprintf(
-                    'The process table field "%s" has to be configured with either "mapOnFormField" or "staticValue"',
-                    $processTableField
-                ),
-                1581345018
+            $processTable[$processTableField] = $this->considerTypeForFieldValue(
+                $value,
+                $processTableFields[$processTableField]->getType()
             );
         }
 
         $this->transfer->setProcesstable($processTable);
+    }
+
+    private function prepareFormValuesForSubstitution(): array
+    {
+        $formValues = $this->finisherContext->getFormValues();
+        $preparedFormValues = [];
+
+        foreach ($formValues as $name => $value) {
+            $preparedFormValues[\sprintf('{%s}', $name)] = $value;
+        }
+
+        return $preparedFormValues;
+    }
+
+    private function resolveFormFields(array $formValues, $value): string
+    {
+        return \str_replace(
+            \array_keys($formValues),
+            \array_values($formValues),
+            $value
+        );
     }
 
     /**

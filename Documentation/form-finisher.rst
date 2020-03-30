@@ -43,18 +43,12 @@ configuration of the specific form:
             handle: 'start_website_contact'
             summary: 'Demo Contact'
             processtable:
-               name:
-                  mapOnFormField: name
-               company:
-                  mapOnFormField: company
-               email_address:
-                  mapOnFormField: email
-               phone_number:
-                  mapOnFormField: phone
-               message:
-                  mapOnFormField: message
-               form_identifier:
-                  staticValue: 'www.example.com/demo'
+               name: '{preName} {lastName}'
+               company: '{company}'
+               email_address: '{email}'
+               phone_number: '{phone}'
+               message: '{message}'
+               form_identifier: 'www.example.com/demo'
 
 As you can see, you can define some options. These are:
 
@@ -74,9 +68,11 @@ As you can see, you can define some options. These are:
 - `pool`: The pool of the instance (positive number).
 
 - `processtable`: You can map the form fields to the process table fields. As
-  you can see in the example above, you define first the process table field
-  (e.g `email_address`) and the map it with the key `mapOnFormField` to the
-  form field. Alternatively, you can also set a static value.
+  you can see in the example above, you define the process table field as the
+  key (e.g `email_address`) and then map it with the to the form field
+  identifier which is enclosed in curly brackets (e.g. `{email}`).
+  You can also set a static value, combine a static value with a form field
+  or map multiple form fields to a process table field.
 
 .. note::
 
@@ -100,36 +96,28 @@ installations. Just use the array notation in :yaml:`options`:
                handle: 'start_website_contact'
                summary: 'Demo Contact'
                processtable:
-                  name:
-                     mapOnFormField: name
-                  company:
-                     mapOnFormField: company
-                  email_address:
-                     mapOnFormField: email
-                  phone_number:
-                     mapOnFormField: phone
-                  message:
-                     mapOnFormField: message
-                  form_identifier:
-                     staticValue: 'www.example.com/demo'
+                  name: '{preName} {lastName}'
+                  company: '{company}'
+                  email_address: '{email}'
+                  phone_number: '{phone}'
+                  message: '{message}'
+                  form_identifier: 'www.example.com/demo'
             -
                handle: 'collect_anonymous_messages'
                summary: 'Demo Contact'
                processtable:
-                  ANON_MESSAGE:
-                     mapOnFormField: message
-                  FROM_URL:
-                     staticValue: 'https://www.example.com/demo'
+                  ANON_MESSAGE: '{message}'
+                  FROM_URL: 'https://www.example.com/demo'
 
 
 Variables
 ---------
 
 You can use variables in the common parameters, such as :yaml:`summary` or
-:yaml:`initiator`, and in the process table fields that map to a static value.
+:yaml:`initiator`, and in the process table fields.
 
 Variables look like: :yaml:`{__variableName}` or
-:yaml:`{__variableName.subKey}`.
+:yaml:`{__variableName.subKey}` - in curly brackets with a double underscore.
 
 Example:
 
@@ -143,18 +131,12 @@ Example:
             summary: '{__LLL:EXT:your_ext/Resources/Private/Language/forms.xlf:demo.summary} ({__language.navigationTitle})'
             initiator: '{__transferIdentifier}'
             processtable:
-               name:
-                  mapOnFormField: name
-               company:
-                  mapOnFormField: company
-               email_address:
-                  mapOnFormField: email
-               phone_number:
-                  mapOnFormField: phone
-               message:
-                  mapOnFormField: message
-               from_website:
-                  staticValue: '{__language.base}'
+               name: '{preName} {lastName}'
+               company: '{company}'
+               email_address: '{email}'
+               phone_number: '{phone}'
+               message: '{message}'
+               from_website: '{__language.base}'
 
 
 Transfer Identifier
