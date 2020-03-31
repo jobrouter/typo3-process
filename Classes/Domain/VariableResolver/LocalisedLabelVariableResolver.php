@@ -19,13 +19,15 @@ final class LocalisedLabelVariableResolver implements VariableResolverInterface
 {
     public function resolve(ResolveFinisherVariableEvent $event): void
     {
-        if (!\str_contains($event->getValue(), '{__LLL:')) {
+        $value = $event->getValue();
+
+        if (!\str_contains($value, '{__LLL:')) {
             return;
         }
 
         $this->checkValidFieldTypes($event);
 
-        if (!\preg_match_all('/{__(LLL:.+?)}/', $event->getValue(), $matches)) {
+        if (!\preg_match_all('/{__(LLL:.+?)}/', $value, $matches)) {
             return;
         }
 
@@ -33,9 +35,11 @@ final class LocalisedLabelVariableResolver implements VariableResolverInterface
             $translation = $this->translate($match);
 
             if ($translation) {
-                $event->setValue(\str_replace($matches[0][$index], $translation, $event->getValue()));
+                $value = \str_replace($matches[0][$index], $translation, $value);
             }
         }
+
+        $event->setValue($value);
     }
 
     private function checkValidFieldTypes(ResolveFinisherVariableEvent $event): void

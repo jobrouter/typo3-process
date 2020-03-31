@@ -33,7 +33,9 @@ final class LanguageVariableResolver implements VariableResolverInterface
 
     public function resolve(ResolveFinisherVariableEvent $event): void
     {
-        if (!\str_contains($event->getValue(), '{__language.')) {
+        $value = $event->getValue();
+
+        if (!\str_contains($value, '{__language.')) {
             return;
         }
 
@@ -45,7 +47,7 @@ final class LanguageVariableResolver implements VariableResolverInterface
             return;
         }
 
-        if (!\preg_match_all('/{__language\.(\w+)}/', $event->getValue(), $matches)) {
+        if (!\preg_match_all('/{__language\.(\w+)}/', $value, $matches)) {
             return;
         }
 
@@ -55,8 +57,10 @@ final class LanguageVariableResolver implements VariableResolverInterface
             }
 
             $methodToCall = 'get' . \ucfirst($match);
-            $event->setValue(\str_replace($matches[0][$index], $language->$methodToCall(), $event->getValue()));
+            $value = \str_replace($matches[0][$index], $language->$methodToCall(), $value);
         }
+
+        $event->setValue($value);
     }
 
     private function checkValidFieldTypes(ResolveFinisherVariableEvent $event): void
