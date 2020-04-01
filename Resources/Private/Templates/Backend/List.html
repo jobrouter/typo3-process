@@ -58,9 +58,18 @@
                                                     <f:then>{field.description}</f:then>
                                                     <f:else>{field.name}</f:else>
                                                 </f:if>
+
+                                                <f:variable name="fieldType"><f:spaceless>
+                                                    <f:switch expression="{field.type}">
+                                                        <f:case value="1"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.text"/></f:case>
+                                                        <f:case value="2"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.integer"/></f:case>
+                                                        <f:defaultCase>Unknown</f:defaultCase>
+                                                    </f:switch>
+                                                </f:spaceless></f:variable>
                                                 <f:if condition="{field.type} == 1 && {field.fieldSize}">
-                                                    ({field.fieldSize})
+                                                    <f:variable name="fieldType" value="{fieldType}, {field.fieldSize}"/>
                                                 </f:if>
+                                                ({fieldType})
                                             </li>
                                         </f:for>
                                     </ul>
