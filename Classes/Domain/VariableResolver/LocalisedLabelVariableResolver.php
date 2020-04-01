@@ -13,10 +13,21 @@ namespace Brotkrueml\JobRouterProcess\Domain\VariableResolver;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
-use TYPO3\CMS\Core\Localization\LanguageService;
+use Brotkrueml\JobRouterProcess\Language\TranslationService;
 
 final class LocalisedLabelVariableResolver implements VariableResolverInterface
 {
+    /** @var TranslationService */
+    private $translationService;
+
+    /**
+     * @param TranslationService|null $translationService For testing purposes
+     */
+    public function __construct(TranslationService $translationService = null)
+    {
+        $this->translationService = $translationService ?? new TranslationService();
+    }
+
     public function resolve(ResolveFinisherVariableEvent $event): void
     {
         $value = $event->getValue();
@@ -32,7 +43,7 @@ final class LocalisedLabelVariableResolver implements VariableResolverInterface
         }
 
         foreach ($matches[1] as $index => $match) {
-            $translation = $this->translate($match);
+            $translation = $this->translationService->translate($match);
 
             if ($translation) {
                 $value = \str_replace($matches[0][$index], $translation, $value);
@@ -57,15 +68,5 @@ final class LocalisedLabelVariableResolver implements VariableResolverInterface
             ),
             1582907006
         );
-    }
-
-    private function translate($key): string
-    {
-        return $this->getLanguageService()->sL($key);
-    }
-
-    private function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
     }
 }

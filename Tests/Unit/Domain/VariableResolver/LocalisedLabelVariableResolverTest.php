@@ -1,35 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterProcess\Tests\Domain\VariableResolver;
+namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\VariableResolver;
 
 use Brotkrueml\JobRouterProcess\Domain\VariableResolver\LocalisedLabelVariableResolver;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
+use Brotkrueml\JobRouterProcess\Language\TranslationService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Localization\LanguageService;
 
 class LocalisedLabelVariableResolverTest extends TestCase
 {
     /** @var LocalisedLabelVariableResolver */
     private $subject;
 
-    /** @var MockObject|LanguageService */
-    private $languageService;
+    /** @var MockObject|TranslationService */
+    private $translationService;
 
     protected function setUp(): void
     {
-        $this->subject = new LocalisedLabelVariableResolver();
-
-        $this->languageService = $this->createMock(LanguageService::class);
-        $GLOBALS['LANG'] = $this->languageService;
-    }
-
-    protected function tearDown(): void
-    {
-        unset($GLOBALS['LANG']);
+        $this->translationService = $this->createMock(TranslationService::class);
+        $this->subject = new LocalisedLabelVariableResolver($this->translationService);
     }
 
     /**
@@ -37,9 +30,9 @@ class LocalisedLabelVariableResolverTest extends TestCase
      */
     public function oneLocalisedLabelIsResolved(): void
     {
-        $this->languageService
+        $this->translationService
             ->expects(self::once())
-            ->method('sL')
+            ->method('translate')
             ->with('LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label')
             ->willReturn('localised some label');
 
@@ -59,15 +52,15 @@ class LocalisedLabelVariableResolverTest extends TestCase
      */
     public function twoLocalisedLabelAreResolved(): void
     {
-        $this->languageService
+        $this->translationService
             ->expects(self::at(0))
-            ->method('sL')
+            ->method('translate')
             ->with('LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label')
             ->willReturn('localised some label');
 
-        $this->languageService
+        $this->translationService
             ->expects(self::at(1))
-            ->method('sL')
+            ->method('translate')
             ->with('LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:another.label')
             ->willReturn('localised another label');
 
@@ -106,9 +99,9 @@ class LocalisedLabelVariableResolverTest extends TestCase
      */
     public function localisedLabelIsNotFoundThenValueIsUntouched(): void
     {
-        $this->languageService
+        $this->translationService
             ->expects(self::once())
-            ->method('sL')
+            ->method('translate')
             ->willReturn('');
 
         $event = new ResolveFinisherVariableEvent(
