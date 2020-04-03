@@ -43,15 +43,28 @@ you can use the :php:`Preparer` class within TYPO3:
 ::
 
    <?php
+   use Brotkrueml\JobRouterProcess\Domain\Model\Step;
    use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+   use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
    use Brotkrueml\JobRouterProcess\Exception\PrepareException;
    use Brotkrueml\JobRouterProcess\Transfer\Preparer;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
+   use TYPO3\CMS\Extbase\Object\Container\Container\ObjectManager;
+
+   // First get the step link uid from the step handle.
+   // It is advised to use the handle because the step link uid can differ from
+   // development to production system (it is an auto increment).
+   // If you are in an Extbase controller, the object manager is already
+   // available through $this->objectManager.
+   $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+   $stepRepository = $objectManager->get(StepRepository::class);
+   $step = $stepRepository->findOneByHandle('your_step_handle');
 
    // Define the transfer domain model with your parameters
    // Have a look in the Transfer model to see the available setters
    $transfer = new Transfer();
-   $transfer->setSummary('My summary')
+   $transfer->setStepUid($step->getUid());
+   $transfer->setSummary('My summary');
    $transfer->setProcesstable([
       'name' => 'John Doe',
       'company' => 'Acme Ltd.',
@@ -65,7 +78,7 @@ you can use the :php:`Preparer` class within TYPO3:
    try {
       $preparer->store($transfer);
    } catch (PrepareException $e) {
-      // In some rare cases an exception can be thrown
+      // On errors an exception can be thrown
       var_dump($e->getMessage());
    }
 
