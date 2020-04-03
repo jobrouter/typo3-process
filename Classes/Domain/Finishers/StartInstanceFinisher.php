@@ -20,6 +20,7 @@ use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
+use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
@@ -222,15 +223,15 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
         foreach ($this->options['processtable'] as $processTableField => $value) {
             if (!\array_key_exists($processTableField, $processTableFields)) {
-                $this->logger->warning(
+                throw new MissingProcessTableFieldException(
                     \sprintf(
-                        'Process table field "%s" is used in form with identifier "%s" but not defined in process "%s"',
+                        'Process table field "%s" is used in form with identifier "%s" but not defined in process link "%s"',
                         $processTableField,
                         $this->getFormIdentifier(),
                         $this->step->getProcess()->getName()
-                    )
+                    ),
+                    1585930166
                 );
-                continue;
             }
 
             $value = $this->resolveVariables(

@@ -75,10 +75,9 @@ As you can see, you can define some options. These are:
   or map multiple form fields to a process table field.
 
 .. note::
-
    Only process table fields that are configured in the :ref:`process link
-   <module-create-process-link>` are considered. If a process table field
-   is used that is not defined, a warning in the log is raised.
+   <module-create-process-link>` are possible. If a process table field
+   is used that is not defined, an exception is thrown.
 
    Inputs that are longer than the defined process table field length are
    shortened to the maximum length.
