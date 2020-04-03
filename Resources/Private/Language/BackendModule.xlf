@@ -62,6 +62,13 @@
 			<trans-unit id="status.disabled">
 				<source><![CDATA[disabled]]></source>
 			</trans-unit>
+
+			<trans-unit id="one_process_table_field_defined">
+				<source><![CDATA[1 process table field defined]]></source>
+			</trans-unit>
+			<trans-unit id="x_process_table_fields_defined">
+				<source><![CDATA[%s process table fields defined]]></source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

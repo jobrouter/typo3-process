@@ -117,7 +117,16 @@ you open the module:
    Overview of available process links
 
 If a process link is not enabled, this is indicated by the addition "(disabled)"
-in the handle.
+in the process name.
+
+The defined process table fields are not displayed by default, since the list
+can be very long. You can display the list of process table fields by clicking
+on the count information:
+
+.. figure:: _images/process-links-overview-expanded.png
+   :alt: List of process table fields for a process links
+
+   List of process table fields for a process links
 
 There are two buttons available for each table link:
 

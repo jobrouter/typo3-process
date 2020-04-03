@@ -28,7 +28,7 @@
 
         <f:if condition="{processes}">
             <f:then>
-                <table class="table table-vertical-top table-striped table-hover">
+                <table id="jobrouter-process-links-table" class="table table-vertical-top table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.name"/></th>
@@ -46,28 +46,47 @@
                                 <td>{process.description}</td>
                                 <td>{process.connection.name}</td>
                                 <td>
-                                    <ul>
-                                        <f:for each="{process.processtablefields}" as="field">
-                                            <li>
-                                                <f:if condition="{field.description}">
-                                                    <f:then>{field.description}</f:then>
-                                                    <f:else>{field.name}</f:else>
-                                                </f:if>
+                                    <f:variable name="count" value="{process.processtablefields -> f:count()}"/>
+                                    <f:if condition="{count} == 0">
+                                        <f:then>
+                                            <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:x_process_table_fields_defined" arguments="{0: 'No'}"/>
+                                        </f:then>
+                                        <f:else>
+                                            <div href="#" class="jobrouter-process-table-fields-count" style="cursor:pointer">
+                                                <span class="jobrouter-process-table-fields-collapse"><core:icon identifier="actions-pagetree-collapse"/></span>
+                                                <span class="jobrouter-process-table-fields-expand" style="display:none;"><core:icon identifier="actions-pagetree-expand"/></span>
 
-                                                <f:variable name="fieldType"><f:spaceless>
-                                                    <f:switch expression="{field.type}">
-                                                        <f:case value="1"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.text"/></f:case>
-                                                        <f:case value="2"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.integer"/></f:case>
-                                                        <f:defaultCase>Unknown</f:defaultCase>
-                                                    </f:switch>
-                                                </f:spaceless></f:variable>
-                                                <f:if condition="{field.type} == 1 && {field.fieldSize}">
-                                                    <f:variable name="fieldType" value="{fieldType}, {field.fieldSize}"/>
+                                                <f:if condition="{count} == 1">
+                                                    <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:one_process_table_field_defined"/>
                                                 </f:if>
-                                                ({fieldType})
-                                            </li>
-                                        </f:for>
-                                    </ul>
+                                                <f:if condition="{count} > 1">
+                                                    <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:x_process_table_fields_defined" arguments="{0: count}"/>
+                                                </f:if>
+                                            </div>
+                                            <ul class="jobrouter-process-table-fields-list" style="display:none;">
+                                                <f:for each="{process.processtablefields}" as="field">
+                                                    <li>
+                                                        <f:if condition="{field.description}">
+                                                            <f:then>{field.description}</f:then>
+                                                            <f:else>{field.name}</f:else>
+                                                        </f:if>
+
+                                                        <f:variable name="fieldType"><f:spaceless>
+                                                            <f:switch expression="{field.type}">
+                                                                <f:case value="1"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.text"/></f:case>
+                                                                <f:case value="2"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_processtablefields.type.integer"/></f:case>
+                                                                <f:defaultCase>Unknown</f:defaultCase>
+                                                            </f:switch>
+                                                        </f:spaceless></f:variable>
+                                                        <f:if condition="{field.type} == 1 && {field.fieldSize}">
+                                                            <f:variable name="fieldType" value="{fieldType}, {field.fieldSize}"/>
+                                                        </f:if>
+                                                        ({fieldType})
+                                                    </li>
+                                                </f:for>
+                                            </ul>
+                                        </f:else>
+                                    </f:if>
                                 </td>
                                 <td>
                                     <div class="btn-group">
@@ -106,7 +125,7 @@
 
         <f:if condition="{steps}">
             <f:then>
-                <table class="table table-vertical-top table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle"/></th>

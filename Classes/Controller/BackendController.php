@@ -81,6 +81,11 @@ class BackendController extends ActionController
 
     public function listAction(): void
     {
+        $pageRenderer = $this->moduleTemplate->getPageRenderer();
+        $pageRenderer->loadRequireJsModule(
+            'TYPO3/CMS/JobrouterProcess/ProcessTableFieldsToggler'
+        );
+
         $processes = $this->processRepository->findAllWithHidden();
         $steps = $this->stepRepository->findAllWithHidden();
 
