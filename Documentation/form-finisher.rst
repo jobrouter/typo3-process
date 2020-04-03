@@ -78,10 +78,15 @@ As you can see, you can define some options. These are:
 
    Only process table fields that are configured in the :ref:`process link
    <module-create-process-link>` are considered. If a process table field
-   is used that is not defined, it is ignored.
+   is used that is not defined, a warning in the log is raised.
 
    Inputs that are longer than the defined process table field length are
    shortened to the maximum length.
+
+   If the value of a form field is an array, like from a multi checkbox, the
+   array is converted to a csv string and stored in the given process table
+   field. The value can be reconverted to an array, e.g. in a JobRouter rule,
+   with the PHP function :php:`str_getcsv()`.
 
 
 Start Multiple Instances

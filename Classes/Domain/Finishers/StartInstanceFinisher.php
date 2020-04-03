@@ -259,10 +259,22 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $preparedFormValues = [];
 
         foreach ($formValues as $name => $value) {
-            $preparedFormValues[\sprintf('{%s}', $name)] = $value;
+            $preparedFormValues[\sprintf('{%s}', $name)]
+                = \is_array($value) ? $this->convertArrayToCsv($value) : $value;
         }
 
         return $preparedFormValues;
+    }
+
+    private function convertArrayToCsv(array $values): string
+    {
+        $fp = \fopen('php://memory', 'r+');
+        if (\fputcsv($fp, $values) === false) {
+            return '';
+        }
+        \rewind($fp);
+
+        return \trim(\stream_get_contents($fp));
     }
 
     private function resolveFormFields(array $formValues, $value): string
