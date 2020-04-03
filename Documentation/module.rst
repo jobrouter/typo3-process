@@ -47,40 +47,32 @@ The following fields are available:
 General
 '''''''
 
-:aspect:`Process Name (required)`
-
+Process Name (required)
    The name of the process as defined in the Process manager of the JobRouter
    installation.
 
-:aspect:`Description (optional)`
-
+Description (optional)
    A description for the process link.
 
-:aspect:`Connection (required)`
+Connection (required)
+   Choose a connection which was defined previously in the :doc:`Connections
+   <connector:usage>` module.
 
-   Choose a connection which was defined previously in the
-   :doc:`Connections <connector:usage>` module.
-
-:aspect:`Process Table Fields (optional)`
-
+Process Table Fields (optional)
    Define the process table fields that should be used when starting an
    instance. Each field item has the following fields:
 
-   :aspect:`Name (required)`
-
+   Name (required)
       The name of the process table field as defined in the JobRouter Designer.
 
-   :aspect:`Description (optional)`
-
+   Description (optional)
       A description of the process table field.
 
-   :aspect:`Type (required)`
-
+   Type (required)
       Select the column type (for now are available: `Text`, `Integer`). When
       using the form finisher, the value is casted to this type.
 
-   :aspect:`Field Size (required)`
-
+   Field Size (required)
       This option is only shown with type :guilabel:`Text`. Enter the size
       of the field. When :ref:`starting an instance via the transfer table
       <configuration-start-command>` the fields the values are truncated if too
@@ -88,7 +80,6 @@ General
       truncation enter `0`.
 
    .. note::
-
       Please be sure, that every process table field you use here, has the option
       :guilabel:`Input` enabled to allow the settings of the field from a REST
       resource.
@@ -97,8 +88,7 @@ General
 Access
 ''''''
 
-:aspect:`Enabled`
-
+Enabled
    You can enable or disable the process link. Disabled process links cannot be
    used.
 
@@ -158,30 +148,25 @@ link` button.
    Create a step link (General)
 
 .. important::
-
    In JobRouter it is recommended to use a decision step with a routing rule to
-   the processing user or Job Function.
+   forward the step to the appropriate user or Job Function.
 
 The following fields are available:
 
 General
 '''''''
 
-:aspect:`Handle (required)`
-
+Handle (required)
    A handle for usage in the form finisher. It is unique in the TYPO3
    installation. Only the characters A-Z, a-z, 0-9, - and _ are allowed.
 
-:aspect:`Name (required)`
-
+Name (required)
    A descriptive name for the step.
 
-:aspect:`Process name (required)`
-
+Process name (required)
    Select one of the defined processes out of the list.
 
-:aspect:`Step Number (required)`
-
+Step Number (required)
    Enter the step number of the process.
 
 Parameters
@@ -195,41 +180,32 @@ when not overridden there.
 
    Create a step link (Parameters)
 
-
-:aspect:`Summary`
-
+Summary
    Enter the default summary for an instance.
 
-:aspect:`Initiator`
-
+Initiator
    Enter the default initiator for an instance.
 
-:aspect:`Username`
-
+Username
    Enter the default username which should receive an instance.
 
-:aspect:`Job Function`
-
+Job Function
    Enter the default Job Function which should receive an instance.
 
-:aspect:`Priority`
-
+Priority
    Select the default priority for an instance.
 
-:aspect:`Pool`
-
+Pool
    Select the default pool for an instance.
 
 Access
 ''''''
 
-:aspect:`Enabled`
-
+Enabled
    You can enable or disable the step link. Disabled step links cannot be used.
 
 
 .. note::
-
    It can be useful to define the same step multiple times: Imagine, you want
    to configure steps for usage in the form finisher and want to avoid to define
    the same parameters in the form definition over and over again.
