@@ -42,12 +42,7 @@
                         <f:for each="{processes}" as="process">
                             <f:variable name="manageProcessLink">{process.connection.baseUrl}?cmd=OpenDesigner&processname={process.name}</f:variable>
                             <tr>
-                                <td>
-                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
-                                    <f:if condition="{process.disabled}">
-                                        ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
-                                    </f:if>
-                                </td>
+                                <td><f:render section="processName" arguments="{process: process}"/></td>
                                 <td>{process.description}</td>
                                 <td>{process.connection.name}</td>
                                 <td>
@@ -131,7 +126,7 @@
                                     </f:if>
                                 </td>
                                 <td>{step.name}</td>
-                                <td>{step.process.name}</td>
+                                <td><f:render section="processName" arguments="{process: step.process}"/></td>
                                 <td>{step.stepNumber}</td>
                                 <td>
                                     <div class="btn-group">
@@ -154,6 +149,13 @@
                     </be:link.newRecord>
                 </f:be.infobox>
             </f:else>
+        </f:if>
+    </f:section>
+
+    <f:section name="processName">
+        <be:link.editRecord table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
+        <f:if condition="{process.disabled}">
+            ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
         </f:if>
     </f:section>
 </html>
