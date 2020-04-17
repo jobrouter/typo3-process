@@ -42,7 +42,6 @@ Activate this option to log into the table `tx_jobrouterconnector_log`. It is
 disabled by default.
 
 .. hint::
-
    To display the log entries of this table in the TYPO3 backend, install the
    extension `vertexvaar/logs <https://github.com/vertexvaar/logs>`_.
 
@@ -92,7 +91,6 @@ to your :ref:`logging configuration <configuration-extension>`, the error is
 also logged.
 
 .. note::
-
    Only one start command can run at a time. If the command starts while
    another is in progress, the second command is terminated and a warning
    is displayed.
@@ -108,8 +106,8 @@ The last run of the command is shown in the system information toolbar
 
 .. _configuration-deleteoldtransfers-command:
 
-Delete old transfers
---------------------
+Clean up transfers
+------------------
 
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
@@ -117,7 +115,7 @@ regularly. A command is available for this task:
 
 ::
 
-   vendor/bin/typo3 jobrouter:process:deleteoldtransfers
+   vendor/bin/typo3 jobrouter:process:cleanuptransfers
 
 In general you should receive a successful answer:
 
@@ -130,14 +128,14 @@ You can adjust this value by adding an argument to the command:
 
 ::
 
-   vendor/bin/typo3 jobrouter:process:deleteoldtransfers 7
+   vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
 
 Now successful transfer records that are older than seven days are deleted. If
 you use `0` as argument, all successful transfers are deleted.
 
-Erroneous transfers are not deleted and should be handled manually.
+.. important::
+   Erroneous transfer entries are not deleted and must be handled manually.
 
 .. note::
-
    If there were deleted successful transfer records, the number of affected
    rows is logged as *notice*, if there were none it is logged as *info*.

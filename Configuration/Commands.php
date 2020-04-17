@@ -4,8 +4,8 @@ return [
         'class' => \Brotkrueml\JobRouterProcess\Command\StartCommand::class,
         'schedulable' => true,
     ],
-    'jobrouter:process:deleteoldtransfers' => [
-        'class' => \Brotkrueml\JobRouterProcess\Command\DeleteOldTransfersCommand::class,
+    'jobrouter:process:cleanuptransfers' => [
+        'class' => \Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand::class,
         'schedulable' => true,
     ],
 ];
