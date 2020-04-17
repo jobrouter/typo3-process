@@ -1,11 +1,12 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'Transfer',
+        'title' => 'JobRouter Process Transfer',
         'label' => 'identifier',
         'crdate' => 'crdate',
         'rootLevel' => 1,
         'hideTable' => true,
+        'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'step_uid, identifier, start_success, start_date, start_message',
