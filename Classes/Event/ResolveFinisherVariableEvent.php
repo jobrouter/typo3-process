@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Event;
 
-class ResolveFinisherVariableEvent
+final class ResolveFinisherVariableEvent
 {
     /** @var int */
     private $fieldType;

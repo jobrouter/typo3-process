@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class CommonParameterNotFoundException extends \RuntimeException
+final class CommonParameterNotFoundException extends \RuntimeException
 {
 }

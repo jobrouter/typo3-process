@@ -16,6 +16,9 @@ use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
+/**
+ * @internal
+ */
 final class LanguageVariableResolver implements VariableResolverInterface
 {
     private $validLanguageVariables = [

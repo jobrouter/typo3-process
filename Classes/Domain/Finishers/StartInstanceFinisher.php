@@ -29,6 +29,9 @@ use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
+/**
+ * @internal
+ */
 final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwareInterface
 {
     use LoggerAwareTrait;

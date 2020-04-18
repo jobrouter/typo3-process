@@ -12,6 +12,9 @@ namespace Brotkrueml\JobRouterProcess\Language;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
+/**
+ * @internal
+ */
 class TranslationService
 {
     public function translate(string $key): string

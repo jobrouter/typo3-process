@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Enumeration;
 
-class Priority
+final class Priority
 {
     public const LOW = 1;
     public const NORMAL = 2;

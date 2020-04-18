@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class StepNotFoundException extends \RuntimeException
+final class StepNotFoundException extends \RuntimeException
 {
 }

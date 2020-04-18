@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class VariableResolverException extends \RuntimeException
+final class VariableResolverException extends \RuntimeException
 {
 }

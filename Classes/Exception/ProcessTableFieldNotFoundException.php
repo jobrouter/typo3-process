@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class ProcessTableFieldNotFoundException extends \RuntimeException
+final class ProcessTableFieldNotFoundException extends \RuntimeException
 {
 }

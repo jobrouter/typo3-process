@@ -14,6 +14,9 @@ use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
 
+/**
+ * @internal
+ */
 final class TransferIdentifierVariableResolver implements VariableResolverInterface
 {
     private const VARIABLE_TO_RESOLVE = '{__transferIdentifier}';

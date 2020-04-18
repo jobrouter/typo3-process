@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class MissingProcessTableFieldException extends \RuntimeException
+final class MissingProcessTableFieldException extends \RuntimeException
 {
 }

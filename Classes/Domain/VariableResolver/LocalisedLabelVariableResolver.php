@@ -15,6 +15,9 @@ use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
 use Brotkrueml\JobRouterProcess\Language\TranslationService;
 
+/**
+ * @internal
+ */
 final class LocalisedLabelVariableResolver implements VariableResolverInterface
 {
     /** @var TranslationService */

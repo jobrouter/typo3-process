@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class ProcessNotFoundException extends \RuntimeException
+final class ProcessNotFoundException extends \RuntimeException
 {
 }

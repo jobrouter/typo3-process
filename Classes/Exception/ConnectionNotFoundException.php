@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class ConnectionNotFoundException extends \RuntimeException
+final class ConnectionNotFoundException extends \RuntimeException
 {
 }

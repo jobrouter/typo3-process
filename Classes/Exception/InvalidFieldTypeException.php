@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class InvalidFieldTypeException extends \RuntimeException
+final class InvalidFieldTypeException extends \RuntimeException
 {
 }

@@ -10,6 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-class MissingFinisherOptionException extends \RuntimeException
+final class MissingFinisherOptionException extends \RuntimeException
 {
 }
