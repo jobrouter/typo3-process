@@ -1,6 +1,13 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * This file is part of the "jobrouter_process" extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Model;
 
 use Brotkrueml\JobRouterProcess\Domain\Model\CommonStepParameterInterface;
@@ -16,7 +23,7 @@ class DefaultStepParameterTraitTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->subject = new class () implements CommonStepParameterInterface {
+        $this->subject = new class() implements CommonStepParameterInterface {
             use CommonStepParameterTrait;
         };
     }
@@ -177,7 +184,7 @@ class DefaultStepParameterTraitTest extends TestCase
      */
     public function getDefaultParametersReturnsEmptyArrayWhenNoDefaultParameterIsDefined(): void
     {
-        $this->assertCount(0, $this->subject->getDefaultParameters());
+        self::assertCount(0, $this->subject->getDefaultParameters());
     }
 
     /**
@@ -194,12 +201,12 @@ class DefaultStepParameterTraitTest extends TestCase
 
         $actual = $this->subject->getDefaultParameters();
 
-        $this->assertCount(6, $actual);
-        $this->assertSame('default initiator', $actual['initiator']);
-        $this->assertSame('default username', $actual['username']);
-        $this->assertSame('default jobfunction', $actual['jobfunction']);
-        $this->assertSame('default summary', $actual['summary']);
-        $this->assertSame(1, $actual['priority']);
-        $this->assertSame(42, $actual['pool']);
+        self::assertCount(6, $actual);
+        self::assertSame('default initiator', $actual['initiator']);
+        self::assertSame('default username', $actual['username']);
+        self::assertSame('default jobfunction', $actual['jobfunction']);
+        self::assertSame('default summary', $actual['summary']);
+        self::assertSame(1, $actual['priority']);
+        self::assertSame(42, $actual['pool']);
     }
 }

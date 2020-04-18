@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterProcess\Transfer;
-
 /*
  * This file is part of the "jobrouter_process" extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Brotkrueml\JobRouterProcess\Transfer;
 
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
@@ -41,8 +41,8 @@ class Preparer implements LoggerAwareInterface
             return;
         }
 
-        $this->persistenceManager = $persistenceManager ;
-        $this->transferRepository = $transferRepository ;
+        $this->persistenceManager = $persistenceManager;
+        $this->transferRepository = $transferRepository;
     }
 
     public function store(Transfer $transfer): void
