@@ -62,10 +62,17 @@ class Starter implements LoggerAwareInterface
         TransferRepository $transferRepository = null,
         StepRepository $stepRepository = null
     ) {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->persistenceManager = $persistenceManager ?? $objectManager->get(PersistenceManagerInterface::class);
-        $this->transferRepository = $transferRepository ?? $objectManager->get(TransferRepository::class);
-        $this->stepRepository = $stepRepository ?? $objectManager->get(StepRepository::class);
+        if ($persistenceManager === null || $transferRepository === null || $stepRepository === null) {
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+            $this->persistenceManager = $objectManager->get(PersistenceManagerInterface::class);
+            $this->transferRepository = $objectManager->get(TransferRepository::class);
+            $this->stepRepository = $objectManager->get(StepRepository::class);
+            return;
+        }
+
+        $this->persistenceManager = $persistenceManager;
+        $this->transferRepository = $transferRepository;
+        $this->stepRepository = $stepRepository;
     }
 
     public function run(): array

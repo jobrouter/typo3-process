@@ -34,9 +34,15 @@ class Preparer implements LoggerAwareInterface
 
     public function __construct(PersistenceManager $persistenceManager = null, TransferRepository $transferRepository = null)
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->persistenceManager = $persistenceManager ?? $objectManager->get(PersistenceManager::class);
-        $this->transferRepository = $transferRepository ?? $objectManager->get(TransferRepository::class);
+        if ($persistenceManager === null || $transferRepository === null) {
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+            $this->persistenceManager = $objectManager->get(PersistenceManager::class);
+            $this->transferRepository = $objectManager->get(TransferRepository::class);
+            return;
+        }
+
+        $this->persistenceManager = $persistenceManager ;
+        $this->transferRepository = $transferRepository ;
     }
 
     public function store(Transfer $transfer): void
