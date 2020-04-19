@@ -42,7 +42,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     /** @var Preparer */
     private $preparer;
 
-    private $commonParameters = [
+    private $stepParameters = [
         'initiator',
         'jobfunction',
         'pool',
@@ -100,7 +100,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $this->defaultOptions = $this->step->getDefaultParameters();
 
         $this->initialiseTransfer();
-        $this->prepareCommonParametersForTransfer();
+        $this->prepareStepParametersForTransfer();
+        $this->prepareTypeForTransfer();
         $this->prepareProcessTableForTransfer();
         $this->preparer->store($this->transfer);
     }
@@ -161,9 +162,9 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             ->getIdentifier();
     }
 
-    private function prepareCommonParametersForTransfer(): void
+    private function prepareStepParametersForTransfer(): void
     {
-        foreach ($this->commonParameters as $parameter) {
+        foreach ($this->stepParameters as $parameter) {
             $value = $this->parseOption($parameter);
 
             if (empty($value)) {
@@ -182,6 +183,18 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
             $this->transfer->{'set' . \ucfirst($parameter)}($value);
         }
+    }
+
+    private function prepareTypeForTransfer(): void
+    {
+        $type = $this->parseOption('type');
+
+        if (empty($type)) {
+            return;
+        }
+
+        $type = $this->resolveVariables(FieldTypeEnumeration::TEXT, $type);
+        $this->transfer->setType($type);
     }
 
     private function resolveVariables(int $fieldType, $value): string

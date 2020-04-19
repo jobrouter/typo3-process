@@ -17,7 +17,7 @@ return [
         'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'step_uid, identifier, start_success, start_date, start_message',
+        'showRecordFieldList' => 'step_uid, identifier, type, start_success, start_date, start_message',
     ],
     'columns' => [
         'step_uid' => [
@@ -28,6 +28,12 @@ return [
         ],
         'identifier' => [
             'label' => 'Identifier',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'type' => [
+            'label' => 'Type',
             'config' => [
                 'type' => 'input',
             ],

@@ -29,6 +29,11 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
     /**
      * @var string
      */
+    protected $type = '';
+
+    /**
+     * @var string
+     */
     protected $processtable = '';
 
     /**
@@ -69,6 +74,16 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
     public function setIdentifier(string $identifier): void
     {
         $this->identifier = $identifier;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
     public function getProcesstable(): string

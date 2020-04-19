@@ -41,6 +41,7 @@ configuration of the specific form:
          identifier: JobRouterStartInstance
          options:
             handle: 'start_website_contact'
+            type: 'demo'
             summary: 'Demo Contact'
             processtable:
                name: '{preName} {lastName}'
@@ -54,6 +55,8 @@ As you can see, you can define some options. These are:
 
 - `handle` (required): The step handle defined in the
   :ref:`Processes module <module-create-step-link>`.
+
+- `type`: The type can be used for statistical evaluation.
 
 - `summary`: The summary of the instance.
 

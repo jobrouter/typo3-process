@@ -59,6 +59,18 @@ class TransferTest extends TestCase
     /**
      * @test
      */
+    public function getAndSetTypeImplementedCorrectly(): void
+    {
+        self::assertSame('', $this->subject->getType());
+
+        $this->subject->setType('some type');
+
+        self::assertSame('some type', $this->subject->getType());
+    }
+
+    /**
+     * @test
+     */
     public function getAndSetProcesstableWithStringAsArgumentImplementedCorrectly(): void
     {
         self::assertSame('', $this->subject->getProcesstable());
