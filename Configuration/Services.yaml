@@ -1,0 +1,12 @@
+imports:
+  - { resource: Backend/DashboardWidgets.yaml }
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Brotkrueml\JobRouterProcess\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Dashboard/*'

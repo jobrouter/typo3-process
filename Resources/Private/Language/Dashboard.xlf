@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2020-04-19T14:23:07Z" product-name="jobrouter_process">
+		<header/>
+		<body>
+			<trans-unit id="unknown">
+				<source><![CDATA[unknown]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.typeOfInstanceStarts.description">
+				<source><![CDATA[Shows the total numbers of process starts grouped by the type.]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.typeOfInstanceStarts.title">
+				<source><![CDATA[JobRouter Instance Starts]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

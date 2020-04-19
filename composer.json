@@ -9,6 +9,7 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
         "ext-json": "*",
@@ -16,15 +17,19 @@
         "brotkrueml/jobrouter-client": "^0.9",
         "brotkrueml/typo3-jobrouter-connector": "^0.9 || 0.10.x-dev@dev",
         "symfony/polyfill-php80": "^1.15",
-        "typo3/cms-core": "^9.5 || ^10.3",
-        "typo3/cms-extbase": "^9.5 || ^10.3",
-        "typo3/cms-fluid": "^9.5 || ^10.3",
-        "typo3/cms-form": "^9.5 || ^10.3"
+        "typo3/cms-backend": "^9.5 || 10.4.x-dev@dev",
+        "typo3/cms-core": "^9.5 || 10.4.x-dev@dev",
+        "typo3/cms-extbase": "^9.5 || 10.4.x-dev@dev",
+        "typo3/cms-fluid": "^9.5 || 10.4.x-dev@dev",
+        "typo3/cms-form": "^9.5 || 10.4.x-dev@dev"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
         "php-coveralls/php-coveralls": "^2.2",
-        "phpunit/phpunit": "^8.5 || 9.0"
+        "phpunit/phpunit": "^8.5 || ^9.0"
+    },
+    "suggest": {
+        "typo3/cms-dashboard": "Use dashboard widgets for information about instance starts"
     },
     "autoload": {
         "psr-4": {

@@ -64,6 +64,7 @@ you can use the :php:`Preparer` class within TYPO3:
    // Have a look in the Transfer model to see the available setters
    $transfer = new Transfer();
    $transfer->setStepUid($step->getUid());
+   $transfer->setType('Demo');
    $transfer->setSummary('My summary');
    $transfer->setProcesstable([
       'name' => 'John Doe',

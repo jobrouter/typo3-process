@@ -38,5 +38,6 @@ Contents
    configuration
    module
    form-finisher
+   dashboard
    developer
    copyright

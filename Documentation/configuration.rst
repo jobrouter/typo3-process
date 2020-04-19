@@ -104,7 +104,7 @@ The last run of the command is shown in the system information toolbar
    System information with last run of the start command
 
 
-.. _configuration-deleteoldtransfers-command:
+.. _configuration-cleanuptransfers-command:
 
 Clean up transfers
 ------------------
@@ -139,3 +139,7 @@ you use `0` as argument, all successful transfers are deleted.
 .. note::
    If there were deleted successful transfer records, the number of affected
    rows is logged as *notice*, if there were none it is logged as *info*.
+
+.. note::
+   The number of days is also taken into account for the Dashboard widget
+   :ref:`Instance Starts <dashboard-instance-starts>`.
