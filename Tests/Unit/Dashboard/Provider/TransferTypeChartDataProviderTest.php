@@ -44,7 +44,10 @@ class TransferTypeChartDataProviderTest extends TestCase
 
         $queryBuilderStub = $this->createStub(QueryBuilder::class);
         $queryBuilderStub
-            ->method('selectLiteral')
+            ->method('select')
+            ->willReturn($queryBuilderStub);
+        $queryBuilderStub
+            ->method('addSelectLiteral')
             ->willReturn($queryBuilderStub);
         $queryBuilderStub
             ->method('from')

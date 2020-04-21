@@ -70,10 +70,8 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     private function countTypes(): array
     {
         return $this->queryBuilder
-            ->selectLiteral(
-                $this->queryBuilder->quoteIdentifier('type'),
-                'COUNT(1) AS ' . $this->queryBuilder->quoteIdentifier('count')
-            )
+            ->select('type')
+            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
             ->from('tx_jobrouterprocess_domain_model_transfer')
             ->groupBy('type')
             ->orderBy('count', 'DESC')
