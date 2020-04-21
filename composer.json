@@ -28,7 +28,8 @@
         "phpunit/phpunit": "^8.5 || ^9.1"
     },
     "suggest": {
-        "typo3/cms-dashboard": "Use dashboard widgets for information about instance starts"
+        "typo3/cms-dashboard": "Use dashboard widgets for information about instance starts",
+        "vertexvaar/logs": "Backend module for displaying logs written into database tables"
     },
     "autoload": {
         "psr-4": {
