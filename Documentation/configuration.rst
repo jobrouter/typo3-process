@@ -141,5 +141,5 @@ you use `0` as argument, all successful transfers are deleted.
    rows is logged as *notice*, if there were none it is logged as *info*.
 
 .. note::
-   The number of days is also taken into account for the Dashboard widget
-   :ref:`Instance Starts <dashboard-instance-starts>`.
+   The number of days is also taken into account for the :ref:`Dashboard widgets
+   <dashboard-widgets>`.

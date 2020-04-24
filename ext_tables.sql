@@ -28,7 +28,7 @@ CREATE TABLE tx_jobrouterprocess_domain_model_step (
 	UNIQUE KEY handle (handle)
 );
 
-CREATE TABLE tx_jobrouterprocess_domain_model_transfer (
+CREATE TABLE tx_jobrouterprocess_domain_model_transfer(
 	step_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	identifier varchar(255) DEFAULT '' NOT NULL,
 	type varchar(50) DEFAULT '' NOT NULL,
@@ -43,5 +43,6 @@ CREATE TABLE tx_jobrouterprocess_domain_model_transfer (
 	start_date int(11) unsigned DEFAULT '0' NOT NULL,
 	start_message text,
 
-	KEY start_success (start_success)
+	KEY success (start_success),
+	KEY success_date (start_success, start_date)
 );

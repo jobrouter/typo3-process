@@ -12,6 +12,14 @@ services:
     factory: ['@TYPO3\CMS\Core\Database\ConnectionPool', 'getQueryBuilderForTable']
     arguments: ['tx_jobrouterprocess_domain_model_transfer']
 
+  Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository:
+    arguments:
+      $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'
+
+  Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider:
+    arguments:
+      $transferRepository: '@Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository'
+
   Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'

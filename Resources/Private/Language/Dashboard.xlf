@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2020-04-19T14:23:07Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext"
+	      original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2020-04-24T16:27:13Z"
+	      product-name="jobrouter_process">
 		<header/>
 		<body>
+			<trans-unit id="status.failed">
+				<source><![CDATA[failed]]></source>
+			</trans-unit>
+			<trans-unit id="status.pending">
+				<source><![CDATA[pending]]></source>
+			</trans-unit>
+			<trans-unit id="status.successful">
+				<source><![CDATA[successful]]></source>
+			</trans-unit>
 			<trans-unit id="unknown">
 				<source><![CDATA[unknown]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.statusOfInstanceStarts.description">
+				<source><![CDATA[Shows the status of process starts.]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.statusOfInstanceStarts.title">
+				<source><![CDATA[Instance Start Status]]></source>
 			</trans-unit>
 			<trans-unit id="widgets.typeOfInstanceStarts.description">
 				<source><![CDATA[Shows the total numbers of process starts grouped by the type.]]></source>
 			</trans-unit>
 			<trans-unit id="widgets.typeOfInstanceStarts.title">
-				<source><![CDATA[JobRouter Instance Starts]]></source>
+				<source><![CDATA[Instance Start Types]]></source>
 			</trans-unit>
 		</body>
 	</file>
