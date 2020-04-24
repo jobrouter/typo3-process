@@ -54,4 +54,16 @@ class TransferRepository
 
         return $count;
     }
+
+    public function countTypes(): array
+    {
+        return $this->queryBuilder
+            ->select('type')
+            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
+            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->groupBy('type')
+            ->orderBy('count', 'DESC')
+            ->execute()
+            ->fetchAll();
+    }
 }

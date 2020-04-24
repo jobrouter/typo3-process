@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Dashboard\Provider;
 
+use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Dashboard\WidgetApi;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
@@ -27,14 +27,16 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     private $languageService;
 
     /**
-     * @var QueryBuilder
+     * @var TransferRepository
      */
-    private $queryBuilder;
+    private $transferRepository;
 
-    public function __construct(LanguageService $languageService, QueryBuilder $queryBuilder)
-    {
+    public function __construct(
+        LanguageService $languageService,
+        TransferRepository $transferRepository
+    ) {
         $this->languageService = $languageService;
-        $this->queryBuilder = $queryBuilder;
+        $this->transferRepository = $transferRepository;
     }
 
     public function getChartData(): array
@@ -54,7 +56,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 
     private function prepareData(): array
     {
-        $types = $this->countTypes();
+        $types = $this->transferRepository->countTypes();
         $unknownLabel = $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':unknown');
 
         $labels = [];
@@ -65,18 +67,6 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         }
 
         return [$labels, $data];
-    }
-
-    private function countTypes(): array
-    {
-        return $this->queryBuilder
-            ->select('type')
-            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
-            ->from('tx_jobrouterprocess_domain_model_transfer')
-            ->groupBy('type')
-            ->orderBy('count', 'DESC')
-            ->execute()
-            ->fetchAll();
     }
 
     private function getChartColours(int $count): array

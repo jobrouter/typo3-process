@@ -10,19 +10,18 @@
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Dashboard\Provider;
 
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider;
-use Doctrine\DBAL\Driver\ResultStatement;
+use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class TransferTypeChartDataProviderTest extends TestCase
 {
     /**
-     * @var Stub|ResultStatement
+     * @var Stub|TransferRepository
      */
-    private $statementStub;
+    private $transferRepositoryStub;
 
     /**
      * @var TransferTypeChartDataProvider
@@ -40,45 +39,25 @@ class TransferTypeChartDataProviderTest extends TestCase
             ->method('sL')
             ->willReturn('unknown');
 
-        $this->statementStub = $this->createStub(ResultStatement::class);
-
-        $queryBuilderStub = $this->createStub(QueryBuilder::class);
-        $queryBuilderStub
-            ->method('select')
-            ->willReturn($queryBuilderStub);
-        $queryBuilderStub
-            ->method('addSelectLiteral')
-            ->willReturn($queryBuilderStub);
-        $queryBuilderStub
-            ->method('from')
-            ->willReturn($queryBuilderStub);
-        $queryBuilderStub
-            ->method('groupBy')
-            ->willReturn($queryBuilderStub);
-        $queryBuilderStub
-            ->method('orderBy')
-            ->willReturn($queryBuilderStub);
-        $queryBuilderStub
-            ->method('execute')
-            ->willReturn($this->statementStub);
+        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
 
         $this->subject = new TransferTypeChartDataProvider(
             $languageServiceStub,
-            $queryBuilderStub
+            $this->transferRepositoryStub
         );
     }
 
     /**
      * @test
      * @dataProvider dataProviderForGetChartData
-     * @param array $queryResult
+     * @param array $countTypesResult
      * @param array $expected
      */
-    public function getChartData(array $queryResult, array $expected): void
+    public function getChartData(array $countTypesResult, array $expected): void
     {
-        $this->statementStub
-            ->method('fetchAll')
-            ->willReturn($queryResult);
+        $this->transferRepositoryStub
+            ->method('countTypes')
+            ->willReturn($countTypesResult);
 
         self::assertSame($expected, $this->subject->getChartData());
     }
