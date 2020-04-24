@@ -12,7 +12,6 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Dashboard\Provider;
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
-use Doctrine\DBAL\Driver\ResultStatement;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Localization\LanguageService;
