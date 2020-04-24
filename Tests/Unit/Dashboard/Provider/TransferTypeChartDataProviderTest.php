@@ -14,8 +14,8 @@ use Doctrine\DBAL\Driver\ResultStatement;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class TransferTypeChartDataProviderTest extends TestCase
 {
@@ -31,8 +31,8 @@ class TransferTypeChartDataProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        if (!\class_exists(Typo3Version::class)) {
-            self::markTestSkipped('Only TYPO3 v10+');
+        if (!\interface_exists(ChartDataProviderInterface::class)) {
+            self::markTestSkipped('Dashboard system extension not available');
         }
 
         $languageServiceStub = $this->createStub(LanguageService::class);

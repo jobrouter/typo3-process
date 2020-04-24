@@ -8,7 +8,6 @@
     <testsuites>
         <testsuite name="Unit tests">
             <directory>Unit/</directory>
-            <exclude>Unit/Dashboard/Provider/TransferTypeChartDataProviderTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
