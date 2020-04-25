@@ -23,9 +23,6 @@ return [
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_processtablefields.svg',
         'hideTable' => true,
     ],
-    'interface' => [
-        'showRecordFieldList' => 'name, description, type, field_size',
-    ],
     'columns' => [
         'pid' => [
             'label' => 'pid',

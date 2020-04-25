@@ -23,9 +23,6 @@ return [
         'searchFields' => 'name',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'name, description, connection, processtablefields',
-    ],
     'columns' => [
         'disabled' => [
             'exclude' => true,

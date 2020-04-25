@@ -16,9 +16,6 @@ return [
         'hideTable' => true,
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'step_uid, identifier, type, start_success, start_date, start_message',
-    ],
     'columns' => [
         'step_uid' => [
             'label' => 'Table',

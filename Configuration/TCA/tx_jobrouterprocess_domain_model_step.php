@@ -22,9 +22,6 @@ return [
         'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'handle, name, processname, step, initiator, username, jobfunction, summary, priority, pool',
-    ],
     'columns' => [
         'disabled' => [
             'exclude' => true,
