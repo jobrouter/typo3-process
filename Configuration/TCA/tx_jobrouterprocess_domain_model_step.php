@@ -9,7 +9,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step',
+        'title' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step',
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -20,7 +20,7 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary',
-        'iconfile' => 'EXT:jobrouter_process/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg'
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'handle, name, processname, step, initiator, username, jobfunction, summary, priority, pool',
@@ -44,7 +44,7 @@ return [
 
         'handle' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.handle',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -54,7 +54,7 @@ return [
         ],
         'name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -64,7 +64,7 @@ return [
         ],
         'process' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.process',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.process',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -75,7 +75,7 @@ return [
         ],
         'step_number' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.step_number',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.step_number',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -85,7 +85,7 @@ return [
         ],
         'initiator' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.initiator',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.initiator',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -95,7 +95,7 @@ return [
         ],
         'username' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.username',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.username',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -105,7 +105,7 @@ return [
         ],
         'jobfunction' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.jobfunction',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.jobfunction',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -115,7 +115,7 @@ return [
         ],
         'summary' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.summary',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.summary',
             'config' => [
                 'type' => 'input',
                 'size' => 48,
@@ -125,7 +125,7 @@ return [
         ],
         'priority' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.priority',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -135,15 +135,15 @@ return [
                         0
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::LOW,
+                        \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::LOW,
                         \Brotkrueml\JobRouterProcess\Enumeration\Priority::LOW
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::NORMAL,
+                        \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::NORMAL,
                         \Brotkrueml\JobRouterProcess\Enumeration\Priority::NORMAL
                     ],
                     [
-                        'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::HIGH,
+                        \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.priority.' . \Brotkrueml\JobRouterProcess\Enumeration\Priority::HIGH,
                         \Brotkrueml\JobRouterProcess\Enumeration\Priority::HIGH
                     ],
                 ],
@@ -151,7 +151,7 @@ return [
         ],
         'pool' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.pool',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.pool',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -164,7 +164,7 @@ return [
         '1' => [
             'showitem' => '
             handle, name, process, step_number,
-            --div--;LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tab.parameters,
+            --div--;' . \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
             --palette--;;defaultParameters,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
@@ -174,7 +174,7 @@ return [
     ],
     'palettes' => [
         'defaultParameters' => [
-            'label' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:palette.default_parameters',
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':palette.default_parameters',
             'showitem' => 'summary, --linebreak--, initiator, username, jobfunction, --linebreak--, priority, pool'
         ],
     ],

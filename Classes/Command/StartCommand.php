@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Command;
 
+use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -95,6 +96,6 @@ final class StartCommand extends Command
             'end' => time(),
             'exitCode' => $exitCode,
         ];
-        $registry->set('tx_jobrouter_process', 'startCommand.lastRun', $runInformation);
+        $registry->set(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', $runInformation);
     }
 }

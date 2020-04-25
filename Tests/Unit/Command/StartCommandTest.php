@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
+use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -83,7 +84,7 @@ class StartCommandTest extends TestCase
             ->expects(self::once())
             ->method('set')
             ->with(
-                'tx_jobrouter_process',
+                Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
                     function ($subject) {
@@ -124,7 +125,7 @@ class StartCommandTest extends TestCase
             ->expects(self::once())
             ->method('set')
             ->with(
-                'tx_jobrouter_process',
+                Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
                     function ($subject) {
@@ -165,7 +166,7 @@ class StartCommandTest extends TestCase
             ->expects(self::once())
             ->method('set')
             ->with(
-                'tx_jobrouter_process',
+                Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
                     function ($subject) {
