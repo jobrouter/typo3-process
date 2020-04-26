@@ -24,4 +24,6 @@ final class Extension
     public const LANGUAGE_PATH_TOOLBAR = self::LANGUAGE_PATH . 'Toolbar.xlf';
 
     public const REGISTRY_NAMESPACE = 'tx_' . self::KEY;
+
+    public const WIDGET_DEFAULT_CHART_COLOUR = '#fc3';
 }

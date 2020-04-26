@@ -1,4 +1,5 @@
 parameters:
+  jobrouter_process.widget.transfersPerDay.numberOfDays: 14
   jobrouter_process.widget.typeOfInstanceStarts.numberOfDays: 14
 
 services:
@@ -22,3 +23,7 @@ services:
   Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider:
     calls:
       - [setNumberOfDays, ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']]
+
+  Brotkrueml\JobRouterProcess\Dashboard\Provider\TransfersPerDayDataProvider:
+    calls:
+      - [setNumberOfDays, ['%jobrouter_process.widget.transfersPerDay.numberOfDays%']]

@@ -28,8 +28,25 @@ data is the availability of types in this transfer table - either configured in
 :ref:`form definitions <form-finisher>` or :ref:`coded in PHP
 <developer-start-instance>`.
 
-The time span depends on the :ref:`clean up of the old data
-<configuration-cleanuptransfers-command>`.
+.. note::
+
+   The available widgets depend on the access rights of user.
+
+
+.. _dashboard-widget-instance-starts:
+
+Instance Starts
+===============
+
+The instance starts can be visually displayed with a Dashboard widget:
+
+.. figure:: _images/dashboard-widget-instance-starts.png
+   :alt: Instance Starts widget
+
+   Instance Starts widget
+
+By default, the last 14 days (included the current day) are shown. This can be
+:ref:`adjusted <configuration-dashboard>` to your needs.
 
 
 .. _dashboard-widget-instance-start-types:

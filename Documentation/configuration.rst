@@ -56,6 +56,20 @@ options. :guilabel:`warning` is selected by default.
 Dashboard widget configuration
 ==============================
 
+Instance Starts
+---------------
+
+The number of instance starts by days can be visualised by the widget
+:ref:`Instance Starts <dashboard-widget-instance-starts>`. By default, 14 days
+are shown. This can be overridden in the :file:`Configuration/Services.yaml`
+of your site package extension (or any other dependent extension):
+
+.. code-block:: yaml
+
+   parameters:
+      jobrouter_process.widget.transfersPerDay.numberOfDays: 14
+
+
 Instance Start Types
 --------------------
 

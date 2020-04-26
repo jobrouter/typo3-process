@@ -10,11 +10,13 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess;
 
+use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider;
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
 use TYPO3\CMS\Dashboard\Widgets\DoughnutChartWidget;
 
 return function (ContainerConfigurator $configurator): void {
@@ -23,6 +25,21 @@ return function (ContainerConfigurator $configurator): void {
     }
 
     $services = $configurator->services();
+
+    $services
+        ->set('dashboard.widget.brotkrueml.jobrouterProcess.transfersPerDay')
+        ->class(BarChartWidget::class)
+        ->arg('$view', new Reference('dashboard.views.widget'))
+        ->arg('$dataProvider', new Reference(TransfersPerDayDataProvider::class))
+        ->tag('dashboard.widget', [
+            'identifier' => 'transfersPerDayBar',
+            'groupNames' => 'jobrouter',
+            'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.title',
+            'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.description',
+            'iconIdentifier' => 'content-widget-chart-bar',
+            'height' => 'medium',
+            'width' => 'medium',
+        ]);
 
     $services
         ->set('dashboard.widget.brotkrueml.jobrouterProcess.typeOfInstanceStarts')

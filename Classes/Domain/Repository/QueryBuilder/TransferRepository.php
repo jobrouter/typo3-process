@@ -67,9 +67,7 @@ class TransferRepository
 
     public function countTypes(int $numberOfDays): array
     {
-        $startDate = new \DateTime();
-        $startDate->setTime(0, 0);
-        $startDate->sub(new \DateInterval(\sprintf('P%dD', $numberOfDays - 1)));
+        $startDate = $this->getDateBackFromToday($numberOfDays);
 
         return $this->queryBuilder
             ->select('type')
@@ -83,6 +81,43 @@ class TransferRepository
             )
             ->groupBy('type')
             ->orderBy('count', 'DESC')
+            ->execute()
+            ->fetchAll();
+    }
+
+    private function getDateBackFromToday(int $numberOfDays): \DateTimeInterface
+    {
+        $startDate = new \DateTime();
+        $startDate->setTime(0, 0);
+        $startDate->sub(new \DateInterval(\sprintf('P%dD', $numberOfDays - 1)));
+
+        return $startDate;
+    }
+
+    public function countByDay(int $numberOfDays): array
+    {
+        $startDate = $this->getDateBackFromToday($numberOfDays);
+
+        $quotedCrdate = $this->queryBuilder->quoteIdentifier('crdate');
+        $literal = \sprintf(
+            '%s - (%s %% 86400) AS %s',
+            $quotedCrdate,
+            $quotedCrdate,
+            $this->queryBuilder->quoteIdentifier('day')
+        );
+
+        return $this->queryBuilder
+            ->selectLiteral($literal)
+            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
+            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->where(
+                $this->queryBuilder->expr()->gte(
+                    'crdate',
+                    $this->queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
+                )
+            )
+            ->groupBy('day')
+            ->orderBy('day', 'ASC')
             ->execute()
             ->fetchAll();
     }
