@@ -40,11 +40,21 @@ class TransferRepository
 
     public function countStartFailed(): int
     {
+        $whereExpressions = [
+            $this->queryBuilder->expr()->eq(
+                'start_success',
+                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+            ),
+            $this->queryBuilder->expr()->gt(
+                'start_date',
+                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+            ),
+        ];
+
         $count = $this->queryBuilder
             ->count('*')
             ->from('tx_jobrouterprocess_domain_model_transfer')
-            ->where('start_success = 0')
-            ->andWhere('start_date > 0')
+            ->where(...$whereExpressions)
             ->execute()
             ->fetchColumn();
 
