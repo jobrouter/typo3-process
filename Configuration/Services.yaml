@@ -1,3 +1,6 @@
+parameters:
+  jobrouter_process.widget.typeOfInstanceStarts.numberOfDays: 14
+
 services:
   _defaults:
     autowire: true
@@ -16,10 +19,6 @@ services:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'
 
-  Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider:
-    arguments:
-      $transferRepository: '@Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository'
-
   Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider:
-    arguments:
-      $transferRepository: '@Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository'
+    calls:
+      - [setNumberOfDays, ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']]

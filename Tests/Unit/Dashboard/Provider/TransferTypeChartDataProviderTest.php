@@ -45,6 +45,7 @@ class TransferTypeChartDataProviderTest extends TestCase
             $languageServiceStub,
             $this->transferRepositoryStub
         );
+        $this->subject->setNumberOfDays(13);
     }
 
     /**
@@ -57,6 +58,7 @@ class TransferTypeChartDataProviderTest extends TestCase
     {
         $this->transferRepositoryStub
             ->method('countTypes')
+            ->with(13)
             ->willReturn($countTypesResult);
 
         self::assertSame($expected, $this->subject->getChartData());

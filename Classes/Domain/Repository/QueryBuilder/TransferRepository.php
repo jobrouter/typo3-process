@@ -65,12 +65,22 @@ class TransferRepository
         return $count;
     }
 
-    public function countTypes(): array
+    public function countTypes(int $numberOfDays): array
     {
+        $startDate = new \DateTime();
+        $startDate->setTime(0, 0);
+        $startDate->sub(new \DateInterval(\sprintf('P%dD', $numberOfDays - 1)));
+
         return $this->queryBuilder
             ->select('type')
             ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
             ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->where(
+                $this->queryBuilder->expr()->gte(
+                    'crdate',
+                    $this->queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
+                )
+            )
             ->groupBy('type')
             ->orderBy('count', 'DESC')
             ->execute()

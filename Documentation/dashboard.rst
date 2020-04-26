@@ -32,6 +32,8 @@ The time span depends on the :ref:`clean up of the old data
 <configuration-cleanuptransfers-command>`.
 
 
+.. _dashboard-widget-instance-start-types:
+
 Instance Start Types
 ====================
 
@@ -43,6 +45,8 @@ widget:
 
    Instance Start Types widget
 
+By default, the last 14 days (included the current day) are shown. This can be
+:ref:`adjusted <configuration-dashboard>` to your needs.
 
 Instance Start Status
 =====================

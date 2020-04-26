@@ -51,6 +51,29 @@ log.logLevel
 Using the drop down menu you can select the log level for the activated log
 options. :guilabel:`warning` is selected by default.
 
+.. _configuration-dashboard:
+
+Dashboard widget configuration
+==============================
+
+Instance Start Types
+--------------------
+
+The instance starts of the last 14 days (including the current day) are taken
+into account for the :ref:`Instance Start Types widget
+<dashboard-widget-instance-start-types>`. This can be overridden in the
+:file:`Configuration/Services.yaml` of your site package extension (or any other
+dependent extension):
+
+.. code-block:: yaml
+
+   parameters:
+      jobrouter_process.widget.typeOfInstanceStarts.numberOfDays: 14
+
+As already mentioned, the current day is also considered. So if you use
+:yaml:`1` for the number of days, the widget will only show instance starts from
+today.
+
 
 .. _configuration-commands:
 

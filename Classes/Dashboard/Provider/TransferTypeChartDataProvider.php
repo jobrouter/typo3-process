@@ -31,12 +31,22 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
      */
     private $transferRepository;
 
+    /**
+     * @var int
+     */
+    private $numberOfDays = 14;
+
     public function __construct(
         LanguageService $languageService,
         TransferRepository $transferRepository
     ) {
         $this->languageService = $languageService;
         $this->transferRepository = $transferRepository;
+    }
+
+    public function setNumberOfDays(int $numberOfDays): void
+    {
+        $this->numberOfDays = $numberOfDays;
     }
 
     public function getChartData(): array
@@ -56,7 +66,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 
     private function prepareData(): array
     {
-        $types = $this->transferRepository->countTypes();
+        $types = $this->transferRepository->countTypes($this->numberOfDays);
         $unknownLabel = $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':unknown');
 
         $labels = [];
