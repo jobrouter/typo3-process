@@ -12,13 +12,12 @@ namespace Brotkrueml\JobRouterProcess;
 
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider;
 use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Dashboard\Widgets\DoughnutChartWidget;
 
-return function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder): void {
+return function (ContainerConfigurator $configurator): void {
     if (!ExtensionManagementUtility::isLoaded('dashboard')) {
         return;
     }
