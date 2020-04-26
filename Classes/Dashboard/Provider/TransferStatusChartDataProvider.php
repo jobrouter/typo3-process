@@ -61,7 +61,7 @@ final class TransferStatusChartDataProvider implements ChartDataProviderInterfac
         );
         $this->statusPending = new TransferStatus(
             $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':status.pending'),
-            '#fc3'
+            Extension::WIDGET_DEFAULT_CHART_COLOUR
         );
         $this->statusFailed = new TransferStatus(
             $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':status.failed'),
