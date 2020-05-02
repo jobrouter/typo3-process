@@ -27,12 +27,12 @@ return function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services
-        ->set('dashboard.widget.brotkrueml.jobrouterProcess.transfersPerDay')
+        ->set('dashboard.widget.brotkrueml.jobrouter_process.transfersPerDay')
         ->class(BarChartWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransfersPerDayDataProvider::class))
         ->tag('dashboard.widget', [
-            'identifier' => 'transfersPerDayBar',
+            'identifier' => 'jobrouter_process.transfersPerDayBar',
             'groupNames' => 'jobrouter',
             'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.title',
             'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.description',
@@ -42,12 +42,12 @@ return function (ContainerConfigurator $configurator): void {
         ]);
 
     $services
-        ->set('dashboard.widget.brotkrueml.jobrouterProcess.typeOfInstanceStarts')
+        ->set('dashboard.widget.brotkrueml.jobrouter_process.typeOfInstanceStarts')
         ->class(DoughnutChartWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
         ->tag('dashboard.widget', [
-            'identifier' => 'typeOfInstanceStartsDoughnut',
+            'identifier' => 'jobrouter_process.typeOfInstanceStartsDoughnut',
             'groupNames' => 'jobrouter',
             'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.typeOfInstanceStarts.title',
             'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.typeOfInstanceStarts.description',
@@ -56,12 +56,12 @@ return function (ContainerConfigurator $configurator): void {
         ]);
 
     $services
-        ->set('dashboard.widget.brotkrueml.jobrouterProcess.statusOfInstanceStarts')
+        ->set('dashboard.widget.brotkrueml.jobrouter_process.statusOfInstanceStarts')
         ->class(DoughnutChartWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferStatusChartDataProvider::class))
         ->tag('dashboard.widget', [
-            'identifier' => 'statusOfInstanceStartsDoughnut',
+            'identifier' => 'jobrouter_process.statusOfInstanceStartsDoughnut',
             'groupNames' => 'jobrouter',
             'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.title',
             'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.description',
