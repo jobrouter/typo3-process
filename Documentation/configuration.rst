@@ -42,8 +42,9 @@ Activate this option to log into the table `tx_jobrouterconnector_log`. It is
 disabled by default.
 
 .. hint::
+
    To display the log entries of this table in the TYPO3 backend, install the
-   extension `vertexvaar/logs <https://github.com/vertexvaar/logs>`_.
+   extension `co-stack/logs <https://extensions.typo3.org/extension/logs>`_.
 
 log.logLevel
 ------------

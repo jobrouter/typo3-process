@@ -30,7 +30,7 @@
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts",
-		"vertexvaar/logs": "Backend module for displaying logs written into database tables"
+		"co-stack/logs": "Backend module for displaying logs written to log table"
 	},
 	"autoload": {
 		"psr-4": {
