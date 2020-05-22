@@ -260,7 +260,7 @@ class Starter implements LoggerAwareInterface
     {
         $configuredProcessTableFields = $process->getProcesstablefields()->toArray();
 
-        $processTableField = \array_filter($configuredProcessTableFields, function ($field) use ($name) {
+        $processTableField = \array_filter($configuredProcessTableFields, static function ($field) use ($name) {
             /** @var Processtablefield $field */
             return $name === $field->getName();
         });
