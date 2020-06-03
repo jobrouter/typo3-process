@@ -15,8 +15,7 @@ defined('TYPO3_MODE') || die('Access denied.');
     }
 
     if (!empty($writerConfiguration)) {
-        $logLevel = (int)$configuration['logLevel'];
-        $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][$logLevel]
+        $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][$configuration['logLevel']]
             = $writerConfiguration;
     }
 
