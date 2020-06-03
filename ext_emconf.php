@@ -9,9 +9,9 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '0.3.0-dev',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.0-10.4.99',
-            'form' => '9.5.0-10.4.99',
-            'jobrouter_connector' => '0.9.0-0.10.99',
+            'typo3' => '10.4.0-10.4.99',
+            'form' => '10.4.0-10.4.99',
+            'jobrouter_connector' => '0.10.0-0.10.99',
         ],
         'conflicts' => [],
         'suggests' => [],
