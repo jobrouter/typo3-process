@@ -16,6 +16,11 @@
 			"role": "Developer"
 		}
 	],
+	"support": {
+		"docs": "https://typo3-jobrouter.readthedocs.io/projects/process/",
+		"issues": "https://github.com/brotkrueml/typo3-jobrouter-process/issues",
+		"source": "https://github.com/brotkrueml/typo3-jobrouter-process"
+	},
 	"require": {
 		"php": ">=7.2",
 		"ext-json": "*",
