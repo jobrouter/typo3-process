@@ -20,7 +20,6 @@ use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class StartCommandTest extends TestCase
 {
@@ -39,26 +38,16 @@ class StartCommandTest extends TestCase
     protected function setUp(): void
     {
         $this->lockerMock = $this->createMock(LockingStrategyInterface::class);
-
         $lockFactoryStub = $this->createStub(LockFactory::class);
         $lockFactoryStub
             ->method('createLocker')
             ->willReturn($this->lockerMock);
 
-        GeneralUtility::setSingletonInstance(LockFactory::class, $lockFactoryStub);
-
         $this->starterMock = $this->createMock(Starter::class);
-        GeneralUtility::addInstance(Starter::class, $this->starterMock);
-
         $this->registryMock = $this->createMock(Registry::class);
-        GeneralUtility::setSingletonInstance(Registry::class, $this->registryMock);
 
-        $this->commandTester = new CommandTester(new StartCommand());
-    }
-
-    protected function tearDown(): void
-    {
-        GeneralUtility::purgeInstances();
+        $command = new StartCommand($lockFactoryStub, $this->registryMock, $this->starterMock);
+        $this->commandTester = new CommandTester($command);
     }
 
     /**

@@ -20,7 +20,6 @@ use TYPO3\CMS\Core\Locking\Exception as LockException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
@@ -31,11 +30,26 @@ final class StartCommand extends Command
     public const EXIT_CODE_ERRORS_ON_START = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
+    /** @var LockFactory */
+    private $lockFactory;
+
+    /** @var Registry */
+    private $registry;
+
+    /** @var Starter */
+    private $starter;
+
     /** @var int */
     private $startTime;
 
-    /** @var LockingStrategyInterface */
-    private $locker;
+    public function __construct(LockFactory $lockFactory, Registry $registry, Starter $starter)
+    {
+        $this->lockFactory = $lockFactory;
+        $this->registry = $registry;
+        $this->starter = $starter;
+
+        parent::__construct();
+    }
 
     protected function configure(): void
     {
@@ -46,16 +60,18 @@ final class StartCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->startTime = time();
+        $this->startTime = \time();
         $outputStyle = new SymfonyStyle($input, $output);
-        $lockFactory = GeneralUtility::makeInstance(LockFactory::class);
 
         try {
-            $this->locker = $lockFactory->createLocker(self::class, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
-            $this->locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
+            $locker = $this->lockFactory->createLocker(
+                self::class,
+                LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE
+            );
+            $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             [$exitCode, $messageType, $message] = $this->start();
-            $this->locker->release();
+            $locker->release();
             $outputStyle->{$messageType}($message);
 
             $this->recordLastRun($exitCode);
@@ -70,8 +86,7 @@ final class StartCommand extends Command
 
     private function start(): array
     {
-        $starter = GeneralUtility::makeInstance(Starter::class);
-        [$total, $errors] = $starter->run();
+        [$total, $errors] = $this->starter->run();
 
         if ($errors) {
             return [
@@ -90,12 +105,11 @@ final class StartCommand extends Command
 
     private function recordLastRun(int $exitCode): void
     {
-        $registry = GeneralUtility::makeInstance(Registry::class);
         $runInformation = [
             'start' => $this->startTime,
-            'end' => time(),
+            'end' => \time(),
             'exitCode' => $exitCode,
         ];
-        $registry->set(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', $runInformation);
+        $this->registry->set(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', $runInformation);
     }
 }
