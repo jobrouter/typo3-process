@@ -12,6 +12,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
+use Brotkrueml\JobRouterProcess\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -36,20 +37,21 @@ class StarterTest extends TestCase
     {
         $this->persistenceManagerMock = $this->createMock(PersistenceManagerInterface::class);
 
+        $this->stepRepositoryMock = $this->getMockBuilder(StepRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
             ->addMethods(['findByStartSuccess'])
             ->onlyMethods(['update'])
             ->getMock();
 
-        $this->stepRepositoryMock = $this->getMockBuilder(StepRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
         $this->subject = new Starter(
             $this->persistenceManagerMock,
-            $this->transferRepositoryMock,
-            $this->stepRepositoryMock
+            new RestClientFactory(),
+            $this->stepRepositoryMock,
+            $this->transferRepositoryMock
         );
         $this->subject->setLogger(new NullLogger());
     }

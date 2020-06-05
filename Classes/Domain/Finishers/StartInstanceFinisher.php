@@ -26,7 +26,6 @@ use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
@@ -60,6 +59,11 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private $transferIdentifier = '';
 
+    public function injectPreparer(Preparer $preparer): void
+    {
+        $this->preparer = $preparer;
+    }
+
     public function injectStepRepository(StepRepository $stepRepository): void
     {
         $this->stepRepository = $stepRepository;
@@ -67,7 +71,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     protected function executeInternal()
     {
-        $this->preparer = GeneralUtility::makeInstance(Preparer::class);
         $this->buildTransferIdentifier();
 
         if (isset($this->options['handle'])) {

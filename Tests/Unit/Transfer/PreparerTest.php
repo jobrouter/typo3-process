@@ -14,9 +14,8 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
@@ -25,21 +24,18 @@ class PreparerTest extends TestCase
     /** @var Preparer */
     private $subject;
 
-    /** @var ObjectProphecy */
-    private $persistenceManager;
+    /** @var MockObject|PersistenceManager */
+    private $persistenceManagerMock;
 
-    /** @var ObjectProphecy */
-    private $transferRepository;
+    /** @var MockObject|TransferRepository */
+    private $transferRepositoryMock;
 
     protected function setUp(): void
     {
-        $this->persistenceManager = $this->prophesize(PersistenceManager::class);
-        $this->transferRepository = $this->prophesize(TransferRepository::class);
+        $this->persistenceManagerMock = $this->createMock(PersistenceManager::class);
+        $this->transferRepositoryMock = $this->createMock(TransferRepository::class);
 
-        $this->subject = new Preparer(
-            $this->persistenceManager->reveal(),
-            $this->transferRepository->reveal()
-        );
+        $this->subject = new Preparer($this->persistenceManagerMock, $this->transferRepositoryMock);
         $this->subject->setLogger(new NullLogger());
     }
 
@@ -53,8 +49,12 @@ class PreparerTest extends TestCase
         $transfer->setIdentifier('some identifier');
         $transfer->setProcesstable('some data');
 
-        $this->persistenceManager->persistAll()->shouldBeCalled();
-        $this->transferRepository->add($transfer)->shouldBeCalled();
+        $this->persistenceManagerMock
+            ->expects(self::once())
+            ->method('persistAll');
+        $this->transferRepositoryMock
+            ->expects(self::once())
+            ->method('add');
 
         $this->subject->store($transfer);
     }
@@ -66,8 +66,11 @@ class PreparerTest extends TestCase
     {
         $this->expectException(PrepareException::class);
         $this->expectExceptionCode(1581278897);
+        $this->expectExceptionMessage('Transfer record cannot be written');
 
-        $this->transferRepository->add(Argument::any())->willThrow(\Exception::class);
+        $this->transferRepositoryMock
+            ->method('add')
+            ->willThrowException(new \Exception());
 
         $this->subject->store(new Transfer());
     }

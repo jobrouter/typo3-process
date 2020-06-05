@@ -27,8 +27,6 @@ use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
@@ -43,14 +41,14 @@ class Starter implements LoggerAwareInterface
     /** @var PersistenceManagerInterface */
     private $persistenceManager;
 
-    /** @var TransferRepository */
-    private $transferRepository;
+    /** @var RestClientFactory */
+    private $restClientFactory;
 
     /** @var StepRepository */
     private $stepRepository;
 
-    /** @var RestClientFactory */
-    private $restClientFactory;
+    /** @var TransferRepository */
+    private $transferRepository;
 
     private static $clients = [];
 
@@ -58,21 +56,15 @@ class Starter implements LoggerAwareInterface
     private $erroneousNumbersOfTransfers = 0;
 
     public function __construct(
-        PersistenceManagerInterface $persistenceManager = null,
-        TransferRepository $transferRepository = null,
-        StepRepository $stepRepository = null
+        PersistenceManagerInterface $persistenceManager,
+        RestClientFactory $restClientFactory,
+        StepRepository $stepRepository,
+        TransferRepository $transferRepository
     ) {
-        if ($persistenceManager === null || $transferRepository === null || $stepRepository === null) {
-            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-            $this->persistenceManager = $objectManager->get(PersistenceManagerInterface::class);
-            $this->transferRepository = $objectManager->get(TransferRepository::class);
-            $this->stepRepository = $objectManager->get(StepRepository::class);
-            return;
-        }
-
         $this->persistenceManager = $persistenceManager;
-        $this->transferRepository = $transferRepository;
+        $this->restClientFactory = $restClientFactory;
         $this->stepRepository = $stepRepository;
+        $this->transferRepository = $transferRepository;
     }
 
     public function run(): array
@@ -197,18 +189,9 @@ class Starter implements LoggerAwareInterface
             return static::$clients[$connectionUid];
         }
 
-        $client = $this->getRestClientFactory()->create($connection);
+        $client = $this->restClientFactory->create($connection);
 
         return static::$clients[$connectionUid] = new IncidentsClientDecorator($client);
-    }
-
-    private function getRestClientFactory(): RestClientFactory
-    {
-        if ($this->restClientFactory) {
-            return $this->restClientFactory;
-        }
-
-        return $this->restClientFactory = new RestClientFactory();
     }
 
     private function createIncidentFromTransferItem(Step $step, Transfer $transfer): Incident

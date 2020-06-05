@@ -15,9 +15,7 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @api
@@ -26,21 +24,14 @@ class Preparer implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var PersistenceManager */
+    /** @var PersistenceManagerInterface */
     private $persistenceManager;
 
     /** @var TransferRepository */
     private $transferRepository;
 
-    public function __construct(PersistenceManager $persistenceManager = null, TransferRepository $transferRepository = null)
+    public function __construct(PersistenceManagerInterface $persistenceManager, TransferRepository $transferRepository)
     {
-        if ($persistenceManager === null || $transferRepository === null) {
-            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-            $this->persistenceManager = $objectManager->get(PersistenceManager::class);
-            $this->transferRepository = $objectManager->get(TransferRepository::class);
-            return;
-        }
-
         $this->persistenceManager = $persistenceManager;
         $this->transferRepository = $transferRepository;
     }
