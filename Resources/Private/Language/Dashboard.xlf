@@ -5,40 +5,42 @@
 	      product-name="jobrouter_process">
 		<header/>
 		<body>
-			<trans-unit id="dateFormat">
+			<trans-unit id="dateFormat" resname="dateFormat">
 				<source><![CDATA[Y-m-d]]></source>
 			</trans-unit>
-			<trans-unit id="numberOfStarts">
+			<trans-unit id="numberOfStarts" resname="numberOfStarts">
 				<source><![CDATA[Number of starts]]></source>
 			</trans-unit>
-			<trans-unit id="status.failed">
+			<trans-unit id="status.failed" resname="status.failed">
 				<source><![CDATA[failed]]></source>
 			</trans-unit>
-			<trans-unit id="status.pending">
+			<trans-unit id="status.pending" resname="status.pending">
 				<source><![CDATA[pending]]></source>
 			</trans-unit>
-			<trans-unit id="status.successful">
+			<trans-unit id="status.successful" resname="status.successful">
 				<source><![CDATA[successful]]></source>
 			</trans-unit>
-			<trans-unit id="unknown">
+			<trans-unit id="unknown" resname="unknown">
 				<source><![CDATA[unknown]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfInstanceStarts.description">
+			<trans-unit id="widgets.statusOfInstanceStarts.description"
+			            resname="widgets.statusOfInstanceStarts.description">
 				<source><![CDATA[Shows the status of process starts.]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfInstanceStarts.title">
+			<trans-unit id="widgets.statusOfInstanceStarts.title" resname="widgets.statusOfInstanceStarts.title">
 				<source><![CDATA[Instance Start Status]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.transfersPerDay.description">
+			<trans-unit id="widgets.transfersPerDay.description" resname="widgets.transfersPerDay.description">
 				<source><![CDATA[Shows the number of instance starts per day.]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.transfersPerDay.title">
+			<trans-unit id="widgets.transfersPerDay.title" resname="widgets.transfersPerDay.title">
 				<source><![CDATA[Instance Starts]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.typeOfInstanceStarts.description">
+			<trans-unit id="widgets.typeOfInstanceStarts.description"
+			            resname="widgets.typeOfInstanceStarts.description">
 				<source><![CDATA[Shows the total numbers of process starts grouped by the type.]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.typeOfInstanceStarts.title">
+			<trans-unit id="widgets.typeOfInstanceStarts.title" resname="widgets.typeOfInstanceStarts.title">
 				<source><![CDATA[Instance Start Types]]></source>
 			</trans-unit>
 		</body>

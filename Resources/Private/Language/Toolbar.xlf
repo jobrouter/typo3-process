@@ -3,22 +3,22 @@
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T18:43:11Z" product-name="jobrouter_process">
 		<header/>
 		<body>
-			<trans-unit id="startCommand.lastRunLabel">
+			<trans-unit id="startCommand.lastRunLabel" resname="startCommand.lastRunLabel">
 				<source><![CDATA[Last Instance Start]]></source>
 			</trans-unit>
-			<trans-unit id="startCommand.lastRunMessage">
+			<trans-unit id="startCommand.lastRunMessage" resname="startCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
 			</trans-unit>
-			<trans-unit id="startCommand.neverRun">
+			<trans-unit id="startCommand.neverRun" resname="startCommand.neverRun">
 				<source><![CDATA[The start command has never been executed.]]></source>
 			</trans-unit>
-			<trans-unit id="status.overdue">
+			<trans-unit id="status.overdue" resname="status.overdue">
 				<source><![CDATA[overdue]]></source>
 			</trans-unit>
-			<trans-unit id="status.success">
+			<trans-unit id="status.success" resname="status.success">
 				<source><![CDATA[success]]></source>
 			</trans-unit>
-			<trans-unit id="status.warning">
+			<trans-unit id="status.warning" resname="status.warning">
 				<source><![CDATA[warnings]]></source>
 			</trans-unit>
 		</body>

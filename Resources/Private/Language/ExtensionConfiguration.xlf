@@ -3,13 +3,13 @@
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-02-09T15:37:12Z" product-name="jobrouter_process">
 		<header/>
 		<body>
-			<trans-unit id="logIntoFile">
+			<trans-unit id="logIntoFile" resname="logIntoFile">
 				<source><![CDATA[Log into file (typo3_jobrouter_process_<hash>.log)]]></source>
 			</trans-unit>
-			<trans-unit id="logIntoTable">
+			<trans-unit id="logIntoTable" resname="logIntoTable">
 				<source><![CDATA[Log into table (tx_jobrouterconnector_log)]]></source>
 			</trans-unit>
-			<trans-unit id="logLevel">
+			<trans-unit id="logLevel" resname="logLevel">
 				<source><![CDATA[Log level]]></source>
 			</trans-unit>
 		</body>
