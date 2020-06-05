@@ -16,14 +16,26 @@ services:
     factory: ['@TYPO3\CMS\Core\Database\ConnectionPool', 'getQueryBuilderForTable']
     arguments: ['tx_jobrouterprocess_domain_model_transfer']
 
+  Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:process:cleanuptransfers'
+        schedulable: true
+
+  Brotkrueml\JobRouterProcess\Command\StartCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:process:start'
+        schedulable: true
+
   Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'
 
-  Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider:
-    calls:
-      - [setNumberOfDays, ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']]
-
   Brotkrueml\JobRouterProcess\Dashboard\Provider\TransfersPerDayDataProvider:
     calls:
       - [setNumberOfDays, ['%jobrouter_process.widget.transfersPerDay.numberOfDays%']]
+
+  Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider:
+    calls:
+      - [setNumberOfDays, ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']]
