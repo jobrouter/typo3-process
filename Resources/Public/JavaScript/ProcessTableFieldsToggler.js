@@ -1,43 +1,41 @@
-define([], function() {
+define([
+  'TYPO3/CMS/Core/DocumentService',
+  'TYPO3/CMS/Core/Event/RegularEvent'
+], (DocumentService, RegularEvent) => {
   'use strict';
 
-  var Toggler = {}
+  DocumentService.ready().then(() => {
+    const tableElement = document.getElementById('jobrouter-process-links-table');
 
-  Toggler.init = function() {
-    window.addEventListener('load', function() {
-      var tableElement = document.getElementById('jobrouter-process-links-table');
+    if (!tableElement) {
+      return;
+    }
 
-      if (!tableElement) {
+    new RegularEvent('click', event => {
+      const processTableFieldsToggler = event.target.closest('.jobrouter-process-table-fields-count');
+
+      if (!processTableFieldsToggler) {
         return;
       }
 
-      tableElement.addEventListener('click', function(event) {
-        var processTableFieldsToggler = event.target.closest('.jobrouter-process-table-fields-count');
+      const collapseElement = processTableFieldsToggler.querySelector('.jobrouter-process-table-fields-collapse');
+      const expandElement = processTableFieldsToggler.querySelector('.jobrouter-process-table-fields-expand');
+      const listElement = processTableFieldsToggler.parentNode.querySelector('.jobrouter-process-table-fields-list');
 
-        if (!processTableFieldsToggler) {
-          return;
-        }
+      if (!collapseElement || !expandElement || !listElement) {
+        return;
+      }
 
-        var collapseElement = processTableFieldsToggler.querySelector('.jobrouter-process-table-fields-collapse');
-        var expandElement = processTableFieldsToggler.querySelector('.jobrouter-process-table-fields-expand');
-        var listElement = processTableFieldsToggler.parentNode.querySelector('.jobrouter-process-table-fields-list');
+      if (collapseElement.style.display === 'none') {
+        collapseElement.style.display = '';
+        expandElement.style.display = 'none';
+        listElement.style.display = 'none';
+        return;
+      }
 
-        if (!collapseElement || !expandElement || !listElement) {
-          return;
-        }
-
-        if (collapseElement.style.display === 'none') {
-          collapseElement.style.display = '';
-          expandElement.style.display = 'none';
-          listElement.style.display = 'none';
-        } else {
-          collapseElement.style.display = 'none';
-          expandElement.style.display = '';
-          listElement.style.display = '';
-        }
-      });
-    });
-  };
-
-  Toggler.init();
+      collapseElement.style.display = 'none';
+      expandElement.style.display = '';
+      listElement.style.display = '';
+    }).bindTo(tableElement);
+  });
 });
