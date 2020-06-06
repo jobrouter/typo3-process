@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\VariableResolver;
 
 use Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariableResolver;
-use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolverInterface;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
@@ -29,19 +28,11 @@ class TransferIdentifierVariableResolverTest extends TestCase
 
     /**
      * @test
-     */
-    public function classImplementsInterfaceCorrectly(): void
-    {
-        self::assertInstanceOf(VariableResolverInterface::class, $this->subject);
-    }
-
-    /**
-     * @test
      * @dataProvider dataProviderForResolveVariables
      */
     public function resolveVariableCorrectly(ResolveFinisherVariableEvent $event, string $expected): void
     {
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame($expected, $event->getValue());
     }
@@ -100,6 +91,6 @@ class TransferIdentifierVariableResolverTest extends TestCase
             'some-identifier'
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
     }
 }

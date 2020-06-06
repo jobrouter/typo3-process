@@ -121,6 +121,8 @@ installations. Just use the array notation in :yaml:`options`:
                   FROM_URL: 'https://www.example.com/demo'
 
 
+.. _form-finisher-variables:
+
 Variables
 ---------
 
@@ -128,7 +130,8 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields.
 
 Variables look like: :yaml:`{__variableName}` or
-:yaml:`{__variableName.subKey}` - in curly brackets with a double underscore.
+:yaml:`{__variableName.subKey}` − in curly brackets with a double underscore
+at the beginning.
 
 Example:
 
@@ -148,6 +151,11 @@ Example:
                phone_number: '{phone}'
                message: '{message}'
                from_website: '{__language.base}'
+
+.. hint::
+
+   You can build own variable resolvers. Have a look in the section
+   :ref:`developer-variable-resolvers`.
 
 
 Transfer Identifier

@@ -49,7 +49,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('foo localised some label bar', $event->getValue());
     }
@@ -77,7 +77,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('foo localised some label bar localised another label', $event->getValue());
     }
@@ -93,7 +93,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame(
             'foo bar',
@@ -117,7 +117,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame(
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing} bar',
@@ -136,7 +136,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame(
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing bar',
@@ -159,6 +159,6 @@ class LocalisedLabelVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
     }
 }

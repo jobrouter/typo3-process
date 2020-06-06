@@ -18,20 +18,17 @@ use Brotkrueml\JobRouterProcess\Language\TranslationService;
 /**
  * @internal
  */
-final class LocalisedLabelVariableResolver implements VariableResolverInterface
+final class LocalisedLabelVariableResolver
 {
     /** @var TranslationService */
     private $translationService;
 
-    /**
-     * @param TranslationService|null $translationService For testing purposes
-     */
-    public function __construct(TranslationService $translationService = null)
+    public function __construct(TranslationService $translationService)
     {
-        $this->translationService = $translationService ?? new TranslationService();
+        $this->translationService = $translationService;
     }
 
-    public function resolve(ResolveFinisherVariableEvent $event): void
+    public function __invoke(ResolveFinisherVariableEvent $event): void
     {
         $value = $event->getValue();
 

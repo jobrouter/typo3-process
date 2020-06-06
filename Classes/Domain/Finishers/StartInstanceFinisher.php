@@ -14,7 +14,6 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolverInterface;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
@@ -26,6 +25,7 @@ use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
@@ -35,11 +35,14 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 {
     use LoggerAwareTrait;
 
-    /** @var StepRepository */
-    private $stepRepository;
+    /** @var EventDispatcher */
+    private $eventDispatcher;
 
     /** @var Preparer */
     private $preparer;
+
+    /** @var StepRepository */
+    private $stepRepository;
 
     private $stepParameters = [
         'initiator',
@@ -58,6 +61,11 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     private $transfer;
 
     private $transferIdentifier = '';
+
+    public function injectEventDispatcher(EventDispatcher $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
 
     public function injectPreparer(Preparer $preparer): void
     {
@@ -207,24 +215,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         }
 
         $event = new ResolveFinisherVariableEvent($fieldType, $value, $this->transferIdentifier);
-
-        foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/jobrouter_process']['variableResolvers'] ?? [] as $resolverClass) {
-            /** @var VariableResolverInterface $resolver */
-            $resolver = new $resolverClass();
-
-            if (!$resolver instanceof VariableResolverInterface) {
-                throw new \DomainException(
-                    \sprintf(
-                        'Class "%s" must implement the "%s" interface',
-                        $resolverClass,
-                        VariableResolverInterface::class
-                    ),
-                    1582658728
-                );
-            }
-
-            $resolver->resolve($event);
-        }
+        $event = $this->eventDispatcher->dispatch($event);
 
         return $event->getValue();
     }

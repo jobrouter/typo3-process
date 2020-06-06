@@ -17,11 +17,11 @@ use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
 /**
  * @internal
  */
-final class TransferIdentifierVariableResolver implements VariableResolverInterface
+final class TransferIdentifierVariableResolver
 {
     private const VARIABLE_TO_RESOLVE = '{__transferIdentifier}';
 
-    public function resolve(ResolveFinisherVariableEvent $event): void
+    public function __invoke(ResolveFinisherVariableEvent $event): void
     {
         $this->checkValidFieldTypes($event->getFieldType());
 

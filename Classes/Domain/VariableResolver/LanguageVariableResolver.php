@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 /**
  * @internal
  */
-final class LanguageVariableResolver implements VariableResolverInterface
+final class LanguageVariableResolver
 {
     private $validLanguageVariables = [
         'base',
@@ -34,7 +34,7 @@ final class LanguageVariableResolver implements VariableResolverInterface
         'typo3Language',
     ];
 
-    public function resolve(ResolveFinisherVariableEvent $event): void
+    public function __invoke(ResolveFinisherVariableEvent $event): void
     {
         $value = $event->getValue();
 
@@ -45,7 +45,6 @@ final class LanguageVariableResolver implements VariableResolverInterface
         $this->checkValidFieldTypes($event);
 
         $language = $this->getLanguage();
-
         if ($language === null) {
             return;
         }

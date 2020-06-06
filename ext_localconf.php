@@ -18,13 +18,4 @@ defined('TYPO3_MODE') || die('Access denied.');
         $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][$configuration['logLevel']]
             = $writerConfiguration;
     }
-
-    // @todo Use PSR-14 events in TYPO3 v10
-    $hookNamespace = 'ext/' . Brotkrueml\JobRouterProcess\Extension::KEY;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$hookNamespace]['variableResolvers'][] =
-        \Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariableResolver::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$hookNamespace]['variableResolvers'][] =
-        \Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$hookNamespace]['variableResolvers'][] =
-        \Brotkrueml\JobRouterProcess\Domain\VariableResolver\LocalisedLabelVariableResolver::class;
 })();

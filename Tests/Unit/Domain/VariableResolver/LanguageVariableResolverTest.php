@@ -73,7 +73,7 @@ class LanguageVariableResolverTest extends TestCase
      */
     public function languageTwoLetterIsoCodeIsResolvedCorrectly(ResolveFinisherVariableEvent $event, $expected): void
     {
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame($expected, $event->getValue());
     }
@@ -191,7 +191,7 @@ class LanguageVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('de ltr', $event->getValue());
     }
@@ -207,7 +207,7 @@ class LanguageVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('{__language1.twoLetterIsoCode}', $event->getValue());
     }
@@ -223,7 +223,7 @@ class LanguageVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('{__language.invalid key}', $event->getValue());
     }
@@ -243,7 +243,7 @@ class LanguageVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
     }
 
     /**
@@ -259,7 +259,7 @@ class LanguageVariableResolverTest extends TestCase
             ''
         );
 
-        $this->subject->resolve($event);
+        $this->subject->__invoke($event);
 
         self::assertSame('{__language.twoLetterIsoCode}', $event->getValue());
     }
