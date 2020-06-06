@@ -16,7 +16,9 @@ use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
 use Brotkrueml\JobRouterProcess\Language\TranslationService;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 class LocalisedLabelVariableResolverTest extends TestCase
 {
@@ -26,10 +28,14 @@ class LocalisedLabelVariableResolverTest extends TestCase
     /** @var MockObject|TranslationService */
     private $translationService;
 
+    /** @var Stub|ServerRequestInterface */
+    private $serverRequestStub;
+
     protected function setUp(): void
     {
         $this->translationService = $this->createMock(TranslationService::class);
         $this->subject = new LocalisedLabelVariableResolver($this->translationService);
+        $this->serverRequestStub = $this->createStub(ServerRequestInterface::class);
     }
 
     /**
@@ -46,7 +52,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label} bar',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -74,7 +81,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label} bar {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:another.label}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -90,7 +98,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             'foo bar',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -114,7 +123,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing} bar',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -133,7 +143,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing bar',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -156,7 +167,8 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::INTEGER,
             '{__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);

@@ -23,6 +23,7 @@ use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
@@ -214,7 +215,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             return $value;
         }
 
-        $event = new ResolveFinisherVariableEvent($fieldType, $value, $this->transferIdentifier);
+        $event = new ResolveFinisherVariableEvent(
+            $fieldType,
+            $value,
+            $this->transferIdentifier,
+            $this->getServerRequest()
+        );
         $event = $this->eventDispatcher->dispatch($event);
 
         return $event->getValue();
@@ -332,5 +338,10 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             \sprintf('The field type "%d" is invalid', $type),
             1581344823
         );
+    }
+
+    private function getServerRequest(): ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'];
     }
 }

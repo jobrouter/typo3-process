@@ -14,15 +14,21 @@ use Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariab
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 class TransferIdentifierVariableResolverTest extends TestCase
 {
     /** @var TransferIdentifierVariableResolver */
     private $subject;
 
+    /** @var Stub|ServerRequestInterface */
+    private $serverRequestStub;
+
     protected function setUp(): void
     {
+        $this->serverRequestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new TransferIdentifierVariableResolver();
     }
 
@@ -30,49 +36,52 @@ class TransferIdentifierVariableResolverTest extends TestCase
      * @test
      * @dataProvider dataProviderForResolveVariables
      */
-    public function resolveVariableCorrectly(ResolveFinisherVariableEvent $event, string $expected): void
-    {
+    public function resolveVariableCorrectly(
+        int $fieldType,
+        string $value,
+        string $transferIdentifier,
+        string $expected
+    ): void {
+        $event = new ResolveFinisherVariableEvent(
+            $fieldType,
+            $value,
+            $transferIdentifier,
+            $this->serverRequestStub
+        );
+
         $this->subject->__invoke($event);
 
         self::assertSame($expected, $event->getValue());
     }
 
-    public function dataProviderForResolveVariables(): iterable
+    public function dataProviderForResolveVariables(): \Generator
     {
         yield 'value with variable as only text' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                '{__transferIdentifier}',
-                'some-identifier'
-            ),
-            'some-identifier'
+            FieldTypeEnumeration::TEXT,
+            '{__transferIdentifier}',
+            'some-identifier',
+            'some-identifier',
         ];
 
         yield 'value as text with variable among other text' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__transferIdentifier} bar',
-                'some-identifier'
-            ),
-            'foo some-identifier bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__transferIdentifier} bar',
+            'some-identifier',
+            'foo some-identifier bar',
         ];
 
         yield 'value as text with no variable' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo bar',
-                'some-identifier'
-            ),
-            'foo bar'
+            FieldTypeEnumeration::TEXT,
+            'foo bar',
+            'some-identifier',
+            'foo bar',
         ];
 
         yield 'value as text with another variable' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                '{__transferIdentifier1}',
-                'some-identifier'
-            ),
-            '{__transferIdentifier1}'
+            FieldTypeEnumeration::TEXT,
+            '{__transferIdentifier1}',
+            'some-identifier',
+            '{__transferIdentifier1}',
         ];
     }
 
@@ -88,7 +97,8 @@ class TransferIdentifierVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::INTEGER,
             '{__transferIdentifier}',
-            'some-identifier'
+            'some-identifier',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);

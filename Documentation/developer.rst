@@ -132,17 +132,21 @@ Get the field type, like ``1`` for text or ``2`` for int. Have a look in the
 class :php:`Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration`
 for the available field types.
 
-.. option:: getValue(): int
+.. option:: getValue(): string
 
 Get the current value of the field. One or more variables can be defined inside.
 
-.. option:: setValue(): int
+.. option:: setValue(string $value): void
 
 Set the new value after resolving one or more variables.
 
-.. option:: getTransferIdentifier(): int
+.. option:: getTransferIdentifier(): string
 
 Get the current transfer identifier.
+
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+Get the current request.
 
 .. hint::
 
@@ -183,17 +187,12 @@ As an example we want to resolve a variable to a cookie value.
                return;
             }
 
-            $cookies = $this->getRequest()->getCookieParams();
+            $cookies = $event->getRequest()->getCookieParams();
 
             $variableValue = $cookies[self::COOKIE_NAME] ?? '';
             $value = str_replace(self::VARIABLE, $variableValue, $value);
 
             $event->setValue($value);
-         }
-
-         private function getRequest(): ServerRequestInterface
-         {
-            return $GLOBALS['TYPO3_REQUEST'];
          }
       }
 

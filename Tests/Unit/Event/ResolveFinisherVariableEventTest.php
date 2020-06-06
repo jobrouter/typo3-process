@@ -11,10 +11,20 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Event;
 
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 class ResolveFinisherVariableEventTest extends TestCase
 {
+    /** @var Stub|ServerRequestInterface */
+    private $serverRequestStub;
+
+    protected function setUp(): void
+    {
+        $this->serverRequestStub = $this->createStub(ServerRequestInterface::class);
+    }
+
     /**
      * @test
      */
@@ -23,12 +33,14 @@ class ResolveFinisherVariableEventTest extends TestCase
         $subject = new ResolveFinisherVariableEvent(
             42,
             'some-value',
-            'some-identifier'
+            'some-identifier',
+            $this->serverRequestStub
         );
 
         self::assertSame(42, $subject->getFieldType());
         self::assertSame('some-value', $subject->getValue());
         self::assertSame('some-identifier', $subject->getTransferIdentifier());
+        self::assertSame($this->serverRequestStub, $subject->getRequest());
     }
 
     /**
@@ -39,7 +51,8 @@ class ResolveFinisherVariableEventTest extends TestCase
         $subject = new ResolveFinisherVariableEvent(
             42,
             'some-value',
-            'some-identifier'
+            'some-identifier',
+            $this->serverRequestStub
         );
 
         $subject->setValue('some-other-value');

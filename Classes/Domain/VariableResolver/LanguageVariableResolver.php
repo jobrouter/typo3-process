@@ -13,8 +13,6 @@ namespace Brotkrueml\JobRouterProcess\Domain\VariableResolver;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\VariableResolverException;
-use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 
 /**
  * @internal
@@ -44,7 +42,7 @@ final class LanguageVariableResolver
 
         $this->checkValidFieldTypes($event);
 
-        $language = $this->getLanguage();
+        $language = $event->getRequest()->getAttribute('language', null);
         if ($language === null) {
             return;
         }
@@ -80,14 +78,5 @@ final class LanguageVariableResolver
             ),
             1582654966
         );
-    }
-
-    private function getLanguage(): ?SiteLanguage
-    {
-        if (($GLOBALS['TYPO3_REQUEST'] ?? false) instanceof ServerRequestInterface) {
-            return $GLOBALS['TYPO3_REQUEST']->getAttribute('language', null);
-        }
-
-        return null;
     }
 }

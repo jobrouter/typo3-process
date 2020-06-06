@@ -25,8 +25,8 @@ class LanguageVariableResolverTest extends TestCase
     /** @var LanguageVariableResolver */
     private $subject;
 
-    /** @var SiteLanguage */
-    private $siteLanguage;
+    /** @var Stub|ServerRequestInterface */
+    private $serverRequestStub;
 
     protected function setUp(): void
     {
@@ -38,7 +38,7 @@ class LanguageVariableResolverTest extends TestCase
             ->method('__toString')
             ->willReturn('https://www.example.org/');
 
-        $this->siteLanguage = new SiteLanguage(
+        $siteLanguage = new SiteLanguage(
             42,
             'de_DE.UTF-8',
             $baseStub,
@@ -53,130 +53,112 @@ class LanguageVariableResolverTest extends TestCase
             ]
         );
 
-        $serverRequestStub = $this->createStub(ServerRequestInterface::class);
-        $serverRequestStub
+        $this->serverRequestStub = $this->createStub(ServerRequestInterface::class);
+        $this->serverRequestStub
             ->method('getAttribute')
             ->with('language')
-            ->willReturn($this->siteLanguage);
-
-        $GLOBALS['TYPO3_REQUEST'] = $serverRequestStub;
-    }
-
-    protected function tearDown(): void
-    {
-        unset($GLOBALS['TYPO3_REQUEST']);
+            ->willReturn($siteLanguage);
     }
 
     /**
      * @test
      * @dataProvider dataProvider
      */
-    public function languageTwoLetterIsoCodeIsResolvedCorrectly(ResolveFinisherVariableEvent $event, $expected): void
-    {
+    public function languageTwoLetterIsoCodeIsResolvedCorrectly(
+        int $fieldType,
+        string $value,
+        string $transferIdentifier,
+        string $expected
+    ): void {
+        $event = new ResolveFinisherVariableEvent(
+            $fieldType,
+            $value,
+            $transferIdentifier,
+            $this->serverRequestStub
+        );
+
         $this->subject->__invoke($event);
 
         self::assertSame($expected, $event->getValue());
     }
 
-    public function dataProvider(): iterable
+    public function dataProvider(): \Generator
     {
         yield 'language.twoLetterIsoCode is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.twoLetterIsoCode} bar',
-                ''
-            ),
-            'foo de bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.twoLetterIsoCode} bar',
+            '',
+            'foo de bar',
         ];
 
         yield 'language.title is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.title} bar',
-                ''
-            ),
-            'foo Some Title bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.title} bar',
+            '',
+            'foo Some Title bar',
         ];
 
         yield 'language.languageId is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.languageId} bar',
-                ''
-            ),
-            'foo 42 bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.languageId} bar',
+            '',
+            'foo 42 bar',
         ];
 
         yield 'language.base is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.base} bar',
-                ''
-            ),
-            'foo https://www.example.org/ bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.base} bar',
+            '',
+            'foo https://www.example.org/ bar',
         ];
 
         yield 'language.typo3Language is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.typo3Language} bar',
-                ''
-            ),
-            'foo default bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.typo3Language} bar',
+            '',
+            'foo default bar',
         ];
 
         yield 'language.locale is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.locale} bar',
-                ''
-            ),
-            'foo de_DE.UTF-8 bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.locale} bar',
+            '',
+            'foo de_DE.UTF-8 bar',
         ];
 
         yield 'language.navigationTitle is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.navigationTitle} bar',
-                ''
-            ),
-            'foo Some Navigation Title bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.navigationTitle} bar',
+            '',
+            'foo Some Navigation Title bar',
         ];
 
         yield 'language.hreflang is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.hreflang} bar',
-                ''
-            ),
-            'foo de-de bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.hreflang} bar',
+            '',
+            'foo de-de bar',
         ];
 
         yield 'language.direction is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.direction} bar',
-                ''
-            ),
-            'foo ltr bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.direction} bar',
+            '',
+            'foo ltr bar',
         ];
 
         yield 'language.flagIdentifier is resolved' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.flagIdentifier} bar',
-                ''
-            ),
-            'foo some-flag bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.flagIdentifier} bar',
+            '',
+            'foo some-flag bar',
         ];
 
         yield 'unknown language variable is returned untouched' => [
-            new ResolveFinisherVariableEvent(
-                FieldTypeEnumeration::TEXT,
-                'foo {__language.unknown} bar',
-                ''
-            ),
-            'foo {__language.unknown} bar'
+            FieldTypeEnumeration::TEXT,
+            'foo {__language.unknown} bar',
+            '',
+            'foo {__language.unknown} bar',
         ];
     }
 
@@ -188,7 +170,8 @@ class LanguageVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             '{__language.twoLetterIsoCode} {__language.direction}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -204,7 +187,8 @@ class LanguageVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             '{__language1.twoLetterIsoCode}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -220,7 +204,8 @@ class LanguageVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             '{__language.invalid key}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -240,7 +225,8 @@ class LanguageVariableResolverTest extends TestCase
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::INTEGER,
             '{__language.twoLetterIsoCode}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);
@@ -251,12 +237,17 @@ class LanguageVariableResolverTest extends TestCase
      */
     public function languageCannotBeDeterminedLeavesVariablesUntouched(): void
     {
-        unset($GLOBALS['TYPO3_REQUEST']);
+        $this->serverRequestStub = $this->createStub(ServerRequestInterface::class);
+        $this->serverRequestStub
+            ->method('getAttribute')
+            ->with('language')
+            ->willReturn(null);
 
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
             '{__language.twoLetterIsoCode}',
-            ''
+            '',
+            $this->serverRequestStub
         );
 
         $this->subject->__invoke($event);

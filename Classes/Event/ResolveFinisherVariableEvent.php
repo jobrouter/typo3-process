@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Event;
 
+use Psr\Http\Message\ServerRequestInterface;
+
 final class ResolveFinisherVariableEvent
 {
     /** @var int */
@@ -21,11 +23,15 @@ final class ResolveFinisherVariableEvent
     /** @var string */
     private $transferIdentifier;
 
-    public function __construct(int $fieldType, $value, string $transferIdentifier)
+    /** @var ServerRequestInterface */
+    private $request;
+
+    public function __construct(int $fieldType, $value, string $transferIdentifier, ServerRequestInterface $request)
     {
         $this->fieldType = $fieldType;
         $this->value = $value;
         $this->transferIdentifier = $transferIdentifier;
+        $this->request = $request;
     }
 
     public function getFieldType(): int
@@ -46,5 +52,10 @@ final class ResolveFinisherVariableEvent
     public function getTransferIdentifier(): string
     {
         return $this->transferIdentifier;
+    }
+
+    public function getRequest(): ServerRequestInterface
+    {
+        return $this->request;
     }
 }
