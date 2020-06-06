@@ -3,7 +3,7 @@
 .. _developer:
 
 ================
-Developer Corner
+Developer corner
 ================
 
 Target group: **Developers**
@@ -14,7 +14,7 @@ Target group: **Developers**
 
 .. _developer-start-instance:
 
-Start Instances
+Start instances
 ===============
 
 Sometimes it is necessary to start instances in a JobRouter
@@ -37,7 +37,7 @@ depending on the configuration of the step link in the
 :ref:`Process module <module>`.
 
 
-Preparing The Instance Data
+Preparing the instance data
 ---------------------------
 
 If you want to start instances programmatically in a JobRouter installation,

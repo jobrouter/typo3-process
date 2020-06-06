@@ -3,7 +3,7 @@
 .. _dashboard-widgets:
 
 =================
-Dashboard Widgets
+Dashboard widgets
 =================
 
 Target group: **Editors, Integrators, Administrators**
@@ -35,7 +35,7 @@ data is the availability of types in this transfer table - either configured in
 
 .. _dashboard-widget-instance-starts:
 
-Instance Starts
+Instance starts
 ===============
 
 The instance starts can be visually displayed with a Dashboard widget:
@@ -51,7 +51,7 @@ By default, the last 14 days (included the current day) are shown. This can be
 
 .. _dashboard-widget-instance-start-types:
 
-Instance Start Types
+Instance start types
 ====================
 
 The instance starts for different types can be visually displayed with this
@@ -65,7 +65,7 @@ widget:
 By default, the last 14 days (included the current day) are shown. This can be
 :ref:`adjusted <configuration-dashboard>` to your needs.
 
-Instance Start Status
+Instance start status
 =====================
 
 The status of the instance starts can be shown with this widget:

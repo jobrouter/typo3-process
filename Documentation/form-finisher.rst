@@ -3,7 +3,7 @@
 .. _form-finisher:
 
 =============
-Form Finisher
+Form finisher
 =============
 
 Target group: **Integrators**, **Developers**
@@ -12,7 +12,7 @@ Target group: **Integrators**, **Developers**
    :depth: 3
    :local:
 
-Start Instances
+Start instances
 ===============
 
 A form finisher `JobRouterStartInstance` is available to start a JobRouter
@@ -28,7 +28,7 @@ problems. Also the submitting of a form should be as fast as possible.
    :guilabel:`Form` module.
 
 
-Start One Instance
+Start one instance
 ------------------
 
 So, let's start with an example. The form finisher is defined in the YAML
@@ -91,7 +91,7 @@ As you can see, you can define some options. These are:
    with the PHP function :php:`str_getcsv()`.
 
 
-Start Multiple Instances
+Start multiple instances
 ------------------------
 
 It is also possible to start multiple instances – even on different JobRouter
@@ -158,7 +158,7 @@ Example:
    :ref:`developer-variable-resolvers`.
 
 
-Transfer Identifier
+Transfer identifier
 ~~~~~~~~~~~~~~~~~~~
 
 The transfer identifier is generated from the form identifier and a unique key
@@ -175,7 +175,7 @@ is the unique key.
 Use the :yaml:`{__transferIdentifier}` variable to add the transfer identifier.
 
 
-Localisation Labels
+Localisation labels
 ~~~~~~~~~~~~~~~~~~~
 
 Values can be localised with the help of the localisation labels known from
@@ -188,7 +188,7 @@ untouched.
 
 You can use multiple localisation labels in one value.
 
-Language Information
+Language information
 ~~~~~~~~~~~~~~~~~~~~
 
 The language information defined in the Site Configuration can be used, namely:

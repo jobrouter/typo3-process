@@ -30,7 +30,7 @@ of a process and are used in the form finisher.
 
 .. _module-create-process-link:
 
-Create a Process Link
+Create a process link
 ---------------------
 
 To create a new process link, click the :guilabel:`+` button beside the heading,
@@ -95,7 +95,7 @@ Enabled
 
 .. _module-process-links-overview:
 
-Process Links Overview
+Process links overview
 ----------------------
 
 After creating one or more process links, you will see an overview of them when
@@ -135,7 +135,7 @@ steps that are used to start an instance.
 
 .. _module-create-step-link:
 
-Create a Step Link
+Create a step link
 ------------------
 
 To create a new step link, click the :guilabel:`+` button beside the heading,
@@ -213,7 +213,7 @@ Enabled
 
 .. _module-delete-table:
 
-Delete a Process Link or Step Link
+Delete a process link or step link
 ----------------------------------
 
 To delete a record, open the edit page of the process or step link. In the upper

@@ -16,7 +16,7 @@ Target group: **Administrators**
 
 .. _configuration-extension:
 
-Extension Configuration
+Extension configuration
 =======================
 
 To configure the extension, go to :guilabel:`Admin Tools` > :guilabel:`Settings`
@@ -71,7 +71,7 @@ of your site package extension (or any other dependent extension):
       jobrouter_process.widget.transfersPerDay.numberOfDays: 14
 
 
-Instance Start Types
+Instance start types
 --------------------
 
 The instance starts of the last 14 days (including the current day) are taken
