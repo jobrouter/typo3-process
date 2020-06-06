@@ -36,14 +36,10 @@ class TransferIdentifierVariableResolverTest extends TestCase
      * @test
      * @dataProvider dataProviderForResolveVariables
      */
-    public function resolveVariableCorrectly(
-        int $fieldType,
-        string $value,
-        string $transferIdentifier,
-        string $expected
-    ): void {
+    public function resolveVariableCorrectly(string $value, string $transferIdentifier, string $expected): void
+    {
         $event = new ResolveFinisherVariableEvent(
-            $fieldType,
+            FieldTypeEnumeration::TEXT,
             $value,
             $transferIdentifier,
             $this->serverRequestStub
@@ -57,28 +53,24 @@ class TransferIdentifierVariableResolverTest extends TestCase
     public function dataProviderForResolveVariables(): \Generator
     {
         yield 'value with variable as only text' => [
-            FieldTypeEnumeration::TEXT,
             '{__transferIdentifier}',
             'some-identifier',
             'some-identifier',
         ];
 
         yield 'value as text with variable among other text' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__transferIdentifier} bar',
             'some-identifier',
             'foo some-identifier bar',
         ];
 
         yield 'value as text with no variable' => [
-            FieldTypeEnumeration::TEXT,
             'foo bar',
             'some-identifier',
             'foo bar',
         ];
 
         yield 'value as text with another variable' => [
-            FieldTypeEnumeration::TEXT,
             '{__transferIdentifier1}',
             'some-identifier',
             '{__transferIdentifier1}',

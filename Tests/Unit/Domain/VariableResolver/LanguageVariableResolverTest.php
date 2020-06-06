@@ -8,7 +8,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Domain\VariableResolver;
+namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\VariableResolver;
 
 use Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
@@ -64,16 +64,12 @@ class LanguageVariableResolverTest extends TestCase
      * @test
      * @dataProvider dataProvider
      */
-    public function languageTwoLetterIsoCodeIsResolvedCorrectly(
-        int $fieldType,
-        string $value,
-        string $transferIdentifier,
-        string $expected
-    ): void {
+    public function languageTwoLetterIsoCodeIsResolvedCorrectly(string $value, string $expected): void
+    {
         $event = new ResolveFinisherVariableEvent(
-            $fieldType,
+            FieldTypeEnumeration::TEXT,
             $value,
-            $transferIdentifier,
+            '',
             $this->serverRequestStub
         );
 
@@ -85,79 +81,57 @@ class LanguageVariableResolverTest extends TestCase
     public function dataProvider(): \Generator
     {
         yield 'language.twoLetterIsoCode is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.twoLetterIsoCode} bar',
-            '',
             'foo de bar',
         ];
 
         yield 'language.title is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.title} bar',
-            '',
             'foo Some Title bar',
         ];
 
         yield 'language.languageId is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.languageId} bar',
-            '',
             'foo 42 bar',
         ];
 
         yield 'language.base is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.base} bar',
-            '',
             'foo https://www.example.org/ bar',
         ];
 
         yield 'language.typo3Language is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.typo3Language} bar',
-            '',
             'foo default bar',
         ];
 
         yield 'language.locale is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.locale} bar',
-            '',
             'foo de_DE.UTF-8 bar',
         ];
 
         yield 'language.navigationTitle is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.navigationTitle} bar',
-            '',
             'foo Some Navigation Title bar',
         ];
 
         yield 'language.hreflang is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.hreflang} bar',
-            '',
             'foo de-de bar',
         ];
 
         yield 'language.direction is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.direction} bar',
-            '',
             'foo ltr bar',
         ];
 
         yield 'language.flagIdentifier is resolved' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.flagIdentifier} bar',
-            '',
             'foo some-flag bar',
         ];
 
         yield 'unknown language variable is returned untouched' => [
-            FieldTypeEnumeration::TEXT,
             'foo {__language.unknown} bar',
-            '',
             'foo {__language.unknown} bar',
         ];
     }
