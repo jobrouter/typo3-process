@@ -38,50 +38,65 @@ Preparing The Instance Data
 ---------------------------
 
 If you want to start instances programmatically in a JobRouter installation,
-you can use the :php:`Preparer` class within TYPO3:
+you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
+controller:
 
 ::
 
    <?php
-   use Brotkrueml\JobRouterProcess\Domain\Model\Step;
+   declare(strict_types=1);
+
+   namespace Vendor\Extension\Controller;
+
    use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
    use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
    use Brotkrueml\JobRouterProcess\Exception\PrepareException;
    use Brotkrueml\JobRouterProcess\Transfer\Preparer;
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
-   use TYPO3\CMS\Extbase\Object\Container\Container\ObjectManager;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-   // First get the step link uid from the step handle.
-   // It is advised to use the handle because the step link uid can differ from
-   // development to production system (it is an auto increment).
-   // If you are in an Extbase controller, the object manager is already
-   // available through $this->objectManager.
-   $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-   $stepRepository = $objectManager->get(StepRepository::class);
-   $step = $stepRepository->findOneByHandle('your_step_handle');
+   final class MyController extends ActionController
+   {
+      private Preparer $preparer;
+      private StepRepository $stepRepository;
 
-   // Define the transfer domain model with your parameters
-   // Have a look in the Transfer model to see the available setters
-   $transfer = new Transfer();
-   $transfer->setStepUid($step->getUid());
-   $transfer->setType('Demo');
-   $transfer->setSummary('My summary');
-   $transfer->setProcesstable([
-      'name' => 'John Doe',
-      'company' => 'Acme Ltd.',
-      'email_address' => 'jdoe@example.com',
-      'message' => 'Please send me information.',
-   ]);
+      // It's important to use dependency injection to inject all necessary
+      // dependencies
+      public function __construct(
+         Preparer $preparer,
+         StepRepository $stepRepository
+      ) {
+         $this->preparer = $preparer;
+         $this->stepRepository = $stepRepository;
+      }
 
-   // It's important to use the makeInstance method to inject all necessary
-   // dependencies
-   $preparer = GeneralUtility::makeInstance(Preparer::class);
-   try {
-      $preparer->store($transfer);
-   } catch (PrepareException $e) {
-      // On errors an exception can be thrown
-      var_dump($e->getMessage());
-   }
+      public function myAction()
+      {
+         // ... some other code
+
+         // First get the step link uid from the step handle.
+         // It is advised to use the handle because the step link uid can differ
+         // from development to production system (it is an auto increment).
+         $step = $this->stepRepository->findOneByHandle('your_step_handle');
+
+         // Define the transfer domain model with your parameters
+         // Have a look in the Transfer model to see the available setters
+         $transfer = new Transfer();
+         $transfer->setStepUid($step->getUid());
+         $transfer->setType('Demo');
+         $transfer->setSummary('My summary');
+         $transfer->setProcesstable([
+            'name' => 'John Doe',
+            'company' => 'Acme Ltd.',
+            'email_address' => 'jdoe@example.com',
+            'message' => 'Please send me information.',
+         ]);
+
+         try {
+            $this->preparer->store($transfer);
+         } catch (PrepareException $e) {
+            // On errors an exception can be thrown
+            var_dump($e->getMessage());
+         }
 
 The :ref:`start command <configuration-start-command>` must be activated with a
 cron job to periodically start instances in the JobRouter installation(s).
