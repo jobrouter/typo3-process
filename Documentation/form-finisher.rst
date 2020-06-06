@@ -24,8 +24,8 @@ problems. Also the submitting of a form should be as fast as possible.
 
 .. note::
 
-   The finisher can only be used in the form definition directly, not in the
-   :guilabel:`Form` module.
+   The finisher can only be used in the yaml form definition, not in the
+   :guilabel:`Form` GUI module.
 
 
 Start one instance
