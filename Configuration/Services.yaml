@@ -40,6 +40,12 @@ services:
     calls:
       - [setNumberOfDays, ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']]
 
+  Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-process/toolbar-item-provider'
+        event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent
+
   Brotkrueml\JobRouterProcess\Transfer\Deleter:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'

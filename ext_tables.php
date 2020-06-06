@@ -30,12 +30,4 @@ defined('TYPO3_MODE') || die('Access denied.');
         \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         ['source' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-toolbar.svg']
     );
-
-    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
-        ->connect(
-            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
-            'getSystemInformation',
-            \Brotkrueml\JobRouterProcess\SystemInformation\ToolbarItemProvider::class,
-            'getItem'
-        );
 })();

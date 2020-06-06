@@ -8,33 +8,40 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\SystemInformation;
+namespace Brotkrueml\JobRouterProcess\EventListener;
 
 use Brotkrueml\JobRouterProcess\Extension;
-use TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem;
+use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Backend\Toolbar\Enumeration\InformationStatus;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
  */
 final class ToolbarItemProvider
 {
+    /** @var LanguageService */
+    private $languageService;
+
+    /** @var Registry */
+    private $registry;
+
     /** @var array|null */
     private $lastRunInformation;
 
-    public function __construct()
+    public function __construct(LanguageService $languageService, Registry $registry)
     {
-        $this->lastRunInformation = GeneralUtility::makeInstance(Registry::class)
-            ->get(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun');
+        $this->languageService = $languageService;
+        $this->registry = $registry;
     }
 
-    public function getItem(SystemInformationToolbarItem $systemInformationToolbarItem): void
+    public function __invoke(SystemInformationToolbarCollectorEvent $event): void
     {
-        $systemInformationToolbarItem->addSystemInformation(
-            $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
+        $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun');
+
+        $event->getToolbarItem()->addSystemInformation(
+            $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
             $this->getMessage(),
             'jobrouter-process-toolbar',
             $this->getSeverity()
@@ -43,22 +50,20 @@ final class ToolbarItemProvider
 
     protected function getMessage(): string
     {
-        $languageService = $this->getLanguageService();
-
         if ($this->lastRunInformation === null) {
-            return $languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.neverRun');
+            return $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.neverRun');
         }
 
         if ($this->isWarning()) {
-            $status = $languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.warning');
+            $status = $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.warning');
         } elseif ($this->isOverdue()) {
-            $status = $languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.overdue');
+            $status = $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.overdue');
         } else {
-            $status = $languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.success');
+            $status = $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.success');
         }
 
         return \sprintf(
-            $languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunMessage'),
+            $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunMessage'),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'], $this->lastRunInformation['start']),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'], $this->lastRunInformation['start']),
             $status
@@ -72,7 +77,7 @@ final class ToolbarItemProvider
 
     private function isOverdue(): bool
     {
-        return $this->lastRunInformation['start'] < time() - 86400;
+        return $this->lastRunInformation['start'] < \time() - 86400;
     }
 
     private function getSeverity(): string
@@ -88,10 +93,5 @@ final class ToolbarItemProvider
         }
 
         return $severity;
-    }
-
-    private function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
     }
 }
