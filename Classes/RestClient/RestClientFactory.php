@@ -35,7 +35,7 @@ final class RestClientFactory
         }
 
         return \sprintf(
-            'TYPO3-JobRouter-Process/%s (https://github.com/brotkrueml/typo3-jobrouter-process)',
+            'TYPO3-JobRouter-Process/%s (https://typo3-jobrouter.rtfd.io/projects/process/)',
             static::$version
         );
     }
