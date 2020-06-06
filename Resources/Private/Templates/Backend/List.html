@@ -130,8 +130,11 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
+                            <th scope="col">
+                                <f:translate
+                                    key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name"/>
+                            </th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle"/></th>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name"/></th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.process"/></th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.step_number"/></th>
                             <th scope="col"></th>
@@ -141,13 +144,24 @@
                         <f:for each="{steps}" as="step">
                             <tr>
                                 <td>
-                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">{step.handle}</be:link.editRecord>
+                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}"
+                                                        title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">
+                                        {step.name}
+                                    </be:link.editRecord>
+                                </td>
+                                <td>
+                                    <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}"
+                                                        title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">
+                                        {step.handle}
+                                    </be:link.editRecord>
                                     <f:if condition="{step.disabled}">
-                                        ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                                        ({f:translate(key:
+                                        'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
                                     </f:if>
                                 </td>
-                                <td>{step.name}</td>
-                                <td><f:render section="processName" arguments="{process: step.process}"/></td>
+                                <td>
+                                    <f:render section="processName" arguments="{process: step.process}"/>
+                                </td>
                                 <td>{step.stepNumber}</td>
                                 <td>
                                     <div class="btn-group">
