@@ -129,8 +129,7 @@
                     <thead>
                         <tr>
                             <th scope="col">
-                                <f:translate
-                                    key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name"/>
+                                <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.name"/>
                             </th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.handle"/></th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_step.process"/></th>
@@ -146,16 +145,15 @@
                                                         title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">
                                         {step.name}
                                     </be:link.editRecord>
+                                    <f:if condition="{step.disabled}">
+                                        ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                                    </f:if>
                                 </td>
                                 <td>
                                     <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}"
                                                         title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">
                                         {step.handle}
                                     </be:link.editRecord>
-                                    <f:if condition="{step.disabled}">
-                                        ({f:translate(key:
-                                        'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
-                                    </f:if>
                                 </td>
                                 <td>
                                     <f:render section="processName" arguments="{process: step.process}"/>

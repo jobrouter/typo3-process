@@ -32,6 +32,9 @@ class Process extends AbstractEntity
      */
     protected $processtablefields;
 
+    /** @var bool */
+    protected $disabled = false;
+
     public function __construct()
     {
         $this->initStorageObjects();
@@ -90,5 +93,15 @@ class Process extends AbstractEntity
     public function setProcesstablefields(ObjectStorage $processtablefields)
     {
         $this->processtablefields = $processtablefields;
+    }
+
+    public function isDisabled(): bool
+    {
+        return $this->disabled;
+    }
+
+    public function setDisabled(bool $disabled): void
+    {
+        $this->disabled = $disabled;
     }
 }

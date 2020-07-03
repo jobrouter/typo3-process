@@ -28,6 +28,9 @@ class Step extends AbstractEntity implements CommonStepParameterInterface
     /** @var int */
     protected $stepNumber = 0;
 
+    /** @var bool */
+    protected $disabled = false;
+
     public function getHandle(): string
     {
         return $this->handle;
@@ -73,5 +76,15 @@ class Step extends AbstractEntity implements CommonStepParameterInterface
         }
 
         $this->stepNumber = $stepNumber;
+    }
+
+    public function isDisabled(): bool
+    {
+        return $this->disabled;
+    }
+
+    public function setDisabled(bool $disabled): void
+    {
+        $this->disabled = $disabled;
     }
 }
