@@ -12,6 +12,7 @@ return [
         'title' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process',
         'label' => 'description',
         'label_alt' => 'name',
+        'descriptionColumn' => 'description',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -20,8 +21,8 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'name',
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg'
+        'searchFields' => 'name,description',
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg',
     ],
     'columns' => [
         'disabled' => [
@@ -49,16 +50,6 @@ return [
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'alphanum_x,required,trim'
-            ],
-        ],
-        'description' => [
-            'exclude' => true,
-            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.description',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max' => 255,
-                'eval' => 'trim'
             ],
         ],
         'connection' => [
@@ -94,14 +85,25 @@ return [
                 ],
             ],
         ],
+        'description' => [
+            'exclude' => true,
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.description',
+            'config' => [
+                'type' => 'text',
+                'rows' => 5,
+                'cols' => 30,
+            ],
+        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
-            name, description, connection, processtablefields,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled
-        '
+                name, connection, processtablefields,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
+            '
         ],
     ],
 ];

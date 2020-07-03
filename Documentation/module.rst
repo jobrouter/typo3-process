@@ -51,9 +51,6 @@ Process Name (required)
    The name of the process as defined in the Process manager of the JobRouter
    installation.
 
-Description (optional)
-   A description for the process link.
-
 Connection (required)
    Choose a connection which was defined previously in the :doc:`Connections
    <connector:usage>` module.
@@ -91,6 +88,14 @@ Access
 Enabled
    You can enable or disable the process link. Disabled process links cannot be
    used.
+
+
+Notes
+'''''
+
+Description
+   This is a descriptive field. You can enter additional remarks for a
+   process link.
 
 
 .. _module-process-links-overview:
@@ -204,6 +209,12 @@ Access
 Enabled
    You can enable or disable the step link. Disabled step links cannot be used.
 
+Notes
+'''''
+
+Description
+   This is a descriptive field. You can enter additional remarks for a
+   process link.
 
 .. note::
    It can be useful to define the same step multiple times: Imagine, you want

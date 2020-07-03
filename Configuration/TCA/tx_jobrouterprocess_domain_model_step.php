@@ -11,6 +11,7 @@ return [
     'ctrl' => [
         'title' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step',
         'label' => 'name',
+        'descriptionColumn' => 'description',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -19,8 +20,8 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary',
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg'
+        'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary,description',
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg',
     ],
     'columns' => [
         'disabled' => [
@@ -156,16 +157,26 @@ return [
                 'eval' => 'num',
             ],
         ],
+        'description' => [
+            'exclude' => true,
+            'label' => \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.description',
+            'config' => [
+                'type' => 'text',
+                'rows' => 5,
+                'cols' => 30,
+            ],
+        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
-            handle, name, process, step_number,
-            --div--;' . \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
-            --palette--;;defaultParameters,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+                handle, name, process, step_number,
+                --div--;' . \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
+                --palette--;;defaultParameters,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
         '
         ],
     ],

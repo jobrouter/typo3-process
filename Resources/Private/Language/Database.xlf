@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-02-10T16:11:39Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-07-02T13:12:54Z" product-name="jobrouter_process">
 		<header/>
 		<body>
 			<trans-unit id="palette.default_parameters" resname="palette.default_parameters">
@@ -12,125 +12,98 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_step" resname="tx_jobrouterprocess_domain_model_step">
 				<source><![CDATA[JobRouter Process Step Link]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.handle"
-			            resname="tx_jobrouterprocess_domain_model_step.handle">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.description" resname="tx_jobrouterprocess_domain_model_step.description">
+				<source><![CDATA[Description]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.handle" resname="tx_jobrouterprocess_domain_model_step.handle">
 				<source><![CDATA[Handle]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.initiator"
-			            resname="tx_jobrouterprocess_domain_model_step.initiator">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.initiator" resname="tx_jobrouterprocess_domain_model_step.initiator">
 				<source><![CDATA[Initiator]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.jobfunction"
-			            resname="tx_jobrouterprocess_domain_model_step.jobfunction">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.jobfunction" resname="tx_jobrouterprocess_domain_model_step.jobfunction">
 				<source><![CDATA[Job Function]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.name"
-			            resname="tx_jobrouterprocess_domain_model_step.name">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.name" resname="tx_jobrouterprocess_domain_model_step.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.pool"
-			            resname="tx_jobrouterprocess_domain_model_step.pool">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.pool" resname="tx_jobrouterprocess_domain_model_step.pool">
 				<source><![CDATA[Pool]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority"
-			            resname="tx_jobrouterprocess_domain_model_step.priority">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority" resname="tx_jobrouterprocess_domain_model_step.priority">
 				<source><![CDATA[Priority]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.1"
-			            resname="tx_jobrouterprocess_domain_model_step.priority.1">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.1" resname="tx_jobrouterprocess_domain_model_step.priority.1">
 				<source><![CDATA[low]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.2"
-			            resname="tx_jobrouterprocess_domain_model_step.priority.2">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.2" resname="tx_jobrouterprocess_domain_model_step.priority.2">
 				<source><![CDATA[normal]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.3"
-			            resname="tx_jobrouterprocess_domain_model_step.priority.3">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.3" resname="tx_jobrouterprocess_domain_model_step.priority.3">
 				<source><![CDATA[high]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.process"
-			            resname="tx_jobrouterprocess_domain_model_step.process">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.process" resname="tx_jobrouterprocess_domain_model_step.process">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.step_number"
-			            resname="tx_jobrouterprocess_domain_model_step.step_number">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.step_number" resname="tx_jobrouterprocess_domain_model_step.step_number">
 				<source><![CDATA[Step Number]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.summary"
-			            resname="tx_jobrouterprocess_domain_model_step.summary">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.summary" resname="tx_jobrouterprocess_domain_model_step.summary">
 				<source><![CDATA[Summary]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.username"
-			            resname="tx_jobrouterprocess_domain_model_step.username">
+			<trans-unit id="tx_jobrouterprocess_domain_model_step.username" resname="tx_jobrouterprocess_domain_model_step.username">
 				<source><![CDATA[Username]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process"
-			            resname="tx_jobrouterprocess_domain_model_process">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process" resname="tx_jobrouterprocess_domain_model_process">
 				<source><![CDATA[JobRouter Process Link]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.connection"
-			            resname="tx_jobrouterprocess_domain_model_process.connection">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.connection" resname="tx_jobrouterprocess_domain_model_process.connection">
 				<source><![CDATA[Connection]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.description"
-			            resname="tx_jobrouterprocess_domain_model_process.description">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.description" resname="tx_jobrouterprocess_domain_model_process.description">
 				<source><![CDATA[Description]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.description"
-			            resname="tx_jobrouterprocess_domain_model_process.description">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.description" resname="tx_jobrouterprocess_domain_model_process.description">
 				<source><![CDATA[Description]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.name"
-			            resname="tx_jobrouterprocess_domain_model_process.name">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.name" resname="tx_jobrouterprocess_domain_model_process.name">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.name.description"
-			            resname="tx_jobrouterprocess_domain_model_process.name.description">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.name.description" resname="tx_jobrouterprocess_domain_model_process.name.description">
 				<source><![CDATA[The process name must be written exactly as in the JobRouter installation.]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.processtablefields"
-			            resname="tx_jobrouterprocess_domain_model_process.processtablefields">
+			<trans-unit id="tx_jobrouterprocess_domain_model_process.processtablefields" resname="tx_jobrouterprocess_domain_model_process.processtablefields">
 				<source><![CDATA[Process Table Fields]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields" resname="tx_jobrouterprocess_domain_model_processtablefields">
 				<source><![CDATA[JobRouter Process Table]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.description"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.description">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.description" resname="tx_jobrouterprocess_domain_model_processtablefields.description">
 				<source><![CDATA[Description]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.field_size"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.field_size">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.field_size" resname="tx_jobrouterprocess_domain_model_processtablefields.field_size">
 				<source><![CDATA[Field Size]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.name">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name" resname="tx_jobrouterprocess_domain_model_processtablefields.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name.description"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.name.description">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name.description" resname="tx_jobrouterprocess_domain_model_processtablefields.name.description">
 				<source>
 					<![CDATA[The field name must be written exactly as in the JobRouter process table definition.]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.type">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type" resname="tx_jobrouterprocess_domain_model_processtablefields.type">
 				<source><![CDATA[Type]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.datetime"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.type.datetime">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.datetime" resname="tx_jobrouterprocess_domain_model_processtablefields.type.datetime">
 				<source><![CDATA[Datetime]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.decimal"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.type.decimal">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.decimal" resname="tx_jobrouterprocess_domain_model_processtablefields.type.decimal">
 				<source><![CDATA[Decimal]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.integer"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.type.integer">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.integer" resname="tx_jobrouterprocess_domain_model_processtablefields.type.integer">
 				<source><![CDATA[Integer]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.text"
-			            resname="tx_jobrouterprocess_domain_model_processtablefields.type.text">
+			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.text" resname="tx_jobrouterprocess_domain_model_processtablefields.type.text">
 				<source><![CDATA[Text]]></source>
 			</trans-unit>
 		</body>

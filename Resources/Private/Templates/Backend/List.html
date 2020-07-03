@@ -32,7 +32,6 @@
                     <thead>
                         <tr>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.name"/></th>
-                            <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.description"/></th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.connection"/></th>
                             <th scope="col"><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/Database.xlf:tx_jobrouterprocess_domain_model_process.processtablefields"/></th>
                             <th scope="col"></th>
@@ -43,7 +42,6 @@
                             <f:variable name="manageProcessLink">{process.connection.baseUrl}?cmd=OpenDesigner&processname={process.name}</f:variable>
                             <tr>
                                 <td><f:render section="processName" arguments="{process: process}"/></td>
-                                <td>{process.description}</td>
                                 <td>{process.connection.name}</td>
                                 <td>
                                     <f:variable name="count" value="{process.processtablefields -> f:count()}"/>
