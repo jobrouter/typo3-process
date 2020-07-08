@@ -228,3 +228,60 @@ The language information defined in the Site Configuration can be used, namely:
    `default` for English, otherwise one of TYPO3's internal language keys.
 
 Multiple language variables can be used in one value.
+
+
+JobRouter language information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes it is necessary to send not the language code of the page in your form
+but instead the language string JobRouter uses (e.g. ``german`` instead of
+``de``). This can be useful for sending localised emails from the process in the
+relevant language.
+
+Use the :yaml:`{__jobRouterLanguage}` variable for that. The following languages
+are supported by JobRouter by now:
+
++----------------+--------------------+
+| ISO 639-1 code | JobRouter language |
++================+====================+
+| ar             | arabic             |
++----------------+--------------------+
+| cs             | czech              |
++----------------+--------------------+
+| da             | danish             |
++----------------+--------------------+
+| de             | german             |
++----------------+--------------------+
+| en             | english            |
++----------------+--------------------+
+| es             | spanish            |
++----------------+--------------------+
+| fi             | finnish            |
++----------------+--------------------+
+| fr             | french             |
++----------------+--------------------+
+| hu             | hungarian          |
++----------------+--------------------+
+| it             | italian            |
++----------------+--------------------+
+| ja             | japanese           |
++----------------+--------------------+
+| nl             | dutch              |
++----------------+--------------------+
+| pl             | polish             |
++----------------+--------------------+
+| ro             | romanian           |
++----------------+--------------------+
+| ru             | russian            |
++----------------+--------------------+
+| sk             | slovak             |
++----------------+--------------------+
+| sl             | slovenian          |
++----------------+--------------------+
+| tr             | turkish            |
++----------------+--------------------+
+| zh             | chinese            |
++----------------+--------------------+
+
+If the language is not available, an empty string is returned by the variable
+resolver.

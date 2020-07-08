@@ -40,6 +40,12 @@ services:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'
 
+  Brotkrueml\JobRouterProcess\Domain\VariableResolver\JobRouterLanguageVariableResolver:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-process/jobrouter-language-variable-resolver'
+        event: Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent
+
   Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver:
     tags:
       - name: event.listener
