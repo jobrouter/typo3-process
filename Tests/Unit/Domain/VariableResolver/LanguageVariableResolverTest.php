@@ -64,7 +64,7 @@ class LanguageVariableResolverTest extends TestCase
      * @test
      * @dataProvider dataProvider
      */
-    public function languageTwoLetterIsoCodeIsResolvedCorrectly(string $value, string $expected): void
+    public function languageVariablesAreResolvedCorrectly(string $value, string $expected): void
     {
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
