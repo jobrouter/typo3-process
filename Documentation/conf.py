@@ -25,9 +25,9 @@ copyright = u'2020, Chris Müller'
 author = u'Chris Müller'
 
 # The short X.Y version
-version = u'0.3'
+version = u'0.4'
 # The full version, including alpha/beta/rc tags
-release = u'0.3.1-dev'
+release = u'0.4.0-dev'
 
 
 # -- General configuration ---------------------------------------------------
