@@ -17,12 +17,12 @@ Target group: **Developers**
 Start instances
 ===============
 
-Sometimes it is necessary to start instances in a JobRouter
+Sometimes it is necessary to start instances in a JobRouter®
 installation programmatically. An API and a :ref:`start command
 <configuration-start-command>` are available for this use case.
 
 Instances are started asynchronously when submitting a form and using the
-:ref:`form finisher <form-finisher>` since a JobRouter installation may be
+:ref:`form finisher <form-finisher>` since a JobRouter® installation may be
 unavailable or in maintenance mode and to avoid long page loads. Let's take a
 look at the flow:
 
@@ -32,7 +32,7 @@ look at the flow:
    Transferring data sets
 
 As you can see from the diagram, you can prepare multiple instances. The
-different instances can be started on different JobRouter installations –
+different instances can be started on different JobRouter® installations –
 depending on the configuration of the step link in the
 :ref:`Process module <module>`.
 
@@ -40,7 +40,7 @@ depending on the configuration of the step link in the
 Preparing the instance data
 ---------------------------
 
-If you want to start instances programmatically in a JobRouter installation,
+If you want to start instances programmatically in a JobRouter® installation,
 you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
 controller:
 
@@ -102,7 +102,7 @@ controller:
          }
 
 The :ref:`start command <configuration-start-command>` must be activated with a
-cron job to periodically start instances in the JobRouter installation(s).
+cron job to periodically start instances in the JobRouter® installation(s).
 
 Instead of the :php:`Preparer` class, you can also use the
 :php:`Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository` to store

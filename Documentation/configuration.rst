@@ -106,7 +106,7 @@ Starting instances
 
 If you rely on the :ref:`form finisher <form-finisher>` or use the
 :ref:`transfer table <developer-start-instance>` directly to start
-instances in JobRouter installations, you have to use the start command:
+instances in JobRouter® installations, you have to use the start command:
 
 ::
 

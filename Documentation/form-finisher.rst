@@ -15,10 +15,10 @@ Target group: **Integrators**, **Developers**
 Start instances
 ===============
 
-A form finisher `JobRouterStartInstance` is available to start a JobRouter
+A form finisher `JobRouterStartInstance` is available to start a JobRouter®
 process instance. After submitting a form, the form values are stored in a
 transfer table. A command, hopefully executed regularly, takes these transfer
-records and start a process instance. This is due the fact, that a JobRouter
+records and start a process instance. This is due the fact, that a JobRouter®
 installation can temporarily not available due to maintenance or network
 problems. Also the submitting of a form should be as fast as possible.
 
@@ -87,14 +87,14 @@ As you can see, you can define some options. These are:
 
    If the value of a form field is an array, like from a multi checkbox, the
    array is converted to a csv string and stored in the given process table
-   field. The value can be reconverted to an array, e.g. in a JobRouter rule,
+   field. The value can be reconverted to an array, e.g. in a JobRouter® rule,
    with the PHP function :php:`str_getcsv()`.
 
 
 Start multiple instances
 ------------------------
 
-It is also possible to start multiple instances – even on different JobRouter
+It is also possible to start multiple instances – even on different JobRouter®
 installations. Just use the array notation in :yaml:`options`:
 
 .. code-block:: yaml
@@ -234,54 +234,54 @@ JobRouter language information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sometimes it is necessary to send not the language code of the page in your form
-but instead the language string JobRouter uses (e.g. ``german`` instead of
+but instead the language string JobRouter® uses (e.g. ``german`` instead of
 ``de``). This can be useful for sending localised emails from the process in the
 relevant language.
 
 Use the :yaml:`{__jobRouterLanguage}` variable for that. The following languages
-are supported by JobRouter by now:
+are supported by JobRouter® by now:
 
-+----------------+--------------------+
-| ISO 639-1 code | JobRouter language |
-+================+====================+
-| ar             | arabic             |
-+----------------+--------------------+
-| cs             | czech              |
-+----------------+--------------------+
-| da             | danish             |
-+----------------+--------------------+
-| de             | german             |
-+----------------+--------------------+
-| en             | english            |
-+----------------+--------------------+
-| es             | spanish            |
-+----------------+--------------------+
-| fi             | finnish            |
-+----------------+--------------------+
-| fr             | french             |
-+----------------+--------------------+
-| hu             | hungarian          |
-+----------------+--------------------+
-| it             | italian            |
-+----------------+--------------------+
-| ja             | japanese           |
-+----------------+--------------------+
-| nl             | dutch              |
-+----------------+--------------------+
-| pl             | polish             |
-+----------------+--------------------+
-| ro             | romanian           |
-+----------------+--------------------+
-| ru             | russian            |
-+----------------+--------------------+
-| sk             | slovak             |
-+----------------+--------------------+
-| sl             | slovenian          |
-+----------------+--------------------+
-| tr             | turkish            |
-+----------------+--------------------+
-| zh             | chinese            |
-+----------------+--------------------+
++----------------+---------------------+
+| ISO 639-1 code | JobRouter® language |
++================+=====================+
+| ar             | arabic              |
++----------------+---------------------+
+| cs             | czech               |
++----------------+---------------------+
+| da             | danish              |
++----------------+---------------------+
+| de             | german              |
++----------------+---------------------+
+| en             | english             |
++----------------+---------------------+
+| es             | spanish             |
++----------------+---------------------+
+| fi             | finnish             |
++----------------+---------------------+
+| fr             | french              |
++----------------+---------------------+
+| hu             | hungarian           |
++----------------+---------------------+
+| it             | italian             |
++----------------+---------------------+
+| ja             | japanese            |
++----------------+---------------------+
+| nl             | dutch               |
++----------------+---------------------+
+| pl             | polish              |
++----------------+---------------------+
+| ro             | romanian            |
++----------------+---------------------+
+| ru             | russian             |
++----------------+---------------------+
+| sk             | slovak              |
++----------------+---------------------+
+| sl             | slovenian           |
++----------------+---------------------+
+| tr             | turkish             |
++----------------+---------------------+
+| zh             | chinese             |
++----------------+---------------------+
 
 If the language is not available, an empty string is returned by the variable
 resolver.

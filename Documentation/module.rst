@@ -12,7 +12,7 @@ Target group: **Integrators, Administrators**
    :depth: 1
    :local:
 
-The links to processes and instances in JobRouter installations are managed in
+The links to processes and instances in JobRouter® installations are managed in
 the module :guilabel:`JobRouter` > :guilabel:`Process`.
 
 On your first visit after installing the extension you will see the following
@@ -23,7 +23,7 @@ screen:
 
    Initial Process module screen
 
-First you have to define a process link. It is the representation of a JobRouter
+First you have to define a process link. It is the representation of a JobRouter®
 process. Then configure the instance links you need. These represent the steps
 of a process and are used in the form finisher.
 
@@ -48,7 +48,7 @@ General
 '''''''
 
 Process Name (required)
-   The name of the process as defined in the Process manager of the JobRouter
+   The name of the process as defined in the Process manager of the JobRouter®
    installation.
 
 Connection (required)
@@ -60,7 +60,7 @@ Process Table Fields (optional)
    instance. Each field item has the following fields:
 
    Name (required)
-      The name of the process table field as defined in the JobRouter Designer.
+      The name of the process table field as defined in the JobRouter® Designer.
 
    Description (optional)
       A description of the process table field.
@@ -129,7 +129,7 @@ There are two buttons available for each table link:
 
 - You can edit a table link with the pencil. Alternatively click on the handle
   of the process link to open the edit form.
-- The second icon is a link to the process of the JobRouter Designer.
+- The second icon is a link to the process of the JobRouter® Designer.
 
 The process link records are stored under the root page. You can edit a process
 link also inside the :guilabel:`List` module.
@@ -153,7 +153,7 @@ link` button.
    Create a step link (General)
 
 .. important::
-   In JobRouter it is recommended to use a decision step with a routing rule to
+   In JobRouter® it is recommended to use a decision step with a routing rule to
    forward the step to the appropriate user or Job Function.
 
 The following fields are available:

@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
     'title' => 'JobRouter Process',
-    'description' => 'Connect JobRouter processes with TYPO3',
+    'description' => 'Connect JobRouter® processes with TYPO3',
     'category' => 'module',
     'author' => 'Chris Müller',
     'author_email' => 'typo3@krue.ml',
