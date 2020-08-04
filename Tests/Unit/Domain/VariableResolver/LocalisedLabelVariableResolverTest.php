@@ -53,6 +53,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label} bar',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -82,6 +83,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label} bar {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:another.label}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -99,6 +101,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             'foo bar',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -124,6 +127,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing} bar',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -144,6 +148,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing bar',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -168,6 +173,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
             FieldTypeEnumeration::INTEGER,
             '{__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:some.label}',
             '',
+            [],
             $this->serverRequestStub
         );
 

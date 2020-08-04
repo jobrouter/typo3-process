@@ -8,7 +8,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Event;
+namespace Brotkrueml\JobRouterProcess\Tests\Unit\Event;
 
 use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use PHPUnit\Framework\MockObject\Stub;
@@ -34,12 +34,14 @@ class ResolveFinisherVariableEventTest extends TestCase
             42,
             'some-value',
             'some-identifier',
+            ['formName' => 'formValue'],
             $this->serverRequestStub
         );
 
         self::assertSame(42, $subject->getFieldType());
         self::assertSame('some-value', $subject->getValue());
         self::assertSame('some-identifier', $subject->getTransferIdentifier());
+        self::assertSame(['formName' => 'formValue'], $subject->getFormValues());
         self::assertSame($this->serverRequestStub, $subject->getRequest());
     }
 
@@ -52,6 +54,7 @@ class ResolveFinisherVariableEventTest extends TestCase
             42,
             'some-value',
             'some-identifier',
+            [],
             $this->serverRequestStub
         );
 

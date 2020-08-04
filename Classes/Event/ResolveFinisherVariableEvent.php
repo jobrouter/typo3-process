@@ -23,14 +23,23 @@ final class ResolveFinisherVariableEvent
     /** @var string */
     private $transferIdentifier;
 
+    /** @var array<string,string> */
+    private $formValues;
+
     /** @var ServerRequestInterface */
     private $request;
 
-    public function __construct(int $fieldType, $value, string $transferIdentifier, ServerRequestInterface $request)
-    {
+    public function __construct(
+        int $fieldType,
+        $value,
+        string $transferIdentifier,
+        array $formValues,
+        ServerRequestInterface $request
+    ) {
         $this->fieldType = $fieldType;
         $this->value = $value;
         $this->transferIdentifier = $transferIdentifier;
+        $this->formValues = $formValues;
         $this->request = $request;
     }
 
@@ -52,6 +61,11 @@ final class ResolveFinisherVariableEvent
     public function getTransferIdentifier(): string
     {
         return $this->transferIdentifier;
+    }
+
+    public function getFormValues(): array
+    {
+        return $this->formValues;
     }
 
     public function getRequest(): ServerRequestInterface

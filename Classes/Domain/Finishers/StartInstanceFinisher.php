@@ -219,6 +219,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             $fieldType,
             $value,
             $this->transferIdentifier,
+            $this->finisherContext->getFormValues(),
             $this->getServerRequest()
         );
         $event = $this->eventDispatcher->dispatch($event);

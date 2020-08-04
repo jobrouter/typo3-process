@@ -42,6 +42,7 @@ class TransferIdentifierVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             $value,
             $transferIdentifier,
+            [],
             $this->serverRequestStub
         );
 
@@ -90,6 +91,7 @@ class TransferIdentifierVariableResolverTest extends TestCase
             FieldTypeEnumeration::INTEGER,
             '{__transferIdentifier}',
             'some-identifier',
+            [],
             $this->serverRequestStub
         );
 

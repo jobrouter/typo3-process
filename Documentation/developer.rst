@@ -144,6 +144,10 @@ Set the new value after resolving one or more variables.
 
 Get the current transfer identifier.
 
+.. option:: getFormValues(): array
+
+Get the form values, e.g. :php:`['company' => 'Acme Ltd.', 'name' => 'John Smith']`.
+
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
 
 Get the current request.

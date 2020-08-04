@@ -70,6 +70,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             $value,
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -145,6 +146,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             '{__language.twoLetterIsoCode} {__language.direction}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -162,6 +164,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             '{__language1.twoLetterIsoCode}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -179,6 +182,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             '{__language.invalid key}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -200,6 +204,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::INTEGER,
             '{__language.twoLetterIsoCode}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -221,6 +226,7 @@ class LanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             '{__language.twoLetterIsoCode}',
             '',
+            [],
             $this->serverRequestStub
         );
 

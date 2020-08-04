@@ -66,6 +66,7 @@ class JobRouterLanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             $value,
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -228,6 +229,7 @@ class JobRouterLanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::INTEGER,
             '{__jobRouterLanguage}',
             '',
+            [],
             $this->serverRequestStub
         );
 
@@ -248,6 +250,7 @@ class JobRouterLanguageVariableResolverTest extends TestCase
             FieldTypeEnumeration::TEXT,
             '{__jobRouterLanguage}',
             '',
+            [],
             $this->serverRequestStub
         );
 
