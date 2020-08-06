@@ -170,7 +170,7 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-                handle, name, process, step_number,
+                name, handle, process, step_number,
                 --div--;' . \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
                 --palette--;;defaultParameters,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
