@@ -273,7 +273,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private function prepareFormValuesForSubstitution(): array
     {
-        $formValues = $this->finisherContext->getFormValues();
+        $allFormElements = $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements();
+        \array_walk($allFormElements, function (&$element): void {
+            $element = '';
+        });
+
+        $formValues = \array_merge($allFormElements, $this->finisherContext->getFormValues());
         $preparedFormValues = [];
 
         foreach ($formValues as $name => $value) {
