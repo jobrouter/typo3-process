@@ -19,7 +19,7 @@ Start instances
 
 Sometimes it is necessary to start instances in a JobRouter®
 installation programmatically. An API and a :ref:`start command
-<configuration-start-command>` are available for this use case.
+<command-start>` are available for this use case.
 
 Instances are started asynchronously when submitting a form and using the
 :ref:`form finisher <form-finisher>` since a JobRouter® installation may be
@@ -101,7 +101,7 @@ controller:
             var_dump($e->getMessage());
          }
 
-The :ref:`start command <configuration-start-command>` must be activated with a
+The :ref:`start command <command-start>` must be activated with a
 cron job to periodically start instances in the JobRouter® installation(s).
 
 Instead of the :php:`Preparer` class, you can also use the

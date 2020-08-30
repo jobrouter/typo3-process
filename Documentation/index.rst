@@ -36,6 +36,7 @@ Contents
    introduction
    installation
    configuration
+   commands
    module
    form-finisher
    dashboard
