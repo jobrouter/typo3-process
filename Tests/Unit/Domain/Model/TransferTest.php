@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Model;
 
-use Brotkrueml\JobRouterProcess\Domain\Model\CommonStepParameterInterface;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use PHPUnit\Framework\TestCase;
 
@@ -142,8 +141,147 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function defaultStepParameterInterfaceIsImplemented(): void
+    public function getAndSetInitiator(): void
     {
-        self::assertInstanceOf(CommonStepParameterInterface::class, $this->subject);
+        self::assertSame('', $this->subject->getInitiator());
+
+        $this->subject->setInitiator('some initiator');
+
+        self::assertSame('some initiator', $this->subject->getInitiator());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetUsername(): void
+    {
+        self::assertSame('', $this->subject->getUsername());
+
+        $this->subject->setUsername('some username');
+
+        self::assertSame('some username', $this->subject->getUsername());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetJobfunction(): void
+    {
+        self::assertSame('', $this->subject->getJobfunction());
+
+        $this->subject->setJobfunction('some jobfunction');
+
+        self::assertSame('some jobfunction', $this->subject->getJobfunction());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetSummary(): void
+    {
+        self::assertSame('', $this->subject->getSummary());
+
+        $this->subject->setSummary('some summary');
+
+        self::assertSame('some summary', $this->subject->getSummary());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetPriority(): void
+    {
+        self::assertSame(2, $this->subject->getPriority());
+
+        $this->subject->setPriority(3);
+
+        self::assertSame(3, $this->subject->getPriority());
+    }
+
+    /**
+     * @test
+     */
+    public function setPriorityAcceptsNumericString(): void
+    {
+        $this->subject->setPriority('1');
+
+        self::assertSame(1, $this->subject->getPriority());
+    }
+
+    /**
+     * @test
+     */
+    public function setPriorityThrowsExceptionWhenNotANumberGiven(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1581703249);
+
+        $this->subject->setPriority('abc');
+    }
+
+    /**
+     * @test
+     */
+    public function setPriorityThrowsExceptionWhenANumberTooLowIsSet(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1581282986);
+
+        $this->subject->setPriority(0);
+    }
+
+    /**
+     * @test
+     */
+    public function setPriorityThrowsExceptionWhenANumberTooHighIsSet(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1581282986);
+
+        $this->subject->setPriority(4);
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetPool(): void
+    {
+        self::assertSame(1, $this->subject->getPool());
+
+        $this->subject->setPool(3);
+
+        self::assertSame(3, $this->subject->getPool());
+    }
+
+    /**
+     * @test
+     */
+    public function setPoolAcceptsNumericString(): void
+    {
+        $this->subject->setPool('1234');
+
+        self::assertSame(1234, $this->subject->getPool());
+    }
+
+    /**
+     * @test
+     */
+    public function setPoolThrowsExceptionWhenNotANumberGiven(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1581703327);
+
+        $this->subject->setPool('abc');
+    }
+
+    /**
+     * @test
+     */
+    public function setPoolThrowsExceptionWhenNotAPositiveIntegerIsGiven(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionCode(1581283150);
+
+        $this->subject->setPool(0);
     }
 }

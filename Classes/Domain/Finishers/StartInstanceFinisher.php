@@ -109,7 +109,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     private function process(): void
     {
         $this->determineStep($this->parseOption('handle'));
-        $this->defaultOptions = $this->step->getDefaultParameters();
 
         $this->initialiseTransfer();
         $this->prepareStepParametersForTransfer();

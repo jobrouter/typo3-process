@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Model;
 
-use Brotkrueml\JobRouterProcess\Domain\Model\CommonStepParameterInterface;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use PHPUnit\Framework\TestCase;
@@ -94,13 +93,5 @@ class StepTest extends TestCase
         $this->expectExceptionCode(1581282590);
 
         $this->subject->setStepNumber(-42);
-    }
-
-    /**
-     * @test
-     */
-    public function defaultStepParameterInterfaceIsImplemented(): void
-    {
-        self::assertInstanceOf(CommonStepParameterInterface::class, $this->subject);
     }
 }

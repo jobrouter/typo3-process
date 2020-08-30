@@ -174,35 +174,6 @@ Process name (required)
 Step Number (required)
    Enter the step number of the process.
 
-Parameters
-''''''''''
-
-You can define default instance parameters. These are used in the form finisher
-when not overridden there.
-
-.. figure:: _images/create-step-link-parameters.png
-   :alt: Create a step link (Parameters)
-
-   Create a step link (Parameters)
-
-Summary
-   Enter the default summary for an instance.
-
-Initiator
-   Enter the default initiator for an instance.
-
-Username
-   Enter the default username which should receive an instance.
-
-Job Function
-   Enter the default Job Function which should receive an instance.
-
-Priority
-   Select the default priority for an instance.
-
-Pool
-   Select the default pool for an instance.
-
 Access
 ''''''
 

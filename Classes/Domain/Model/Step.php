@@ -12,10 +12,8 @@ namespace Brotkrueml\JobRouterProcess\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class Step extends AbstractEntity implements CommonStepParameterInterface
+class Step extends AbstractEntity
 {
-    use CommonStepParameterTrait;
-
     /** @var string */
     protected $handle = '';
 

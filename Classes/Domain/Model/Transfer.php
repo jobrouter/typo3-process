@@ -12,10 +12,8 @@ namespace Brotkrueml\JobRouterProcess\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class Transfer extends AbstractEntity implements CommonStepParameterInterface
+class Transfer extends AbstractEntity
 {
-    use CommonStepParameterTrait;
-
     /**
      * @var int
      */
@@ -30,6 +28,36 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
      * @var string
      */
     protected $type = '';
+
+    /**
+     * @var string
+     */
+    protected $initiator = '';
+
+    /**
+     * @var string
+     */
+    protected $username = '';
+
+    /**
+     * @var string
+     */
+    protected $jobfunction = '';
+
+    /**
+     * @var string
+     */
+    protected $summary = '';
+
+    /**
+     * @var int
+     */
+    protected $priority = 2;
+
+    /**
+     * @var int
+     */
+    protected $pool = 1;
 
     /**
      * @var string
@@ -84,6 +112,104 @@ class Transfer extends AbstractEntity implements CommonStepParameterInterface
     public function setType(string $type): void
     {
         $this->type = $type;
+    }
+
+    public function getInitiator(): string
+    {
+        return $this->initiator;
+    }
+
+    public function setInitiator(string $initiator): void
+    {
+        $this->initiator = $initiator;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getJobfunction(): string
+    {
+        return $this->jobfunction;
+    }
+
+    public function setJobfunction(string $jobfunction): void
+    {
+        $this->jobfunction = $jobfunction;
+    }
+
+    public function getSummary(): string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(string $summary): void
+    {
+        $this->summary = $summary;
+    }
+
+    public function getPriority(): int
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param string|int $priority
+     */
+    public function setPriority($priority): void
+    {
+        if (!\is_numeric($priority)) {
+            throw new \InvalidArgumentException(
+                \sprintf('Priority has to be a number, "%s" given', $priority),
+                1581703249
+            );
+        }
+
+        $priority = (int)$priority;
+
+        if ($priority < 1 || $priority > 3) {
+            throw new \InvalidArgumentException(
+                \sprintf('Priority has to be between 1 and 3, "%d" given', $priority),
+                1581282986
+            );
+        }
+
+        $this->priority = $priority;
+    }
+
+    public function getPool(): int
+    {
+        return $this->pool;
+    }
+
+    /**
+     * @param string|int $pool
+     */
+    public function setPool($pool): void
+    {
+        if (!\is_numeric($pool)) {
+            throw new \InvalidArgumentException(
+                \sprintf('Pool has to be a number, "%s" given', $pool),
+                1581703327
+            );
+        }
+
+        $pool = (int)$pool;
+
+        if ($pool < 1) {
+            throw new \InvalidArgumentException(
+                \sprintf('Pool has to be a positive integer, "%d" given', $pool),
+                1581283150
+            );
+        }
+
+        $this->pool = $pool;
     }
 
     public function getProcesstable(): string

@@ -18,41 +18,14 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_step.handle" resname="tx_jobrouterprocess_domain_model_step.handle">
 				<source><![CDATA[Handle]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.initiator" resname="tx_jobrouterprocess_domain_model_step.initiator">
-				<source><![CDATA[Initiator]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.jobfunction" resname="tx_jobrouterprocess_domain_model_step.jobfunction">
-				<source><![CDATA[Job Function]]></source>
-			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_step.name" resname="tx_jobrouterprocess_domain_model_step.name">
 				<source><![CDATA[Name]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.pool" resname="tx_jobrouterprocess_domain_model_step.pool">
-				<source><![CDATA[Pool]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority" resname="tx_jobrouterprocess_domain_model_step.priority">
-				<source><![CDATA[Priority]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.1" resname="tx_jobrouterprocess_domain_model_step.priority.1">
-				<source><![CDATA[low]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.2" resname="tx_jobrouterprocess_domain_model_step.priority.2">
-				<source><![CDATA[normal]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.priority.3" resname="tx_jobrouterprocess_domain_model_step.priority.3">
-				<source><![CDATA[high]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_step.process" resname="tx_jobrouterprocess_domain_model_step.process">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_step.step_number" resname="tx_jobrouterprocess_domain_model_step.step_number">
 				<source><![CDATA[Step Number]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.summary" resname="tx_jobrouterprocess_domain_model_step.summary">
-				<source><![CDATA[Summary]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.username" resname="tx_jobrouterprocess_domain_model_step.username">
-				<source><![CDATA[Username]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process" resname="tx_jobrouterprocess_domain_model_process">
 				<source><![CDATA[JobRouter Process Link]]></source>
