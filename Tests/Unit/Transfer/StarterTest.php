@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
