@@ -45,7 +45,7 @@ final class LocalisedLabelVariableResolver
         foreach ($matches[1] as $index => $match) {
             $translation = $this->translationService->translate($match);
 
-            if ($translation) {
+            if ($translation !== null) {
                 $value = \str_replace($matches[0][$index], $translation, $value);
             }
         }

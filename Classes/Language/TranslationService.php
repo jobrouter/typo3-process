@@ -17,7 +17,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class TranslationService
 {
-    public function translate(string $key): string
+    public function translate(string $key): ?string
     {
         return LocalizationUtility::translate($key);
     }

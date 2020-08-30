@@ -121,7 +121,7 @@ class LocalisedLabelVariableResolverTest extends TestCase
         $this->translationService
             ->expects(self::once())
             ->method('translate')
-            ->willReturn('');
+            ->willReturn(null);
 
         $event = new ResolveFinisherVariableEvent(
             FieldTypeEnumeration::TEXT,
@@ -135,6 +135,32 @@ class LocalisedLabelVariableResolverTest extends TestCase
 
         self::assertSame(
             'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:not.existing} bar',
+            $event->getValue()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function localisedLabelIsFoundButValueIsEmpty(): void
+    {
+        $this->translationService
+            ->expects(self::once())
+            ->method('translate')
+            ->willReturn('');
+
+        $event = new ResolveFinisherVariableEvent(
+            FieldTypeEnumeration::TEXT,
+            'foo {__LLL:EXT:some_ext/Resources/Private/Language/locallang.xlf:empty} bar',
+            '',
+            [],
+            $this->serverRequestStub
+        );
+
+        $this->subject->__invoke($event);
+
+        self::assertSame(
+            'foo  bar',
             $event->getValue()
         );
     }
