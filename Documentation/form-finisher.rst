@@ -12,6 +12,42 @@ Target group: **Integrators**, **Developers**
    :depth: 3
    :local:
 
+Configuring JobRouter®
+======================
+
+Before you can start instances successfully you have to configure your
+JobRouter® installation to execute steps automatically. The :ref:`command for
+starting instances <command-start>` only saves the step. To send the step you
+need a JobRobot configuration and add the robot user to the Job Function of the
+start step.
+
+.. rst-class:: bignums-xxl
+
+#. Configure JobRobot module
+
+   If you haven't an activated JobRobot configuration you have to create a new
+   user in your JobRouter® installation and configure it under
+   :guilabel:`System` > :guilabel:`Configuration` > :guilabel:`Modules` >
+   :guilabel:`JobRobot`. You see the following screen:
+
+   .. figure:: _images/jobrobot-configuration.png
+      :alt: JobRobot configuration
+
+      JobRobot configuration
+
+   After activating and saving the form the JobRobot user is available.
+
+#. Add JobRobot user to Job Function of start step
+
+   Then add the robot user to the Job Function of the start step. It can then
+   look like this:
+
+   .. figure:: _images/robot-in-job-function.png
+      :alt: Robot user in Job Function of start step
+
+      Robot user in Job Function of start step
+
+
 Start instances
 ===============
 

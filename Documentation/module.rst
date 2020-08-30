@@ -152,10 +152,6 @@ link` button.
 
    Create a step link (General)
 
-.. important::
-   In JobRouter® it is recommended to use a decision step with a routing rule to
-   forward the step to the appropriate user or Job Function.
-
 The following fields are available:
 
 General
