@@ -8,9 +8,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Dashboard\Provider;
+namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusChartDataProvider;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use PHPUnit\Framework\MockObject\Stub;

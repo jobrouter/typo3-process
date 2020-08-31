@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess;
 
-use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransfersPerDayDataProvider;
-use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferStatusChartDataProvider;
-use Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
