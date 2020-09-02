@@ -19,6 +19,7 @@ statistics. You can find them in the :guilabel:`Add widget` wizard on the
 
 .. figure:: _images/dashboard-add-widget.png
    :alt: Add JobRouter widgets
+   :class: with-border
 
    Add JobRouter widgets
 
@@ -42,6 +43,7 @@ The instance starts can be visually displayed with a Dashboard widget:
 
 .. figure:: _images/dashboard-widget-instance-starts.png
    :alt: Instance Starts widget
+   :class: with-border
 
    Instance Starts widget
 
@@ -59,6 +61,7 @@ widget:
 
 .. figure:: _images/dashboard-widget-instance-start-types.png
    :alt: Instance Start Types widget
+   :class: with-border
 
    Instance Start Types widget
 
@@ -72,5 +75,6 @@ The status of the instance starts can be shown with this widget:
 
 .. figure:: _images/dashboard-widget-instance-start-status.png
    :alt: Instance Start Status widget
+   :class: with-border
 
    Instance Start Status widget

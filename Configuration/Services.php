@@ -11,8 +11,9 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess;
 
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\TransferStatusWidget;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -57,15 +58,15 @@ return function (ContainerConfigurator $configurator): void {
 
     $services
         ->set('dashboard.widget.brotkrueml.jobrouter_process.statusOfInstanceStarts')
-        ->class(DoughnutChartWidget::class)
+        ->class(TransferStatusWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
-        ->arg('$dataProvider', new Reference(TransferStatusChartDataProvider::class))
+        ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_process.statusOfInstanceStartsDoughnut',
             'groupNames' => 'jobrouter',
             'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.title',
             'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.description',
-            'iconIdentifier' => 'content-widget-chart-pie',
-            'height' => 'medium',
+            'iconIdentifier' => 'content-widget-number',
+            'height' => 'small',
         ]);
 };

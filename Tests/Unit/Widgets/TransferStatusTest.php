@@ -10,31 +10,70 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets;
 
-use Brotkrueml\JobRouterProcess\Widgets\TransferStatus;
+use Brotkrueml\JobRouterProcess\Domain\Model\TransferStatus;
 use PHPUnit\Framework\TestCase;
 
 class TransferStatusTest extends TestCase
 {
     /**
-     * @test
+     * @var TransferStatus
      */
-    public function statusIsInitialisedCorrectly(): void
-    {
-        $subject = new TransferStatus('some status', '#abcdef');
+    private $subject;
 
-        self::assertSame('some status', $subject->getName());
-        self::assertSame('#abcdef', $subject->getColour());
-        self::assertSame(0, $subject->getCount());
+    protected function setUp(): void
+    {
+        $this->subject = new TransferStatus();
     }
 
     /**
      * @test
      */
-    public function setAndGetCountImplementedCorrectly(): void
+    public function statusIsInitialisedCorrectly(): void
     {
-        $subject = new TransferStatus('', '');
-        $subject->setCount(42);
+        self::assertSame(0, $this->subject->getFailedCount());
+        self::assertSame(0, $this->subject->getPendingCount());
+        self::assertSame(0, $this->subject->getSuccessfulCount());
+        self::assertNull($this->subject->getLastRun());
+    }
 
-        self::assertSame(42, $subject->getCount());
+    /**
+     * @test
+     */
+    public function setAndGetFailedCountImplementedCorrectly(): void
+    {
+        $this->subject->setFailedCount(42);
+
+        self::assertSame(42, $this->subject->getFailedCount());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetPendingCountImplementedCorrectly(): void
+    {
+        $this->subject->setPendingCount(23);
+
+        self::assertSame(23, $this->subject->getPendingCount());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetSuccessfulCountImplementedCorrectly(): void
+    {
+        $this->subject->setSuccessfulCount(12);
+
+        self::assertSame(12, $this->subject->getSuccessfulCount());
+    }
+
+    /**
+     * @test
+     */
+    public function setAndGetLastRunImplementedCorrectly(): void
+    {
+        $date = new \DateTimeImmutable('2020-09-01 16:00:00');
+        $this->subject->setLastRun($date);
+
+        self::assertSame($date, $this->subject->getLastRun());
     }
 }

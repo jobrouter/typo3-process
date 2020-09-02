@@ -1,0 +1,38 @@
+.widget-transfer-status {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.widget-transfer-status__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.widget-transfer-status__date {
+    margin-top: 12px;
+}
+
+.widget-transfer-status__icon {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    width: 42px;
+}
+
+.widget-transfer-status__icon--failed {
+    fill: #a4276a;
+}
+
+.widget-transfer-status__icon--pending {
+    fill: #ff8700;
+}
+
+.widget-transfer-status__icon--successful {
+    fill: #4c7e3a;
+}
+
+.widget-transfer-status__numbers {
+    font-size: 14px;
+}
