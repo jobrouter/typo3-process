@@ -11,10 +11,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Finishers;
 
 use Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher;
+use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolver;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
@@ -32,7 +34,15 @@ class StartInstanceFinisherTest extends TestCase
 
     protected function setUp(): void
     {
+        $GLOBALS['TYPO3_REQUEST'] = $this->createStub(ServerRequestInterface::class);
+
+        $variableResolverStub = $this->createStub(VariableResolver::class);
+        $variableResolverStub->method('setTransferIdentifier');
+        $variableResolverStub->method('setFormValues');
+        $variableResolverStub->method('setRequest');
+
         $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
+        $this->subject->injectVariableResolver($variableResolverStub);
         $this->subject->setLogger(new NullLogger());
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
@@ -45,6 +55,7 @@ class StartInstanceFinisherTest extends TestCase
 
     protected function tearDown(): void
     {
+        unset($GLOBALS['TYPO3_REQUEST']);
         GeneralUtility::purgeInstances();
     }
 

@@ -14,8 +14,8 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
+use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolver;
 use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
-use Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
@@ -26,7 +26,6 @@ use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
@@ -36,14 +35,14 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 {
     use LoggerAwareTrait;
 
-    /** @var EventDispatcher */
-    private $eventDispatcher;
-
     /** @var Preparer */
     private $preparer;
 
     /** @var StepRepository */
     private $stepRepository;
+
+    /** @var VariableResolver */
+    private $variableResolver;
 
     private $stepParameters = [
         'initiator',
@@ -63,11 +62,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     private $transferIdentifier = '';
 
-    public function injectEventDispatcher(EventDispatcher $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-    }
-
     public function injectPreparer(Preparer $preparer): void
     {
         $this->preparer = $preparer;
@@ -78,9 +72,15 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $this->stepRepository = $stepRepository;
     }
 
+    public function injectVariableResolver(VariableResolver $variableResolver)
+    {
+        $this->variableResolver = $variableResolver;
+    }
+
     protected function executeInternal()
     {
         $this->buildTransferIdentifier();
+        $this->initialiseVariableResolver();
 
         if (isset($this->options['handle'])) {
             $options = [$this->options];
@@ -104,6 +104,13 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 \substr(\md5(\uniqid('', true)), 0, 13),
             ]
         );
+    }
+
+    private function initialiseVariableResolver(): void
+    {
+        $this->variableResolver->setTransferIdentifier($this->transferIdentifier);
+        $this->variableResolver->setFormValues($this->finisherContext->getFormValues());
+        $this->variableResolver->setRequest($this->getServerRequest());
     }
 
     private function process(): void
@@ -190,7 +197,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 );
             }
 
-            $value = $this->resolveVariables(FieldTypeEnumeration::TEXT, $value);
+            $value = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $value);
 
             $this->transfer->$setter($value);
         }
@@ -204,26 +211,8 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             return;
         }
 
-        $type = $this->resolveVariables(FieldTypeEnumeration::TEXT, $type);
+        $type = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type);
         $this->transfer->setType($type);
-    }
-
-    private function resolveVariables(int $fieldType, $value): string
-    {
-        if (!\str_contains($value, '{__')) {
-            return $value;
-        }
-
-        $event = new ResolveFinisherVariableEvent(
-            $fieldType,
-            $value,
-            $this->transferIdentifier,
-            $this->finisherContext->getFormValues(),
-            $this->getServerRequest()
-        );
-        $event = $this->eventDispatcher->dispatch($event);
-
-        return $event->getValue();
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -250,15 +239,12 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
                 );
             }
 
-            $value = $this->resolveVariables(
+            $value = $this->variableResolver->resolve(
                 $processTableFields[$processTableField]->getType(),
                 $value
             );
 
-            $value = $this->resolveFormFields(
-                $formValues,
-                $value
-            );
+            $value = $this->resolveFormFields($formValues, $value);
 
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
