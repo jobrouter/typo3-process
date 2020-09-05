@@ -192,7 +192,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
             $value = $this->resolveVariables(FieldTypeEnumeration::TEXT, $value);
 
-            $this->transfer->{'set' . \ucfirst($parameter)}($value);
+            $this->transfer->$setter($value);
         }
     }
 
