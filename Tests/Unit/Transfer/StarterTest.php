@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
@@ -33,6 +34,9 @@ class StarterTest extends TestCase
     /** @var MockObject|StepRepository */
     private $stepRepositoryMock;
 
+    /** @var MockObject|Decrypter */
+    private $decrypter;
+
     protected function setUp(): void
     {
         $this->persistenceManagerMock = $this->createMock(PersistenceManagerInterface::class);
@@ -40,6 +44,8 @@ class StarterTest extends TestCase
         $this->stepRepositoryMock = $this->getMockBuilder(StepRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        $this->decrypter = $this->createMock(Decrypter::class);
 
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
@@ -51,6 +57,7 @@ class StarterTest extends TestCase
             $this->persistenceManagerMock,
             new RestClientFactory(),
             $this->stepRepositoryMock,
+            $this->decrypter,
             $this->transferRepositoryMock
         );
         $this->subject->setLogger(new NullLogger());
@@ -59,7 +66,7 @@ class StarterTest extends TestCase
     /**
      * @test
      */
-    public function startWithNoTransfersAvailableReturns0TotalsAndErrors(): void
+    public function runWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
         $this->transferRepositoryMock
             ->method('findByStartSuccess')

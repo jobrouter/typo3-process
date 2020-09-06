@@ -284,4 +284,16 @@ class TransferTest extends TestCase
 
         $this->subject->setPool(0);
     }
+
+    /**
+     * @test
+     */
+    public function getAndSetEncryptedFields(): void
+    {
+        self::assertSame(0, $this->subject->getEncryptedFields());
+
+        $this->subject->setEncryptedFields(3);
+
+        self::assertSame(3, $this->subject->getEncryptedFields());
+    }
 }

@@ -14,6 +14,7 @@ use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
@@ -47,6 +48,9 @@ class Starter implements LoggerAwareInterface
     /** @var StepRepository */
     private $stepRepository;
 
+    /** @var Decrypter */
+    private $decrypter;
+
     /** @var TransferRepository */
     private $transferRepository;
 
@@ -59,11 +63,13 @@ class Starter implements LoggerAwareInterface
         PersistenceManagerInterface $persistenceManager,
         RestClientFactory $restClientFactory,
         StepRepository $stepRepository,
+        Decrypter $decrypter,
         TransferRepository $transferRepository
     ) {
         $this->persistenceManager = $persistenceManager;
         $this->restClientFactory = $restClientFactory;
         $this->stepRepository = $stepRepository;
+        $this->decrypter = $decrypter;
         $this->transferRepository = $transferRepository;
     }
 
@@ -115,7 +121,7 @@ class Starter implements LoggerAwareInterface
     private function startTransfer(Transfer $transfer): void
     {
         $step = $this->getStep($transfer->getStepUid());
-        $incident = $this->createIncidentFromTransferItem($step, $transfer);
+        $incident = $this->createIncidentFromTransferItem($step, $this->decrypter->decryptIfEncrypted($transfer));
 
         $client = $this->getRestClientForStep($step);
         $response = $client->request(

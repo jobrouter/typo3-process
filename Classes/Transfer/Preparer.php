@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
+use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
@@ -27,23 +28,34 @@ class Preparer implements LoggerAwareInterface
     /** @var PersistenceManagerInterface */
     private $persistenceManager;
 
+    /** @var Encrypter */
+    private $encrypter;
+
     /** @var TransferRepository */
     private $transferRepository;
 
-    public function __construct(PersistenceManagerInterface $persistenceManager, TransferRepository $transferRepository)
-    {
+    public function __construct(
+        PersistenceManagerInterface $persistenceManager,
+        Encrypter $encrypter,
+        TransferRepository $transferRepository
+    ) {
         $this->persistenceManager = $persistenceManager;
+        $this->encrypter = $encrypter;
         $this->transferRepository = $transferRepository;
     }
 
     public function store(Transfer $transfer): void
     {
         try {
-            $this->transferRepository->add($transfer);
+            $this->transferRepository->add($this->encrypter->encryptIfConfigured($transfer));
             $this->persistenceManager->persistAll();
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
-            throw new PrepareException('Transfer record cannot be written', 1581278897, $e);
+            throw new PrepareException(
+                'Transfer record cannot be written, reason: ' . $e->getMessage(),
+                1581278897,
+                $e
+            );
         }
     }
 }

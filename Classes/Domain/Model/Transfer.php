@@ -65,6 +65,12 @@ class Transfer extends AbstractEntity
     protected $processtable = '';
 
     /**
+     * @see class Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet
+     * @var int
+     */
+    protected $encryptedFields = 0;
+
+    /**
      * @var bool
      */
     protected $startSuccess = false;
@@ -240,6 +246,16 @@ class Transfer extends AbstractEntity
             ),
             1582744898
         );
+    }
+
+    public function getEncryptedFields(): int
+    {
+        return $this->encryptedFields;
+    }
+
+    public function setEncryptedFields(int $encryptedFields): void
+    {
+        $this->encryptedFields = $encryptedFields;
     }
 
     public function isStartSuccess(): bool

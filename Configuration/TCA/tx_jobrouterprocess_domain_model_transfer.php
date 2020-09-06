@@ -36,43 +36,49 @@ return [
             ],
         ],
         'initiator' => [
-            'label' => 'Data',
+            'label' => 'Initiator',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'username' => [
-            'label' => 'Data',
+            'label' => 'Username',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'jobfunction' => [
-            'label' => 'Data',
+            'label' => 'Job Function',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'summary' => [
-            'label' => 'Data',
+            'label' => 'Summary',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'priority' => [
-            'label' => 'Data',
+            'label' => 'Priority',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'pool' => [
-            'label' => 'Data',
+            'label' => 'Pool',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'processtable' => [
-            'label' => 'Data',
+            'label' => 'Process table',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'encrypted_fields' => [
+            'label' => 'Encrypted fields',
             'config' => [
                 'type' => 'input',
             ],
@@ -95,8 +101,5 @@ return [
                 'type' => 'input',
             ],
         ],
-    ],
-    'types' => [
-        '1' => ['showitem' => 'step_uid, identifier, data, start_success, start_date, start_message'],
     ],
 ];

@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
+use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
@@ -27,15 +28,23 @@ class PreparerTest extends TestCase
     /** @var MockObject|PersistenceManager */
     private $persistenceManagerMock;
 
+    /** @var MockObject|Encrypter */
+    private $encrypterMock;
+
     /** @var MockObject|TransferRepository */
     private $transferRepositoryMock;
 
     protected function setUp(): void
     {
         $this->persistenceManagerMock = $this->createMock(PersistenceManager::class);
+        $this->encrypterMock = $this->createMock(Encrypter::class);
         $this->transferRepositoryMock = $this->createMock(TransferRepository::class);
 
-        $this->subject = new Preparer($this->persistenceManagerMock, $this->transferRepositoryMock);
+        $this->subject = new Preparer(
+            $this->persistenceManagerMock,
+            $this->encrypterMock,
+            $this->transferRepositoryMock
+        );
         $this->subject->setLogger(new NullLogger());
     }
 
@@ -52,6 +61,10 @@ class PreparerTest extends TestCase
         $this->persistenceManagerMock
             ->expects(self::once())
             ->method('persistAll');
+        $this->encrypterMock
+            ->expects(self::once())
+            ->method('encryptIfConfigured')
+            ->willReturn($transfer);
         $this->transferRepositoryMock
             ->expects(self::once())
             ->method('add');
@@ -68,6 +81,10 @@ class PreparerTest extends TestCase
         $this->expectExceptionCode(1581278897);
         $this->expectExceptionMessage('Transfer record cannot be written');
 
+        $this->encrypterMock
+            ->expects(self::once())
+            ->method('encryptIfConfigured')
+            ->willReturn(new Transfer());
         $this->transferRepositoryMock
             ->method('add')
             ->willThrowException(new \Exception());

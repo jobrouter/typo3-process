@@ -6,3 +6,6 @@ logIntoTable = 0
 
 # cat=Log; type=options[emergency,alert,critical,error,warning,notice,info,debug]; label=LLL:EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf:logLevel
 logLevel = warning
+
+# cat=Encryption; type=boolean; label=LLL:EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf:encryptTransferData
+encryptTransferData = 0

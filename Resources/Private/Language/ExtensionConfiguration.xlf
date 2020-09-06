@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-02-09T15:37:12Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-09-05T13:44:54Z" product-name="jobrouter_process">
 		<header/>
 		<body>
+			<trans-unit id="encryptTransferData" resname="encryptTransferData">
+				<source><![CDATA[Encrypt transfer data [processtable, summary]: Please note: If you lose or change the encryption key (generated with the JobRouter Connector extension), data cannot be decrypted by the start process command anymore!]]></source>
+			</trans-unit>
 			<trans-unit id="logIntoFile" resname="logIntoFile">
-				<source><![CDATA[Log into file (typo3_jobrouter_process_<hash>.log)]]></source>
+				<source><![CDATA[Log into file: File: var/log/typo3_jobrouter_process_<hash>.log]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoTable" resname="logIntoTable">
-				<source><![CDATA[Log into table (tx_jobrouterconnector_log)]]></source>
+				<source><![CDATA[Log into table: Table: tx_jobrouterconnector_log]]></source>
 			</trans-unit>
 			<trans-unit id="logLevel" resname="logLevel">
 				<source><![CDATA[Log level]]></source>
