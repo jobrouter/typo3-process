@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Finishers;
 
+use Brotkrueml\JobRouterBase\Domain\VariableResolver\VariableResolver;
 use Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher;
-use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolver;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;

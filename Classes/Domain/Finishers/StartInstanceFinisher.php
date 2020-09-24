@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
+use Brotkrueml\JobRouterBase\Domain\VariableResolver\VariableResolver;
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use Brotkrueml\JobRouterProcess\Domain\VariableResolver\VariableResolver;
-use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;

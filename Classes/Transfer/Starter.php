@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
@@ -21,7 +22,6 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;

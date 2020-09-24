@@ -40,30 +40,6 @@ services:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterprocess_domain_model_transfer'
 
-  Brotkrueml\JobRouterProcess\Domain\VariableResolver\JobRouterLanguageVariableResolver:
-    tags:
-      - name: event.listener
-        identifier: 'jobrouter-process/jobrouter-language-variable-resolver'
-        event: Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent
-
-  Brotkrueml\JobRouterProcess\Domain\VariableResolver\LanguageVariableResolver:
-    tags:
-      - name: event.listener
-        identifier: 'jobrouter-process/language-variable-resolver'
-        event: Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent
-
-  Brotkrueml\JobRouterProcess\Domain\VariableResolver\LocalisedLabelVariableResolver:
-    tags:
-      - name: event.listener
-        identifier: 'jobrouter-process/localised-label-variable-resolver'
-        event: Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent
-
-  Brotkrueml\JobRouterProcess\Domain\VariableResolver\TransferIdentifierVariableResolver:
-    tags:
-      - name: event.listener
-        identifier: 'jobrouter-process/transfer-identifier-variable-resolver'
-        event: Brotkrueml\JobRouterProcess\Event\ResolveFinisherVariableEvent
-
   Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider:
     tags:
       - name: event.listener
