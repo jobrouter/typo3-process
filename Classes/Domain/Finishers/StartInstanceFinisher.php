@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
+use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
@@ -164,11 +165,12 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
             return;
         }
 
-        $formValues = $this->prepareFormValuesForSubstitution();
+        $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
+            $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
+            $this->finisherContext->getFormValues()
+        );
         $processTableFields = $this->prepareProcessTableFields();
-
         $processTable = [];
-
         foreach ($this->options['processtable'] as $processTableField => $value) {
             if (!\array_key_exists($processTableField, $processTableFields)) {
                 throw new MissingProcessTableFieldException(
@@ -197,35 +199,6 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
         }
 
         $this->transfer->setProcesstable($processTable);
-    }
-
-    private function prepareFormValuesForSubstitution(): array
-    {
-        $allFormElements = $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements();
-        \array_walk($allFormElements, function (&$element): void {
-            $element = '';
-        });
-
-        $formValues = \array_merge($allFormElements, $this->finisherContext->getFormValues());
-        $preparedFormValues = [];
-
-        foreach ($formValues as $name => $value) {
-            $preparedFormValues[\sprintf('{%s}', $name)]
-                = \is_array($value) ? $this->convertArrayToCsv($value) : $value;
-        }
-
-        return $preparedFormValues;
-    }
-
-    private function convertArrayToCsv(array $values): string
-    {
-        $fp = \fopen('php://memory', 'r+');
-        if (\fputcsv($fp, $values) === false) {
-            return '';
-        }
-        \rewind($fp);
-
-        return \trim(\stream_get_contents($fp));
     }
 
     /**
