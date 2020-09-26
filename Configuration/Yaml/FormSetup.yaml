@@ -3,6 +3,9 @@ TYPO3:
     Form:
       prototypes:
         standard:
+          formEditor:
+            translationFiles:
+              1581265491: 'EXT:jobrouter_process/Resources/Private/Language/Form.xlf'
           formElementsDefinition:
             Form:
               formEditor:
@@ -11,7 +14,7 @@ TYPO3:
                     selectOptions:
                       1581265491:
                         value: 'JobRouterStartInstance'
-                        label: 'Start JobRouter Instance'
+                        label: 'formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label'
                 propertyCollections:
                   finishers:
                     1581265491:
@@ -19,7 +22,7 @@ TYPO3:
                       editors:
                         100:
                           identifier: 'header'
-                          label: 'Start JobRouter Instance'
+                          label: 'formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label'
                           templateName: 'Inspector-CollectionElementHeaderEditor'
                         9999:
                           identifier: 'removeButton'
@@ -29,6 +32,6 @@ TYPO3:
               implementationClassName: 'Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher'
               formEditor:
                 iconIdentifier: 'form-finisher'
-                label: 'Start JobRouter Instance'
+                label: 'formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label'
                 predefinedDefaults:
                   options: []
