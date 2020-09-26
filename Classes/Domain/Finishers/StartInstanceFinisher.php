@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
-use Brotkrueml\JobRouterBase\Domain\VariableResolver\VariableResolver;
+use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
@@ -23,15 +23,13 @@ use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
  * @internal
  */
-final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwareInterface
+final class StartInstanceFinisher extends AbstractTransferFinisher implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -40,9 +38,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
 
     /** @var StepRepository */
     private $stepRepository;
-
-    /** @var VariableResolver */
-    private $variableResolver;
 
     private $stepParameters = [
         'initiator',
@@ -60,8 +55,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
     /** @var Transfer */
     private $transfer;
 
-    private $transferIdentifier = '';
-
     public function injectPreparer(Preparer $preparer): void
     {
         $this->preparer = $preparer;
@@ -72,48 +65,7 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $this->stepRepository = $stepRepository;
     }
 
-    public function injectVariableResolver(VariableResolver $variableResolver)
-    {
-        $this->variableResolver = $variableResolver;
-    }
-
-    protected function executeInternal()
-    {
-        $this->buildTransferIdentifier();
-        $this->initialiseVariableResolver();
-
-        if (isset($this->options['handle'])) {
-            $options = [$this->options];
-        } else {
-            $options = $this->options;
-        }
-
-        foreach ($options as $option) {
-            $this->options = $option;
-            $this->process();
-        }
-    }
-
-    private function buildTransferIdentifier(): void
-    {
-        $this->transferIdentifier = \implode(
-            '_',
-            [
-                'form',
-                $this->getFormIdentifier(),
-                \substr(\md5(\uniqid('', true)), 0, 13),
-            ]
-        );
-    }
-
-    private function initialiseVariableResolver(): void
-    {
-        $this->variableResolver->setTransferIdentifier($this->transferIdentifier);
-        $this->variableResolver->setFormValues($this->finisherContext->getFormValues());
-        $this->variableResolver->setRequest($this->getServerRequest());
-    }
-
-    private function process(): void
+    protected function process(): void
     {
         $this->determineStep($this->parseOption('handle'));
 
@@ -169,15 +121,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         $this->transfer = new Transfer();
         $this->transfer->setStepUid($this->step->getUid());
         $this->transfer->setIdentifier($this->transferIdentifier);
-    }
-
-    private function getFormIdentifier(): string
-    {
-        return $this
-            ->finisherContext
-            ->getFormRuntime()
-            ->getFormDefinition()
-            ->getIdentifier();
     }
 
     private function prepareStepParametersForTransfer(): void
@@ -285,15 +228,6 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
         return \trim(\stream_get_contents($fp));
     }
 
-    private function resolveFormFields(array $formValues, $value): string
-    {
-        return \str_replace(
-            \array_keys($formValues),
-            \array_values($formValues),
-            $value
-        );
-    }
-
     /**
      * @return Processtablefield[]
      */
@@ -329,10 +263,5 @@ final class StartInstanceFinisher extends AbstractFinisher implements LoggerAwar
             \sprintf('The field type "%d" is invalid', $type),
             1581344823
         );
-    }
-
-    private function getServerRequest(): ServerRequestInterface
-    {
-        return $GLOBALS['TYPO3_REQUEST'];
     }
 }
