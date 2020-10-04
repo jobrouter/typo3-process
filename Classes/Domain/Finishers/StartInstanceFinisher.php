@@ -229,7 +229,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
                 return $value;
             case FieldTypeEnumeration::INTEGER:
-                return (int)$value;
+                return $value === '' ? '' : (int)$value;
         }
 
         throw new InvalidFieldTypeException(
