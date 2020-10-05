@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Finishers;
 
-use Brotkrueml\JobRouterBase\Domain\VariableResolver\VariableResolver;
+use Brotkrueml\JobRouterBase\Domain\Transfer\IdentifierGenerator;
+use Brotkrueml\JobRouterBase\Domain\VariableResolvers\VariableResolver;
 use Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
@@ -41,8 +42,14 @@ class StartInstanceFinisherTest extends TestCase
         $variableResolverStub->method('setFormValues');
         $variableResolverStub->method('setRequest');
 
+        $identifierGeneratorStub = $this->createStub(IdentifierGenerator::class);
+        $identifierGeneratorStub
+            ->method('build')
+            ->willReturn('some-identifier');
+
         $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
         $this->subject->injectVariableResolver($variableResolverStub);
+        $this->subject->injectIdentifierGenerator($identifierGeneratorStub);
         $this->subject->setLogger(new NullLogger());
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
