@@ -62,7 +62,7 @@ return function (ContainerConfigurator $configurator): void {
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
         ->tag('dashboard.widget', [
-            'identifier' => 'jobrouter_process.statusOfInstanceStartsDoughnut',
+            'identifier' => 'jobrouter_process.statusOfInstanceStarts',
             'groupNames' => 'jobrouter',
             'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfInstanceStarts.title',
             'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfInstanceStarts.description',
