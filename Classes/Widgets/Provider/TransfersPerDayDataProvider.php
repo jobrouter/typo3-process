@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
+use Brotkrueml\JobRouterBase\Extension as BaseExtension;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -77,7 +78,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 
         for ($ts = $startDate->format('U'); $ts < $endDate->format('U'); $ts += 86400) {
             $labels[(int)$ts] = \date(
-                $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':dateFormat'),
+                $this->languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
                 (int)$ts
             );
 

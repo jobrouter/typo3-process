@@ -30,27 +30,4 @@ defined('TYPO3_MODE') || die('Access denied.');
         TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         ['source' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-toolbar.svg']
     );
-    foreach (['failed', 'pending', 'successful'] as $status) {
-        $iconRegistry->registerIcon(
-            'jobrouter-process-status-' . $status,
-            TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            [
-                'source' => \sprintf(
-                    'EXT:%s/Resources/Public/Icons/status-%s.svg',
-                    Brotkrueml\JobRouterProcess\Extension::KEY,
-                    $status
-                )
-            ]
-        );
-    }
-
-    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup('
-        module.tx_dashboard {
-            view {
-                templateRootPaths.1598898800 = EXT:jobrouter_process/Resources/Private/Templates/
-                partialRootPaths.1598898800 = EXT:jobrouter_process/Resources/Private/Partials/
-                layoutRootPaths.1598898800 = EXT:jobrouter_process/Resources/Private/Layouts/
-            }
-        }'
-    );
 })();
