@@ -35,8 +35,8 @@ return function (ContainerConfigurator $configurator): void {
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_process.transfersPerDayBar',
             'groupNames' => 'jobrouter',
-            'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.title',
-            'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.transfersPerDay.description',
+            'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transfersPerDay.title',
+            'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transfersPerDay.description',
             'iconIdentifier' => 'content-widget-chart-bar',
             'height' => 'medium',
             'width' => 'medium',
@@ -50,8 +50,8 @@ return function (ContainerConfigurator $configurator): void {
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_process.typeOfInstanceStartsDoughnut',
             'groupNames' => 'jobrouter',
-            'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.typeOfInstanceStarts.title',
-            'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.typeOfInstanceStarts.description',
+            'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.typeOfInstanceStarts.title',
+            'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.typeOfInstanceStarts.description',
             'iconIdentifier' => 'content-widget-chart-pie',
             'height' => 'medium',
         ]);
@@ -64,8 +64,8 @@ return function (ContainerConfigurator $configurator): void {
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_process.statusOfInstanceStartsDoughnut',
             'groupNames' => 'jobrouter',
-            'title' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.title',
-            'description' => 'LLL:EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf:widgets.statusOfInstanceStarts.description',
+            'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfInstanceStarts.title',
+            'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfInstanceStarts.description',
             'iconIdentifier' => 'content-widget-number',
             'height' => 'small',
         ]);
