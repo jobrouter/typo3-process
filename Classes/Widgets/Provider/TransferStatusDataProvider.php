@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Model\TransferStatus;
+use Brotkrueml\JobRouterBase\Domain\Model\TransferStatus;
+use Brotkrueml\JobRouterBase\Widgets\Provider\TransferStatusDataProviderInterface;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use TYPO3\CMS\Core\Registry;
@@ -18,7 +19,7 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
-final class TransferStatusDataProvider
+final class TransferStatusDataProvider implements TransferStatusDataProviderInterface
 {
     /**
      * @var Registry
