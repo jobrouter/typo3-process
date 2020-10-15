@@ -40,7 +40,8 @@
 		"friendsofphp/php-cs-fixer": "^2.16",
 		"php-coveralls/php-coveralls": "^2.2",
 		"phpunit/phpunit": "^8.5 || ^9.1",
-		"typo3/cms-dashboard": "^10.4"
+		"typo3/cms-dashboard": "^10.4",
+		"typo3/coding-standards": "^0.2"
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts",
