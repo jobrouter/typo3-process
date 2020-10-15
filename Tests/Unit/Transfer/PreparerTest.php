@@ -56,7 +56,7 @@ class PreparerTest extends TestCase
     {
         $transfer = new Transfer();
         $transfer->setStepUid(42);
-        $transfer->setIdentifier('some identifier');
+        $transfer->setCorrelationId('some identifier');
         $transfer->setProcesstable('some data');
 
         $this->persistenceManagerMock

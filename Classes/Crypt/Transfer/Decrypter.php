@@ -60,9 +60,9 @@ class Decrypter
         } catch (CryptException $e) {
             throw new DecryptException(
                 \sprintf(
-                    'Field "%s" in transfer with identifier "%s" cannot be decrypted, reason: %s',
+                    'Field "%s" in transfer with uid "%s" cannot be decrypted, reason: %s',
                     $field,
-                    $this->decryptedTransfer->getIdentifier(),
+                    $this->decryptedTransfer->getUid(),
                     $e->getMessage()
                 ),
                 1599323431,

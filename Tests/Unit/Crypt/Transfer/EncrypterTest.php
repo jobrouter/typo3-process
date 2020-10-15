@@ -143,11 +143,12 @@ class EncrypterTest extends TestCase
         $loggerMock
             ->expects(self::once())
             ->method('warning')
-            ->with('Field "processtable" in transfer with identifier "some identifier" cannot be encrypted, it will be stored unencrypted, reason: some crypt error');
+            ->with('Field "processtable" in transfer with uid "38" cannot be encrypted, it will be stored unencrypted, reason: some crypt error');
         $this->subject->setLogger($loggerMock);
 
         $transfer = new Transfer();
-        $transfer->setIdentifier('some identifier');
+        $transfer->_setProperty('uid', 38);
+        $transfer->setCorrelationId('some identifier');
         $transfer->setProcesstable('processtable');
         $actual = $this->subject->encryptIfConfigured($transfer);
 

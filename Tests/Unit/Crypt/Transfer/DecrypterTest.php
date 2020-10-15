@@ -113,14 +113,15 @@ class DecrypterTest extends TestCase
     {
         $this->expectException(DecryptException::class);
         $this->expectExceptionCode(1599323431);
-        $this->expectExceptionMessage('Field "processtable" in transfer with identifier "some identifier" cannot be decrypted, reason: some crypt error');
+        $this->expectExceptionMessage('Field "processtable" in transfer with uid "21" cannot be decrypted, reason: some crypt error');
 
         $this->cryptServiceMock
             ->method('decrypt')
             ->willThrowException(new CryptException('some crypt error'));
 
         $transfer = new Transfer();
-        $transfer->setIdentifier('some identifier');
+        $transfer->_setProperty('uid', 21);
+        $transfer->setCorrelationId('some identifier');
         $transfer->setProcesstable('encrypted processtable');
         $encryptedFields = new EncryptedFieldsBitSet();
         $encryptedFields->set(EncryptedFieldsBitSet::PROCESSTABLE);

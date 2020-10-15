@@ -70,9 +70,9 @@ class Encrypter implements LoggerAwareInterface
         } catch (CryptException $e) {
             $this->logger->warning(
                 \sprintf(
-                    'Field "%s" in transfer with identifier "%s" cannot be encrypted, it will be stored unencrypted, reason: %s',
+                    'Field "%s" in transfer with uid "%s" cannot be encrypted, it will be stored unencrypted, reason: %s',
                     $field,
-                    $this->encryptedTransfer->getIdentifier(),
+                    $this->encryptedTransfer->getUid(),
                     $e->getMessage()
                 )
             );

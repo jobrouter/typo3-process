@@ -122,7 +122,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
     {
         $this->transfer = new Transfer();
         $this->transfer->setStepUid($this->step->getUid());
-        $this->transfer->setIdentifier($this->transferIdentifier);
+        $this->transfer->setCorrelationId($this->correlationId);
     }
 
     private function prepareStepParametersForTransfer(): void
