@@ -23,6 +23,7 @@ return [
         'rootLevel' => 1,
         'searchFields' => 'name,description',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg',
+        'hideTable' => true,
     ],
     'columns' => [
         'disabled' => [
