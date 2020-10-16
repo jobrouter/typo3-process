@@ -35,7 +35,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     /**
      * @var int
      */
-    private $numberOfDays = 14;
+    private $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
 
     public function __construct(
         LanguageService $languageService,

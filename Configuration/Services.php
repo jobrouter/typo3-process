@@ -20,6 +20,7 @@ use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
+use Brotkrueml\JobRouterProcess\Widgets\TypeOfInstanceStartsWidget;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
@@ -27,7 +28,6 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
-use TYPO3\CMS\Dashboard\Widgets\DoughnutChartWidget;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -88,11 +88,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         $parameters->set('jobrouter_process.widget.typeOfInstanceStarts.numberOfDays', 14);
 
         $services
-            ->set('Brotkrueml\JobRouterProcess\Dashboard\Provider\TransfersPerDayDataProvider')
+            ->set(TransfersPerDayDataProvider::class)
             ->call('setNumberOfDays', ['%jobrouter_process.widget.transfersPerDay.numberOfDays%']);
 
         $services
-            ->set('Brotkrueml\JobRouterProcess\Dashboard\Provider\TransferTypeChartDataProvider')
+            ->set(TransferTypeChartDataProvider::class)
             ->call('setNumberOfDays', ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']);
 
         $services
@@ -112,9 +112,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         $services
             ->set('dashboard.widget.brotkrueml.jobrouter_process.typeOfInstanceStarts')
-            ->class(DoughnutChartWidget::class)
+            ->class(TypeOfInstanceStartsWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
+            ->arg('$options', ['numberOfDays' => Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS])
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.typeOfInstanceStartsDoughnut',
                 'groupNames' => 'jobrouter',

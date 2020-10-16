@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2020-09-01T16:01:37Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2020-09-16T11:57:23Z" product-name="jobrouter_process">
 		<header/>
 		<body>
 			<trans-unit id="dateFormat" resname="dateFormat">
@@ -47,6 +47,12 @@
 			</trans-unit>
 			<trans-unit id="widgets.typeOfInstanceStarts.title" resname="widgets.typeOfInstanceStarts.title">
 				<source><![CDATA[Instance Start Types]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.typeOfInstanceStarts.title.lastDay" resname="widgets.typeOfInstanceStarts.title.lastDay">
+				<source><![CDATA[(last 1 day)]]></source>
+			</trans-unit>
+			<trans-unit id="widgets.typeOfInstanceStarts.title.lastDays" resname="widgets.typeOfInstanceStarts.title.lastDays">
+				<source><![CDATA[(last %d days)]]></source>
 			</trans-unit>
 		</body>
 	</file>
