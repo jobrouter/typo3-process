@@ -15,6 +15,15 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Transfer extends AbstractEntity
 {
+    // The user interaction on the website has priority over eventually wrong
+    // step parameters (and then error when starting the incident). So, for
+    // avoiding exception on inserting to long data into the transfer table
+    // the according parameter is cut to the maximum character length allowed.
+    protected const MAX_LENGTH_INITIATOR = 50;
+    protected const MAX_LENGTH_JOBFUNCTION = 50;
+    protected const MAX_LENGTH_SUMMARY = 255;
+    protected const MAX_LENGTH_USERNAME = 50;
+
     /**
      * @var int
      */
@@ -128,7 +137,7 @@ class Transfer extends AbstractEntity
 
     public function setInitiator(string $initiator): void
     {
-        $this->initiator = $initiator;
+        $this->initiator = \mb_substr($initiator, 0, self::MAX_LENGTH_INITIATOR);
     }
 
     public function getUsername(): string
@@ -138,7 +147,7 @@ class Transfer extends AbstractEntity
 
     public function setUsername(string $username): void
     {
-        $this->username = $username;
+        $this->username = \mb_substr($username, 0, self::MAX_LENGTH_USERNAME);
     }
 
     public function getJobfunction(): string
@@ -148,7 +157,7 @@ class Transfer extends AbstractEntity
 
     public function setJobfunction(string $jobfunction): void
     {
-        $this->jobfunction = $jobfunction;
+        $this->jobfunction = \mb_substr($jobfunction, 0, self::MAX_LENGTH_JOBFUNCTION);
     }
 
     public function getSummary(): string
@@ -158,7 +167,7 @@ class Transfer extends AbstractEntity
 
     public function setSummary(string $summary): void
     {
-        $this->summary = $summary;
+        $this->summary = \mb_substr($summary, 0, self::MAX_LENGTH_SUMMARY);
     }
 
     public function getPriority(): int

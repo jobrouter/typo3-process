@@ -154,6 +154,26 @@ class TransferTest extends TestCase
     /**
      * @test
      */
+    public function setInitiatorCutsValueToMaxAllowedCharLength(): void
+    {
+        $this->subject->setInitiator('12345678901234567890123456789012345678901234567890shouldbecut');
+
+        self::assertSame('12345678901234567890123456789012345678901234567890', $this->subject->getInitiator());
+    }
+
+    /**
+     * @test
+     */
+    public function setInitiatorCutsValueToMaxAllowedCharLengthRecognisingMultibyte(): void
+    {
+        $this->subject->setInitiator('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظرًا لأن الطول غير كافٍ بعد ، فهناك جملة أخرى.');
+
+        self::assertSame('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظر', $this->subject->getInitiator());
+    }
+
+    /**
+     * @test
+     */
     public function getAndSetUsername(): void
     {
         self::assertSame('', $this->subject->getUsername());
@@ -161,6 +181,26 @@ class TransferTest extends TestCase
         $this->subject->setUsername('some username');
 
         self::assertSame('some username', $this->subject->getUsername());
+    }
+
+    /**
+     * @test
+     */
+    public function setUsernameCutsValueToMaxAllowedCharLength(): void
+    {
+        $this->subject->setUsername('12345678901234567890123456789012345678901234567890shouldbecut');
+
+        self::assertSame('12345678901234567890123456789012345678901234567890', $this->subject->getUsername());
+    }
+
+    /**
+     * @test
+     */
+    public function setUsernameCutsValueToMaxAllowedCharLengthRecognisingMultibyte(): void
+    {
+        $this->subject->setUsername('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظرًا لأن الطول غير كافٍ بعد ، فهناك جملة أخرى.');
+
+        self::assertSame('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظر', $this->subject->getUsername());
     }
 
     /**
@@ -178,6 +218,26 @@ class TransferTest extends TestCase
     /**
      * @test
      */
+    public function setJobfunctionCutsValueToMaxAllowedCharLength(): void
+    {
+        $this->subject->setJobfunction('12345678901234567890123456789012345678901234567890shouldbecut');
+
+        self::assertSame('12345678901234567890123456789012345678901234567890', $this->subject->getJobfunction());
+    }
+
+    /**
+     * @test
+     */
+    public function setJobfunctionCutsValueToMaxAllowedCharLengthRecognisingMultibyte(): void
+    {
+        $this->subject->setJobfunction('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظرًا لأن الطول غير كافٍ بعد ، فهناك جملة أخرى.');
+
+        self::assertSame('هذا نص طويل للتحقق من الحد الأقصى لطول البادئ. نظر', $this->subject->getJobfunction());
+    }
+
+    /**
+     * @test
+     */
     public function getAndSetSummary(): void
     {
         self::assertSame('', $this->subject->getSummary());
@@ -185,6 +245,19 @@ class TransferTest extends TestCase
         $this->subject->setSummary('some summary');
 
         self::assertSame('some summary', $this->subject->getSummary());
+    }
+
+    /**
+     * @test
+     */
+    public function setSummaryCutsValueToMaxAllowedCharLength(): void
+    {
+        $this->subject->setSummary('123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345shouldbecut');
+
+        self::assertSame(
+            '123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345',
+            $this->subject->getSummary()
+        );
     }
 
     /**
