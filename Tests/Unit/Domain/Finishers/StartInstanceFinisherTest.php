@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Finishers;
 
-use Brotkrueml\JobRouterBase\Domain\Transfer\IdentifierGenerator;
+use Brotkrueml\JobRouterBase\Domain\Correlation\IdGenerator;
 use Brotkrueml\JobRouterBase\Domain\VariableResolvers\VariableResolver;
 use Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
@@ -39,18 +39,18 @@ class StartInstanceFinisherTest extends TestCase
         $GLOBALS['TYPO3_REQUEST'] = $this->createStub(ServerRequestInterface::class);
 
         $variableResolverStub = $this->createStub(VariableResolver::class);
-        $variableResolverStub->method('setTransferIdentifier');
+        $variableResolverStub->method('setCorrelationId');
         $variableResolverStub->method('setFormValues');
         $variableResolverStub->method('setRequest');
 
-        $identifierGeneratorStub = $this->createStub(IdentifierGenerator::class);
+        $identifierGeneratorStub = $this->createStub(IdGenerator::class);
         $identifierGeneratorStub
             ->method('build')
             ->willReturn('some-identifier');
 
         $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
         $this->subject->injectVariableResolver($variableResolverStub);
-        $this->subject->injectIdentifierGenerator($identifierGeneratorStub);
+        $this->subject->injectIdGenerator($identifierGeneratorStub);
         $this->subject->setLogger(new NullLogger());
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
