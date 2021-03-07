@@ -17,6 +17,12 @@ return [
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg'
     ],
     'columns' => [
+        'crdate' => [
+            'label' => 'Crdate',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
         'step_uid' => [
             'label' => 'Table',
             'config' => [

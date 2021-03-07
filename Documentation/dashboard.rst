@@ -78,3 +78,14 @@ The status of the instance starts can be shown with this widget:
    :class: with-border
 
    Instance Start Status widget
+
+Instance start errors
+=====================
+
+If errors occur when starting an instance, they can be displayed with this widget:
+
+.. figure:: _images/dashboard-widget-instance-start-error.png
+   :alt: Instance Start Error widget
+   :class: with-border
+
+   Instance Start Errors widget

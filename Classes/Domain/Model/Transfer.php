@@ -27,6 +27,11 @@ class Transfer extends AbstractEntity
     /**
      * @var int
      */
+    protected $crdate = 0;
+
+    /**
+     * @var int
+     */
     protected $stepUid = 0;
 
     /**
@@ -98,6 +103,11 @@ class Transfer extends AbstractEntity
     public function __construct()
     {
         $this->setPid(0);
+    }
+
+    public function getCrdate(): int
+    {
+        return $this->crdate;
     }
 
     public function getStepUid(): int

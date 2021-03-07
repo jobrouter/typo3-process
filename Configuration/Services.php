@@ -11,12 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess;
 
+use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
 use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
 use Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand;
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
+use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
@@ -137,6 +139,21 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfInstanceStarts.description',
                 'iconIdentifier' => 'content-widget-number',
                 'height' => 'small',
+            ]);
+
+        $services
+            ->set('dashboard.widget.brotkrueml.jobrouter_process.transferReport')
+            ->class(TransferReportWidget::class)
+            ->arg('$view', new Reference('dashboard.views.widget'))
+            ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
+            ->tag('dashboard.widget', [
+                'identifier' => 'jobrouter_process.transferReport',
+                'groupNames' => 'jobrouter',
+                'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transferReport.title',
+                'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transferReport.description',
+                'iconIdentifier' => 'content-widget-table',
+                'height' => 'medium',
+                'width' => 'large',
             ]);
     }
 };
