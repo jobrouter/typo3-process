@@ -55,11 +55,16 @@ class TransferStatusDataProviderTest extends TestCase
             ->method('countGroupByStartSuccess')
             ->willReturn([]);
 
+        $this->transferRepositoryStub
+            ->method('findFirstCreationDate')
+            ->willReturn(0);
+
         $actual = $this->subject->getStatus();
 
         self::assertSame(0, $actual->getFailedCount());
         self::assertSame(0, $actual->getPendingCount());
         self::assertSame(0, $actual->getSuccessfulCount());
+        self::assertSame(0, $actual->getNumberOfDays());
     }
 
     /**
@@ -160,6 +165,34 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(5, $actual->getFailedCount());
         self::assertSame(7, $actual->getPendingCount());
         self::assertSame(19, $actual->getSuccessfulCount());
+    }
+
+    /**
+     * @test
+     */
+    public function getStatusReturns1ForGetNumberOfDaysWhenTheEntryIsFromJustNow(): void
+    {
+        $this->transferRepositoryStub
+            ->method('findFirstCreationDate')
+            ->willReturn(\time() - 5);
+
+        $actual = $this->subject->getStatus();
+
+        self::assertSame(1, $actual->getNumberOfDays());
+    }
+
+    /**
+     * @test
+     */
+    public function getStatusReturns2ForGetNumberOfDaysWhenTheEntryIsJustOneDayAndASecondAgo()
+    {
+        $this->transferRepositoryStub
+            ->method('findFirstCreationDate')
+            ->willReturn(\time() - 86401);
+
+        $actual = $this->subject->getStatus();
+
+        self::assertSame(2, $actual->getNumberOfDays());
     }
 
     /**

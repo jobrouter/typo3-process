@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
  */
 class TransferRepository
 {
+    private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_transfer';
+
     /**
      * @var QueryBuilder
      */
@@ -30,10 +32,12 @@ class TransferRepository
 
     public function countGroupByStartSuccess(): array
     {
-        return $this->queryBuilder
+        $queryBuilder = $this->createQueryBuilder();
+
+        return $queryBuilder
             ->select('start_success')
-            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
-            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
+            ->from(self::TABLE_NAME)
             ->groupBy('start_success')
             ->execute()
             ->fetchAll();
@@ -41,20 +45,22 @@ class TransferRepository
 
     public function countStartFailed(): int
     {
+        $queryBuilder = $this->createQueryBuilder();
+
         $whereExpressions = [
-            $this->queryBuilder->expr()->eq(
+            $queryBuilder->expr()->eq(
                 'start_success',
-                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
             ),
-            $this->queryBuilder->expr()->gt(
+            $queryBuilder->expr()->gt(
                 'start_date',
-                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
             ),
         ];
 
-        $count = $this->queryBuilder
+        $count = $queryBuilder
             ->count('*')
-            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->from(self::TABLE_NAME)
             ->where(...$whereExpressions)
             ->execute()
             ->fetchColumn();
@@ -68,16 +74,18 @@ class TransferRepository
 
     public function countTypes(int $numberOfDays): array
     {
+        $queryBuilder = $this->createQueryBuilder();
+
         $startDate = $this->getDateBackFromToday($numberOfDays);
 
-        return $this->queryBuilder
+        return $queryBuilder
             ->select('type')
-            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
-            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
+            ->from(self::TABLE_NAME)
             ->where(
-                $this->queryBuilder->expr()->gte(
+                $queryBuilder->expr()->gte(
                     'crdate',
-                    $this->queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
                 )
             )
             ->groupBy('type')
@@ -97,29 +105,49 @@ class TransferRepository
 
     public function countByDay(int $numberOfDays): array
     {
+        $queryBuilder = $this->createQueryBuilder();
+
         $startDate = $this->getDateBackFromToday($numberOfDays);
 
-        $quotedCrdate = $this->queryBuilder->quoteIdentifier('crdate');
+        $quotedCrdate = $queryBuilder->quoteIdentifier('crdate');
         $literal = \sprintf(
             '%s - (%s %% 86400) AS %s',
             $quotedCrdate,
             $quotedCrdate,
-            $this->queryBuilder->quoteIdentifier('day')
+            $queryBuilder->quoteIdentifier('day')
         );
 
-        return $this->queryBuilder
+        return $queryBuilder
             ->selectLiteral($literal)
-            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
-            ->from('tx_jobrouterprocess_domain_model_transfer')
+            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
+            ->from(self::TABLE_NAME)
             ->where(
-                $this->queryBuilder->expr()->gte(
+                $queryBuilder->expr()->gte(
                     'crdate',
-                    $this->queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
                 )
             )
             ->groupBy('day')
             ->orderBy('day', 'ASC')
             ->execute()
             ->fetchAll();
+    }
+
+    public function findFirstCreationDate(): int
+    {
+        $queryBuilder = $this->createQueryBuilder();
+
+        $quotedCrdate = $queryBuilder->quoteIdentifier('crdate');
+
+        return $queryBuilder
+            ->selectLiteral(\sprintf('MIN(%s)', $quotedCrdate))
+            ->from(self::TABLE_NAME)
+            ->execute()
+            ->fetchColumn() ?: 0;
+    }
+
+    private function createQueryBuilder(): QueryBuilder
+    {
+        return clone $this->queryBuilder;
     }
 }
