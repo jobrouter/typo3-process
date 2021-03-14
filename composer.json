@@ -41,7 +41,7 @@
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpunit/phpunit": "^8.5 || ^9.5",
 		"typo3/cms-dashboard": "*",
-		"typo3/coding-standards": "^0.2"
+		"typo3/coding-standards": "^0.3"
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts",
