@@ -121,6 +121,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
     private function initialiseTransfer(): void
     {
         $this->transfer = new Transfer();
+        $this->transfer->setCrdate(\time());
         $this->transfer->setStepUid($this->step->getUid());
         $this->transfer->setCorrelationId($this->correlationId);
     }

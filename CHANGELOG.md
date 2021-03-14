@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Show number of days for available transfers in status widget
 
+### Fixed
+- Set crdate in transfer table correctly
+
 ## [0.5.1] - 2021-03-07
 
 ### Added
