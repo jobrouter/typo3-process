@@ -13,7 +13,7 @@ Target group: **Integrators, Administrators**
    :local:
 
 The links to processes and instances in JobRouter® installations are managed in
-the module :guilabel:`JobRouter` > :guilabel:`Process`.
+the module :guilabel:`JobRouter` > :guilabel:`Processes`.
 
 On your first visit after installing the extension you will see the following
 screen:
@@ -24,7 +24,7 @@ screen:
    Initial Process module screen
 
 First you have to define a process link. It is the representation of a JobRouter®
-process. Then configure the instance links you need. These represent the steps
+process. Then configure the step links you need. These represent the steps
 of a process and are used in the form finisher.
 
 
@@ -53,7 +53,7 @@ Process Name (required)
 
 Connection (required)
    Choose a connection which was defined previously in the :doc:`Connections
-   <connector:usage>` module.
+   <typo3-jobrouter-connector:usage>` module.
 
 Process Table Fields (optional)
    Define the process table fields that should be used when starting an
@@ -78,8 +78,8 @@ Process Table Fields (optional)
 
    .. note::
       Please be sure, that every process table field you use here, has the option
-      :guilabel:`Input` enabled to allow the settings of the field from a REST
-      resource.
+      :guilabel:`Input` enabled in the process table definition to allow the
+      setting of the field from a REST resource.
 
 
 Access

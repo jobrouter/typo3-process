@@ -85,6 +85,7 @@ controller:
          // Define the transfer domain model with your parameters
          // Have a look in the Transfer model to see the available setters
          $transfer = new Transfer();
+         $transfer->setCrdate(time());
          $transfer->setStepUid($step->getUid());
          $transfer->setType('Demo');
          $transfer->setSummary('My summary');

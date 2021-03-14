@@ -24,18 +24,21 @@ Starting instances
 ------------------
 
 If you rely on the :ref:`form finisher <form-finisher>` or use the
-:ref:`transfer table <developer-start-instance>` directly to start
-instances in JobRouter® installations, you have to use the start command:
-
-::
+:ref:`transfer table <developer-start-instance>` directly to start instances in
+JobRouter® installations, you have to use the start command in the project
+directory for a composer installation::
 
    vendor/bin/typo3 jobrouter:process:start
+
+In a non-composer installation execute::
+
+   php public/typo3/sysext/core/bin/typo3 jobrouter:process:start
 
 In general you should receive a successful answer:
 
 .. code-block:: text
 
-   [OK] 18 transfer(s) started successfully
+   [OK] 18 incident(s) started successfully
 
 If an error occurs, the command issues a warning:
 
@@ -68,11 +71,14 @@ Clean up transfers
 
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
-regularly. A command is available for this task:
-
-::
+regularly. A command is available for this task. Enter in the project
+directory for a composer installation::
 
    vendor/bin/typo3 jobrouter:process:cleanuptransfers
+
+In a non-composer installation execute::
+
+   php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers
 
 In general you should receive a successful answer:
 
@@ -81,9 +87,7 @@ In general you should receive a successful answer:
    [OK] 42 successful transfers older than 30 days deleted
 
 By default, successful transfer records that are older than 30 days are deleted.
-You can adjust this value by adding an argument to the command:
-
-.. code-block:: text
+You can adjust this value by adding an argument to the command::
 
    vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
 
@@ -92,11 +96,3 @@ you use `0` as argument, all successful transfers are deleted.
 
 .. important::
    Erroneous transfer entries are not deleted and must be handled manually.
-
-.. note::
-   If there were deleted successful transfer records, the number of affected
-   rows is logged as *notice*, if there were none it is logged as *info*.
-
-.. note::
-   The number of days is also taken into account for the :ref:`Dashboard widgets
-   <dashboard-widgets>`.

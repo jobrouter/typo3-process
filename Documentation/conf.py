@@ -189,8 +189,8 @@ epub_exclude_files = ['search.html']
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'base': ('https://typo3-jobrouter.readthedocs.io/projects/base/en/latest/', None),
-    'client': ('https://jobrouter-client.readthedocs.io/en/stable/', None),
-    'connector': ('https://typo3-jobrouter.readthedocs.io/projects/connector/en/latest/', None),
+    'jobrouter-client': ('https://jobrouter-client.readthedocs.io/en/stable/', None),
+    'typo3-jobrouter-base': ('https://typo3-jobrouter.readthedocs.io/projects/base/en/stable/', None),
+    'typo3-jobrouter-connector': ('https://typo3-jobrouter.readthedocs.io/projects/connector/en/stable/', None),
     't3api': ('https://docs.typo3.org/m/typo3/reference-coreapi/10.4/en-us/', None),
 }

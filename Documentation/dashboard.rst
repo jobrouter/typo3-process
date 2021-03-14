@@ -31,7 +31,7 @@ data is the availability of types in this transfer table - either configured in
 
 .. note::
 
-   The available widgets depend on the access rights of user.
+   The available widgets depend on the access rights of a user.
 
 
 .. _dashboard-widget-instance-starts:
@@ -39,7 +39,8 @@ data is the availability of types in this transfer table - either configured in
 Instance starts
 ===============
 
-The instance starts can be visually displayed with a Dashboard widget:
+The number of instance starts per day can be visually displayed with a Dashboard
+widget:
 
 .. figure:: _images/dashboard-widget-instance-starts.png
    :alt: Instance Starts widget

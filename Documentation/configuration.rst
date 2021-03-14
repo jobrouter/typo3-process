@@ -35,8 +35,7 @@ Log into file
 ~~~~~~~~~~~~~
 
 If this option is activated, the log output is written to the file
-:file:`var/log/typo3_jobrouter_process_<hash>.log` (for Composer-based
-installations). It is enabled by default.
+:file:`var/log/typo3_jobrouter_process_<hash>.log`. It is enabled by default.
 
 Log into table
 ~~~~~~~~~~~~~~
@@ -69,8 +68,8 @@ finisher.
 
 .. important::
    If you lose or change the encryption key (generated with the :doc:`JobRouter
-   Connector extension <connector:introduction>`), data cannot be decrypted
-   by the :ref:`start process command <command-start>` anymore!
+   Connector extension <typo3-jobrouter-connector:introduction>`), data cannot
+   be decrypted by the :ref:`start process command <command-start>` anymore!
 
 
 .. _configuration-dashboard:

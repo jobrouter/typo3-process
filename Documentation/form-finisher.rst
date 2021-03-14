@@ -25,8 +25,8 @@ start step.
 
 #. Configure JobRobot module
 
-   If you haven't an activated JobRobot configuration you have to create a new
-   user in your JobRouter® installation and configure it under
+   If you haven't an activated JobRobot configuration create a new user in your
+   JobRouter® installation and configure it under
    :guilabel:`System` > :guilabel:`Configuration` > :guilabel:`Modules` >
    :guilabel:`JobRobot`. You see the following screen:
 
@@ -54,15 +54,16 @@ Start instances
 
 A form finisher `JobRouterStartInstance` is available to start a JobRouter®
 process instance. After submitting a form, the form values are stored in a
-transfer table. A command, hopefully executed regularly, takes these transfer
-records and start a process instance. This is due the fact, that a JobRouter®
-installation can temporarily not available due to maintenance or network
-problems. Also the submitting of a form should be as fast as possible.
+transfer table. A :ref:`command <command-start>`, hopefully executed regularly,
+takes these transfer records and start a process instance. This is due the fact,
+that a JobRouter® installation can temporarily not available due to maintenance
+or network problems. Also the submitting of a form on the website should be as
+fast as possible for a good user experience.
 
 .. note::
 
    The finisher can only be used in the yaml form definition, not in the
-   :guilabel:`Form` GUI module.
+   :guilabel:`Form` backend module.
 
 
 Start one instance
@@ -78,7 +79,7 @@ configuration of the specific form:
          identifier: JobRouterStartInstance
          options:
             handle: 'start_website_contact'
-            type: 'demo'
+            type: 'Demo'
             summary: 'Demo Contact'
             processtable:
                name: '{preName} {lastName}'
@@ -93,7 +94,8 @@ As you can see, you can define some options. These are:
 - `handle` (required): The step handle defined in the
   :ref:`Processes module <module-create-step-link>`.
 
-- `type`: The type can be used for statistical evaluation.
+- `type`: The type can be used for statistical evaluation in the according
+  :ref:`dashboard widget <dashboard-widget-instance-start-types>`.
 
 - `summary`: The summary of the instance.
 
@@ -125,7 +127,7 @@ As you can see, you can define some options. These are:
    If the value of a form field is an array, like from a multi checkbox, the
    array is converted to a csv string and stored in the given process table
    field. The value can be reconverted to an array, e.g. in a JobRouter® rule,
-   with the PHP function :php:`str_getcsv()`.
+   with the PHP function `str_getcsv() <https://www.php.net/str_getcsv>`_.
 
 
 Start multiple instances
@@ -167,5 +169,5 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields.
 
 For more information have a look into the available :ref:`variable resolvers
-<base:variable-resolvers>`. You can also write your :ref:`own variable
+<typo3-jobrouter-base:variable-resolvers>`. You can also write your :ref:`own variable
 resolvers <developer-variable-resolvers>`.
