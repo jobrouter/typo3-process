@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-07-02T13:12:54Z" product-name="jobrouter_process">
-		<header/>
 		<body>
 			<trans-unit id="palette.default_parameters" resname="palette.default_parameters">
 				<source><![CDATA[Default Parameters]]></source>
