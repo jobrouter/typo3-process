@@ -35,9 +35,6 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.description" resname="tx_jobrouterprocess_domain_model_process.description">
 				<source><![CDATA[Description]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.description" resname="tx_jobrouterprocess_domain_model_process.description">
-				<source><![CDATA[Description]]></source>
-			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.name" resname="tx_jobrouterprocess_domain_model_process.name">
 				<source><![CDATA[Process Name]]></source>
 			</trans-unit>
