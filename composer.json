@@ -2,7 +2,6 @@
 	"name": "brotkrueml/typo3-jobrouter-process",
 	"type": "typo3-cms-extension",
 	"description": "Connect JobRouter® processes with TYPO3",
-	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"TYPO3 CMS",
 		"TYPO3 extension",
@@ -10,17 +9,13 @@
 		"Process",
 		"Workflow"
 	],
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Chris Müller",
 			"role": "Developer"
 		}
 	],
-	"support": {
-		"docs": "https://typo3-jobrouter.readthedocs.io/projects/process/",
-		"issues": "https://github.com/brotkrueml/typo3-jobrouter-process/issues",
-		"source": "https://github.com/brotkrueml/typo3-jobrouter-process"
-	},
 	"require": {
 		"php": ">=7.2",
 		"ext-json": "*",
@@ -37,6 +32,7 @@
 		"typo3/cms-frontend": "*"
 	},
 	"require-dev": {
+		"ergebnis/composer-normalize": "^2.15",
 		"friendsofphp/php-cs-fixer": "^2.18",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpunit/phpunit": "^8.5 || ^9.5",
@@ -44,8 +40,23 @@
 		"typo3/coding-standards": "^0.3"
 	},
 	"suggest": {
-		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts",
-		"co-stack/logs": "Backend module for displaying logs written to log table"
+		"co-stack/logs": "Backend module for displaying logs written to log table",
+		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts"
+	},
+	"config": {
+		"bin-dir": ".Build/bin",
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		},
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"extension-key": "jobrouter_process",
+			"web-dir": ".Build/web"
+		}
 	},
 	"autoload": {
 		"psr-4": {
@@ -57,19 +68,9 @@
 			"Brotkrueml\\JobRouterProcess\\Tests\\": "Tests"
 		}
 	},
-	"config": {
-		"sort-packages": true,
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin"
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "1.0.x-dev"
-		},
-		"typo3/cms": {
-			"extension-key": "jobrouter_process",
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/web"
-		}
+	"support": {
+		"issues": "https://github.com/brotkrueml/typo3-jobrouter-process/issues",
+		"source": "https://github.com/brotkrueml/typo3-jobrouter-process",
+		"docs": "https://typo3-jobrouter.readthedocs.io/projects/process/"
 	}
 }
