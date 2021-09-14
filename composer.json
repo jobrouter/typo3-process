@@ -24,19 +24,19 @@
 		"brotkrueml/typo3-jobrouter-base": "^1.0",
 		"brotkrueml/typo3-jobrouter-connector": "^1.0",
 		"symfony/polyfill-php80": "^1.15",
-		"typo3/cms-backend": "*",
+		"typo3/cms-backend": "^10.4.11",
 		"typo3/cms-core": "^10.4.11",
-		"typo3/cms-extbase": "*",
-		"typo3/cms-fluid": "*",
-		"typo3/cms-form": "*",
-		"typo3/cms-frontend": "*"
+		"typo3/cms-extbase": "^10.4.11",
+		"typo3/cms-fluid": "^10.4.11",
+		"typo3/cms-form": "^10.4.11",
+		"typo3/cms-frontend": "^10.4.11"
 	},
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.15",
 		"friendsofphp/php-cs-fixer": "^2.18",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpunit/phpunit": "^8.5 || ^9.5",
-		"typo3/cms-dashboard": "*",
+		"typo3/cms-dashboard": "^10.4.11",
 		"typo3/coding-standards": "^0.3"
 	},
 	"suggest": {
