@@ -3,12 +3,12 @@ defined('TYPO3') || die();
 
 (function () {
     TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'Brotkrueml.JobRouterProcess',
+        'JobRouterProcess',
         'jobrouter',
         'jobrouterprocess',
         '',
         [
-            'Backend' => 'list',
+            Brotkrueml\JobRouterProcess\Controller\BackendController::class => 'list',
         ],
         [
             'access' => 'admin',
