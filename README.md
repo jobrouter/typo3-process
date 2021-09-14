@@ -12,6 +12,8 @@ What this extension does:
   * Manage process and step links to JobRouter® installations
   * Provide a form finisher to start a process instance
 
+The extension supports TYPO3 v10 LTS and TYPO3 v11.
+
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/process/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterproce) |
 [Changelog](https://github.com/brotkrueml/typo3-jobrouter-process/blob/master/CHANGELOG.md) |
