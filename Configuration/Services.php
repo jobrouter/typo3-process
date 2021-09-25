@@ -23,15 +23,16 @@ use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\TypeOfInstanceStartsWidget;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Dashboard\Dashboard;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
+return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $services = $containerConfigurator->services();
     $services
         ->defaults()
@@ -84,7 +85,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set(Deleter::class)
         ->arg('$queryBuilder', new Reference('querybuilder.tx_jobrouterprocess_domain_model_transfer'));
 
-    if (ExtensionManagementUtility::isLoaded('dashboard')) {
+    if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $parameters = $containerConfigurator->parameters();
         $parameters->set('jobrouter_process.widget.transfersPerDay.numberOfDays', 14);
         $parameters->set('jobrouter_process.widget.typeOfInstanceStarts.numberOfDays', 14);
