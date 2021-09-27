@@ -103,6 +103,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ->class(BarChartWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransfersPerDayDataProvider::class))
+            ->arg(
+                '$options',
+                [
+                    'refreshAvailable' => true,
+                ]
+            )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.transfersPerDayBar',
                 'groupNames' => 'jobrouter',
@@ -118,7 +124,13 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ->class(TypeOfInstanceStartsWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
-            ->arg('$options', ['numberOfDays' => Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS])
+            ->arg(
+                '$options',
+                [
+                    'numberOfDays' => Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS,
+                    'refreshAvailable' => true,
+                ]
+            )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.typeOfInstanceStartsDoughnut',
                 'groupNames' => 'jobrouter',
@@ -133,6 +145,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ->class(TransferStatusWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
+            ->arg(
+                '$options',
+                [
+                    'refreshAvailable' => true,
+                ]
+            )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.statusOfInstanceStarts',
                 'groupNames' => 'jobrouter',
@@ -147,6 +165,12 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ->class(TransferReportWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
+            ->arg(
+                '$options',
+                [
+                    'refreshAvailable' => true,
+                ]
+            )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.transferReport',
                 'groupNames' => 'jobrouter',
