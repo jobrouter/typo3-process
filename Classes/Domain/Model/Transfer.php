@@ -195,7 +195,7 @@ class Transfer extends AbstractEntity
      */
     public function setPriority($priority): void
     {
-        if (!\is_numeric($priority)) {
+        if (! \is_numeric($priority)) {
             throw new \InvalidArgumentException(
                 \sprintf('Priority has to be a number, "%s" given', $priority),
                 1581703249
@@ -224,7 +224,7 @@ class Transfer extends AbstractEntity
      */
     public function setPool($pool): void
     {
-        if (!\is_numeric($pool)) {
+        if (! \is_numeric($pool)) {
             throw new \InvalidArgumentException(
                 \sprintf('Pool has to be a number, "%s" given', $pool),
                 1581703327

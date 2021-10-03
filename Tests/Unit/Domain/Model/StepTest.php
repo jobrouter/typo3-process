@@ -17,7 +17,9 @@ use PHPUnit\Framework\TestCase;
 
 class StepTest extends TestCase
 {
-    /** @var Step */
+    /**
+     * @var Step
+     */
     protected $subject;
 
     protected function setUp(): void

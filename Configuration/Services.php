@@ -54,7 +54,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'console.command',
             [
                 'command' => 'jobrouter:process:cleanuptransfers',
-                'schedulable' => true
+                'schedulable' => true,
             ]
         );
 
@@ -63,7 +63,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'console.command',
             [
                 'command' => 'jobrouter:process:start',
-                'schedulable' => true
+                'schedulable' => true,
             ]
         );
 
@@ -77,7 +77,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'event.listener',
             [
                 'identifier' => 'jobrouter-process/toolbar-item-provider',
-                'event' => SystemInformationToolbarCollectorEvent::class
+                'event' => SystemInformationToolbarCollectorEvent::class,
             ]
         );
 

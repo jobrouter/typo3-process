@@ -17,13 +17,19 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Process extends AbstractEntity
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $description = '';
 
-    /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null */
+    /**
+     * @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null
+     */
     protected $connection;
 
     /**
@@ -33,7 +39,9 @@ class Process extends AbstractEntity
      */
     protected $processtablefields;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $disabled = false;
 
     public function __construct()

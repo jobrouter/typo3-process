@@ -23,19 +23,29 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 class StarterTest extends TestCase
 {
-    /** @var Starter */
+    /**
+     * @var Starter
+     */
     private $subject;
 
-    /** @var MockObject|PersistenceManagerInterface */
+    /**
+     * @var MockObject|PersistenceManagerInterface
+     */
     private $persistenceManagerMock;
 
-    /** @var MockObject|TransferRepository */
+    /**
+     * @var MockObject|TransferRepository
+     */
     private $transferRepositoryMock;
 
-    /** @var MockObject|StepRepository */
+    /**
+     * @var MockObject|StepRepository
+     */
     private $stepRepositoryMock;
 
-    /** @var MockObject|Decrypter */
+    /**
+     * @var MockObject|Decrypter
+     */
     private $decrypter;
 
     protected function setUp(): void

@@ -34,7 +34,7 @@ class TransfersPerDayDataProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        if (!\interface_exists(ChartDataProviderInterface::class)) {
+        if (! \interface_exists(ChartDataProviderInterface::class)) {
             self::markTestSkipped('Dashboard system extension not available');
         }
 
@@ -60,8 +60,6 @@ class TransfersPerDayDataProviderTest extends TestCase
     /**
      * @test
      * @dataProvider dataProviderForGetChartData
-     * @param array $countByDay
-     * @param array $expected
      */
     public function getChartData(array $countByDay, array $expected): void
     {

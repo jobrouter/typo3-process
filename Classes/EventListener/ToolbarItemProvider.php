@@ -22,13 +22,19 @@ use TYPO3\CMS\Core\Registry;
  */
 final class ToolbarItemProvider
 {
-    /** @var LanguageService */
+    /**
+     * @var LanguageService
+     */
     private $languageService;
 
-    /** @var Registry */
+    /**
+     * @var Registry
+     */
     private $registry;
 
-    /** @var array|null */
+    /**
+     * @var array|null
+     */
     private $lastRunInformation;
 
     public function __construct(LanguageService $languageService, Registry $registry)
@@ -49,7 +55,7 @@ final class ToolbarItemProvider
         );
     }
 
-    protected function getMessage(): string
+    private function getMessage(): string
     {
         if ($this->lastRunInformation === null) {
             return $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.neverRun');

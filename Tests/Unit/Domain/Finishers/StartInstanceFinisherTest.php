@@ -25,13 +25,19 @@ use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
 
 class StartInstanceFinisherTest extends TestCase
 {
-    /** @var StartInstanceFinisher */
+    /**
+     * @var StartInstanceFinisher
+     */
     private $subject;
 
-    /** @var MockObject|FinisherContext */
+    /**
+     * @var MockObject|FinisherContext
+     */
     private $finisherContextMock;
 
-    /** @var MockObject|Preparer */
+    /**
+     * @var MockObject|Preparer
+     */
     private $preparerMock;
 
     protected function setUp(): void

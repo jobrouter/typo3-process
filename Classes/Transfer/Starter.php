@@ -40,19 +40,29 @@ class Starter implements LoggerAwareInterface
 
     private const INCIDENTS_RESOURCE_TEMPLATE = 'application/incidents/%s';
 
-    /** @var PersistenceManagerInterface */
+    /**
+     * @var PersistenceManagerInterface
+     */
     private $persistenceManager;
 
-    /** @var RestClientFactory */
+    /**
+     * @var RestClientFactory
+     */
     private $restClientFactory;
 
-    /** @var StepRepository */
+    /**
+     * @var StepRepository
+     */
     private $stepRepository;
 
-    /** @var Decrypter */
+    /**
+     * @var Decrypter
+     */
     private $decrypter;
 
-    /** @var TransferRepository */
+    /**
+     * @var TransferRepository
+     */
     private $transferRepository;
 
     private static $clients = [];
@@ -132,7 +142,8 @@ class Starter implements LoggerAwareInterface
         );
 
         $successMessage = '';
-        if ($body = \json_decode($response->getBody()->getContents(), true)) {
+        $body = \json_decode($response->getBody()->getContents(), true);
+        if (\is_array($body)) {
             $successMessage = $body['incidents'][0] ?? '';
         }
 
@@ -205,26 +216,26 @@ class Starter implements LoggerAwareInterface
     {
         $incident = new Incident();
         $incident->setStep($step->getStepNumber());
-        if (!empty($transfer->getInitiator())) {
+        if (! empty($transfer->getInitiator())) {
             $incident->setInitiator($transfer->getInitiator());
         }
-        if (!empty($transfer->getUsername())) {
+        if (! empty($transfer->getUsername())) {
             $incident->setUsername($transfer->getUsername());
         }
-        if (!empty($transfer->getJobfunction())) {
+        if (! empty($transfer->getJobfunction())) {
             $incident->setJobfunction($transfer->getJobfunction());
         }
-        if (!empty($transfer->getSummary())) {
+        if (! empty($transfer->getSummary())) {
             $incident->setSummary($transfer->getSummary());
         }
-        if (!empty($transfer->getPriority())) {
+        if (! empty($transfer->getPriority())) {
             $incident->setPriority($transfer->getPriority());
         }
-        if (!empty($transfer->getPool())) {
+        if (! empty($transfer->getPool())) {
             $incident->setPool($transfer->getPool());
         }
 
-        if (!empty($transfer->getProcesstable())) {
+        if (! empty($transfer->getProcesstable())) {
             $processTable = \json_decode($transfer->getProcesstable(), true);
 
             foreach ($processTable ?? [] as $name => $value) {

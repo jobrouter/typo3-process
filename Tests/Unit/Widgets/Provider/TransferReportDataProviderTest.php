@@ -33,7 +33,7 @@ class TransferReportDataProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        if (!\interface_exists(ListDataProviderInterface::class)) {
+        if (! \interface_exists(ListDataProviderInterface::class)) {
             self::markTestSkipped('Dashboard system extension not available');
         }
 

@@ -23,16 +23,24 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class PreparerTest extends TestCase
 {
-    /** @var Preparer */
+    /**
+     * @var Preparer
+     */
     private $subject;
 
-    /** @var MockObject|PersistenceManager */
+    /**
+     * @var MockObject|PersistenceManager
+     */
     private $persistenceManagerMock;
 
-    /** @var MockObject|Encrypter */
+    /**
+     * @var MockObject|Encrypter
+     */
     private $encrypterMock;
 
-    /** @var MockObject|TransferRepository */
+    /**
+     * @var MockObject|TransferRepository
+     */
     private $transferRepositoryMock;
 
     protected function setUp(): void

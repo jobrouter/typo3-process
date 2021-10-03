@@ -16,7 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 class ProcesstablefieldTest extends TestCase
 {
-    /** @var Processtablefield */
+    /**
+     * @var Processtablefield
+     */
     protected $subject;
 
     protected function setUp(): void

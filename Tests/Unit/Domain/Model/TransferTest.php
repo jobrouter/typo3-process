@@ -16,7 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 class TransferTest extends TestCase
 {
-    /** @var Transfer */
+    /**
+     * @var Transfer
+     */
     private $subject;
 
     protected function setUp(): void
@@ -97,7 +99,9 @@ class TransferTest extends TestCase
      */
     public function setProcesstableWithArrayAsArgumentImplementedCorrectly(): void
     {
-        $this->subject->setProcesstable(['some' => 'data']);
+        $this->subject->setProcesstable([
+            'some' => 'data',
+        ]);
 
         self::assertSame('{"some":"data"}', $this->subject->getProcesstable());
     }

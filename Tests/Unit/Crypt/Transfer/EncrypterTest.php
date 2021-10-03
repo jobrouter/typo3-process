@@ -25,7 +25,9 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 class EncrypterTest extends TestCase
 {
-    /** @var Stub|ExtensionConfiguration */
+    /**
+     * @var Stub|ExtensionConfiguration
+     */
     private $extensionConfigurationStub;
 
     /**
@@ -33,7 +35,9 @@ class EncrypterTest extends TestCase
      */
     private $cryptServiceMock;
 
-    /** @var Encrypter */
+    /**
+     * @var Encrypter
+     */
     private $subject;
 
     protected function setUp(): void

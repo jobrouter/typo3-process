@@ -31,16 +31,24 @@ final class StartCommand extends Command
     public const EXIT_CODE_ERRORS_ON_START = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
-    /** @var LockFactory */
+    /**
+     * @var LockFactory
+     */
     private $lockFactory;
 
-    /** @var Registry */
+    /**
+     * @var Registry
+     */
     private $registry;
 
-    /** @var Starter */
+    /**
+     * @var Starter
+     */
     private $starter;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     private $startTime;
 
     public function __construct(LockFactory $lockFactory, Registry $registry, Starter $starter)

@@ -22,10 +22,14 @@ use PHPUnit\Framework\TestCase;
 
 class DecrypterTest extends TestCase
 {
-    /** @var Crypt|MockObject */
+    /**
+     * @var Crypt|MockObject
+     */
     private $cryptServiceMock;
 
-    /** @var Decrypter */
+    /**
+     * @var Decrypter
+     */
     private $subject;
 
     protected function setUp(): void

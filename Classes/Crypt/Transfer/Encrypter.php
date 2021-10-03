@@ -23,16 +23,24 @@ class Encrypter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var Crypt */
+    /**
+     * @var Crypt
+     */
     private $cryptService;
 
-    /** @var ExtensionConfiguration */
+    /**
+     * @var ExtensionConfiguration
+     */
     private $extensionConfiguration;
 
-    /** @var Transfer */
+    /**
+     * @var Transfer
+     */
     private $encryptedTransfer;
 
-    /** @var EncryptedFieldsBitSet */
+    /**
+     * @var EncryptedFieldsBitSet
+     */
     private $encryptedFields;
 
     public function __construct(Crypt $cryptService, ExtensionConfiguration $extensionConfiguration)
@@ -43,7 +51,7 @@ class Encrypter implements LoggerAwareInterface
 
     public function encryptIfConfigured(Transfer $transfer): Transfer
     {
-        if (!$this->extensionConfiguration->get(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)) {
+        if (! $this->extensionConfiguration->get(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)) {
             return $transfer;
         }
 

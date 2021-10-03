@@ -15,19 +15,29 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Step extends AbstractEntity
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $handle = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name = '';
 
-    /** @var \Brotkrueml\JobRouterProcess\Domain\Model\Process|null */
+    /**
+     * @var \Brotkrueml\JobRouterProcess\Domain\Model\Process|null
+     */
     protected $process;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $stepNumber = 0;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $disabled = false;
 
     public function getHandle(): string

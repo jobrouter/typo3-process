@@ -32,7 +32,7 @@ class TransferTypeChartDataProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        if (!\interface_exists(ChartDataProviderInterface::class)) {
+        if (! \interface_exists(ChartDataProviderInterface::class)) {
             self::markTestSkipped('Dashboard system extension not available');
         }
 
@@ -53,8 +53,6 @@ class TransferTypeChartDataProviderTest extends TestCase
     /**
      * @test
      * @dataProvider dataProviderForGetChartData
-     * @param array $countTypesResult
-     * @param array $expected
      */
     public function getChartData(array $countTypesResult, array $expected): void
     {
@@ -78,7 +76,7 @@ class TransferTypeChartDataProviderTest extends TestCase
                     ],
                 ],
                 'labels' => [],
-            ]
+            ],
         ];
 
         yield 'Returns unknown type when type is empty available' => [
@@ -96,7 +94,7 @@ class TransferTypeChartDataProviderTest extends TestCase
                     ],
                 ],
                 'labels' => ['unknown'],
-            ]
+            ],
         ];
 
         yield 'Returns types correctly' => [
@@ -162,7 +160,7 @@ class TransferTypeChartDataProviderTest extends TestCase
                     'bar type',
                     'baz type',
                 ],
-            ]
+            ],
         ];
     }
 }

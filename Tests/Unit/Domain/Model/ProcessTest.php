@@ -19,7 +19,9 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class ProcessTest extends TestCase
 {
-    /** @var Process */
+    /**
+     * @var Process
+     */
     protected $subject;
 
     protected function setUp(): void

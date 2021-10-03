@@ -35,10 +35,10 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
 
         'handle' => [
@@ -48,7 +48,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 30,
-                'eval' => 'alphanum_x,required,trim,unique'
+                'eval' => 'alphanum_x,required,trim,unique',
             ],
         ],
         'name' => [
@@ -58,7 +58,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'required,trim'
+                'eval' => 'required,trim',
             ],
         ],
         'process' => [
@@ -101,7 +101,7 @@ return [
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
                 description,
-        '
+        ',
         ],
     ],
 ];

@@ -58,9 +58,9 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
                 [
                     'label' => $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':numberOfStarts'),
                     'backgroundColor' => Extension::WIDGET_DEFAULT_CHART_COLOUR,
-                    'data' => $data
-                ]
-            ]
+                    'data' => $data,
+                ],
+            ],
         ];
     }
 

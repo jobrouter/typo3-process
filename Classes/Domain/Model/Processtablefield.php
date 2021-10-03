@@ -15,16 +15,24 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Processtablefield extends AbstractEntity
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $description = '';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $type = 0;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $fieldSize = 0;
 
     public function getName(): string

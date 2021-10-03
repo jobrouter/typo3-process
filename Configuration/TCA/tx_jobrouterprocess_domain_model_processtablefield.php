@@ -27,20 +27,20 @@ return [
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
 
         'name' => [
@@ -61,7 +61,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'trim'
+                'eval' => 'trim',
             ],
         ],
         'type' => [
@@ -74,11 +74,11 @@ return [
                 'items' => [
                     [
                         \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.type.text',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                     ],
                     [
                         \Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.type.integer',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
                 ],
                 'eval' => 'required',
@@ -105,18 +105,22 @@ return [
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 --palette--;;textType,
-            '
+            ',
         ],
         '2' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
-            '
+            ',
         ],
     ],
     'palettes' => [
-        'nameDescription' => ['showitem' => 'name, description'],
-        'textType' => ['showitem' => 'type, field_size'],
+        'nameDescription' => [
+            'showitem' => 'name, description',
+        ],
+        'textType' => [
+            'showitem' => 'type, field_size',
+        ],
     ],
 ];

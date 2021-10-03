@@ -19,13 +19,19 @@ use Brotkrueml\JobRouterProcess\Extension;
 
 class Decrypter
 {
-    /** @var Crypt */
+    /**
+     * @var Crypt
+     */
     private $cryptService;
 
-    /** @var Transfer */
+    /**
+     * @var Transfer
+     */
     private $decryptedTransfer;
 
-    /** @var EncryptedFieldsBitSet */
+    /**
+     * @var EncryptedFieldsBitSet
+     */
     private $encryptedFields;
 
     public function __construct(Crypt $cryptService)
@@ -50,7 +56,7 @@ class Decrypter
 
     private function decryptField(string $field): void
     {
-        if (!$this->isFieldEncrypted($field)) {
+        if (! $this->isFieldEncrypted($field)) {
             return;
         }
 

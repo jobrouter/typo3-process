@@ -34,22 +34,34 @@ class BackendController extends ActionController
 
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    /** @var ProcessRepository */
+    /**
+     * @var ProcessRepository
+     */
     private $processRepository;
 
-    /** @var StepRepository */
+    /**
+     * @var StepRepository
+     */
     private $stepRepository;
 
-    /** @var IconFactory */
+    /**
+     * @var IconFactory
+     */
     private $iconFactory;
 
-    /** @var UriBuilder */
+    /**
+     * @var UriBuilder
+     */
     private $backendUriBuilder;
 
-    /** @var ModuleTemplate */
+    /**
+     * @var ModuleTemplate
+     */
     private $moduleTemplate;
 
-    /** @var ButtonBar */
+    /**
+     * @var ButtonBar
+     */
     private $buttonBar;
 
     public function injectProcessRepository(ProcessRepository $processRepository): void

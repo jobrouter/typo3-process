@@ -36,10 +36,10 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
 
         'name' => [
@@ -50,7 +50,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'alphanum_x,required,trim'
+                'eval' => 'alphanum_x,required,trim',
             ],
         ],
         'connection' => [
@@ -104,7 +104,7 @@ return [
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
                 description,
-            '
+            ',
         ],
     ],
 ];

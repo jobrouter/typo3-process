@@ -35,10 +35,14 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 {
     use LoggerAwareTrait;
 
-    /** @var Preparer */
+    /**
+     * @var Preparer
+     */
     private $preparer;
 
-    /** @var StepRepository */
+    /**
+     * @var StepRepository
+     */
     private $stepRepository;
 
     private $stepParameters = [
@@ -51,10 +55,14 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
         'username',
     ];
 
-    /** @var Step */
+    /**
+     * @var Step
+     */
     private $step;
 
-    /** @var Transfer */
+    /**
+     * @var Transfer
+     */
     private $transfer;
 
     public function injectPreparer(Preparer $preparer): void
@@ -136,7 +144,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
             }
 
             $setter = 'set' . \ucfirst($parameter);
-            if (!\method_exists($this->transfer, $setter)) {
+            if (! \method_exists($this->transfer, $setter)) {
                 throw new CommonParameterNotFoundException(
                     \sprintf('Method "%s" in Transfer domain model not found', $setter),
                     1581703904
@@ -145,7 +153,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
             $value = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $value);
 
-            $this->transfer->$setter($value);
+            $this->transfer->{$setter}($value);
         }
     }
 
@@ -163,7 +171,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
     private function prepareProcessTableForTransfer(): void
     {
-        if (!isset($this->options['processtable']) || !\is_array($this->options['processtable'])) {
+        if (! isset($this->options['processtable']) || ! \is_array($this->options['processtable'])) {
             return;
         }
 
@@ -174,7 +182,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
         $processTableFields = $this->prepareProcessTableFields();
         $processTable = [];
         foreach ($this->options['processtable'] as $processTableField => $value) {
-            if (!\array_key_exists($processTableField, $processTableFields)) {
+            if (! \array_key_exists($processTableField, $processTableFields)) {
                 throw new MissingProcessTableFieldException(
                     \sprintf(
                         'Process table field "%s" is used in form with identifier "%s" but not defined in process link "%s"',
