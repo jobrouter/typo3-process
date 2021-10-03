@@ -41,4 +41,5 @@ Contents
    form-finisher
    dashboard
    developer
+   changelog
    copyright
