@@ -14,7 +14,7 @@ return [
         'crdate' => 'crdate',
         'rootLevel' => 1,
         'hideTable' => true,
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg',
+        'iconfile' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_transfer.svg',
     ],
     'columns' => [
         'crdate' => [
