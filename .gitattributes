@@ -4,6 +4,7 @@
 /.gitattributes export-ignore
 /.github export-ignore
 /.gitignore export-ignore
+/.phpstorm.meta.php export-ignore
 /.readthedocs.yml export-ignore
 /captainhook.json export-ignore
 /Documentation export-ignore
