@@ -164,7 +164,7 @@ class Starter implements LoggerAwareInterface
         /** @var Step $step */
         $step = $this->stepRepository->findByIdentifier($stepUid);
 
-        if (empty($step)) {
+        if ($step === null) {
             throw new StepNotFoundException(
                 \sprintf(
                     'Step link with uid "%d" is not available',
@@ -180,7 +180,7 @@ class Starter implements LoggerAwareInterface
     private function getRestClientForStep(Step $step): IncidentsClientDecorator
     {
         $process = $step->getProcess();
-        if (empty($process)) {
+        if ($process === null) {
             throw new ProcessNotFoundException(
                 \sprintf(
                     'Process for step link with handle "%s" is not available',
@@ -192,7 +192,7 @@ class Starter implements LoggerAwareInterface
 
         /** @var Connection $connection */
         $connection = $process->getConnection();
-        if (empty($connection)) {
+        if ($connection === null) {
             throw new ConnectionNotFoundException(
                 \sprintf(
                     'Connection for process link "%s" is not available',
@@ -216,26 +216,22 @@ class Starter implements LoggerAwareInterface
     {
         $incident = new Incident();
         $incident->setStep($step->getStepNumber());
-        if (! empty($transfer->getInitiator())) {
+        if ($transfer->getInitiator() !== '') {
             $incident->setInitiator($transfer->getInitiator());
         }
-        if (! empty($transfer->getUsername())) {
+        if ($transfer->getUsername() !== '') {
             $incident->setUsername($transfer->getUsername());
         }
-        if (! empty($transfer->getJobfunction())) {
+        if ($transfer->getJobfunction() !== '') {
             $incident->setJobfunction($transfer->getJobfunction());
         }
-        if (! empty($transfer->getSummary())) {
+        if ($transfer->getSummary() !== '') {
             $incident->setSummary($transfer->getSummary());
         }
-        if (! empty($transfer->getPriority())) {
-            $incident->setPriority($transfer->getPriority());
-        }
-        if (! empty($transfer->getPool())) {
-            $incident->setPool($transfer->getPool());
-        }
+        $incident->setPriority($transfer->getPriority());
+        $incident->setPool($transfer->getPool());
 
-        if (! empty($transfer->getProcesstable())) {
+        if ($transfer->getProcesstable() !== '') {
             $processTable = \json_decode($transfer->getProcesstable(), true);
 
             foreach ($processTable ?? [] as $name => $value) {
@@ -266,7 +262,7 @@ class Starter implements LoggerAwareInterface
             return $name === $field->getName();
         });
 
-        if (empty($processTableField)) {
+        if ($processTableField === []) {
             throw new ProcessTableFieldNotFoundException(
                 \sprintf(
                     'Process table field "%s" is not configured in process link "%s"',

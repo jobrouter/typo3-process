@@ -88,7 +88,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
     private function determineStep(?string $handle): void
     {
-        if (empty($handle)) {
+        if ($handle === null || $handle === '') {
             $message = \sprintf(
                 'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
                 $this->getFormIdentifier()
@@ -101,7 +101,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
         $this->step = $this->stepRepository->findOneByHandle($handle);
 
-        if (empty($this->step)) {
+        if ($this->step === null) {
             $message = \sprintf(
                 'Step with handle "%s" is not available, defined in form with identifier "%s"',
                 $handle,
@@ -113,7 +113,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
             throw new StepNotFoundException($message, 1581270832);
         }
 
-        if (empty($this->step->getProcess())) {
+        if ($this->step->getProcess() === null) {
             $message = \sprintf(
                 'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
                 $handle,
