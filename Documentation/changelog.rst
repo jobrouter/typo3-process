@@ -15,7 +15,7 @@ Added
 ^^^^^
 
 
-* Compatibility with TYPO3 v11
+* Compatibility with TYPO3 v11 LTS
 * Possibility to refresh dashboard widgets (TYPO3 v11+ only)
 
 `1.0.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.5.1...v1.0.0>`_ - 2021-03-14
