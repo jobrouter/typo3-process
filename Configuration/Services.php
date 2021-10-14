@@ -54,6 +54,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'console.command',
             [
                 'command' => 'jobrouter:process:cleanuptransfers',
+                'description' => 'Delete old entries in the transfer table',
                 'schedulable' => true,
             ]
         );
@@ -63,6 +64,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'console.command',
             [
                 'command' => 'jobrouter:process:start',
+                'description' => 'Start instances from data stored in the transfer table',
                 'schedulable' => true,
             ]
         );

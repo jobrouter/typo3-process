@@ -62,8 +62,9 @@ final class StartCommand extends Command
 
     protected function configure(): void
     {
+        // @todo Remove when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
         $this
-            ->setDescription('Start instances stored in the transfer table')
+            ->setDescription('Start instances from data stored in the transfer table')
             ->setHelp('This command starts process instances in JobRouter installations.');
     }
 
