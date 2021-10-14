@@ -50,6 +50,9 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         $this->numberOfDays = $numberOfDays;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getChartData(): array
     {
         [$labels, $data] = $this->prepareData();
@@ -57,7 +60,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         return [
             'datasets' => [
                 [
-                    'backgroundColor' => $this->getChartColours(\count($data)),
+                    'backgroundColor' => $this->getChartColours(is_array($data) || $data instanceof \Countable ? \count($data) : 0),
                     'data' => $data,
                 ],
             ],
@@ -65,6 +68,9 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         ];
     }
 
+    /**
+     * @return array<int, mixed[]>
+     */
     private function prepareData(): array
     {
         $types = $this->transferRepository->countTypes($this->numberOfDays);
@@ -80,6 +86,9 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         return [$labels, $data];
     }
 
+    /**
+     * @return mixed[]
+     */
     private function getChartColours(int $count): array
     {
         $chartColours = \array_merge([Extension::WIDGET_DEFAULT_CHART_COLOUR], WidgetApi::getDefaultChartColors());

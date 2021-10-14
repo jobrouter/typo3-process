@@ -45,6 +45,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
      */
     private $stepRepository;
 
+    /**
+     * @var string[]
+     */
     private $stepParameters = [
         'initiator',
         'jobfunction',
@@ -171,10 +174,12 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
     private function prepareProcessTableForTransfer(): void
     {
-        if (! isset($this->options['processtable']) || ! \is_array($this->options['processtable'])) {
+        if (! isset($this->options['processtable'])) {
             return;
         }
-
+        if (! \is_array($this->options['processtable'])) {
+            return;
+        }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
             $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
             $this->finisherContext->getFormValues()
@@ -227,13 +232,16 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
         return $processTableFields;
     }
 
+    /**
+     * @return string|int
+     */
     private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
         switch ($type) {
             case FieldTypeEnumeration::TEXT:
                 $value = (string)$value;
 
-                if ($fieldSize) {
+                if ($fieldSize !== 0) {
                     $value = \substr($value, 0, $fieldSize);
                 }
 

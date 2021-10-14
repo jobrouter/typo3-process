@@ -16,11 +16,17 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class StepRepository extends Repository
 {
+    /**
+     * @var array<string, string>
+     */
     protected $defaultOrderings = [
         'disabled' => QueryInterface::ORDER_ASCENDING,
         'handle' => QueryInterface::ORDER_ASCENDING,
     ];
 
+    /**
+     * @return mixed[]|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
     public function findAllWithHidden()
     {
         $query = $this->createQuery();

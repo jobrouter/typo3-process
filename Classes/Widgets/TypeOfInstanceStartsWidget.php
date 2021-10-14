@@ -35,7 +35,7 @@ class TypeOfInstanceStartsWidget extends DoughnutChartWidget
     private function addNumberOfDaysToTitle(
         WidgetConfigurationInterface $configuration,
         array $options
-    ): WidgetConfigurationInterface {
+    ): WidgetConfiguration {
         if ($options['numberOfDays'] === 1) {
             $titleSuffix = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.typeOfInstanceStarts.title.lastDay');
         } else {

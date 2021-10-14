@@ -30,6 +30,9 @@ class TransferRepository
         $this->queryBuilder = $queryBuilder;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function countGroupByStartSuccess(): array
     {
         $queryBuilder = $this->createQueryBuilder();
@@ -72,6 +75,9 @@ class TransferRepository
         return $count;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function countTypes(int $numberOfDays): array
     {
         $queryBuilder = $this->createQueryBuilder();
@@ -94,7 +100,7 @@ class TransferRepository
             ->fetchAll();
     }
 
-    private function getDateBackFromToday(int $numberOfDays): \DateTimeInterface
+    private function getDateBackFromToday(int $numberOfDays): \DateTime
     {
         $startDate = new \DateTime();
         $startDate->setTime(0, 0);
@@ -103,6 +109,9 @@ class TransferRepository
         return $startDate;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function countByDay(int $numberOfDays): array
     {
         $queryBuilder = $this->createQueryBuilder();

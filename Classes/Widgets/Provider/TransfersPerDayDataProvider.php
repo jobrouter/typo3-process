@@ -48,6 +48,9 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
         $this->numberOfDays = $numberOfDays;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getChartData(): array
     {
         [$labels, $data] = $this->prepareData();
@@ -64,6 +67,9 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
         ];
     }
 
+    /**
+     * @return array<int, mixed[]>
+     */
     private function prepareData(): array
     {
         $days = $this->transferRepository->countByDay($this->numberOfDays);

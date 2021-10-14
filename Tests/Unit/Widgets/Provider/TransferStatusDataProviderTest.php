@@ -184,7 +184,7 @@ class TransferStatusDataProviderTest extends TestCase
     /**
      * @test
      */
-    public function getStatusReturns2ForGetNumberOfDaysWhenTheEntryIsJustOneDayAndASecondAgo()
+    public function getStatusReturns2ForGetNumberOfDaysWhenTheEntryIsJustOneDayAndASecondAgo(): void
     {
         $this->transferRepositoryStub
             ->method('findFirstCreationDate')

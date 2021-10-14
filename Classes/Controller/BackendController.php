@@ -13,7 +13,6 @@ namespace Brotkrueml\JobRouterProcess\Controller;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -32,6 +31,9 @@ class BackendController extends ActionController
 {
     private const MODULE_NAME = 'jobrouter_JobRouterProcessJobrouterprocess';
 
+    /**
+     * @var class-string<\TYPO3\CMS\Backend\View\BackendTemplateView>
+     */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**
@@ -48,11 +50,6 @@ class BackendController extends ActionController
      * @var IconFactory
      */
     private $iconFactory;
-
-    /**
-     * @var UriBuilder
-     */
-    private $backendUriBuilder;
 
     /**
      * @var ModuleTemplate
@@ -77,11 +74,6 @@ class BackendController extends ActionController
     public function injectIconFactory(IconFactory $iconFactory): void
     {
         $this->iconFactory = $iconFactory;
-    }
-
-    public function injectUriBuilder(UriBuilder $uriBuilder): void
-    {
-        $this->backendUriBuilder = $uriBuilder;
     }
 
     protected function initializeView(ViewInterface $view): void

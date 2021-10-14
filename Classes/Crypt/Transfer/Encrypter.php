@@ -58,7 +58,9 @@ class Encrypter implements LoggerAwareInterface
         $this->encryptedTransfer = clone $transfer;
         $this->encryptedFields = new EncryptedFieldsBitSet();
         $fields = Extension::ENCRYPTED_TRANSFER_FIELDS;
-        \array_walk($fields, [$this, 'encryptField']);
+        \array_walk($fields, function (string $field): void {
+            $this->encryptField($field);
+        });
         $this->encryptedTransfer->setEncryptedFields($this->encryptedFields->__toInt());
 
         return $this->encryptedTransfer;

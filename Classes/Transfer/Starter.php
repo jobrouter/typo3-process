@@ -14,7 +14,6 @@ namespace Brotkrueml\JobRouterProcess\Transfer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
-use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
@@ -65,9 +64,18 @@ class Starter implements LoggerAwareInterface
      */
     private $transferRepository;
 
+    /**
+     * @var IncidentsClientDecorator[]
+     */
     private static $clients = [];
 
+    /**
+     * @var int
+     */
     private $totalNumbersOfTransfers = 0;
+    /**
+     * @var int
+     */
     private $erroneousNumbersOfTransfers = 0;
 
     public function __construct(
@@ -84,6 +92,9 @@ class Starter implements LoggerAwareInterface
         $this->transferRepository = $transferRepository;
     }
 
+    /**
+     * @return array<0: int, 1: int>
+     */
     public function run(): array
     {
         $this->logger->info('Start instances');
@@ -180,7 +191,7 @@ class Starter implements LoggerAwareInterface
     private function getRestClientForStep(Step $step): IncidentsClientDecorator
     {
         $process = $step->getProcess();
-        if ($process === null) {
+        if (! $process instanceof Process) {
             throw new ProcessNotFoundException(
                 \sprintf(
                     'Process for step link with handle "%s" is not available',
@@ -190,9 +201,8 @@ class Starter implements LoggerAwareInterface
             );
         }
 
-        /** @var Connection $connection */
         $connection = $process->getConnection();
-        if ($connection === null) {
+        if (! $connection instanceof \Brotkrueml\JobRouterConnector\Domain\Model\Connection) {
             throw new ConnectionNotFoundException(
                 \sprintf(
                     'Connection for process link "%s" is not available',
@@ -241,7 +251,7 @@ class Starter implements LoggerAwareInterface
                     // A numeric static value in form finisher can be an integer
                     $value = (string)$value;
 
-                    if ($configuredProcessTableField->getFieldSize()) {
+                    if ($configuredProcessTableField->getFieldSize() !== 0) {
                         $value = \substr($value, 0, $configuredProcessTableField->getFieldSize());
                     }
                 }
@@ -257,7 +267,7 @@ class Starter implements LoggerAwareInterface
     {
         $configuredProcessTableFields = $process->getProcesstablefields()->toArray();
 
-        $processTableField = \array_filter($configuredProcessTableFields, static function ($field) use ($name) {
+        $processTableField = \array_filter($configuredProcessTableFields, static function ($field) use ($name): bool {
             /** @var Processtablefield $field */
             return $name === $field->getName();
         });

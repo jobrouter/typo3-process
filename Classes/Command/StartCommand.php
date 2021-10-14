@@ -94,6 +94,9 @@ final class StartCommand extends Command
         }
     }
 
+    /**
+     * @return array<0: int, 1: string, 2: string>
+     */
     private function start(): array
     {
         [$total, $errors] = $this->starter->run();

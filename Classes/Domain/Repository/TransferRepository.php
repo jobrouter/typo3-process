@@ -16,6 +16,9 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class TransferRepository extends Repository
 {
+    /**
+     * @return mixed[]|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
     public function findErroneousTransfers()
     {
         $query = $this->createQuery();

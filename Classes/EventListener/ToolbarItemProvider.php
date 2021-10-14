@@ -92,13 +92,13 @@ final class ToolbarItemProvider
         if ($this->lastRunInformation === null) {
             return InformationStatus::STATUS_WARNING;
         }
-
-        if ($this->isWarning() || $this->isOverdue()) {
-            $severity = InformationStatus::STATUS_WARNING;
-        } else {
-            $severity = InformationStatus::STATUS_OK;
+        if ($this->isWarning()) {
+            return InformationStatus::STATUS_WARNING;
+        }
+        if ($this->isOverdue()) {
+            return InformationStatus::STATUS_WARNING;
         }
 
-        return $severity;
+        return InformationStatus::STATUS_OK;
     }
 }

@@ -145,6 +145,9 @@ class TransfersPerDayDataProviderTest extends TestCase
         ];
     }
 
+    /**
+     * @return int[]
+     */
     private function getTimestamps(): array
     {
         $today = new \DateTime('now', new \DateTimeZone('UTC'));
@@ -160,6 +163,9 @@ class TransfersPerDayDataProviderTest extends TestCase
         return $timestamps;
     }
 
+    /**
+     * @return string[]
+     */
     private function getDays($timestamps): array
     {
         $days = [];

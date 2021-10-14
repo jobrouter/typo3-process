@@ -99,7 +99,7 @@ class Process extends AbstractEntity
         return $this->processtablefields;
     }
 
-    public function setProcesstablefields(ObjectStorage $processtablefields)
+    public function setProcesstablefields(ObjectStorage $processtablefields): void
     {
         $this->processtablefields = $processtablefields;
     }

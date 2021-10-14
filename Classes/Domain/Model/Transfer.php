@@ -91,7 +91,7 @@ class Transfer extends AbstractEntity
     protected $startSuccess = false;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $startDate;
 

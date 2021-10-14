@@ -85,7 +85,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
                     }
                 )
@@ -126,7 +126,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
                     }
                 )
@@ -167,7 +167,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START;
                     }
                 )

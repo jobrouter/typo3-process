@@ -48,7 +48,9 @@ class Decrypter
         $this->decryptedTransfer = clone $transfer;
         $this->encryptedFields = new EncryptedFieldsBitSet($transfer->getEncryptedFields());
         $fields = Extension::ENCRYPTED_TRANSFER_FIELDS;
-        \array_walk($fields, [$this, 'decryptField']);
+        \array_walk($fields, function (string $field): void {
+            $this->decryptField($field);
+        });
         $this->decryptedTransfer->setEncryptedFields(0);
 
         return $this->decryptedTransfer;
