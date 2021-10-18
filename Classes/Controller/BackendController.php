@@ -61,19 +61,14 @@ class BackendController extends ActionController
      */
     private $buttonBar;
 
-    public function injectProcessRepository(ProcessRepository $processRepository): void
-    {
-        $this->processRepository = $processRepository;
-    }
-
-    public function injectStepRepository(StepRepository $stepRepository): void
-    {
-        $this->stepRepository = $stepRepository;
-    }
-
-    public function injectIconFactory(IconFactory $iconFactory): void
-    {
+    public function __construct(
+        IconFactory $iconFactory,
+        ProcessRepository $processRepository,
+        StepRepository $stepRepository
+    ) {
         $this->iconFactory = $iconFactory;
+        $this->processRepository = $processRepository;
+        $this->stepRepository = $stepRepository;
     }
 
     protected function initializeView(ViewInterface $view): void
