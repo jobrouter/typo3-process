@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Controller;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
+use Brotkrueml\JobRouterProcess\Extension;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -52,6 +53,11 @@ class BackendController extends ActionController
     private $iconFactory;
 
     /**
+     * @var LanguageService
+     */
+    private $languageService;
+
+    /**
      * @var ModuleTemplate
      */
     private $moduleTemplate;
@@ -63,10 +69,12 @@ class BackendController extends ActionController
 
     public function __construct(
         IconFactory $iconFactory,
+        LanguageService $languageService,
         ProcessRepository $processRepository,
         StepRepository $stepRepository
     ) {
         $this->iconFactory = $iconFactory;
+        $this->languageService = $languageService;
         $this->processRepository = $processRepository;
         $this->stepRepository = $stepRepository;
     }
@@ -98,7 +106,7 @@ class BackendController extends ActionController
 
     protected function createRefreshHeaderButton(): void
     {
-        $title = $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload');
+        $title = $this->languageService->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload');
 
         $refreshButton = $this->buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
@@ -109,18 +117,22 @@ class BackendController extends ActionController
 
     protected function createShortcutHeaderButton(): void
     {
-        if ($this->getBackendUser()->mayMakeShortcut()) {
-            $shortcutButton = $this->buttonBar->makeShortcutButton()
-                ->setModuleName(self::MODULE_NAME)
-                ->setGetVariables(['route', 'module', 'id'])
-                ->setDisplayName('Shortcut');
-            $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+        if (! $this->getBackendUser()->mayMakeShortcut()) {
+            return;
         }
-    }
 
-    protected function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
+        $label = $this->languageService->sL(
+            \sprintf(
+                'LLL:EXT:%s/Resources/Private/Language/BackendModule.xlf:heading_text',
+                Extension::KEY
+            )
+        );
+
+        $shortcutButton = $this->buttonBar->makeShortcutButton()
+            ->setModuleName(self::MODULE_NAME)
+            ->setGetVariables(['route', 'module', 'id'])
+            ->setDisplayName($label);
+        $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
 
     protected function getBackendUser(): BackendUserAuthentication
