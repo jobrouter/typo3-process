@@ -60,7 +60,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         return [
             'datasets' => [
                 [
-                    'backgroundColor' => $this->getChartColours(is_array($data) || $data instanceof \Countable ? \count($data) : 0),
+                    'backgroundColor' => $this->getChartColours(\is_countable($data) ? \count($data) : 0),
                     'data' => $data,
                 ],
             ],

@@ -153,13 +153,13 @@ class Starter implements LoggerAwareInterface
         );
 
         $successMessage = '';
-        $body = \json_decode($response->getBody()->getContents(), true);
+        $body = \json_decode($response->getBody()->getContents(), true, 512, \JSON_THROW_ON_ERROR);
         if (\is_array($body)) {
             $successMessage = $body['incidents'][0] ?? '';
         }
 
         $transfer->setStartSuccess(true);
-        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage) : $successMessage);
+        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage, JSON_THROW_ON_ERROR) : $successMessage);
 
         $this->logger->debug(
             \sprintf(
@@ -242,7 +242,11 @@ class Starter implements LoggerAwareInterface
         $incident->setPool($transfer->getPool());
 
         if ($transfer->getProcesstable() !== '') {
-            $processTable = \json_decode($transfer->getProcesstable(), true);
+            try {
+                $processTable = \json_decode($transfer->getProcesstable(), true, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                $processTable = null;
+            }
 
             foreach ($processTable ?? [] as $name => $value) {
                 $configuredProcessTableField = $this->getProcessTableField($name, $step->getProcess());

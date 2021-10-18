@@ -251,11 +251,12 @@ class Transfer extends AbstractEntity
     /**
      * @param array|string $processtable
      * @throws \InvalidArgumentException
+     * @throws \JsonException
      */
     public function setProcesstable($processtable): void
     {
         if (\is_array($processtable)) {
-            $this->processtable = \json_encode($processtable);
+            $this->processtable = \json_encode($processtable, \JSON_THROW_ON_ERROR);
             return;
         }
 

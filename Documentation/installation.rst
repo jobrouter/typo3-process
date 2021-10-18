@@ -22,6 +22,20 @@ The extension has no PHP requirements in addition to TYPO3 and the TYPO3
 JobRouter Connector extension.
 
 
+.. _version-matrix:
+
+Version matrix
+==============
+
+================= ========== ===========
+JobRouter Process PHP        TYPO3
+================= ========== ===========
+1.0               7.2 - 7.4  10.4
+----------------- ---------- -----------
+1.1               7.3 - 8.0  10.4 / 11.5
+================= ========== ===========
+
+
 .. _installation-composer:
 
 Installation via composer
