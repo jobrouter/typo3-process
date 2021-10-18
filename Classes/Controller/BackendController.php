@@ -29,7 +29,7 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
  */
 class BackendController extends ActionController
 {
-    private const MODULE_NAME = 'jobrouter_JobRouterProcessJobrouterprocess';
+    private const MODULE_NAME = 'jobrouter_JobRouterProcessLinks';
 
     /**
      * @var class-string<\TYPO3\CMS\Backend\View\BackendTemplateView>

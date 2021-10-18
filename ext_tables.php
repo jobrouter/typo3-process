@@ -28,7 +28,7 @@ defined('TYPO3') || die();
     TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'JobRouterProcess',
         'jobrouter',
-        'jobrouterprocess',
+        'links',
         '',
         [
             Brotkrueml\JobRouterProcess\Controller\BackendController::class => 'list',
