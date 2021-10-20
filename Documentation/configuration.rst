@@ -46,7 +46,7 @@ disabled by default.
 .. hint::
 
    To display the log entries of this table in the TYPO3 backend, install the
-   extension `co-stack/logs <https://extensions.typo3.org/extension/logs>`_.
+   extension `co-stack/logs`_.
 
 Log level
 ~~~~~~~~~
@@ -65,6 +65,10 @@ If activated, the fields `processtable` and `summary` are encrypted for enhanced
 security in the transfer table when using the :ref:`Preparer <developer-preparer>`
 class or the :ref:`JobRouterStartInstance <form-finisher-start-instances>` form
 finisher.
+
+.. tip::
+   You should consider activating the encryption of the transfer data as this
+   ensures confidentiality and integrity!
 
 .. important::
    If you lose or change the encryption key (generated with the :doc:`JobRouter
@@ -108,3 +112,6 @@ dependent extension):
 As already mentioned, the current day is also considered. So if you use
 :yaml:`1` for the number of days, the widget will only show instance starts from
 today.
+
+
+.. _co-stack/logs: https://extensions.typo3.org/extension/logs

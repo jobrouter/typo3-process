@@ -6,9 +6,8 @@
 Introduction
 ============
 
-`JobRouter® <https://www.jobrouter.com/>`_ is a scalable digitisation platform
-which links processes, data and documents. The TYPO3 extension `TYPO3 JobRouter
-Process <https://github.com/brotkrueml/typo3-jobrouter-process>`_ connects
+`JobRouter®`_ is a scalable digitisation platform which links processes, data
+and documents. The TYPO3 extension `TYPO3 JobRouter Process`_ connects
 JobRouter® processes with TYPO3.
 
 
@@ -40,8 +39,7 @@ Current limitations
 Release management
 ==================
 
-This extension uses `semantic versioning <https://semver.org/>`_ which
-basically means for you, that
+This extension uses `semantic versioning`_ which basically means for you, that
 
 * Bugfix updates (e.g. 1.0.0 => 1.0.1) just includes small bug fixes or security
   relevant stuff without breaking changes.
@@ -52,3 +50,8 @@ basically means for you, that
 
 The changes between the different versions can be found in the
 :ref:`changelog <changelog>`.
+
+
+.. _JobRouter®: https://www.jobrouter.com/
+.. _semantic versioning: https://semver.org/
+.. _TYPO3 JobRouter Process: https://github.com/brotkrueml/typo3-jobrouter-process
