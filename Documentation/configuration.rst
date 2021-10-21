@@ -134,8 +134,11 @@ package extension:
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][\Psr\Log\Level::WARNING] =
-      [\TYPO3\CMS\Core\Log\Writer\FileWriter::class] = ['logFileInfix' => 'jobrouter_process'];
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][\Psr\Log\Level::WARNING] = [
+      \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
+         'logFileInfix' => 'jobrouter_process'
+      ]
+   ];
 
 The messages are then written to the
 :file:`var/log/typo3_jobrouter_process_<hash>.log` file.
