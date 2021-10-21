@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-09-05T13:44:54Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/ExtensionConfiguration.xlf" date="2021-10-21T15:37:19Z" product-name="jobrouter_process">
 		<body>
 			<trans-unit id="encryptTransferData" resname="encryptTransferData">
 				<source><![CDATA[Encrypt transfer data [processtable, summary]: Please note: If you lose or change the encryption key (generated with the JobRouter Connector extension), data cannot be decrypted by the start process command anymore!]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoFile" resname="logIntoFile">
-				<source><![CDATA[Log into file: File: var/log/typo3_jobrouter_process_<hash>.log]]></source>
+				<source><![CDATA[Log into file (deprecated, set up your own log writers): File: var/log/typo3_jobrouter_process_<hash>.log]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoTable" resname="logIntoTable">
-				<source><![CDATA[Log into table: Table: tx_jobrouterbase_log]]></source>
+				<source><![CDATA[Log into table (deprecated, set up your own log writers): Table: tx_jobrouterbase_log]]></source>
 			</trans-unit>
 			<trans-unit id="logLevel" resname="logLevel">
-				<source><![CDATA[Log level]]></source>
+				<source><![CDATA[Log level (deprecated, set up your own log writers)]]></source>
 			</trans-unit>
 		</body>
 	</file>

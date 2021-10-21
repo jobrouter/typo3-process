@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Compatibility with TYPO3 v11 LTS
 - Possibility to refresh dashboard widgets (TYPO3 v11+ only)
 
+### Deprecated
+- Configuration of log writers in the extension configuration
+
 ### Removed
 - Compatibility with PHP 7.2
 

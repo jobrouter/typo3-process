@@ -31,6 +31,11 @@ extensions` button. Open the :guilabel:`jobrouter_process` configuration:
 Log
 ---
 
+.. deprecated:: 1.1.0
+   The configuration of logging is deprecated and will be removed in version
+   2.0.0. :ref:`Configure the required log writers <configuration-logging>` in
+   your site package instead.
+
 Log into file
 ~~~~~~~~~~~~~
 
@@ -112,6 +117,28 @@ dependent extension):
 As already mentioned, the current day is also considered. So if you use
 :yaml:`1` for the number of days, the widget will only show instance starts from
 today.
+
+
+.. _configuration-logging:
+
+Logging
+=======
+
+If logging is necessary to track process instance starts and possible warnings
+or errors, you can set up :ref:`log writers <t3api:logging-writers>` depending
+on your needs.
+
+**Example:** To log all warnings and higher levels of this extension into a
+file, add this snippet to the :file:`ext_localconf.php` file of your site
+package extension:
+
+.. code-block:: php
+
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][\Psr\Log\Level::WARNING] =
+      [\TYPO3\CMS\Core\Log\Writer\FileWriter::class] = ['logFileInfix' => 'jobrouter_process'];
+
+The messages are then written to the
+:file:`var/log/typo3_jobrouter_process_<hash>.log` file.
 
 
 .. _co-stack/logs: https://extensions.typo3.org/extension/logs
