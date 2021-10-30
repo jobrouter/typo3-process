@@ -21,11 +21,6 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
