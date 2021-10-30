@@ -48,15 +48,15 @@ class StartInstanceFinisherTest extends TestCase
         $variableResolverStub->method('setCorrelationId');
         $variableResolverStub->method('setFormValues');
         $variableResolverStub->method('setRequest');
+        GeneralUtility::addInstance(VariableResolver::class, $variableResolverStub);
 
         $identifierGeneratorStub = $this->createStub(IdGenerator::class);
         $identifierGeneratorStub
             ->method('build')
             ->willReturn('some-identifier');
+        GeneralUtility::setSingletonInstance(IdGenerator::class, $identifierGeneratorStub);
 
         $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
-        $this->subject->injectVariableResolver($variableResolverStub);
-        $this->subject->injectIdGenerator($identifierGeneratorStub);
         $this->subject->setLogger(new NullLogger());
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
