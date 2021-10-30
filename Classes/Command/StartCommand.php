@@ -51,6 +51,11 @@ final class StartCommand extends Command
      */
     private $startTime;
 
+    /**
+     * @var SymfonyStyle
+     */
+    private $outputStyle;
+
     public function __construct(LockFactory $lockFactory, Registry $registry, Starter $starter)
     {
         $this->lockFactory = $lockFactory;
@@ -71,7 +76,7 @@ final class StartCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->startTime = \time();
-        $outputStyle = new SymfonyStyle($input, $output);
+        $this->outputStyle = new SymfonyStyle($input, $output);
 
         try {
             $locker = $this->lockFactory->createLocker(
@@ -79,45 +84,40 @@ final class StartCommand extends Command
                 LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE
             );
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
-
-            [$exitCode, $messageType, $message] = $this->start();
+            $exitCode = $this->start();
             $locker->release();
-            $outputStyle->{$messageType}($message);
-
             $this->recordLastRun($exitCode);
 
             return $exitCode;
         } catch (LockException $e) {
-            $outputStyle->warning('Could not acquire lock, another process is running');
+            $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
         }
     }
 
-    /**
-     * @return array<0: int, 1: string, 2: string>
-     */
-    private function start(): array
+    private function start(): int
     {
         $result = $this->starter->run();
 
         if ($result->errors > 0) {
-            return [
-                self::EXIT_CODE_ERRORS_ON_START,
-                'warning',
-                \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total),
-            ];
+            $this->outputStyle->warning(
+                \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total)
+            );
+
+            return self::EXIT_CODE_ERRORS_ON_START;
         }
 
-        return [
-            self::EXIT_CODE_OK,
-            'success',
-            \sprintf('%d incident(s) started successfully', $result->total),
-        ];
+        $this->outputStyle->success(
+            \sprintf('%d incident(s) started successfully', $result->total)
+        );
+
+        return self::EXIT_CODE_OK;
     }
 
     private function recordLastRun(int $exitCode): void
     {
+        // @phpstan-ignore-next-line
         $runInformation = [
             'start' => $this->startTime,
             'end' => \time(),

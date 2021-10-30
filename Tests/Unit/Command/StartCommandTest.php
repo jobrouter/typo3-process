@@ -209,7 +209,7 @@ class StartCommandTest extends TestCase
 
         self::assertSame(StartCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[WARNING] Could not acquire lock, another process is running',
+            '! [NOTE] Could not acquire lock, another process is running',
             $this->commandTester->getDisplay()
         );
     }

@@ -1,31 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Command/StartCommand.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Command/StartCommand.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Command\\\\StartCommand\\:\\:start\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Command/StartCommand.php
-
-		-
-			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: string, 2\\: string\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
-			count: 1
-			path: Classes/Command/StartCommand.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 2
-			path: Classes/Command/StartCommand.php
-
-		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
 			count: 1
 			path: Classes/Controller/BackendController.php
