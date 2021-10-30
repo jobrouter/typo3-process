@@ -21,6 +21,9 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class TypeOfInstanceStartsWidget extends DoughnutChartWidget
 {
+    /**
+     * @param array<string, mixed> $options
+     */
     public function __construct(
         WidgetConfigurationInterface $configuration,
         ChartDataProviderInterface $dataProvider,
@@ -32,6 +35,9 @@ class TypeOfInstanceStartsWidget extends DoughnutChartWidget
         parent::__construct($configuration, $dataProvider, $view, null, $options);
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     private function addNumberOfDaysToTitle(
         WidgetConfigurationInterface $configuration,
         array $options

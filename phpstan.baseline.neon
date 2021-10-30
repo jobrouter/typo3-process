@@ -341,13 +341,3 @@ parameters:
 			message: "#^Use value object over return of values$#"
 			count: 1
 			path: Classes/Widgets/Provider/TransfersPerDayDataProvider.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Widgets\\\\TypeOfInstanceStartsWidget\\:\\:__construct\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Widgets/TypeOfInstanceStartsWidget.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Widgets\\\\TypeOfInstanceStartsWidget\\:\\:addNumberOfDaysToTitle\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Widgets/TypeOfInstanceStartsWidget.php
