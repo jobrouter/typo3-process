@@ -163,21 +163,6 @@ parameters:
 			path: Classes/Domain/Repository/StepRepository.php
 
 		-
-			message: "#^Offset 'exitCode' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
-			message: "#^Offset 'start' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\EventListener\\\\ToolbarItemProvider\\:\\:\\$lastRunInformation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php

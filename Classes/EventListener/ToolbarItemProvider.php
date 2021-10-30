@@ -33,9 +33,9 @@ final class ToolbarItemProvider
     private $registry;
 
     /**
-     * @var array|null
+     * @var array{exitCode?: int, start?: int}
      */
-    private $lastRunInformation;
+    private $lastRunInformation = [];
 
     public function __construct(LanguageService $languageService, Registry $registry)
     {
@@ -45,7 +45,7 @@ final class ToolbarItemProvider
 
     public function __invoke(SystemInformationToolbarCollectorEvent $event): void
     {
-        $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun');
+        $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', []);
 
         $event->getToolbarItem()->addSystemInformation(
             $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
@@ -57,7 +57,7 @@ final class ToolbarItemProvider
 
     private function getMessage(): string
     {
-        if ($this->lastRunInformation === null) {
+        if ($this->lastRunInformation === []) {
             return $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.neverRun');
         }
 
@@ -79,17 +79,17 @@ final class ToolbarItemProvider
 
     private function isWarning(): bool
     {
-        return $this->lastRunInformation['exitCode'] > 0;
+        return ($this->lastRunInformation['exitCode'] ?? 0) > 0;
     }
 
     private function isOverdue(): bool
     {
-        return $this->lastRunInformation['start'] < \time() - 86400;
+        return ($this->lastRunInformation['start'] ?? 0) < \time() - 86400;
     }
 
     private function getSeverity(): string
     {
-        if ($this->lastRunInformation === null) {
+        if ($this->lastRunInformation === []) {
             return InformationStatus::STATUS_WARNING;
         }
         if ($this->isWarning()) {
