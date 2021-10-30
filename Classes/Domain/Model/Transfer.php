@@ -249,7 +249,7 @@ class Transfer extends AbstractEntity
     }
 
     /**
-     * @param array|string $processtable
+     * @param array<string, mixed>|string $processtable
      * @throws \InvalidArgumentException
      * @throws \JsonException
      */

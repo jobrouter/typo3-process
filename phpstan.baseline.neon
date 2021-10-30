@@ -133,16 +133,6 @@ parameters:
 			path: Classes/Domain/Model/Process.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\:\\:setProcesstable\\(\\) has parameter \\$processtable with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Transfer.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Transfer.php
-
-		-
 			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
 			count: 1
 			path: Classes/Domain/Repository/ProcessRepository.php
