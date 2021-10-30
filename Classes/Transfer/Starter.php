@@ -66,11 +66,6 @@ class Starter implements LoggerAwareInterface
     private $transferRepository;
 
     /**
-     * @var IncidentsClientDecorator[]
-     */
-    private static $clients = [];
-
-    /**
      * @var int
      */
     private $totalTransfers = 0;
@@ -124,6 +119,7 @@ class Starter implements LoggerAwareInterface
             $this->startTransfer($transfer);
         } catch (\Exception $e) {
             $this->erroneousTransfers++;
+            // @phpstan-ignore-next-line
             $context = [
                 'transfer uid' => $transfer->getUid(),
                 'exception class' => \get_class($e),
@@ -146,7 +142,7 @@ class Starter implements LoggerAwareInterface
         $client = $this->getRestClientForStep($step);
         $response = $client->request(
             'POST',
-            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->getProcess()->getName()),
+            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->getProcess()->getName()), // @phpstan-ignore-line
             $incident
         );
 
@@ -170,10 +166,9 @@ class Starter implements LoggerAwareInterface
 
     private function getStep(int $stepUid): Step
     {
-        /** @var Step $step */
         $step = $this->stepRepository->findByIdentifier($stepUid);
 
-        if ($step === null) {
+        if (! $step instanceof Step) {
             throw new StepNotFoundException(
                 \sprintf(
                     'Step link with uid "%d" is not available',
@@ -183,11 +178,23 @@ class Starter implements LoggerAwareInterface
             );
         }
 
+        if (! $step->getProcess() instanceof Process) {
+            throw new ProcessNotFoundException(
+                \sprintf(
+                    'Process for step link with handle "%s" is not available',
+                    $step->getHandle()
+                ),
+                1635596424
+            );
+        }
+
         return $step;
     }
 
     private function getRestClientForStep(Step $step): IncidentsClientDecorator
     {
+        static $clients = [];
+
         $process = $step->getProcess();
         if (! $process instanceof Process) {
             throw new ProcessNotFoundException(
@@ -211,19 +218,19 @@ class Starter implements LoggerAwareInterface
         }
 
         $connectionUid = $connection->getUid();
-        if (static::$clients[$connectionUid] ?? false) {
-            return static::$clients[$connectionUid];
+        if ($clients[$connectionUid] ?? false) {
+            return $clients[$connectionUid];
         }
 
         $client = $this->restClientFactory->create($connection);
 
-        return static::$clients[$connectionUid] = new IncidentsClientDecorator($client);
+        return $clients[$connectionUid] = new IncidentsClientDecorator($client);
     }
 
     private function createIncidentFromTransferItem(Step $step, Transfer $transfer): Incident
     {
         $incident = new Incident();
-        $incident->setStep($step->getStepNumber());
+        $incident->setStep($step->getStepNumber()); // @phpstan-ignore-line
         if ($transfer->getInitiator() !== '') {
             $incident->setInitiator($transfer->getInitiator());
         }
@@ -236,8 +243,8 @@ class Starter implements LoggerAwareInterface
         if ($transfer->getSummary() !== '') {
             $incident->setSummary($transfer->getSummary());
         }
-        $incident->setPriority($transfer->getPriority());
-        $incident->setPool($transfer->getPool());
+        $incident->setPriority($transfer->getPriority()); // @phpstan-ignore-line
+        $incident->setPool($transfer->getPool()); // @phpstan-ignore-line
 
         if ($transfer->getProcesstable() !== '') {
             try {
@@ -247,7 +254,9 @@ class Starter implements LoggerAwareInterface
             }
 
             foreach ($processTable ?? [] as $name => $value) {
-                $configuredProcessTableField = $this->getProcessTableField($name, $step->getProcess());
+                /** @var Process $process */
+                $process = $step->getProcess();
+                $configuredProcessTableField = $this->getProcessTableField($name, $process);
 
                 if ($configuredProcessTableField->getType() === FieldTypeEnumeration::TEXT) {
                     // A numeric static value in form finisher can be an integer

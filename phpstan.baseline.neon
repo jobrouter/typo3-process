@@ -83,11 +83,6 @@ parameters:
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Class cognitive complexity is 17, keep it under 10$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Finishers\\\\StartInstanceFinisher\\:\\:considerTypeForFieldValue\\(\\) has parameter \\$value with no typehint specified\\.$#"
 			count: 1
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
@@ -218,11 +213,6 @@ parameters:
 			path: Classes/Transfer/Preparer.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
@@ -233,47 +223,6 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Cannot call method getName\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Class cognitive complexity is 24, keep it under 10$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Do not use static property$#"
-			count: 3
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$pool of method Brotkrueml\\\\JobRouterClient\\\\Model\\\\Incident\\:\\:setPool\\(\\) expects int\\<1, max\\>, int given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$priority of method Brotkrueml\\\\JobRouterClient\\\\Model\\\\Incident\\:\\:setPriority\\(\\) expects int\\<1, 3\\>, int given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$step of method Brotkrueml\\\\JobRouterClient\\\\Model\\\\Incident\\:\\:setStep\\(\\) expects int\\<1, max\\>, int given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#2 \\$process of method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:getProcessTableField\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\|null given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step and null will always evaluate to false\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
