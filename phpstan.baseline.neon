@@ -123,16 +123,6 @@ parameters:
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:getProcesstablefields\\(\\) return type with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage does not specify its types\\: T$#"
-			count: 1
-			path: Classes/Domain/Model/Process.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:setProcesstablefields\\(\\) has parameter \\$processtablefields with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage but does not specify its types\\: T$#"
-			count: 1
-			path: Classes/Domain/Model/Process.php
-
-		-
 			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
 			count: 1
 			path: Classes/Domain/Repository/ProcessRepository.php

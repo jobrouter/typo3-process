@@ -94,11 +94,17 @@ class Process extends AbstractEntity
         $this->processtablefields->detach($processtablefieldToRemove);
     }
 
+    /**
+     * @return ObjectStorage<Processtablefield>
+     */
     public function getProcesstablefields(): ObjectStorage
     {
         return $this->processtablefields;
     }
 
+    /**
+     * @param ObjectStorage<Processtablefield> $processtablefields
+     */
     public function setProcesstablefields(ObjectStorage $processtablefields): void
     {
         $this->processtablefields = $processtablefields;
