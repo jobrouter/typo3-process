@@ -18,6 +18,7 @@ class ProcessRepository extends Repository
 {
     /**
      * @var array<string, string>
+     * @phpstan-ignore-next-line
      */
     protected $defaultOrderings = [
         'disabled' => QueryInterface::ORDER_ASCENDING,

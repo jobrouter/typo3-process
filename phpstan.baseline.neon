@@ -11,11 +11,6 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
-
-		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
 			count: 3
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
