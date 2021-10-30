@@ -37,6 +37,16 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
      */
     private $numberOfDays = 14;
 
+    /**
+     * @var array<int, string>
+     */
+    private $labels = [];
+
+    /**
+     * @var array<int, int>
+     */
+    private $data = [];
+
     public function __construct(LanguageService $languageService, TransferRepository $transferRepository)
     {
         $this->languageService = $languageService;
@@ -49,53 +59,48 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, array<int, mixed>>
      */
     public function getChartData(): array
     {
-        [$labels, $data] = $this->prepareData();
+        $this->prepareData();
 
         return [
-            'labels' => $labels,
+            'labels' => $this->labels,
             'datasets' => [
                 [
                     'label' => $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':numberOfStarts'),
                     'backgroundColor' => Extension::WIDGET_DEFAULT_CHART_COLOUR,
-                    'data' => $data,
+                    'data' => $this->data,
                 ],
             ],
         ];
     }
 
-    /**
-     * @return array<int, mixed[]>
-     */
-    private function prepareData(): array
+    private function prepareData(): void
     {
         $days = $this->transferRepository->countByDay($this->numberOfDays);
 
-        $labels = [];
-        $data = [];
-
         $startDate = new \DateTime('now', new \DateTimeZone('UTC'));
         $startDate->setTime(0, 0);
-
         $startDate->sub(new \DateInterval(\sprintf('P%dD', $this->numberOfDays - 1)));
+
         $endDate = new \DateTime();
 
         for ($ts = $startDate->format('U'); $ts < $endDate->format('U'); $ts += 86400) {
-            $labels[(int)$ts] = \date(
+            $this->labels[(int)$ts] = \date(
                 $this->languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
                 (int)$ts
             );
 
-            $data[(int)$ts] = 0;
+            $this->data[(int)$ts] = 0;
         }
 
         foreach ($days as $day) {
-            $data[$day['day']] = $day['count'];
+            $this->data[$day['day']] = $day['count'];
         }
 
-        return [\array_values($labels), \array_values($data)];
+        $this->labels = \array_values($this->labels);
+        $this->data = \array_values($this->data);
     }
 }

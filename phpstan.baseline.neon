@@ -331,13 +331,3 @@ parameters:
 			message: "#^Use value object over return of values$#"
 			count: 1
 			path: Classes/Widgets/Provider/TransferTypeChartDataProvider.php
-
-		-
-			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransfersPerDayDataProvider.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransfersPerDayDataProvider.php
