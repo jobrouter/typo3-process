@@ -316,18 +316,3 @@ parameters:
 			message: "#^Use value object over return of values$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransferTypeChartDataProvider.php
-
-		-
-			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransferTypeChartDataProvider.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransferTypeChartDataProvider.php

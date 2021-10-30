@@ -37,6 +37,16 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
      */
     private $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
 
+    /**
+     * @var array<int, string>
+     */
+    private $labels = [];
+
+    /**
+     * @var array<int, int>
+     */
+    private $data = [];
+
     public function __construct(
         LanguageService $languageService,
         TransferRepository $transferRepository
@@ -55,39 +65,32 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
      */
     public function getChartData(): array
     {
-        [$labels, $data] = $this->prepareData();
+        $this->prepareData();
 
         return [
             'datasets' => [
                 [
-                    'backgroundColor' => $this->getChartColours(\is_countable($data) ? \count($data) : 0),
-                    'data' => $data,
+                    'backgroundColor' => $this->getChartColours(\count($this->data)),
+                    'data' => $this->data,
                 ],
             ],
-            'labels' => $labels,
+            'labels' => $this->labels,
         ];
     }
 
-    /**
-     * @return array<int, mixed[]>
-     */
-    private function prepareData(): array
+    private function prepareData(): void
     {
-        $types = $this->transferRepository->countTypes($this->numberOfDays);
         $unknownLabel = $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':unknown');
 
-        $labels = [];
-        $data = [];
+        $types = $this->transferRepository->countTypes($this->numberOfDays);
         foreach ($types as $type) {
-            $labels[] = $type['type'] ?: $unknownLabel;
-            $data[] = $type['count'];
+            $this->labels[] = $type['type'] ?: $unknownLabel;
+            $this->data[] = $type['count'];
         }
-
-        return [$labels, $data];
     }
 
     /**
-     * @return mixed[]
+     * @return string[]
      */
     private function getChartColours(int $count): array
     {
