@@ -42,6 +42,7 @@ class Deleter implements LoggerAwareInterface
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
         try {
+            /** @var int $affectedRows */
             $affectedRows = $this->queryBuilder
                 ->delete('tx_jobrouterprocess_domain_model_transfer')
                 ->where(

@@ -178,11 +178,6 @@ parameters:
 			path: Classes/EventListener/ToolbarItemProvider.php
 
 		-
-			message: "#^Binary operation \"\\.\" between 'Affected rows\\: ' and Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\<min, \\-1\\>\\|int\\<1, max\\> results in an error\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
@@ -199,11 +194,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Deleter\\:\\:run\\(\\) should return int but returns Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
 
