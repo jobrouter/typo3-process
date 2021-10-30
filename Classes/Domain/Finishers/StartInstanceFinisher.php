@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
@@ -25,16 +26,12 @@ use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
 /**
  * @internal
  */
-final class StartInstanceFinisher extends AbstractTransferFinisher implements LoggerAwareInterface
+final class StartInstanceFinisher extends AbstractTransferFinisher
 {
-    use LoggerAwareTrait;
-
     /**
      * @var Preparer
      */
@@ -80,7 +77,18 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
 
     protected function process(): void
     {
-        $this->determineStep($this->parseOption('handle'));
+        $handle = $this->parseOption('handle');
+        if (! \is_string($handle) || $handle === '') {
+            throw new MissingFinisherOptionException(
+                \sprintf(
+                    'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
+                    $this->getFormIdentifier()
+                ),
+                1581270462
+            );
+        }
+
+        $this->determineStep($handle);
 
         $this->initialiseTransfer();
         $this->prepareStepParametersForTransfer();
@@ -89,51 +97,40 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
         $this->preparer->store($this->transfer);
     }
 
-    private function determineStep(?string $handle): void
+    private function determineStep(string $handle): void
     {
-        if ($handle === null || $handle === '') {
-            $message = \sprintf(
-                'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
-                $this->getFormIdentifier()
+        /** @var Step|null $step */
+        $step = $this->stepRepository->findOneByHandle($handle);
+        if (! $step instanceof Step) {
+            throw new StepNotFoundException(
+                \sprintf(
+                    'Step with handle "%s" is not available, defined in form with identifier "%s"',
+                    $handle,
+                    $this->getFormIdentifier()
+                ),
+                1581270832
             );
-
-            $this->logger->critical($message);
-
-            throw new MissingFinisherOptionException($message, 1581270462);
         }
 
-        $this->step = $this->stepRepository->findOneByHandle($handle);
-
-        if ($this->step === null) {
-            $message = \sprintf(
-                'Step with handle "%s" is not available, defined in form with identifier "%s"',
-                $handle,
-                $this->getFormIdentifier()
+        if (! $step->getProcess() instanceof Process) {
+            throw new ProcessNotFoundException(
+                \sprintf(
+                    'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
+                    $handle,
+                    $this->getFormIdentifier()
+                ),
+                1581281395
             );
-
-            $this->logger->critical($message);
-
-            throw new StepNotFoundException($message, 1581270832);
         }
 
-        if ($this->step->getProcess() === null) {
-            $message = \sprintf(
-                'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
-                $handle,
-                $this->getFormIdentifier()
-            );
-
-            $this->logger->critical($message);
-
-            throw new ProcessNotFoundException($message, 1581281395);
-        }
+        $this->step = $step;
     }
 
     private function initialiseTransfer(): void
     {
         $this->transfer = new Transfer();
         $this->transfer->setCrdate(\time());
-        $this->transfer->setStepUid($this->step->getUid());
+        $this->transfer->setStepUid((int)$this->step->getUid());
         $this->transfer->setCorrelationId($this->correlationId);
     }
 
@@ -141,8 +138,10 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
     {
         foreach ($this->stepParameters as $parameter) {
             $value = $this->parseOption($parameter);
-
-            if (empty($value)) {
+            if (! \is_string($value)) {
+                continue;
+            }
+            if ($value === '') {
                 continue;
             }
 
@@ -163,12 +162,14 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
     private function prepareTypeForTransfer(): void
     {
         $type = $this->parseOption('type');
-
-        if (empty($type)) {
+        if (! \is_string($type)) {
+            return;
+        }
+        if ($type === '') {
             return;
         }
 
-        $type = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type);
+        $type = (string)$this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type);
         $this->transfer->setType($type);
     }
 
@@ -193,6 +194,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
                         'Process table field "%s" is used in form with identifier "%s" but not defined in process link "%s"',
                         $processTableField,
                         $this->getFormIdentifier(),
+                        // @phpstan-ignore-next-line Already checked before if process is available
                         $this->step->getProcess()->getName()
                     ),
                     1585930166
@@ -204,7 +206,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
                 $value
             );
 
-            $value = $this->resolveFormFields($formValues, $value);
+            $value = $this->resolveFormFields($formValues, (string)$value);
 
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
@@ -222,32 +224,35 @@ final class StartInstanceFinisher extends AbstractTransferFinisher implements Lo
     private function prepareProcessTableFields(): array
     {
         /** @var Processtablefield[] $fields */
-        $fields = $this->step->getProcess()->getProcesstablefields();
+        $fields = $this->step->getProcess()->getProcesstablefields(); // @phpstan-ignore-line Already checked before if process is available
 
         $processTableFields = [];
         foreach ($fields as $field) {
             $processTableFields[$field->getName()] = $field;
         }
 
+        // @phpstan-ignore-next-line
         return $processTableFields;
     }
 
     /**
+     * @param string|int $value
      * @return string|int
      */
     private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
-        switch ($type) {
-            case FieldTypeEnumeration::TEXT:
-                $value = (string)$value;
+        if ($type === FieldTypeEnumeration::TEXT) {
+            $value = (string)$value;
 
-                if ($fieldSize !== 0) {
-                    $value = \substr($value, 0, $fieldSize);
-                }
+            if ($fieldSize !== 0) {
+                $value = \substr($value, 0, $fieldSize);
+            }
 
-                return $value;
-            case FieldTypeEnumeration::INTEGER:
-                return $value === '' ? '' : (int)$value;
+            return $value;
+        }
+
+        if ($type === FieldTypeEnumeration::INTEGER) {
+            return $value === '' ? '' : (int)$value;
         }
 
         throw new InvalidFieldTypeException(

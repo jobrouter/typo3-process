@@ -41,88 +41,6 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^\"empty\\(\\$type\\)\" is forbidden to use$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^\"empty\\(\\$value\\)\" is forbidden to use$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message:
-				"""
-					#^"switch \\(\\$type\\) \\{
-					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:TEXT\\:
-					        \\$value \\= \\(string\\) \\$value;
-					        if \\(\\$fieldSize \\!\\=\\= 0\\) \\{
-					            \\$value \\= \\\\substr\\(\\$value, 0, \\$fieldSize\\);
-					        \\}
-					        return \\$value;
-					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:INTEGER\\:
-					        return \\$value \\=\\=\\= '' \\? '' \\: \\(int\\) \\$value;
-					\\}" is forbidden to use$#
-				"""
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 3
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot call method getName\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot call method getProcesstablefields\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Finishers\\\\StartInstanceFinisher\\:\\:considerTypeForFieldValue\\(\\) has parameter \\$value with no typehint specified\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#1 \\$handle of method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Finishers\\\\StartInstanceFinisher\\:\\:determineStep\\(\\) expects string\\|null, array\\|string\\|null given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#1 \\$stepUid of method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\:\\:setStepUid\\(\\) expects int, int\\|null given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#1 \\$type of method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\:\\:setType\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#2 \\$value of method Brotkrueml\\\\JobRouterBase\\\\Domain\\\\Finishers\\\\AbstractTransferFinisher\\:\\:resolveFormFields\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#2 \\$value of method Brotkrueml\\\\JobRouterBase\\\\Domain\\\\VariableResolvers\\\\VariableResolver\\:\\:resolve\\(\\) expects string, array\\|string given\\.$#"
-			count: 2
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Finishers\\\\StartInstanceFinisher\\:\\:\\$step \\(Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\) does not accept Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Use another value object over array with string\\-keys and objects, array\\<string, ValueObject\\>$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
 			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
 			count: 1
 			path: Classes/Domain/Repository/ProcessRepository.php
@@ -181,3 +99,4 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
+

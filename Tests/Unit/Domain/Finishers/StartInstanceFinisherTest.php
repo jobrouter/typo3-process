@@ -19,7 +19,6 @@ use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
 
@@ -57,7 +56,6 @@ class StartInstanceFinisherTest extends TestCase
         GeneralUtility::setSingletonInstance(IdGenerator::class, $identifierGeneratorStub);
 
         $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
-        $this->subject->setLogger(new NullLogger());
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
 
