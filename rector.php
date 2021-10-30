@@ -10,6 +10,7 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayParamDocTypeRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector;
+use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -57,5 +58,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             __DIR__ . '/Classes/Domain/Model/Transfer.php',
         ],
         RemoveUnusedPromotedPropertyRector::class, // Skip until compatibility with PHP >= 8.0
+        ReturnTypeDeclarationRector::class => [
+            __DIR__ . '/Classes/Domain/Repository/ProcessRepository.php',
+            __DIR__ . '/Classes/Domain/Repository/StepRepository.php',
+            __DIR__ . '/Classes/Domain/Repository/TransferRepository.php',
+        ],
     ]);
 };
