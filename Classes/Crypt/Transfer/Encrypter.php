@@ -69,7 +69,7 @@ class Encrypter implements LoggerAwareInterface
     private function encryptField(string $field): void
     {
         $value = $this->encryptedTransfer->{'get' . \ucfirst($field)}();
-        if (empty($value)) {
+        if ($value === '') {
             return;
         }
 

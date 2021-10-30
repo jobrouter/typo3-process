@@ -31,11 +31,6 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
-			message: "#^\"empty\\(\\$value\\)\" is forbidden to use$#"
-			count: 1
-			path: Classes/Crypt/Transfer/Encrypter.php
-
-		-
 			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
