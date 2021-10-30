@@ -68,11 +68,6 @@ parameters:
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Call to an undefined method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findOneByHandle\\(\\)\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
 			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 3
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
@@ -123,17 +118,22 @@ parameters:
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
+			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Finishers\\\\StartInstanceFinisher\\:\\:\\$step \\(Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\) does not accept Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
 			message: "#^Use another value object over array with string\\-keys and objects, array\\<string, ValueObject\\>$#"
 			count: 1
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:getProcesstablefields\\(\\) return type with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage does not specify its types\\: TEntity$#"
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:getProcesstablefields\\(\\) return type with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage does not specify its types\\: T$#"
 			count: 1
 			path: Classes/Domain/Model/Process.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:setProcesstablefields\\(\\) has parameter \\$processtablefields with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage but does not specify its types\\: TEntity$#"
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Process\\:\\:setProcesstablefields\\(\\) has parameter \\$processtablefields with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage but does not specify its types\\: T$#"
 			count: 1
 			path: Classes/Domain/Model/Process.php
 
@@ -153,11 +153,6 @@ parameters:
 			path: Classes/Domain/Repository/ProcessRepository.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
-
-		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
 			count: 3
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
@@ -171,16 +166,6 @@ parameters:
 			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
 			count: 1
 			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
 			message: "#^Offset 'exitCode' does not exist on array\\|null\\.$#"
@@ -238,11 +223,6 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Call to an undefined method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findByStartSuccess\\(\\)\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
@@ -293,11 +273,7 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Parameter \\#3 \\$data of method Brotkrueml\\\\JobRouterClient\\\\Client\\\\IncidentsClientDecorator\\:\\:request\\(\\) expects array\\<string, mixed\\>\\|Brotkrueml\\\\JobRouterClient\\\\Client\\\\ClientDecorator, Brotkrueml\\\\JobRouterClient\\\\Model\\\\Incident given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
 			message: "#^Strict comparison using \\=\\=\\= between Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step and null will always evaluate to false\\.$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
+
