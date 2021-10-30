@@ -83,9 +83,9 @@ class StarterTest extends TestCase
             ->method('findByStartSuccess')
             ->willReturn([]);
 
-        [$total, $errors] = $this->subject->run();
+        $actual = $this->subject->run();
 
-        self::assertSame(0, $total);
-        self::assertSame(0, $errors);
+        self::assertSame(0, $actual->total);
+        self::assertSame(0, $actual->errors);
     }
 }

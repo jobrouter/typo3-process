@@ -99,20 +99,20 @@ final class StartCommand extends Command
      */
     private function start(): array
     {
-        [$total, $errors] = $this->starter->run();
+        $result = $this->starter->run();
 
-        if ($errors) {
+        if ($result->errors > 0) {
             return [
                 self::EXIT_CODE_ERRORS_ON_START,
                 'warning',
-                \sprintf('%d out of %d incident(s) had errors on start', $errors, $total),
+                \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total),
             ];
         }
 
         return [
             self::EXIT_CODE_OK,
             'success',
-            \sprintf('%d incident(s) started successfully', $total),
+            \sprintf('%d incident(s) started successfully', $result->total),
         ];
     }
 

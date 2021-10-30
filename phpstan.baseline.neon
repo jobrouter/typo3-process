@@ -2,7 +2,7 @@ parameters:
 	ignoreErrors:
 		-
 			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 2
+			count: 1
 			path: Classes/Command/StartCommand.php
 
 		-
@@ -273,16 +273,6 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:run\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: int\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
 			message: "#^Parameter \\#1 \\$pool of method Brotkrueml\\\\JobRouterClient\\\\Model\\\\Incident\\:\\:setPool\\(\\) expects int\\<1, max\\>, int given\\.$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
@@ -309,10 +299,5 @@ parameters:
 
 		-
 			message: "#^Strict comparison using \\=\\=\\= between Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step and null will always evaluate to false\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Use value object over return of values$#"
 			count: 1
 			path: Classes/Transfer/Starter.php

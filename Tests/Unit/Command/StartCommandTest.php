@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
+use Brotkrueml\JobRouterProcess\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -76,7 +77,7 @@ class StartCommandTest extends TestCase
         $this->starterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn([0, 0]);
+            ->willReturn(new CountResult(0, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -117,7 +118,7 @@ class StartCommandTest extends TestCase
         $this->starterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn([3, 0]);
+            ->willReturn(new CountResult(3, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -158,7 +159,7 @@ class StartCommandTest extends TestCase
         $this->starterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn([3, 1]);
+            ->willReturn(new CountResult(3, 1));
 
         $this->registryMock
             ->expects(self::once())

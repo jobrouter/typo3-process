@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
+use Brotkrueml\JobRouterProcess\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
@@ -72,11 +73,11 @@ class Starter implements LoggerAwareInterface
     /**
      * @var int
      */
-    private $totalNumbersOfTransfers = 0;
+    private $totalTransfers = 0;
     /**
      * @var int
      */
-    private $erroneousNumbersOfTransfers = 0;
+    private $erroneousTransfers = 0;
 
     public function __construct(
         PersistenceManagerInterface $persistenceManager,
@@ -92,16 +93,13 @@ class Starter implements LoggerAwareInterface
         $this->transferRepository = $transferRepository;
     }
 
-    /**
-     * @return array<0: int, 1: int>
-     */
-    public function run(): array
+    public function run(): CountResult
     {
         $this->logger->info('Start instances');
         $transfers = $this->transferRepository->findByStartSuccess(0);
 
-        $this->totalNumbersOfTransfers = 0;
-        $this->erroneousNumbersOfTransfers = 0;
+        $this->totalTransfers = 0;
+        $this->erroneousTransfers = 0;
         foreach ($transfers as $transfer) {
             $this->processTransfer($transfer);
         }
@@ -109,23 +107,23 @@ class Starter implements LoggerAwareInterface
         $this->logger->info(
             \sprintf(
                 'Started %d instance(s) with %d errors',
-                $this->totalNumbersOfTransfers,
-                $this->erroneousNumbersOfTransfers
+                $this->totalTransfers,
+                $this->erroneousTransfers
             )
         );
 
-        return [$this->totalNumbersOfTransfers, $this->erroneousNumbersOfTransfers];
+        return new CountResult($this->totalTransfers, $this->erroneousTransfers);
     }
 
     private function processTransfer(Transfer $transfer): void
     {
         $this->logger->debug(\sprintf('Processing transfer with uid "%d"', $transfer->getUid()));
 
-        $this->totalNumbersOfTransfers++;
+        $this->totalTransfers++;
         try {
             $this->startTransfer($transfer);
         } catch (\Exception $e) {
-            $this->erroneousNumbersOfTransfers++;
+            $this->erroneousTransfers++;
             $context = [
                 'transfer uid' => $transfer->getUid(),
                 'exception class' => \get_class($e),
