@@ -83,7 +83,7 @@ class TransfersPerDayDataProviderTest extends TestCase
                 'datasets' => [
                     [
                         'label' => 'starts count',
-                        'backgroundColor' => '#fc3',
+                        'backgroundColor' => '#fabb00',
                         'data' => [0, 0, 0, 0, 0],
                     ],
                 ],
@@ -118,7 +118,7 @@ class TransfersPerDayDataProviderTest extends TestCase
                 'datasets' => [
                     [
                         'label' => 'starts count',
-                        'backgroundColor' => '#fc3',
+                        'backgroundColor' => '#fabb00',
                         'data' => [1, 2, 3, 4, 5],
                     ],
                 ],
@@ -137,7 +137,7 @@ class TransfersPerDayDataProviderTest extends TestCase
                 'datasets' => [
                     [
                         'label' => 'starts count',
-                        'backgroundColor' => '#fc3',
+                        'backgroundColor' => '#fabb00',
                         'data' => [0, 0, 42, 0, 0],
                     ],
                 ],

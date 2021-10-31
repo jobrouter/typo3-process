@@ -89,7 +89,7 @@ class TransferTypeChartDataProviderTest extends TestCase
             [
                 'datasets' => [
                     [
-                        'backgroundColor' => ['#fc3'],
+                        'backgroundColor' => ['#fabb00'],
                         'data' => [3],
                     ],
                 ],
@@ -132,13 +132,13 @@ class TransferTypeChartDataProviderTest extends TestCase
                 'datasets' => [
                     [
                         'backgroundColor' => [
-                            '#fc3',
+                            '#fabb00',
                             '#ff8700',
                             '#a4276a',
                             '#1a568f',
                             '#4c7e3a',
                             '#69bbb5',
-                            '#fc3',
+                            '#fabb00',
                         ],
                         'data' => [
                             1,
