@@ -159,7 +159,7 @@ class Starter implements LoggerAwareInterface
             \sprintf(
                 'Response of starting the transfer with uid "%d": "%s"',
                 $transfer->getUid(),
-                $successMessage
+                $transfer->getStartMessage()
             )
         );
     }
