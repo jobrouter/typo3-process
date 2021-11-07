@@ -15,6 +15,10 @@ Target group: **Integrators, Administrators**
 The links to processes and instances in JobRouter® installations are managed in
 the module :guilabel:`JobRouter` > :guilabel:`Processes`.
 
+.. note::
+
+   The module is only available in the live workspace.
+
 On your first visit after installing the extension you will see the following
 screen:
 

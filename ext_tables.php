@@ -37,6 +37,7 @@ defined('TYPO3') || die();
             'access' => 'admin',
             'iconIdentifier' => 'jobrouter-module-process',
             'labels' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_BACKEND_MODULE,
+            'workspaces' => 'online',
         ]
     );
 })();
