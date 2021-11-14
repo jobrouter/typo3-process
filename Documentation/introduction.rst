@@ -6,7 +6,7 @@
 Introduction
 ============
 
-`JobRouter®`_ is a scalable digitisation platform which links processes, data
+`JobRouter®`_ is a scalable digitalisation platform which links processes, data
 and documents. The TYPO3 extension `TYPO3 JobRouter Process`_ connects
 JobRouter® processes with TYPO3.
 
