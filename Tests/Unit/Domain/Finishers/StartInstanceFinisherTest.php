@@ -19,7 +19,6 @@ use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
 
 class StartInstanceFinisherTest extends TestCase
@@ -47,28 +46,27 @@ class StartInstanceFinisherTest extends TestCase
         $variableResolverStub->method('setCorrelationId');
         $variableResolverStub->method('setFormValues');
         $variableResolverStub->method('setRequest');
-        GeneralUtility::addInstance(VariableResolver::class, $variableResolverStub);
 
-        $identifierGeneratorStub = $this->createStub(IdGenerator::class);
-        $identifierGeneratorStub
+        $idGeneratorStub = $this->createStub(IdGenerator::class);
+        $idGeneratorStub
             ->method('build')
             ->willReturn('some-identifier');
-        GeneralUtility::setSingletonInstance(IdGenerator::class, $identifierGeneratorStub);
-
-        $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
-
-        $this->finisherContextMock = $this->createMock(FinisherContext::class);
 
         $this->preparerMock = $this->getMockBuilder(Preparer::class)
             ->disableOriginalConstructor()
             ->getMock();
-        GeneralUtility::addInstance(Preparer::class, $this->preparerMock);
+
+        $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
+        $this->subject->injectVariableResolver($variableResolverStub);
+        $this->subject->injectIdGenerator($idGeneratorStub);
+        $this->subject->injectPreparer($this->preparerMock);
+
+        $this->finisherContextMock = $this->createMock(FinisherContext::class);
     }
 
     protected function tearDown(): void
     {
         unset($GLOBALS['TYPO3_REQUEST']);
-        GeneralUtility::purgeInstances();
     }
 
     /**
