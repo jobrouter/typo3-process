@@ -73,11 +73,11 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.type.text',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                     ],
                     [
-                        Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.type.integer',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
                 ],

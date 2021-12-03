@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2020-07-02T13:12:54Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Database.xlf" date="2021-12-03T17:04:51Z" product-name="jobrouter_process">
 		<body>
 			<trans-unit id="palette.default_parameters" resname="palette.default_parameters">
 				<source><![CDATA[Default Parameters]]></source>
@@ -57,23 +57,10 @@
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.name.description" resname="tx_jobrouterprocess_domain_model_processtablefields.name.description">
-				<source>
-					<![CDATA[The field name must be written exactly as in the JobRouter process table definition.]]></source>
+				<source><![CDATA[The field name must be written exactly as in the JobRouter process table definition.]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type" resname="tx_jobrouterprocess_domain_model_processtablefields.type">
 				<source><![CDATA[Type]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.datetime" resname="tx_jobrouterprocess_domain_model_processtablefields.type.datetime">
-				<source><![CDATA[Datetime]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.decimal" resname="tx_jobrouterprocess_domain_model_processtablefields.type.decimal">
-				<source><![CDATA[Decimal]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.integer" resname="tx_jobrouterprocess_domain_model_processtablefields.type.integer">
-				<source><![CDATA[Integer]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_processtablefields.type.text" resname="tx_jobrouterprocess_domain_model_processtablefields.type.text">
-				<source><![CDATA[Text]]></source>
 			</trans-unit>
 		</body>
 	</file>
