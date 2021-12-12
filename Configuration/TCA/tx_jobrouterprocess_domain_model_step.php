@@ -26,7 +26,6 @@ return [
     ],
     'columns' => [
         'disabled' => [
-            'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
             'config' => [
                 'type' => 'check',
@@ -42,7 +41,6 @@ return [
         ],
 
         'handle' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.handle',
             'config' => [
                 'type' => 'input',
@@ -52,7 +50,6 @@ return [
             ],
         ],
         'name' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.name',
             'config' => [
                 'type' => 'input',
@@ -62,7 +59,6 @@ return [
             ],
         ],
         'process' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.process',
             'config' => [
                 'type' => 'select',
@@ -73,7 +69,6 @@ return [
             ],
         ],
         'step_number' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.step_number',
             'config' => [
                 'type' => 'input',
@@ -83,7 +78,6 @@ return [
             ],
         ],
         'description' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.description',
             'config' => [
                 'type' => 'text',

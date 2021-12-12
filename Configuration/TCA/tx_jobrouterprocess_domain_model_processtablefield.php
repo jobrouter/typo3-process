@@ -44,7 +44,6 @@ return [
         ],
 
         'name' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.name',
             'description' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.name.description',
             'config' => [
@@ -55,7 +54,6 @@ return [
             ],
         ],
         'description' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.description',
             'config' => [
                 'type' => 'input',
@@ -65,7 +63,6 @@ return [
             ],
         ],
         'type' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.type',
             'onChange' => 'reload',
             'config' => [
@@ -85,7 +82,6 @@ return [
             ],
         ],
         'field_size' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.field_size',
             'config' => [
                 'type' => 'input',
