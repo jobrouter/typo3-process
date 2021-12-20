@@ -58,7 +58,7 @@ final class ToolbarItemProvider
     private function getMessage(): string
     {
         if ($this->lastRunInformation === []) {
-            return $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.neverRun');
+            return $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':toolbar.neverExecuted');
         }
 
         if ($this->isWarning()) {

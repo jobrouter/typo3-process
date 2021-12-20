@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T18:43:11Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" date="2021-12-20T16:17:45Z" product-name="jobrouter_process">
 		<body>
 			<trans-unit id="startCommand.lastRunLabel" resname="startCommand.lastRunLabel">
 				<source><![CDATA[Last Instance Start]]></source>
 			</trans-unit>
 			<trans-unit id="startCommand.lastRunMessage" resname="startCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
-			</trans-unit>
-			<trans-unit id="startCommand.neverRun" resname="startCommand.neverRun">
-				<source><![CDATA[The start command has never been executed.]]></source>
 			</trans-unit>
 			<trans-unit id="status.overdue" resname="status.overdue">
 				<source><![CDATA[overdue]]></source>
@@ -19,6 +16,9 @@
 			</trans-unit>
 			<trans-unit id="status.warning" resname="status.warning">
 				<source><![CDATA[warnings]]></source>
+			</trans-unit>
+			<trans-unit id="toolbar.neverExecuted" resname="toolbar.neverExecuted">
+				<source><![CDATA[Never executed]]></source>
 			</trans-unit>
 		</body>
 	</file>
