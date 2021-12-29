@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Database error in module DB Check > Records Statistics due to wrong label in TCA
+
 ## [1.1.0] - 2021-11-21
 
 ### Added
