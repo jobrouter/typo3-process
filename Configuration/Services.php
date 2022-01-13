@@ -41,7 +41,8 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->private();
 
     $services
-        ->load('Brotkrueml\JobRouterProcess\\', __DIR__ . '/../Classes/*');
+        ->load('Brotkrueml\JobRouterProcess\\', '../Classes/*')
+        ->exclude('../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php}');
 
     $services
         ->set('querybuilder.tx_jobrouterprocess_domain_model_transfer', QueryBuilder::class)
