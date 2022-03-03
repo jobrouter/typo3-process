@@ -11,6 +11,16 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
+			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/ProcessRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
+			count: 1
+			path: Classes/Domain/Repository/ProcessRepository.php
+
+		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
 			count: 3
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
@@ -19,6 +29,26 @@ parameters:
 			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
 			count: 2
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
+			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/StepRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
+			count: 1
+			path: Classes/Domain/Repository/StepRepository.php
+
+		-
+			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
@@ -59,4 +89,9 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Widgets\\\\Provider\\\\TransfersPerDayDataProvider\\:\\:\\$data \\(array\\<int, int\\>\\) does not accept array\\<int\\|string, mixed\\>\\.$#"
+			count: 1
+			path: Classes/Widgets/Provider/TransfersPerDayDataProvider.php
 
