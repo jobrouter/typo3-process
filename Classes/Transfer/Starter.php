@@ -263,7 +263,7 @@ class Starter implements LoggerAwareInterface
                     $value = (string)$value;
 
                     if ($configuredProcessTableField->getFieldSize() !== 0) {
-                        $value = \substr($value, 0, $configuredProcessTableField->getFieldSize());
+                        $value = \mb_substr($value, 0, $configuredProcessTableField->getFieldSize());
                     }
                 }
 

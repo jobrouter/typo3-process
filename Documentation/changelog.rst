@@ -16,6 +16,7 @@ Fixed
 
 
 * Database error in module DB Check > Records Statistics due to wrong label in TCA
+* Handle multibyte characters correctly when cutting string to specific length for transfer
 
 `1.1.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.0.0...v1.1.0>`_ - 2021-11-21
 ---------------------------------------------------------------------------------------------------------

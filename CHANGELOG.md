@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Database error in module DB Check > Records Statistics due to wrong label in TCA
+- Handle multibyte characters correctly when cutting string to specific length for transfer
 
 ## [1.1.0] - 2021-11-21
 
