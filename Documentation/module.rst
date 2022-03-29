@@ -57,7 +57,7 @@ Process Name (required)
 
 Connection (required)
    Choose a connection which was defined previously in the :doc:`Connections
-   <typo3-jobrouter-connector:usage>` module.
+   <ext_jobrouter_connector:usage>` module.
 
 Process Table Fields (optional)
    Define the process table fields that should be used when starting an

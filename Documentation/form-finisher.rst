@@ -169,5 +169,5 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields.
 
 For more information have a look into the available :ref:`variable resolvers
-<typo3-jobrouter-base:variable-resolvers>`. You can also write your :ref:`own variable
+<ext_jobrouter_base:variable-resolvers>`. You can also write your :ref:`own variable
 resolvers <developer-variable-resolvers>`.

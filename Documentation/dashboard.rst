@@ -12,7 +12,7 @@ Target group: **Editors, Integrators, Administrators**
    :depth: 1
    :local:
 
-With the :ref:`Dashboard <t3dashboard:introduction>` system extension installed,
+With the :ref:`Dashboard <ext_dashboard:introduction>` system extension installed,
 some widgets can be used to display process statistics. You can find them in the
 :guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 

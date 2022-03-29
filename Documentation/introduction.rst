@@ -21,7 +21,7 @@ TYPO3 JobRouter Process is a TYPO3 extension for
 * Providing a :ref:`form finisher <form-finisher>` to start a process instance
 
 This extension uses the :doc:`JobRouter Client <jobrouter-client:introduction>`
-library and has the :doc:`TYPO3 JobRouter Connector <typo3-jobrouter-connector:introduction>`
+library and has the :doc:`TYPO3 JobRouter Connector <ext_jobrouter_connector:introduction>`
 extension as a requirement to define connections to JobRouter® installations.
 
 

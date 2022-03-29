@@ -1,6 +1,6 @@
 .. include:: _includes.rst.txt
 
-.. highlight:: shell
+.. highlight:: bash
 
 .. _configuration:
 
@@ -77,7 +77,7 @@ finisher.
 
 .. important::
    If you lose or change the encryption key (generated with the :doc:`JobRouter
-   Connector extension <typo3-jobrouter-connector:introduction>`), data cannot
+   Connector extension <ext_jobrouter_connector:introduction>`), data cannot
    be decrypted by the :ref:`start process command <command-start>` anymore!
 
 
