@@ -29,12 +29,12 @@ class StartInstanceFinisherTest extends TestCase
     private $subject;
 
     /**
-     * @var MockObject|FinisherContext
+     * @var MockObject&FinisherContext
      */
     private $finisherContextMock;
 
     /**
-     * @var MockObject|Preparer
+     * @var MockObject&Preparer
      */
     private $preparerMock;
 

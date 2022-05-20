@@ -26,12 +26,12 @@ class TransferStatusDataProviderTest extends TestCase
     private $subject;
 
     /**
-     * @var Registry|Stub
+     * @var Registry&Stub
      */
     private $registryStub;
 
     /**
-     * @var TransferRepository|Stub
+     * @var TransferRepository&Stub
      */
     private $transferRepositoryStub;
 

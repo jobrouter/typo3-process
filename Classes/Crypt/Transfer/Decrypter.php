@@ -25,12 +25,12 @@ class Decrypter
     private $cryptService;
 
     /**
-     * @var Transfer
+     * @var Transfer|null
      */
     private $decryptedTransfer;
 
     /**
-     * @var EncryptedFieldsBitSet
+     * @var EncryptedFieldsBitSet|null
      */
     private $encryptedFields;
 

@@ -22,7 +22,7 @@ use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 class TransferReportDataProviderTest extends TestCase
 {
     /**
-     * @var Stub|TransferRepository
+     * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
 

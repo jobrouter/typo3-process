@@ -26,7 +26,7 @@ class DeleterTest extends TestCase
     private $subject;
 
     /**
-     * @var Stub|QueryBuilder
+     * @var Stub&QueryBuilder
      */
     private $queryBuilderStub;
 

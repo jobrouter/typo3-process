@@ -34,12 +34,12 @@ class Encrypter implements LoggerAwareInterface
     private $extensionConfiguration;
 
     /**
-     * @var Transfer
+     * @var Transfer|null
      */
     private $encryptedTransfer;
 
     /**
-     * @var EncryptedFieldsBitSet
+     * @var EncryptedFieldsBitSet|null
      */
     private $encryptedFields;
 

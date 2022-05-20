@@ -11,6 +11,26 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
+			message: "#^Cannot call method get\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Decrypter.php
+
+		-
+			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Decrypter.php
+
+		-
+			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Encrypter.php
+
+		-
+			message: "#^Cannot call method set\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Encrypter.php
+
+		-
 			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
@@ -94,9 +114,3 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Widgets\\\\Provider\\\\TransfersPerDayDataProvider\\:\\:\\$data \\(array\\<int, int\\>\\) does not accept array\\<int\\|string, mixed\\>\\.$#"
-			count: 1
-			path: Classes/Widgets/Provider/TransfersPerDayDataProvider.php
-

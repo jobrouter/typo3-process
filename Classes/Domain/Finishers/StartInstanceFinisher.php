@@ -34,11 +34,13 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 {
     /**
      * @var Preparer
+     * @noRector
      */
     private $preparer;
 
     /**
      * @var StepRepository
+     * @noRector
      */
     private $stepRepository;
 
@@ -57,11 +59,13 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
     /**
      * @var Step
+     * @noRector
      */
     private $step;
 
     /**
      * @var Transfer
+     * @noRector
      */
     private $transfer;
 

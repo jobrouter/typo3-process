@@ -23,7 +23,7 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 class TransfersPerDayDataProviderTest extends TestCase
 {
     /**
-     * @var Stub|TransferRepository
+     * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
 

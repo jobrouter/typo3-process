@@ -21,7 +21,7 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 class TransferTypeChartDataProviderTest extends TestCase
 {
     /**
-     * @var Stub|TransferRepository
+     * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
 

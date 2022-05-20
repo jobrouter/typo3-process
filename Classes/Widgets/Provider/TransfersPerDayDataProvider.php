@@ -38,12 +38,12 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
     private $numberOfDays = 14;
 
     /**
-     * @var array<int, string>
+     * @var string[]
      */
     private $labels = [];
 
     /**
-     * @var array<int, int>
+     * @var int[]|mixed[]
      */
     private $data = [];
 

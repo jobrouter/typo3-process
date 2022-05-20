@@ -29,22 +29,22 @@ class StarterTest extends TestCase
     private $subject;
 
     /**
-     * @var MockObject|PersistenceManagerInterface
+     * @var MockObject&PersistenceManagerInterface
      */
     private $persistenceManagerMock;
 
     /**
-     * @var MockObject|TransferRepository
+     * @var MockObject&TransferRepository
      */
     private $transferRepositoryMock;
 
     /**
-     * @var MockObject|StepRepository
+     * @var MockObject&StepRepository
      */
     private $stepRepositoryMock;
 
     /**
-     * @var MockObject|Decrypter
+     * @var MockObject&Decrypter
      */
     private $decrypter;
 

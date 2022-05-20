@@ -47,12 +47,13 @@ final class StartCommand extends Command
     private $starter;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $startTime;
 
     /**
      * @var SymfonyStyle
+     * @noRector
      */
     private $outputStyle;
 

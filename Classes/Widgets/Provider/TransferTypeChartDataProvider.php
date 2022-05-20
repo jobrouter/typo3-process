@@ -38,12 +38,12 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     private $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
 
     /**
-     * @var array<int, string>
+     * @var mixed[]
      */
     private $labels = [];
 
     /**
-     * @var array<int, int>
+     * @var mixed[]
      */
     private $data = [];
 
