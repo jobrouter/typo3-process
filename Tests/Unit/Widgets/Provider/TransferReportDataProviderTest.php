@@ -25,11 +25,7 @@ class TransferReportDataProviderTest extends TestCase
      * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
-
-    /**
-     * @var TransferReportDataProvider
-     */
-    private $subject;
+    private TransferReportDataProvider $subject;
 
     protected function setUp(): void
     {

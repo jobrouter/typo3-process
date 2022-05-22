@@ -22,26 +22,13 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
  */
 final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 {
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
-
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
-
-    /**
-     * @var int
-     */
-    private $numberOfDays = 14;
-
+    private LanguageService $languageService;
+    private TransferRepository $transferRepository;
+    private int $numberOfDays = 14;
     /**
      * @var string[]
      */
-    private $labels = [];
-
+    private array $labels = [];
     /**
      * @var int[]|mixed[]
      */

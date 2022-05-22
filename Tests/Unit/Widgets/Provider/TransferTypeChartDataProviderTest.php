@@ -24,11 +24,7 @@ class TransferTypeChartDataProviderTest extends TestCase
      * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
-
-    /**
-     * @var TransferTypeChartDataProvider
-     */
-    private $subject;
+    private TransferTypeChartDataProvider $subject;
 
     protected function setUp(): void
     {

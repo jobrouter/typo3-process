@@ -47,7 +47,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
     /**
      * @var string[]
      */
-    private $stepParameters = [
+    private array $stepParameters = [
         'initiator',
         'jobfunction',
         'pool',

@@ -37,25 +37,10 @@ class BackendController extends ActionController
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    /**
-     * @var ProcessRepository
-     */
-    private $processRepository;
-
-    /**
-     * @var StepRepository
-     */
-    private $stepRepository;
-
-    /**
-     * @var IconFactory
-     */
-    private $iconFactory;
-
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
+    private ProcessRepository $processRepository;
+    private StepRepository $stepRepository;
+    private IconFactory $iconFactory;
+    private LanguageService $languageService;
 
     /**
      * @var ModuleTemplate

@@ -40,39 +40,13 @@ class Starter implements LoggerAwareInterface
 
     private const INCIDENTS_RESOURCE_TEMPLATE = 'application/incidents/%s';
 
-    /**
-     * @var PersistenceManagerInterface
-     */
-    private $persistenceManager;
-
-    /**
-     * @var RestClientFactory
-     */
-    private $restClientFactory;
-
-    /**
-     * @var StepRepository
-     */
-    private $stepRepository;
-
-    /**
-     * @var Decrypter
-     */
-    private $decrypter;
-
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
-
-    /**
-     * @var int
-     */
-    private $totalTransfers = 0;
-    /**
-     * @var int
-     */
-    private $erroneousTransfers = 0;
+    private PersistenceManagerInterface $persistenceManager;
+    private RestClientFactory $restClientFactory;
+    private StepRepository $stepRepository;
+    private Decrypter $decrypter;
+    private TransferRepository $transferRepository;
+    private int $totalTransfers = 0;
+    private int $erroneousTransfers = 0;
 
     public function __construct(
         PersistenceManagerInterface $persistenceManager,
@@ -278,10 +252,12 @@ class Starter implements LoggerAwareInterface
     {
         $configuredProcessTableFields = $process->getProcesstablefields()->toArray();
 
-        $processTableField = \array_filter($configuredProcessTableFields, static function ($field) use ($name): bool {
-            /** @var Processtablefield $field */
-            return $name === $field->getName();
-        });
+        $processTableField = \array_filter(
+            $configuredProcessTableFields,
+            static fn ($field): bool =>
+                /** @var Processtablefield $field */
+                $name === $field->getName()
+        );
 
         if ($processTableField === []) {
             throw new ProcessTableFieldNotFoundException(

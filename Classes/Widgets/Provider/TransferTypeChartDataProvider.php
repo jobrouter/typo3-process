@@ -22,30 +22,17 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
  */
 final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 {
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
-
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
-
-    /**
-     * @var int
-     */
-    private $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
-
+    private LanguageService $languageService;
+    private TransferRepository $transferRepository;
+    private int $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
     /**
      * @var mixed[]
      */
-    private $labels = [];
-
+    private array $labels = [];
     /**
      * @var mixed[]
      */
-    private $data = [];
+    private array $data = [];
 
     public function __construct(
         LanguageService $languageService,

@@ -22,20 +22,13 @@ use TYPO3\CMS\Core\Registry;
  */
 final class ToolbarItemProvider
 {
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
-
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private LanguageService $languageService;
+    private Registry $registry;
 
     /**
      * @var array{exitCode?: int, start?: int}
      */
-    private $lastRunInformation = [];
+    private array $lastRunInformation = [];
 
     public function __construct(LanguageService $languageService, Registry $registry)
     {

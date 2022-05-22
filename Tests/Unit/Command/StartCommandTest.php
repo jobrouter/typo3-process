@@ -25,10 +25,7 @@ use TYPO3\CMS\Core\Registry;
 
 class StartCommandTest extends TestCase
 {
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     /**
      * @var LockingStrategyInterface&MockObject
@@ -86,9 +83,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK
                 )
             );
 
@@ -127,9 +122,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === StartCommand::EXIT_CODE_OK;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK
                 )
             );
 
@@ -168,9 +161,7 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START
                 )
             );
 

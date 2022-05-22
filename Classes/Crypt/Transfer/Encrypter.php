@@ -23,25 +23,10 @@ class Encrypter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var Crypt
-     */
-    private $cryptService;
-
-    /**
-     * @var ExtensionConfiguration
-     */
-    private $extensionConfiguration;
-
-    /**
-     * @var Transfer|null
-     */
-    private $encryptedTransfer;
-
-    /**
-     * @var EncryptedFieldsBitSet|null
-     */
-    private $encryptedFields;
+    private Crypt $cryptService;
+    private ExtensionConfiguration $extensionConfiguration;
+    private ?Transfer $encryptedTransfer = null;
+    private ?EncryptedFieldsBitSet $encryptedFields = null;
 
     public function __construct(Crypt $cryptService, ExtensionConfiguration $extensionConfiguration)
     {

@@ -23,10 +23,7 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 class StarterTest extends TestCase
 {
-    /**
-     * @var Starter
-     */
-    private $subject;
+    private Starter $subject;
 
     /**
      * @var MockObject&PersistenceManagerInterface

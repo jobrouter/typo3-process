@@ -29,16 +29,11 @@ class EncrypterTest extends TestCase
      * @var Stub&ExtensionConfiguration
      */
     private $extensionConfigurationStub;
-
     /**
      * @var MockObject&Crypt
      */
     private $cryptServiceMock;
-
-    /**
-     * @var Encrypter
-     */
-    private $subject;
+    private Encrypter $subject;
 
     protected function setUp(): void
     {

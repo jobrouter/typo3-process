@@ -26,11 +26,7 @@ class TransfersPerDayDataProviderTest extends TestCase
      * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
-
-    /**
-     * @var TransfersPerDayDataProvider
-     */
-    private $subject;
+    private TransfersPerDayDataProvider $subject;
 
     protected function setUp(): void
     {

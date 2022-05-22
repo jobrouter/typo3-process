@@ -23,10 +23,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class PreparerTest extends TestCase
 {
-    /**
-     * @var Preparer
-     */
-    private $subject;
+    private Preparer $subject;
 
     /**
      * @var MockObject&PersistenceManager

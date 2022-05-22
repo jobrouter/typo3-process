@@ -26,20 +26,9 @@ class Preparer implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var PersistenceManagerInterface
-     */
-    private $persistenceManager;
-
-    /**
-     * @var Encrypter
-     */
-    private $encrypter;
-
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
+    private PersistenceManagerInterface $persistenceManager;
+    private Encrypter $encrypter;
+    private TransferRepository $transferRepository;
 
     public function __construct(
         PersistenceManagerInterface $persistenceManager,

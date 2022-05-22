@@ -19,20 +19,9 @@ use Brotkrueml\JobRouterProcess\Extension;
 
 class Decrypter
 {
-    /**
-     * @var Crypt
-     */
-    private $cryptService;
-
-    /**
-     * @var Transfer|null
-     */
-    private $decryptedTransfer;
-
-    /**
-     * @var EncryptedFieldsBitSet|null
-     */
-    private $encryptedFields;
+    private Crypt $cryptService;
+    private ?Transfer $decryptedTransfer = null;
+    private ?EncryptedFieldsBitSet $encryptedFields = null;
 
     public function __construct(Crypt $cryptService)
     {

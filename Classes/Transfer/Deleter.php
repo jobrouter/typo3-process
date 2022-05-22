@@ -23,10 +23,7 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var QueryBuilder
-     */
-    private $queryBuilder;
+    private QueryBuilder $queryBuilder;
 
     public function __construct(QueryBuilder $queryBuilder)
     {

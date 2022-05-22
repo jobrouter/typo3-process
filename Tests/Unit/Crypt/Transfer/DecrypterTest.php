@@ -26,11 +26,7 @@ class DecrypterTest extends TestCase
      * @var Crypt&MockObject
      */
     private $cryptServiceMock;
-
-    /**
-     * @var Decrypter
-     */
-    private $subject;
+    private Decrypter $subject;
 
     protected function setUp(): void
     {

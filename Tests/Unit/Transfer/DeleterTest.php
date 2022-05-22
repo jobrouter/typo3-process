@@ -20,10 +20,7 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 class DeleterTest extends TestCase
 {
-    /**
-     * @var Deleter
-     */
-    private $subject;
+    private Deleter $subject;
 
     /**
      * @var Stub&QueryBuilder

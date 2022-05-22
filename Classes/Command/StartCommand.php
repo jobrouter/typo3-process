@@ -31,25 +31,10 @@ final class StartCommand extends Command
     public const EXIT_CODE_ERRORS_ON_START = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
-    /**
-     * @var LockFactory
-     */
-    private $lockFactory;
-
-    /**
-     * @var Registry
-     */
-    private $registry;
-
-    /**
-     * @var Starter
-     */
-    private $starter;
-
-    /**
-     * @var int|null
-     */
-    private $startTime;
+    private LockFactory $lockFactory;
+    private Registry $registry;
+    private Starter $starter;
+    private ?int $startTime = null;
 
     /**
      * @var SymfonyStyle

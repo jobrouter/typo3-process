@@ -20,10 +20,7 @@ use TYPO3\CMS\Core\Registry;
 
 class TransferStatusDataProviderTest extends TestCase
 {
-    /**
-     * @var TransferStatusDataProvider
-     */
-    private $subject;
+    private TransferStatusDataProvider $subject;
 
     /**
      * @var Registry&Stub
