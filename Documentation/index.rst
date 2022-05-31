@@ -5,10 +5,10 @@ TYPO3 JobRouter Process
 =======================
 
 :Extension key:
-   jobrouter_process
+   `jobrouter_process`_
 
 :Package name:
-   brotkrueml/typo3-jobrouter-process
+   `brotkrueml/typo3-jobrouter-process`_
 
 :Version:
    |release|
@@ -17,7 +17,7 @@ TYPO3 JobRouter Process
    en
 
 :Author:
-   Chris Müller
+   `Chris Müller`_
 
 :License:
    This document is published under the `Creative Commons BY 4.0`_ license.
@@ -49,4 +49,7 @@ This extension connects TYPO3 with processes in a JobRouter® installation.
    copyright
 
 
+.. _brotkrueml/typo3-jobrouter-process: https://packagist.org/packages/brotkrueml/typo3-jobrouter-process
+.. _Chris Müller: https://github.com/brotkrueml
 .. _Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/
+.. _jobrouter_process: https://extensions.typo3.org/extension/jobrouter_process
