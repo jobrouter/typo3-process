@@ -48,10 +48,5 @@ This extension connects TYPO3 with processes in a JobRouter® installation.
    changelog
    copyright
 
-.. toctree::
-   :hidden:
-
-   sitemap
-
 
 .. _Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/
