@@ -38,7 +38,6 @@
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~2.0.0",
-		"captainhook/captainhook": "^5.10",
 		"ergebnis/composer-normalize": "~2.27.0",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/extension-installer": "^1.1",
@@ -84,8 +83,5 @@
 			"extension-key": "jobrouter_process",
 			"web-dir": ".Build/web"
 		}
-	},
-	"scripts": {
-		"post-autoload-dump": ".Build/bin/captainhook install -f -s"
 	}
 }
