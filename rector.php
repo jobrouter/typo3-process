@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\CodeQuality\Rector\ClassMethod\DateTimeToDateTimeInterfaceRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
@@ -46,9 +45,6 @@ return static function (RectorConfig $config): void {
             __DIR__ . '/Tests/*',
         ],
         AddLiteralSeparatorToNumberRector::class,
-        DateTimeToDateTimeInterfaceRector::class => [
-            __DIR__ . '/Classes/Domain/Model/Transfer.php',
-        ],
         RemoveUnusedPromotedPropertyRector::class, // Skip until compatibility with PHP >= 8.0
         ReturnTypeDeclarationRector::class => [
             __DIR__ . '/Classes/Domain/Repository/ProcessRepository.php',

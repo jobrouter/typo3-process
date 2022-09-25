@@ -28,17 +28,17 @@ class PreparerTest extends TestCase
     /**
      * @var MockObject&PersistenceManager
      */
-    private $persistenceManagerMock;
+    private MockObject $persistenceManagerMock;
 
     /**
      * @var MockObject&Encrypter
      */
-    private $encrypterMock;
+    private MockObject $encrypterMock;
 
     /**
      * @var MockObject&TransferRepository
      */
-    private $transferRepositoryMock;
+    private MockObject $transferRepositoryMock;
 
     protected function setUp(): void
     {

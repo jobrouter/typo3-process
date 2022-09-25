@@ -260,6 +260,7 @@ class Transfer extends AbstractEntity
             return;
         }
 
+        // @noRector \Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector
         if (\is_string($processtable)) {
             $this->processtable = $processtable;
             return;

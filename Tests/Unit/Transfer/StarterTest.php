@@ -28,22 +28,22 @@ class StarterTest extends TestCase
     /**
      * @var MockObject&PersistenceManagerInterface
      */
-    private $persistenceManagerMock;
+    private MockObject $persistenceManagerMock;
 
     /**
      * @var MockObject&TransferRepository
      */
-    private $transferRepositoryMock;
+    private MockObject $transferRepositoryMock;
 
     /**
      * @var MockObject&StepRepository
      */
-    private $stepRepositoryMock;
+    private MockObject $stepRepositoryMock;
 
     /**
      * @var MockObject&Decrypter
      */
-    private $decrypter;
+    private MockObject $decrypter;
 
     protected function setUp(): void
     {

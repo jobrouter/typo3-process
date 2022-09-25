@@ -72,6 +72,7 @@ return [
             ],
         ],
         'pool' => [
+            // @noRector \Rector\Php55\Rector\String_\StringClassNameToClassConstantRector
             'label' => 'Pool',
             'config' => [
                 'type' => 'input',

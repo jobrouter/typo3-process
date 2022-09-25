@@ -28,12 +28,12 @@ class StartInstanceFinisherTest extends TestCase
     /**
      * @var MockObject&FinisherContext
      */
-    private $finisherContextMock;
+    private MockObject $finisherContextMock;
 
     /**
      * @var MockObject&Preparer
      */
-    private $preparerMock;
+    private MockObject $preparerMock;
 
     protected function setUp(): void
     {

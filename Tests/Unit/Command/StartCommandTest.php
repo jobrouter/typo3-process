@@ -30,17 +30,17 @@ class StartCommandTest extends TestCase
     /**
      * @var LockingStrategyInterface&MockObject
      */
-    private $lockerMock;
+    private MockObject $lockerMock;
 
     /**
      * @var Starter&MockObject
      */
-    private $starterMock;
+    private MockObject $starterMock;
 
     /**
      * @var MockObject&Registry
      */
-    private $registryMock;
+    private MockObject $registryMock;
 
     protected function setUp(): void
     {

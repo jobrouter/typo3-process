@@ -249,7 +249,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             $value = (string)$value;
 
             if ($fieldSize !== 0) {
-                $value = \mb_substr($value, 0, $fieldSize);
+                return \mb_substr($value, 0, $fieldSize);
             }
 
             return $value;

@@ -32,7 +32,7 @@ class EncrypterTest extends TestCase
     /**
      * @var MockObject&Crypt
      */
-    private $cryptServiceMock;
+    private MockObject $cryptServiceMock;
     private Encrypter $subject;
 
     protected function setUp(): void
