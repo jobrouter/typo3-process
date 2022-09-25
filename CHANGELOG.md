@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Allow attachments for an instance start (#9)
+
 ## [1.2.0] - 2022-05-31
 
 ### Removed

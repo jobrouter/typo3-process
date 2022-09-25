@@ -114,3 +114,8 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Class cognitive complexity is 31, keep it under 25$#"
+			count: 1
+			path: Classes/Transfer/Starter.php

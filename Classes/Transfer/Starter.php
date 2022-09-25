@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterProcess\Transfer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Model\Incident;
+use Brotkrueml\JobRouterClient\Resource\File;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Entity\CountResult;
@@ -24,11 +25,14 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\Resource\FileInterface;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
@@ -45,6 +49,7 @@ class Starter implements LoggerAwareInterface
     private StepRepository $stepRepository;
     private Decrypter $decrypter;
     private TransferRepository $transferRepository;
+    private ResourceFactory $resourceFactory;
     private int $totalTransfers = 0;
     private int $erroneousTransfers = 0;
 
@@ -53,13 +58,15 @@ class Starter implements LoggerAwareInterface
         RestClientFactory $restClientFactory,
         StepRepository $stepRepository,
         Decrypter $decrypter,
-        TransferRepository $transferRepository
+        TransferRepository $transferRepository,
+        ResourceFactory $resourceFactory
     ) {
         $this->persistenceManager = $persistenceManager;
         $this->restClientFactory = $restClientFactory;
         $this->stepRepository = $stepRepository;
         $this->decrypter = $decrypter;
         $this->transferRepository = $transferRepository;
+        $this->resourceFactory = $resourceFactory;
     }
 
     public function run(): CountResult
@@ -239,6 +246,17 @@ class Starter implements LoggerAwareInterface
                     if ($configuredProcessTableField->getFieldSize() !== 0) {
                         $value = \mb_substr($value, 0, $configuredProcessTableField->getFieldSize());
                     }
+                }
+
+                if ($configuredProcessTableField->getType() === FieldTypeEnumeration::ATTACHMENT && $value !== '') {
+                    $file = $this->resourceFactory->getFileObjectFromCombinedIdentifier($value);
+                    if (! $file instanceof FileInterface) {
+                        throw new FileNotFoundException(
+                            \sprintf('File with identifier "%s" is not available!', $value),
+                            1664109447
+                        );
+                    }
+                    $value = new File($file->getForLocalProcessing(false));
                 }
 
                 $incident->setProcessTableField($name, $value);

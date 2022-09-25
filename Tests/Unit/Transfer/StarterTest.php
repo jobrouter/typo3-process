@@ -19,6 +19,7 @@ use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 class StarterTest extends TestCase
@@ -61,12 +62,15 @@ class StarterTest extends TestCase
             ->onlyMethods(['update'])
             ->getMock();
 
+        $resourceFactoryStub = $this->createStub(ResourceFactory::class);
+
         $this->subject = new Starter(
             $this->persistenceManagerMock,
             new RestClientFactory(),
             $this->stepRepositoryMock,
             $this->decrypter,
-            $this->transferRepositoryMock
+            $this->transferRepositoryMock,
+            $resourceFactoryStub
         );
         $this->subject->setLogger(new NullLogger());
     }

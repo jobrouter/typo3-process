@@ -259,6 +259,10 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return $value === '' ? '' : (int)$value;
         }
 
+        if ($type === FieldTypeEnumeration::ATTACHMENT) {
+            return $value;
+        }
+
         throw new InvalidFieldTypeException(
             \sprintf('The field type "%d" is invalid', $type),
             1581344823

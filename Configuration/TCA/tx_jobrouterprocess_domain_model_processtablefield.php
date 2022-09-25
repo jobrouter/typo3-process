@@ -77,6 +77,10 @@ return [
                         'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
+                    [
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT,
+                    ],
                 ],
                 'eval' => 'required',
             ],
@@ -96,14 +100,21 @@ return [
         ],
     ],
     'types' => [
-        '1' => [
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 --palette--;;textType,
             ',
         ],
-        '2' => [
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER => [
+            'showitem' => '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                --palette--;;nameDescription,
+                type,
+            ',
+        ],
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
