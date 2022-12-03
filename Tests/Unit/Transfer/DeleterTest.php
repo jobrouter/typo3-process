@@ -28,6 +28,8 @@ class DeleterTest extends TestCase
 
     protected function setUp(): void
     {
+        self::markTestSkipped('Should be moved to functional tests.');
+
         $this->transferRepositoryStub = $this->createSTub(TransferRepository::class);
 
         $this->subject = new Deleter($this->transferRepositoryStub);

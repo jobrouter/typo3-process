@@ -51,13 +51,13 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 2
+			message: "#^Cannot call method fetchAllAssociative\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
+			count: 1
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\QueryBuilder\\\\TransferRepository\\:\\:deleteTransfers\\(\\) should return int but returns Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 1
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
+			count: 2
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
@@ -81,6 +81,36 @@ parameters:
 			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
+			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^\"@\\\\unlink\\(\\$absoluteFilePath\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^Cannot call method getPublicUrl\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
@@ -92,11 +122,26 @@ parameters:
 
 		-
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
+			count: 3
 			path: Classes/Transfer/Deleter.php
 
 		-
 			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, int\\|string\\|null given\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Deleter\\:\\:\\$attachmentFieldsForProcess \\(array\\<int, array\\<string\\>\\>\\) does not accept array\\<int\\|string, array\\<string\\>\\>\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
 

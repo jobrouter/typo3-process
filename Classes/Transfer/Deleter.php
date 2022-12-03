@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Domain\Model\Process;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
@@ -23,10 +26,21 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
+    private AttachmentDeleter $attachmentDeleter;
+    private ProcessRepository $processRepository;
     private TransferRepository $transferRepository;
+    /**
+     * @var array<int, string[]> Key is the process uid, the values are the process table fields defined as attachment
+     */
+    private array $attachmentFieldsForProcess = [];
 
-    public function __construct(TransferRepository $transferRepository)
-    {
+    public function __construct(
+        AttachmentDeleter $attachmentDeleter,
+        ProcessRepository $processRepository,
+        TransferRepository $transferRepository
+    ) {
+        $this->attachmentDeleter = $attachmentDeleter;
+        $this->processRepository = $processRepository;
         $this->transferRepository = $transferRepository;
     }
 
@@ -39,19 +53,91 @@ class Deleter implements LoggerAwareInterface
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
         try {
-            $deletedTransfers = $this->transferRepository->deleteTransfers($maximumTimestampForDeletion);
+            $oldTransfers = $this->transferRepository->findForDeletion($maximumTimestampForDeletion);
+            $countSuccessful = 0;
+            $countErroneous = 0;
+            foreach ($oldTransfers as $transfer) {
+                $this->deleteTransfer($transfer) ? $countSuccessful++ : $countErroneous++;
+            }
         } catch (\Exception $e) {
             $message = 'Error on clean up of old transfers: ' . $e->getMessage();
             $this->logger->error($message);
             throw new DeleteException($message, 1582133383, $e);
         }
 
-        if ($deletedTransfers === 0) {
+        if ($countSuccessful === 0 && $countErroneous === 0) {
             $this->logger->info('No transfers deleted');
-        } else {
-            $this->logger->notice($deletedTransfers . ' deleted transfer(s)');
+            return 0;
         }
 
-        return $deletedTransfers;
+        $this->logger->notice(
+            \sprintf(
+                '%d deleted transfer(s) successfully, %d with errors',
+                $countSuccessful,
+                $countErroneous
+            )
+        );
+
+        return $countSuccessful;
+    }
+
+    /**
+     * @param array<string, int|string|null> $transfer
+     */
+    private function deleteTransfer(array $transfer): bool
+    {
+        if (! isset($this->attachmentFieldsForProcess[$transfer['process_uid']])) {
+            $this->attachmentFieldsForProcess[$transfer['process_uid']] = $this->getAttachmentFieldsForProcess((int)$transfer['process_uid']);
+        }
+
+        if ($this->attachmentFieldsForProcess[$transfer['process_uid']] !== []) {
+            // todo: Consider encryption
+            $processtable = \json_decode($transfer['processtable'], true, 512, \JSON_THROW_ON_ERROR);
+            $this->deleteAttachments($processtable, $this->attachmentFieldsForProcess[$transfer['process_uid']]);
+        }
+
+        $deletedRows = $this->transferRepository->delete((int)$transfer['uid']);
+        if ($deletedRows > 0) {
+            $this->logger->info(\sprintf('Transfer with uid "%d" was deleted successfully.', $transfer['uid']));
+            return true;
+        }
+
+        $this->logger->warning(\sprintf('Transfer with uid "%d" could not be deleted.', $transfer['uid']));
+        return false;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getAttachmentFieldsForProcess(int $processUid): array
+    {
+        /** @var Process|null $process */
+        $process = $this->processRepository->findByIdentifier($processUid);
+
+        if (! $process instanceof Process) {
+            return [];
+        }
+
+        $attachmentFields = [];
+        foreach ($process->getProcesstablefields() as $field) {
+            if ($field->getType() === FieldTypeEnumeration::ATTACHMENT) {
+                $attachmentFields[] = $field->getName();
+            }
+        }
+
+        return $attachmentFields;
+    }
+
+    /**
+     * @param array<string, mixed> $processtable
+     * @param string[] $attachmentFields
+     */
+    private function deleteAttachments(array $processtable, array $attachmentFields): void
+    {
+        foreach ($attachmentFields as $field) {
+            if ($processtable[$field] ?? false) {
+                $this->attachmentDeleter->deleteFile($processtable[$field]);
+            }
+        }
     }
 }

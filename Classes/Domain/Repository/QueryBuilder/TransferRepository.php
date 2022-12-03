@@ -153,26 +153,57 @@ class TransferRepository
     }
 
     /**
-     * Delete transfers
-     * @param int $maximumTimestampForDeletion All transfers older than the given timestamp will be deleted
-     * @return int Number of deleted rows
+     * @return array<int, array<string, mixed>>
      */
-    public function deleteTransfers(int $maximumTimestampForDeletion): int
+    public function findForDeletion(int $maximumTimestamp): array
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_jobrouterprocess_domain_model_transfer');
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         return $queryBuilder
-            ->delete(self::TABLE_NAME)
+            ->select('t.uid', 't.processtable', 'p.uid AS process_uid')
+            ->from(self::TABLE_NAME, 't')
+            ->leftJoin(
+                't',
+                'tx_jobrouterprocess_domain_model_step',
+                's',
+                $queryBuilder->expr()->eq('t.step_uid', $queryBuilder->quoteIdentifier('s.uid'))
+            )
+            ->leftJoin(
+                's',
+                'tx_jobrouterprocess_domain_model_process',
+                'p',
+                $queryBuilder->expr()->eq('s.process', $queryBuilder->quoteIdentifier('p.uid'))
+            )
             ->where(
                 $queryBuilder->expr()->eq(
-                    'start_success',
+                    't.start_success',
                     $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
                 ),
                 $queryBuilder->expr()->lt(
-                    'crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                    't.crdate',
+                    $queryBuilder->createNamedParameter($maximumTimestamp, \PDO::PARAM_INT)
                 )
             )
-            ->execute();
+            ->execute()
+            ->fetchAllAssociative();
+    }
+
+    public function delete(int $uid): int
+    {
+        $connection = $this->connectionPool->getConnectionForTable(self::TABLE_NAME);
+
+        return $connection
+            ->delete(
+                self::TABLE_NAME,
+                [
+                    'uid' => $uid,
+                    'start_success' => 1,
+                    // This is just a failsafe, so no transfer which was not sent is deleted
+                ],
+                [
+                    \PDO::PARAM_INT,
+                    \PDO::PARAM_INT,
+                ]
+            );
     }
 }
