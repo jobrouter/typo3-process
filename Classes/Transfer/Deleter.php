@@ -14,7 +14,7 @@ namespace Brotkrueml\JobRouterProcess\Transfer;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
@@ -23,11 +23,11 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private QueryBuilder $queryBuilder;
+    private ConnectionPool $connectionPool;
 
-    public function __construct(QueryBuilder $queryBuilder)
+    public function __construct(ConnectionPool $connectionPool)
     {
-        $this->queryBuilder = $queryBuilder;
+        $this->connectionPool = $connectionPool;
     }
 
     public function run(int $ageInDays): int
@@ -38,18 +38,19 @@ class Deleter implements LoggerAwareInterface
 
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_jobrouterprocess_domain_model_transfer');
         try {
             /** @var int $affectedRows */
-            $affectedRows = $this->queryBuilder
+            $affectedRows = $queryBuilder
                 ->delete('tx_jobrouterprocess_domain_model_transfer')
                 ->where(
-                    $this->queryBuilder->expr()->eq(
+                    $queryBuilder->expr()->eq(
                         'start_success',
-                        $this->queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                        $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
                     ),
-                    $this->queryBuilder->expr()->lt(
+                    $queryBuilder->expr()->lt(
                         'crdate',
-                        $this->queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                        $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
                     )
                 )
                 ->execute();

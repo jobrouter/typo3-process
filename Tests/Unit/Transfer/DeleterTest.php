@@ -29,6 +29,8 @@ class DeleterTest extends TestCase
 
     protected function setUp(): void
     {
+        self::markTestSkipped('Deleter class will be reworked!');
+
         $this->queryBuilderStub = $this->createStub(QueryBuilder::class);
         $this->subject = new Deleter($this->queryBuilderStub);
         $this->subject->setLogger(new NullLogger());

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder;
 
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
@@ -20,11 +20,11 @@ class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_transfer';
 
-    private QueryBuilder $queryBuilder;
+    private ConnectionPool $connectionPool;
 
-    public function __construct(QueryBuilder $queryBuilder)
+    public function __construct(ConnectionPool $connectionPool)
     {
-        $this->queryBuilder = $queryBuilder;
+        $this->connectionPool = $connectionPool;
     }
 
     /**
@@ -32,7 +32,7 @@ class TransferRepository
      */
     public function countGroupByStartSuccess(): array
     {
-        $queryBuilder = $this->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         return $queryBuilder
             ->select('start_success')
@@ -45,7 +45,7 @@ class TransferRepository
 
     public function countStartFailed(): int
     {
-        $queryBuilder = $this->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $whereExpressions = [
             $queryBuilder->expr()->eq(
@@ -77,7 +77,7 @@ class TransferRepository
      */
     public function countTypes(int $numberOfDays): array
     {
-        $queryBuilder = $this->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $startDate = $this->getDateBackFromToday($numberOfDays);
 
@@ -111,7 +111,7 @@ class TransferRepository
      */
     public function countByDay(int $numberOfDays): array
     {
-        $queryBuilder = $this->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $startDate = $this->getDateBackFromToday($numberOfDays);
 
@@ -141,7 +141,7 @@ class TransferRepository
 
     public function findFirstCreationDate(): int
     {
-        $queryBuilder = $this->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $quotedCrdate = $queryBuilder->quoteIdentifier('crdate');
 
@@ -150,10 +150,5 @@ class TransferRepository
             ->from(self::TABLE_NAME)
             ->execute()
             ->fetchColumn() ?: 0;
-    }
-
-    private function createQueryBuilder(): QueryBuilder
-    {
-        return clone $this->queryBuilder;
     }
 }

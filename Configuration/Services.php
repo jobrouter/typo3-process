@@ -15,9 +15,7 @@ use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
 use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
 use Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand;
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider;
-use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
@@ -27,8 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Dashboard\Dashboard;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
 
@@ -43,11 +39,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services
         ->load('Brotkrueml\JobRouterProcess\\', '../Classes/*')
         ->exclude('../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php}');
-
-    $services
-        ->set('querybuilder.tx_jobrouterprocess_domain_model_transfer', QueryBuilder::class)
-        ->factory([new Reference(ConnectionPool::class), 'getQueryBuilderForTable'])
-        ->args(['tx_jobrouterprocess_domain_model_transfer']);
 
     $services
         ->set(CleanUpTransfersCommand::class)
@@ -71,10 +62,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         );
 
     $services
-        ->set(TransferRepository::class)
-        ->arg('$queryBuilder', new Reference('querybuilder.tx_jobrouterprocess_domain_model_transfer'));
-
-    $services
         ->set(ToolbarItemProvider::class)
         ->tag(
             'event.listener',
@@ -83,10 +70,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 'event' => SystemInformationToolbarCollectorEvent::class,
             ]
         );
-
-    $services
-        ->set(Deleter::class)
-        ->arg('$queryBuilder', new Reference('querybuilder.tx_jobrouterprocess_domain_model_transfer'));
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $parameters = $containerConfigurator->parameters();
