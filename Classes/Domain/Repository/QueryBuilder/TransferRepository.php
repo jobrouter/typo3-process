@@ -151,4 +151,28 @@ class TransferRepository
             ->execute()
             ->fetchColumn() ?: 0;
     }
+
+    /**
+     * Delete transfers
+     * @param int $maximumTimestampForDeletion All transfers older than the given timestamp will be deleted
+     * @return int Number of deleted rows
+     */
+    public function deleteTransfers(int $maximumTimestampForDeletion): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_jobrouterprocess_domain_model_transfer');
+
+        return $queryBuilder
+            ->delete(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'start_success',
+                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                ),
+                $queryBuilder->expr()->lt(
+                    'crdate',
+                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                )
+            )
+            ->execute();
+    }
 }

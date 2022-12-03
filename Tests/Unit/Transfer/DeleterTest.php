@@ -11,45 +11,36 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
+use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 class DeleterTest extends TestCase
 {
-    private Deleter $subject;
-
     /**
-     * @var Stub&QueryBuilder
+     * @var TransferRepository&Stub
      */
-    private $queryBuilderStub;
+    private $transferRepositoryStub;
+    private Deleter $subject;
 
     protected function setUp(): void
     {
-        self::markTestSkipped('Deleter class will be reworked!');
+        $this->transferRepositoryStub = $this->createSTub(TransferRepository::class);
 
-        $this->queryBuilderStub = $this->createStub(QueryBuilder::class);
-        $this->subject = new Deleter($this->queryBuilderStub);
+        $this->subject = new Deleter($this->transferRepositoryStub);
         $this->subject->setLogger(new NullLogger());
     }
 
     /**
      * @test
      */
-    public function runReturnsTheAffectedRows(): void
+    public function runReturnsTheDeletedTransfers(): void
     {
-        $this->queryBuilderStub
-            ->method('delete')
-            ->with('tx_jobrouterprocess_domain_model_transfer')
-            ->willReturn($this->queryBuilderStub);
-        $this->queryBuilderStub
-            ->method('where')
-            ->willReturn($this->queryBuilderStub);
-        $this->queryBuilderStub
-            ->method('execute')
+        $this->transferRepositoryStub
+            ->method('deleteTransfers')
             ->willReturn(42);
 
         self::assertSame(42, $this->subject->run(30));
@@ -64,8 +55,8 @@ class DeleterTest extends TestCase
         $this->expectExceptionCode(1582133383);
         $this->expectExceptionMessage('Error on clean up of old transfers: Some foo error');
 
-        $this->queryBuilderStub
-            ->method('delete')
+        $this->transferRepositoryStub
+            ->method('deleteTransfers')
             ->willThrowException(new \Exception('Some foo error'));
 
         $this->subject->run(30);

@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
+use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
@@ -23,11 +23,11 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private ConnectionPool $connectionPool;
+    private TransferRepository $transferRepository;
 
-    public function __construct(ConnectionPool $connectionPool)
+    public function __construct(TransferRepository $transferRepository)
     {
-        $this->connectionPool = $connectionPool;
+        $this->transferRepository = $transferRepository;
     }
 
     public function run(int $ageInDays): int
@@ -38,34 +38,20 @@ class Deleter implements LoggerAwareInterface
 
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_jobrouterprocess_domain_model_transfer');
         try {
-            /** @var int $affectedRows */
-            $affectedRows = $queryBuilder
-                ->delete('tx_jobrouterprocess_domain_model_transfer')
-                ->where(
-                    $queryBuilder->expr()->eq(
-                        'start_success',
-                        $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
-                    ),
-                    $queryBuilder->expr()->lt(
-                        'crdate',
-                        $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
-                    )
-                )
-                ->execute();
+            $deletedTransfers = $this->transferRepository->deleteTransfers($maximumTimestampForDeletion);
         } catch (\Exception $e) {
             $message = 'Error on clean up of old transfers: ' . $e->getMessage();
             $this->logger->error($message);
             throw new DeleteException($message, 1582133383, $e);
         }
 
-        if ($affectedRows === 0) {
-            $this->logger->info('No affected rows');
+        if ($deletedTransfers === 0) {
+            $this->logger->info('No transfers deleted');
         } else {
-            $this->logger->notice('Affected rows: ' . $affectedRows);
+            $this->logger->notice($deletedTransfers . ' deleted transfer(s)');
         }
 
-        return $affectedRows;
+        return $deletedTransfers;
     }
 }
