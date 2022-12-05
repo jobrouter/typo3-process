@@ -184,6 +184,7 @@ class TransferRepository
                     $queryBuilder->createNamedParameter($maximumTimestamp, \PDO::PARAM_INT)
                 )
             )
+            ->orderBy('t.uid')
             ->execute()
             ->fetchAllAssociative();
     }
@@ -197,8 +198,8 @@ class TransferRepository
                 self::TABLE_NAME,
                 [
                     'uid' => $uid,
-                    'start_success' => 1,
                     // This is just a failsafe, so no transfer which was not sent is deleted
+                    'start_success' => 1,
                 ],
                 [
                     \PDO::PARAM_INT,

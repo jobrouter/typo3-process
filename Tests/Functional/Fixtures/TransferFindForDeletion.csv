@@ -1,0 +1,16 @@
+tx_jobrouterprocess_domain_model_transfer,,,,,
+,uid,crdate,step_uid,processtable,start_success,correlation_id
+,101,1666666666,1,"{"uid":101}",1,"with step and process found"
+,102,1666666666,2,"{"uid":102}",1,"with step found but no process found"
+,103,1666666666,3,"{"uid":103}",1,"with step not found"
+,104,1666666667,1,"{"uid":104}",1,"should not be deleted because of timestamp in future"
+,105,1666666665,1,"{"uid":104}",0,"should not be deleted because of no-successful process start"
+
+tx_jobrouterprocess_domain_model_step,,
+,uid,handle,process
+,1,"handle_1",11
+,2,"handle_2",0
+
+tx_jobrouterprocess_domain_model_process,
+,uid
+,11
