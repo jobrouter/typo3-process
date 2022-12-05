@@ -36,7 +36,13 @@ class AttachmentDeleter implements LoggerAwareInterface
             return;
         }
 
-        $fileObject = $this->resourceFactory->getFileObjectFromCombinedIdentifier($file);
+        try {
+            $fileObject = $this->resourceFactory->getFileObjectFromCombinedIdentifier($file);
+        } catch (\InvalidArgumentException $e) {
+            $this->logger->notice(\sprintf('Path of file "%s" cannot be resolved.', $file));
+            return;
+        }
+
         $absoluteFilePath = Environment::getPublicPath() . \DIRECTORY_SEPARATOR . $fileObject->getPublicUrl();
         if (@\unlink($absoluteFilePath)) {
             $this->logger->info(\sprintf('File "%s" was deleted successfully.', $absoluteFilePath));

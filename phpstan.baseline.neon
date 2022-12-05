@@ -102,7 +102,7 @@ parameters:
 
 		-
 			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
+			count: 2
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
