@@ -13,6 +13,10 @@ changelog:
 cs: vendor
 	.Build/bin/ecs check --fix
 
+.PHONY: functional-tests
+functional-tests: vendor
+	Build/Scripts/runTests.sh
+
 .PHONY: phpstan
 phpstan: vendor
 	.Build/bin/phpstan analyse
