@@ -160,7 +160,7 @@ class TransferRepository
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         return $queryBuilder
-            ->select('t.uid', 't.processtable', 'p.uid AS process_uid')
+            ->select('t.uid', 't.processtable', 't.encrypted_fields', 'p.uid AS process_uid')
             ->from(self::TABLE_NAME, 't')
             ->leftJoin(
                 't',

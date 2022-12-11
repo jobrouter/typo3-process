@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterConnector\Service\Crypt;
+use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
@@ -27,6 +29,7 @@ class Deleter implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     private AttachmentDeleter $attachmentDeleter;
+    private Crypt $crypt;
     private ProcessRepository $processRepository;
     private TransferRepository $transferRepository;
     /**
@@ -36,10 +39,12 @@ class Deleter implements LoggerAwareInterface
 
     public function __construct(
         AttachmentDeleter $attachmentDeleter,
+        Crypt $crypt,
         ProcessRepository $processRepository,
         TransferRepository $transferRepository
     ) {
         $this->attachmentDeleter = $attachmentDeleter;
+        $this->crypt = $crypt;
         $this->processRepository = $processRepository;
         $this->transferRepository = $transferRepository;
     }
@@ -91,7 +96,10 @@ class Deleter implements LoggerAwareInterface
         }
 
         if ($this->attachmentFieldsForProcess[$transfer['process_uid']] !== []) {
-            // todo: Consider encryption
+            $encryptedFields = new EncryptedFieldsBitSet((int)$transfer['encrypted_fields']);
+            if ($encryptedFields->get(EncryptedFieldsBitSet::PROCESSTABLE)) {
+                $transfer['processtable'] = $this->crypt->decrypt((string)$transfer['processtable']);
+            }
             $processtable = \json_decode($transfer['processtable'], true, 512, \JSON_THROW_ON_ERROR);
             $this->deleteAttachments($processtable, $this->attachmentFieldsForProcess[$transfer['process_uid']]);
         }
