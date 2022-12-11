@@ -70,8 +70,9 @@ Process Table Fields (optional)
       A description of the process table field.
 
    Type (required)
-      Select the column type (for now are available: `Text`, `Integer`). When
-      using the form finisher, the value is casted to this type.
+      Select the column type (for now are available: `Text`, `Integer`,
+      `Attachment`). When using the form finisher, the value is casted to this
+      type (in case of text and integer).
 
    Field Size (required)
       This option is only shown with type :guilabel:`Text`. Enter the size

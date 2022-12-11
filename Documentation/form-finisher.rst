@@ -160,6 +160,51 @@ installations. Just use the array notation in :yaml:`options`:
                   FROM_URL: 'https://www.example.com/demo'
 
 
+.. _form-finisher-attachments:
+
+Attachments
+-----------
+
+.. versionadded:: 1.3.0
+
+One or more attachments (files) can be added to a form and processed with the
+:yaml:`JobRouterStartInstance` form finisher. By default, the files are stored
+in the first file storage :file:`1:/user_upload/`, for example
+:file:`fileadmin/user_upload`, but can be `overwritten in your form
+configuration`_, for instance:
+
+.. code-block:: yaml
+   :emphasize-lines: 7
+
+   renderables:
+     -
+       # ...
+       renderables:
+         -
+           properties:
+           saveToFileMount: '3:/my_form_uploads/'
+           allowedMimeTypes:
+             - application/pdf
+           type: FileUpload
+           identifier: the_pdf_file
+           label: 'The PDF file'
+
+In this example, the files are stored in the file storage with the ID 3, and
+there in a folder named :file:`my_form_uploads`.
+
+.. attention::
+   By default, the files are stored in a publicly accessible folder by the TYPO3
+   form framework. Although the parent folder is named something like
+   :file:`form_946c84e75f5f118798ccb5e86ac5ca0153f8d82c` and the risk for
+   retrieving a file by guessing the folder and file name may be low, it is
+   recommended to create a custom :ref:`file storage
+   <t3api:fal-administration-storages>` outside the web root or to apply
+   web server restrictions on that storage folder.
+
+When running the :ref:`"clean up transfers" command <command-cleanuptransfers>`,
+the files are deleted alongside the according transfer records.
+
+
 .. _form-finisher-variables:
 
 Variables
@@ -171,3 +216,6 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 For more information have a look into the available :ref:`variable resolvers
 <ext_jobrouter_base:variable-resolvers>`. You can also write your :ref:`own variable
 resolvers <developer-variable-resolvers>`.
+
+
+.. _overwritten in your form configuration: https://docs.typo3.org/c/typo3/cms-form/11.5/en-us/I/Config/proto/formElements/formElementTypes/FileUpload.html#properties-savetofilemount
