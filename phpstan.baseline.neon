@@ -91,7 +91,12 @@ parameters:
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^Cannot call method getPublicUrl\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			message: "#^Cannot call method getIdentifier\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: "#^Cannot call method getStorage\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
 

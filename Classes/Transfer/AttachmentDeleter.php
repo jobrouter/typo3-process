@@ -43,7 +43,13 @@ class AttachmentDeleter implements LoggerAwareInterface
             return;
         }
 
-        $absoluteFilePath = Environment::getPublicPath() . \DIRECTORY_SEPARATOR . $fileObject->getPublicUrl();
+        $storageConfiguration = $fileObject->getStorage()->getConfiguration();
+        if ($storageConfiguration['pathType'] === 'relative') {
+            $absoluteFolderPath = Environment::getPublicPath() . '/' . $storageConfiguration['basePath'];
+        } else {
+            $absoluteFolderPath = $storageConfiguration['basePath'];
+        }
+        $absoluteFilePath = \rtrim($absoluteFolderPath, '/') . $fileObject->getIdentifier();
         if (@\unlink($absoluteFilePath)) {
             $this->logger->info(\sprintf('File "%s" was deleted successfully.', $absoluteFilePath));
         } else {
