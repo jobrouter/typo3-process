@@ -17,6 +17,7 @@ use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
@@ -83,13 +84,13 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK,
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 0 incident(s) started successfully',
             $this->commandTester->getDisplay(),
@@ -122,13 +123,13 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK,
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 3 incident(s) started successfully',
             $this->commandTester->getDisplay(),
@@ -161,13 +162,13 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START,
+                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE,
                 ),
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(StartCommand::EXIT_CODE_ERRORS_ON_START, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 incident(s) had errors on start',
             $this->commandTester->getDisplay(),
@@ -198,7 +199,7 @@ class StartCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(StartCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
             $this->commandTester->getDisplay(),

@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class CleanUpTransfersCommandTest extends TestCase
@@ -45,7 +46,7 @@ class CleanUpTransfersCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] No successful transfers older than 30 days present',
             $this->commandTester->getDisplay(),
@@ -64,7 +65,7 @@ class CleanUpTransfersCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 1 successful transfer older than 30 days deleted',
             $this->commandTester->getDisplay(),
@@ -83,7 +84,7 @@ class CleanUpTransfersCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 42 successful transfers older than 30 days deleted',
             $this->commandTester->getDisplay(),
@@ -104,7 +105,7 @@ class CleanUpTransfersCommandTest extends TestCase
             'ageInDays' => 60,
         ]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 42 successful transfers older than 60 days deleted',
             $this->commandTester->getDisplay(),
@@ -124,7 +125,7 @@ class CleanUpTransfersCommandTest extends TestCase
             'ageInDays' => 'abc',
         ]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_INVALID_ARGUMENT, $this->commandTester->getStatusCode());
+        self::assertSame(Command::INVALID, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] Argument "ageInDays" must be a number, "abc" given',
             $this->commandTester->getDisplay(),
@@ -144,7 +145,7 @@ class CleanUpTransfersCommandTest extends TestCase
             'ageInDays' => '-42',
         ]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_INVALID_ARGUMENT, $this->commandTester->getStatusCode());
+        self::assertSame(Command::INVALID, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] Argument "ageInDays" must not be a negative number, "-42" given',
             $this->commandTester->getDisplay(),
@@ -163,7 +164,7 @@ class CleanUpTransfersCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(CleanUpTransfersCommand::EXIT_CODE_DELETION_FAILED, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] some deletion error',
             $this->commandTester->getDisplay(),

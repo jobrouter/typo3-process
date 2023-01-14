@@ -27,9 +27,6 @@ use TYPO3\CMS\Core\Registry;
  */
 final class StartCommand extends Command
 {
-    public const EXIT_CODE_OK = 0;
-    public const EXIT_CODE_ERRORS_ON_START = 1;
-    public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
     private ?int $startTime = null;
 
     private SymfonyStyle $outputStyle;
@@ -66,7 +63,7 @@ final class StartCommand extends Command
         } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
-            return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
+            return self::FAILURE;
         }
     }
 
@@ -79,14 +76,14 @@ final class StartCommand extends Command
                 \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total),
             );
 
-            return self::EXIT_CODE_ERRORS_ON_START;
+            return self::FAILURE;
         }
 
         $this->outputStyle->success(
             \sprintf('%d incident(s) started successfully', $result->total),
         );
 
-        return self::EXIT_CODE_OK;
+        return self::SUCCESS;
     }
 
     private function recordLastRun(int $exitCode): void
