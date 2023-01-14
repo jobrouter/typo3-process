@@ -13,7 +13,7 @@ Target group: **Integrators, Administrators**
    :local:
 
 The links to processes and instances in JobRouter® installations are managed in
-the module :guilabel:`JobRouter` > :guilabel:`Processes`.
+the module :guilabel:`JobRouter > Processes`.
 
 .. note::
 
@@ -29,7 +29,7 @@ screen:
 
 First you have to define a process link. It is the representation of a JobRouter®
 process. Then configure the step links you need. These represent the steps
-of a process and are used in the form finisher.
+of a process and are used in the :ref:`form finisher <form-finisher>`.
 
 
 .. _module-create-process-link:
@@ -37,9 +37,9 @@ of a process and are used in the form finisher.
 Create a process link
 ---------------------
 
-To create a new process link, click the :guilabel:`+` button beside the heading,
-which opens a form. Alternatively, you can use the :guilabel:`Create new process
-link` button.
+To create a new process link, click the :guilabel:`+ Add process link` button
+in the module header which opens a form. Alternatively, you can use the
+:guilabel:`Create new process link` button.
 
 .. figure:: _images/create-process-link.png
    :alt: Create a process link
@@ -137,7 +137,7 @@ There are two buttons available for each table link:
 - The second icon is a link to the process of the JobRouter® Designer.
 
 The process link records are stored under the root page. You can edit a process
-link also inside the :guilabel:`List` module.
+link also inside the :guilabel:`Web > List` module on the root page.
 
 As you can see, half of the work is done. Now you have to configure one or more
 steps that are used to start an instance.
@@ -148,9 +148,9 @@ steps that are used to start an instance.
 Create a step link
 ------------------
 
-To create a new step link, click the :guilabel:`+` button beside the heading,
-which opens a form. Alternatively, you can use the :guilabel:`Create new step
-link` button.
+To create a new step link, click the :guilabel:`+ Add step link` button in the
+module header, which opens a form. Alternatively, you can use the
+:guilabel:`Create new step link` button.
 
 .. figure:: _images/create-step-link-general.png
    :alt: Create a step link (General)
