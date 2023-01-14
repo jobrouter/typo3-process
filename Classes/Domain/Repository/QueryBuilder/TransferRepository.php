@@ -21,7 +21,7 @@ class TransferRepository
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_transfer';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool
+        private readonly ConnectionPool $connectionPool,
     ) {
     }
 
@@ -48,11 +48,11 @@ class TransferRepository
         $whereExpressions = [
             $queryBuilder->expr()->eq(
                 'start_success',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT),
             ),
             $queryBuilder->expr()->gt(
                 'start_date',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT),
             ),
         ];
 
@@ -86,8 +86,8 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->gte(
                     'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
-                )
+                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT),
+                ),
             )
             ->groupBy('type')
             ->orderBy('count', 'DESC')
@@ -118,7 +118,7 @@ class TransferRepository
             '%s - (%s %% 86400) AS %s',
             $quotedCrdate,
             $quotedCrdate,
-            $queryBuilder->quoteIdentifier('day')
+            $queryBuilder->quoteIdentifier('day'),
         );
 
         return $queryBuilder
@@ -128,8 +128,8 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->gte(
                     'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT)
-                )
+                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT),
+                ),
             )
             ->groupBy('day')
             ->orderBy('day', 'ASC')
@@ -164,23 +164,23 @@ class TransferRepository
                 't',
                 'tx_jobrouterprocess_domain_model_step',
                 's',
-                $queryBuilder->expr()->eq('t.step_uid', $queryBuilder->quoteIdentifier('s.uid'))
+                $queryBuilder->expr()->eq('t.step_uid', $queryBuilder->quoteIdentifier('s.uid')),
             )
             ->leftJoin(
                 's',
                 'tx_jobrouterprocess_domain_model_process',
                 'p',
-                $queryBuilder->expr()->eq('s.process', $queryBuilder->quoteIdentifier('p.uid'))
+                $queryBuilder->expr()->eq('s.process', $queryBuilder->quoteIdentifier('p.uid')),
             )
             ->where(
                 $queryBuilder->expr()->eq(
                     't.start_success',
-                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT),
                 ),
                 $queryBuilder->expr()->lt(
                     't.crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestamp, \PDO::PARAM_INT)
-                )
+                    $queryBuilder->createNamedParameter($maximumTimestamp, \PDO::PARAM_INT),
+                ),
             )
             ->orderBy('t.uid')
             ->execute()
@@ -202,7 +202,7 @@ class TransferRepository
                 [
                     \PDO::PARAM_INT,
                     \PDO::PARAM_INT,
-                ]
+                ],
             );
     }
 }

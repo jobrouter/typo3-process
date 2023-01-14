@@ -41,7 +41,7 @@ final class StartCommand extends Command
     public function __construct(
         private readonly LockFactory $lockFactory,
         private readonly Registry $registry,
-        private readonly Starter $starter
+        private readonly Starter $starter,
     ) {
         parent::__construct();
     }
@@ -59,7 +59,7 @@ final class StartCommand extends Command
         try {
             $locker = $this->lockFactory->createLocker(
                 self::class,
-                LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE
+                LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE,
             );
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
             $exitCode = $this->start();
@@ -80,14 +80,14 @@ final class StartCommand extends Command
 
         if ($result->errors > 0) {
             $this->outputStyle->warning(
-                \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total)
+                \sprintf('%d out of %d incident(s) had errors on start', $result->errors, $result->total),
             );
 
             return self::EXIT_CODE_ERRORS_ON_START;
         }
 
         $this->outputStyle->success(
-            \sprintf('%d incident(s) started successfully', $result->total)
+            \sprintf('%d incident(s) started successfully', $result->total),
         );
 
         return self::EXIT_CODE_OK;

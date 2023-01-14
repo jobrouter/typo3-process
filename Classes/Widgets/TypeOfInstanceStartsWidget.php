@@ -28,7 +28,7 @@ class TypeOfInstanceStartsWidget extends DoughnutChartWidget
         WidgetConfigurationInterface $configuration,
         ChartDataProviderInterface $dataProvider,
         StandaloneView $view,
-        array $options = []
+        array $options = [],
     ) {
         $configuration = $this->addNumberOfDaysToTitle($configuration, $options);
 
@@ -40,21 +40,21 @@ class TypeOfInstanceStartsWidget extends DoughnutChartWidget
      */
     private function addNumberOfDaysToTitle(
         WidgetConfigurationInterface $configuration,
-        array $options
+        array $options,
     ): WidgetConfiguration {
         if ($options['numberOfDays'] === 1) {
             $titleSuffix = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.typeOfInstanceStarts.title.lastDay');
         } else {
             $titleSuffix = \sprintf(
                 $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.typeOfInstanceStarts.title.lastDays'),
-                $options['numberOfDays']
+                $options['numberOfDays'],
             );
         }
 
         $title = \sprintf(
             '%s %s',
             $this->getLanguageService()->sL($configuration->getTitle()),
-            $titleSuffix
+            $titleSuffix,
         );
 
         return new WidgetConfiguration(
@@ -66,7 +66,7 @@ class TypeOfInstanceStartsWidget extends DoughnutChartWidget
             $configuration->getIconIdentifier(),
             $configuration->getHeight(),
             $configuration->getWidth(),
-            explode(' ', $configuration->getAdditionalCssClasses())
+            \explode(' ', $configuration->getAdditionalCssClasses()),
         );
     }
 

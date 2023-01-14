@@ -29,7 +29,7 @@ class Preparer implements LoggerAwareInterface
     public function __construct(
         private readonly PersistenceManagerInterface $persistenceManager,
         private readonly Encrypter $encrypter,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 
@@ -43,7 +43,7 @@ class Preparer implements LoggerAwareInterface
             throw new PrepareException(
                 'Transfer record cannot be written, reason: ' . $e->getMessage(),
                 1581278897,
-                $e
+                $e,
             );
         }
     }

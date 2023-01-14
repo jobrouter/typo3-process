@@ -86,9 +86,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             throw new MissingFinisherOptionException(
                 \sprintf(
                     'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
-                    $this->getFormIdentifier()
+                    $this->getFormIdentifier(),
                 ),
-                1581270462
+                1581270462,
             );
         }
 
@@ -110,9 +110,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                 \sprintf(
                     'Step with handle "%s" is not available, defined in form with identifier "%s"',
                     $handle,
-                    $this->getFormIdentifier()
+                    $this->getFormIdentifier(),
                 ),
-                1581270832
+                1581270832,
             );
         }
 
@@ -121,9 +121,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                 \sprintf(
                     'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
                     $handle,
-                    $this->getFormIdentifier()
+                    $this->getFormIdentifier(),
                 ),
-                1581281395
+                1581281395,
             );
         }
 
@@ -153,7 +153,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             if (! \method_exists($this->transfer, $setter)) {
                 throw new CommonParameterNotFoundException(
                     \sprintf('Method "%s" in Transfer domain model not found', $setter),
-                    1581703904
+                    1581703904,
                 );
             }
 
@@ -187,7 +187,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
             $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
-            $this->finisherContext->getFormValues()
+            $this->finisherContext->getFormValues(),
         );
         $processTableFields = $this->prepareProcessTableFields();
         $processTable = [];
@@ -199,15 +199,15 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                         $processTableField,
                         $this->getFormIdentifier(),
                         // @phpstan-ignore-next-line Already checked before if process is available
-                        $this->step->getProcess()->getName()
+                        $this->step->getProcess()->getName(),
                     ),
-                    1585930166
+                    1585930166,
                 );
             }
 
             $value = $this->variableResolver->resolve(
                 $processTableFields[$processTableField]->getType(),
-                $value
+                $value,
             );
 
             $value = $this->resolveFormFields($formValues, (string)$value);
@@ -215,7 +215,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
                 $processTableFields[$processTableField]->getType(),
-                $processTableFields[$processTableField]->getFieldSize()
+                $processTableFields[$processTableField]->getFieldSize(),
             );
         }
 
@@ -261,7 +261,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
         throw new InvalidFieldTypeException(
             \sprintf('The field type "%d" is invalid', $type),
-            1581344823
+            1581344823,
         );
     }
 }

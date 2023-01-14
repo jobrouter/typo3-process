@@ -195,7 +195,7 @@ class Transfer extends AbstractEntity
         if (! \is_numeric($priority)) {
             throw new \InvalidArgumentException(
                 \sprintf('Priority has to be a number, "%s" given', $priority),
-                1581703249
+                1581703249,
             );
         }
 
@@ -204,7 +204,7 @@ class Transfer extends AbstractEntity
         if ($priority < 1 || $priority > 3) {
             throw new \InvalidArgumentException(
                 \sprintf('Priority has to be between 1 and 3, "%d" given', $priority),
-                1581282986
+                1581282986,
             );
         }
 
@@ -221,7 +221,7 @@ class Transfer extends AbstractEntity
         if (! \is_numeric($pool)) {
             throw new \InvalidArgumentException(
                 \sprintf('Pool has to be a number, "%s" given', $pool),
-                1581703327
+                1581703327,
             );
         }
 
@@ -230,7 +230,7 @@ class Transfer extends AbstractEntity
         if ($pool < 1) {
             throw new \InvalidArgumentException(
                 \sprintf('Pool has to be a positive integer, "%d" given', $pool),
-                1581283150
+                1581283150,
             );
         }
 
@@ -263,9 +263,9 @@ class Transfer extends AbstractEntity
         throw new \InvalidArgumentException(
             \sprintf(
                 'Argument "processtable" must be either a string or an array, "%s" given',
-                \gettype($processtable)
+                \gettype($processtable),
             ),
-            1582744898
+            1582744898,
         );
     }
 

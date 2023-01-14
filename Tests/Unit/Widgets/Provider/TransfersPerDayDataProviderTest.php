@@ -45,7 +45,7 @@ class TransfersPerDayDataProviderTest extends TestCase
 
         $this->subject = new TransfersPerDayDataProvider(
             $languageServiceStub,
-            $this->transferRepositoryStub
+            $this->transferRepositoryStub,
         );
         $this->subject->setNumberOfDays(5);
     }

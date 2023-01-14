@@ -31,7 +31,7 @@ class TransferStatusDataProviderTest extends TestCase
 
         $this->subject = new TransferStatusDataProvider(
             $this->registryStub,
-            $this->transferRepositoryStub
+            $this->transferRepositoryStub,
         );
     }
 

@@ -29,9 +29,9 @@ class TransferRepository extends Repository
                 $query->logicalAnd([
                     $query->equals('startSuccess', 0),
                     $query->logicalNot(
-                        $query->equals('startMessage', '')
+                        $query->equals('startMessage', ''),
                     ),
-                ])
+                ]),
             )
             ->setOrderings([
                 'crdate' => QueryInterface::ORDER_ASCENDING,

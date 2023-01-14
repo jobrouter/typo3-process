@@ -53,7 +53,7 @@ class BackendController extends ActionController
         private readonly IconFactory $iconFactory,
         private readonly LanguageService $languageService,
         private readonly ProcessRepository $processRepository,
-        private readonly StepRepository $stepRepository
+        private readonly StepRepository $stepRepository,
     ) {
     }
 
@@ -72,7 +72,7 @@ class BackendController extends ActionController
     {
         $pageRenderer = $this->moduleTemplate->getPageRenderer();
         $pageRenderer->loadRequireJsModule(
-            'TYPO3/CMS/JobrouterProcess/ProcessTableFieldsToggler'
+            'TYPO3/CMS/JobrouterProcess/ProcessTableFieldsToggler',
         );
 
         $processes = $this->processRepository->findAllWithHidden();
@@ -102,8 +102,8 @@ class BackendController extends ActionController
         $label = $this->languageService->sL(
             \sprintf(
                 'LLL:EXT:%s/Resources/Private/Language/BackendModule.xlf:heading_text',
-                Extension::KEY
-            )
+                Extension::KEY,
+            ),
         );
 
         $shortcutButton = $this->buttonBar->makeShortcutButton()

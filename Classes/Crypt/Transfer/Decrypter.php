@@ -23,7 +23,7 @@ class Decrypter
     private ?EncryptedFieldsBitSet $encryptedFields = null;
 
     public function __construct(
-        private readonly Crypt $cryptService
+        private readonly Crypt $cryptService,
     ) {
     }
 
@@ -59,10 +59,10 @@ class Decrypter
                     'Field "%s" in transfer with uid "%s" cannot be decrypted, reason: %s',
                     $field,
                     $this->decryptedTransfer->getUid(),
-                    $e->getMessage()
+                    $e->getMessage(),
                 ),
                 1599323431,
-                $e
+                $e,
             );
         }
     }
@@ -70,7 +70,7 @@ class Decrypter
     private function isFieldEncrypted(string $field): bool
     {
         return $this->encryptedFields->get(
-            \constant(\sprintf('%s::%s', EncryptedFieldsBitSet::class, \strtoupper($field)))
+            \constant(\sprintf('%s::%s', EncryptedFieldsBitSet::class, \strtoupper($field))),
         );
     }
 }

@@ -66,7 +66,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
             'tx_jobrouterprocess_domain_model_transfer',
             [
                 'uid' => 11,
-            ]
+            ],
         );
 
         self::assertSame(0, $count);
@@ -89,7 +89,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
             'tx_jobrouterprocess_domain_model_transfer',
             [
                 'uid' => 22,
-            ]
+            ],
         );
 
         self::assertSame(1, $count);

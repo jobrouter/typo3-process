@@ -48,7 +48,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 'command' => 'jobrouter:process:cleanuptransfers',
                 'description' => 'Delete old entries in the transfer table',
                 'schedulable' => true,
-            ]
+            ],
         );
 
     $services->set(StartCommand::class)
@@ -58,7 +58,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 'command' => 'jobrouter:process:start',
                 'description' => 'Start instances from data stored in the transfer table',
                 'schedulable' => true,
-            ]
+            ],
         );
 
     $services
@@ -68,7 +68,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             [
                 'identifier' => 'jobrouter-process/toolbar-item-provider',
                 'event' => SystemInformationToolbarCollectorEvent::class,
-            ]
+            ],
         );
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
@@ -93,7 +93,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 '$options',
                 [
                     'refreshAvailable' => true,
-                ]
+                ],
             )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.transfersPerDayBar',
@@ -115,7 +115,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 [
                     'numberOfDays' => Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS,
                     'refreshAvailable' => true,
-                ]
+                ],
             )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.typeOfInstanceStartsDoughnut',
@@ -135,7 +135,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 '$options',
                 [
                     'refreshAvailable' => true,
-                ]
+                ],
             )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.statusOfInstanceStarts',
@@ -155,7 +155,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
                 '$options',
                 [
                     'refreshAvailable' => true,
-                ]
+                ],
             )
             ->tag('dashboard.widget', [
                 'identifier' => 'jobrouter_process.transferReport',

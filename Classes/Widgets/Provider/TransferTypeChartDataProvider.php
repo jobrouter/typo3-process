@@ -34,7 +34,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 
     public function __construct(
         private readonly LanguageService $languageService,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 

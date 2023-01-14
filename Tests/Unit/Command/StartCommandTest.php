@@ -83,8 +83,8 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -92,7 +92,7 @@ class StartCommandTest extends TestCase
         self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 0 incident(s) started successfully',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -122,8 +122,8 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_OK,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -131,7 +131,7 @@ class StartCommandTest extends TestCase
         self::assertSame(StartCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 3 incident(s) started successfully',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -161,8 +161,8 @@ class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === StartCommand::EXIT_CODE_ERRORS_ON_START,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -170,7 +170,7 @@ class StartCommandTest extends TestCase
         self::assertSame(StartCommand::EXIT_CODE_ERRORS_ON_START, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 incident(s) had errors on start',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -201,7 +201,7 @@ class StartCommandTest extends TestCase
         self::assertSame(StartCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 }

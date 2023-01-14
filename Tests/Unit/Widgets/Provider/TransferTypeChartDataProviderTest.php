@@ -38,7 +38,7 @@ class TransferTypeChartDataProviderTest extends TestCase
 
         $this->subject = new TransferTypeChartDataProvider(
             $languageServiceStub,
-            $this->transferRepositoryStub
+            $this->transferRepositoryStub,
         );
         $this->subject->setNumberOfDays(13);
     }

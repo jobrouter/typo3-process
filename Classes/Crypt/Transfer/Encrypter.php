@@ -28,7 +28,7 @@ class Encrypter implements LoggerAwareInterface
 
     public function __construct(
         private readonly Crypt $cryptService,
-        private readonly ExtensionConfiguration $extensionConfiguration
+        private readonly ExtensionConfiguration $extensionConfiguration,
     ) {
     }
 
@@ -66,8 +66,8 @@ class Encrypter implements LoggerAwareInterface
                     'Field "%s" in transfer with uid "%s" cannot be encrypted, it will be stored unencrypted, reason: %s',
                     $field,
                     $this->encryptedTransfer->getUid(),
-                    $e->getMessage()
-                )
+                    $e->getMessage(),
+                ),
             );
         }
     }
@@ -75,7 +75,7 @@ class Encrypter implements LoggerAwareInterface
     private function setFieldAsEncrypted(string $field): void
     {
         $this->encryptedFields->set(
-            \constant(\sprintf('%s::%s', EncryptedFieldsBitSet::class, \strtoupper($field)))
+            \constant(\sprintf('%s::%s', EncryptedFieldsBitSet::class, \strtoupper($field))),
         );
     }
 }

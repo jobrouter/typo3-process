@@ -34,7 +34,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 
     public function __construct(
         private readonly LanguageService $languageService,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 
@@ -75,7 +75,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
         for ($ts = $startDate->format('U'); $ts < $endDate->format('U'); $ts += 86400) {
             $this->labels[(int)$ts] = \date(
                 $this->languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
-                (int)$ts
+                (int)$ts,
             );
 
             $this->data[(int)$ts] = 0;

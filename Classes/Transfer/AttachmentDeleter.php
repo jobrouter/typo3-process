@@ -21,7 +21,7 @@ class AttachmentDeleter implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     public function __construct(
-        private readonly ResourceFactory $resourceFactory
+        private readonly ResourceFactory $resourceFactory,
     ) {
     }
 
@@ -55,7 +55,7 @@ class AttachmentDeleter implements LoggerAwareInterface
         }
 
         $parentFolder = \dirname($absoluteFilePath);
-        $isParentFolderEmpty = (is_countable(\glob($parentFolder . '/*')) ? \count(\glob($parentFolder . '/*')) : 0) === 0;
+        $isParentFolderEmpty = (\is_countable(\glob($parentFolder . '/*')) ? \count(\glob($parentFolder . '/*')) : 0) === 0;
         if (! $isParentFolderEmpty) {
             $this->logger->notice(\sprintf('The folder "%s" is not empty, not deleting.', $parentFolder));
             return;

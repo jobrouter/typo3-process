@@ -80,7 +80,7 @@ class Step extends AbstractEntity
         if ($stepNumber < 1) {
             throw new \InvalidArgumentException(
                 \sprintf('Step number has to be a positive integer, "%d" given', $stepNumber),
-                1581282590
+                1581282590,
             );
         }
 

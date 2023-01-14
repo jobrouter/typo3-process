@@ -37,7 +37,7 @@ class Deleter implements LoggerAwareInterface
         private readonly AttachmentDeleter $attachmentDeleter,
         private readonly Crypt $crypt,
         private readonly ProcessRepository $processRepository,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 
@@ -71,8 +71,8 @@ class Deleter implements LoggerAwareInterface
             \sprintf(
                 '%d deleted transfer(s) successfully, %d with errors',
                 $countSuccessful,
-                $countErroneous
-            )
+                $countErroneous,
+            ),
         );
 
         return $countSuccessful;

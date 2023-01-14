@@ -29,7 +29,7 @@ final class ToolbarItemProvider
 
     public function __construct(
         private readonly LanguageService $languageService,
-        private readonly Registry $registry
+        private readonly Registry $registry,
     ) {
     }
 
@@ -41,7 +41,7 @@ final class ToolbarItemProvider
             $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
             $this->getMessage(),
             'jobrouter-process-toolbar',
-            $this->getSeverity()
+            $this->getSeverity(),
         );
     }
 
@@ -63,7 +63,7 @@ final class ToolbarItemProvider
             $this->languageService->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunMessage'),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'], $this->lastRunInformation['start'] ?? 0),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'], $this->lastRunInformation['start'] ?? 0),
-            $status
+            $status,
         );
     }
 

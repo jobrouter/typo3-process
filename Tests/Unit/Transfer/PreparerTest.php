@@ -49,7 +49,7 @@ class PreparerTest extends TestCase
         $this->subject = new Preparer(
             $this->persistenceManagerMock,
             $this->encrypterMock,
-            $this->transferRepositoryMock
+            $this->transferRepositoryMock,
         );
         $this->subject->setLogger(new NullLogger());
     }

@@ -52,7 +52,7 @@ class Starter implements LoggerAwareInterface
         private readonly StepRepository $stepRepository,
         private readonly Decrypter $decrypter,
         private readonly TransferRepository $transferRepository,
-        private readonly ResourceFactory $resourceFactory
+        private readonly ResourceFactory $resourceFactory,
     ) {
     }
 
@@ -71,8 +71,8 @@ class Starter implements LoggerAwareInterface
             \sprintf(
                 'Started %d instance(s) with %d errors',
                 $this->totalTransfers,
-                $this->erroneousTransfers
-            )
+                $this->erroneousTransfers,
+            ),
         );
 
         return new CountResult($this->totalTransfers, $this->erroneousTransfers);
@@ -111,7 +111,7 @@ class Starter implements LoggerAwareInterface
         $response = $client->request(
             'POST',
             \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->getProcess()->getName()), // @phpstan-ignore-line
-            $incident
+            $incident,
         );
 
         $successMessage = '';
@@ -121,14 +121,14 @@ class Starter implements LoggerAwareInterface
         }
 
         $transfer->setStartSuccess(true);
-        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage, JSON_THROW_ON_ERROR) : $successMessage);
+        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage, \JSON_THROW_ON_ERROR) : $successMessage);
 
         $this->logger->debug(
             \sprintf(
                 'Response of starting the transfer with uid "%d": "%s"',
                 $transfer->getUid(),
-                $transfer->getStartMessage()
-            )
+                $transfer->getStartMessage(),
+            ),
         );
     }
 
@@ -140,9 +140,9 @@ class Starter implements LoggerAwareInterface
             throw new StepNotFoundException(
                 \sprintf(
                     'Step link with uid "%d" is not available',
-                    $stepUid
+                    $stepUid,
                 ),
-                1581331820
+                1581331820,
             );
         }
 
@@ -150,9 +150,9 @@ class Starter implements LoggerAwareInterface
             throw new ProcessNotFoundException(
                 \sprintf(
                     'Process for step link with handle "%s" is not available',
-                    $step->getHandle()
+                    $step->getHandle(),
                 ),
-                1635596424
+                1635596424,
             );
         }
 
@@ -168,9 +168,9 @@ class Starter implements LoggerAwareInterface
             throw new ProcessNotFoundException(
                 \sprintf(
                     'Process for step link with handle "%s" is not available',
-                    $step->getHandle()
+                    $step->getHandle(),
                 ),
-                1581331785
+                1581331785,
             );
         }
 
@@ -179,9 +179,9 @@ class Starter implements LoggerAwareInterface
             throw new ConnectionNotFoundException(
                 \sprintf(
                     'Connection for process link "%s" is not available',
-                    $process->getName()
+                    $process->getName(),
                 ),
-                1581331915
+                1581331915,
             );
         }
 
@@ -216,7 +216,7 @@ class Starter implements LoggerAwareInterface
 
         if ($transfer->getProcesstable() !== '') {
             try {
-                $processTable = \json_decode($transfer->getProcesstable(), true, 512, JSON_THROW_ON_ERROR);
+                $processTable = \json_decode($transfer->getProcesstable(), true, 512, \JSON_THROW_ON_ERROR);
             } catch (\JsonException) {
                 $processTable = null;
             }
@@ -240,7 +240,7 @@ class Starter implements LoggerAwareInterface
                     if (! $file instanceof FileInterface) {
                         throw new FileNotFoundException(
                             \sprintf('File with identifier "%s" is not available!', $value),
-                            1664109447
+                            1664109447,
                         );
                     }
                     $value = new File($file->getForLocalProcessing(false));
@@ -261,7 +261,7 @@ class Starter implements LoggerAwareInterface
             $configuredProcessTableFields,
             static fn ($field): bool =>
                 /** @var Processtablefield $field */
-                $name === $field->getName()
+                $name === $field->getName(),
         );
 
         if ($processTableField === []) {
@@ -269,9 +269,9 @@ class Starter implements LoggerAwareInterface
                 \sprintf(
                     'Process table field "%s" is not configured in process link "%s"',
                     $name,
-                    $process->getName()
+                    $process->getName(),
                 ),
-                1582053551
+                1582053551,
             );
         }
 

@@ -70,7 +70,7 @@ class StarterTest extends TestCase
             $this->stepRepositoryMock,
             $this->decrypter,
             $this->transferRepositoryMock,
-            $resourceFactoryStub
+            $resourceFactoryStub,
         );
         $this->subject->setLogger(new NullLogger());
     }
