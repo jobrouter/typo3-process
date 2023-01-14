@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class StepRepository extends Repository
@@ -26,9 +27,9 @@ class StepRepository extends Repository
     ];
 
     /**
-     * @return mixed[]|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return mixed[]|QueryResultInterface
      */
-    public function findAllWithHidden()
+    public function findAllWithHidden(): array|QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);

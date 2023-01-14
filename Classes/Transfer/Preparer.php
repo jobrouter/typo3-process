@@ -26,18 +26,11 @@ class Preparer implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private PersistenceManagerInterface $persistenceManager;
-    private Encrypter $encrypter;
-    private TransferRepository $transferRepository;
-
     public function __construct(
-        PersistenceManagerInterface $persistenceManager,
-        Encrypter $encrypter,
-        TransferRepository $transferRepository
+        private readonly PersistenceManagerInterface $persistenceManager,
+        private readonly Encrypter $encrypter,
+        private readonly TransferRepository $transferRepository
     ) {
-        $this->persistenceManager = $persistenceManager;
-        $this->encrypter = $encrypter;
-        $this->transferRepository = $transferRepository;
     }
 
     public function store(Transfer $transfer): void

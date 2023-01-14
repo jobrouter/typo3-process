@@ -20,11 +20,9 @@ class AttachmentDeleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private ResourceFactory $resourceFactory;
-
-    public function __construct(ResourceFactory $resourceFactory)
-    {
-        $this->resourceFactory = $resourceFactory;
+    public function __construct(
+        private readonly ResourceFactory $resourceFactory
+    ) {
     }
 
     /**
@@ -38,7 +36,7 @@ class AttachmentDeleter implements LoggerAwareInterface
 
         try {
             $fileObject = $this->resourceFactory->getFileObjectFromCombinedIdentifier($file);
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             $this->logger->notice(\sprintf('Path of file "%s" cannot be resolved.', $file));
             return;
         }
@@ -49,7 +47,7 @@ class AttachmentDeleter implements LoggerAwareInterface
         } else {
             $absoluteFolderPath = $storageConfiguration['basePath'];
         }
-        $absoluteFilePath = \rtrim($absoluteFolderPath, '/') . $fileObject->getIdentifier();
+        $absoluteFilePath = \rtrim((string)$absoluteFolderPath, '/') . $fileObject->getIdentifier();
         if (@\unlink($absoluteFilePath)) {
             $this->logger->info(\sprintf('File "%s" was deleted successfully.', $absoluteFilePath));
         } else {

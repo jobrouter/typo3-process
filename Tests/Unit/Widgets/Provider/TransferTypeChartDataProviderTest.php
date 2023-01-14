@@ -20,10 +20,7 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class TransferTypeChartDataProviderTest extends TestCase
 {
-    /**
-     * @var Stub&TransferRepository
-     */
-    private $transferRepositoryStub;
+    private TransferRepository & Stub $transferRepositoryStub;
     private TransferTypeChartDataProvider $subject;
 
     protected function setUp(): void

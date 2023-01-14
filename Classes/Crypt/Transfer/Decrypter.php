@@ -19,13 +19,12 @@ use Brotkrueml\JobRouterProcess\Extension;
 
 class Decrypter
 {
-    private Crypt $cryptService;
     private ?Transfer $decryptedTransfer = null;
     private ?EncryptedFieldsBitSet $encryptedFields = null;
 
-    public function __construct(Crypt $cryptService)
-    {
-        $this->cryptService = $cryptService;
+    public function __construct(
+        private readonly Crypt $cryptService
+    ) {
     }
 
     public function decryptIfEncrypted(Transfer $transfer): Transfer

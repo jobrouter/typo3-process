@@ -12,14 +12,15 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class TransferRepository extends Repository
 {
     /**
-     * @return mixed[]|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return mixed[]|QueryResultInterface
      */
-    public function findErroneousTransfers()
+    public function findErroneousTransfers(): array|QueryResultInterface
     {
         $query = $this->createQuery();
 

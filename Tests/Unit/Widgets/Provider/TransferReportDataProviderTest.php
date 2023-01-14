@@ -21,10 +21,7 @@ use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 
 class TransferReportDataProviderTest extends TestCase
 {
-    /**
-     * @var Stub&TransferRepository
-     */
-    private $transferRepositoryStub;
+    private TransferRepository & Stub $transferRepositoryStub;
     private TransferReportDataProvider $subject;
 
     protected function setUp(): void

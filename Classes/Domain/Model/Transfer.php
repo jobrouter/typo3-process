@@ -190,10 +190,7 @@ class Transfer extends AbstractEntity
         return $this->priority;
     }
 
-    /**
-     * @param string|int $priority
-     */
-    public function setPriority($priority): void
+    public function setPriority(string|int $priority): void
     {
         if (! \is_numeric($priority)) {
             throw new \InvalidArgumentException(
@@ -219,10 +216,7 @@ class Transfer extends AbstractEntity
         return $this->pool;
     }
 
-    /**
-     * @param string|int $pool
-     */
-    public function setPool($pool): void
+    public function setPool(string|int $pool): void
     {
         if (! \is_numeric($pool)) {
             throw new \InvalidArgumentException(
@@ -253,7 +247,7 @@ class Transfer extends AbstractEntity
      * @throws \InvalidArgumentException
      * @throws \JsonException
      */
-    public function setProcesstable($processtable): void
+    public function setProcesstable(array|string $processtable): void
     {
         if (\is_array($processtable)) {
             $this->processtable = \json_encode($processtable, \JSON_THROW_ON_ERROR);

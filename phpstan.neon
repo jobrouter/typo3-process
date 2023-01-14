@@ -5,12 +5,10 @@ includes:
     - .Build/vendor/symplify/phpstan-rules/config/regex-rules.neon
 
 parameters:
-    phpVersion: 80000
+    phpVersion: 80100
     level: 8
     paths:
         - Classes
-    # This can be removed once PHP 8.0 is minimum requirement and union types are added
-    treatPhpDocTypesAsCertain: false
 
 services:
     -

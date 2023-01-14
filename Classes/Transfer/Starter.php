@@ -43,30 +43,17 @@ class Starter implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     private const INCIDENTS_RESOURCE_TEMPLATE = 'application/incidents/%s';
-
-    private PersistenceManagerInterface $persistenceManager;
-    private RestClientFactory $restClientFactory;
-    private StepRepository $stepRepository;
-    private Decrypter $decrypter;
-    private TransferRepository $transferRepository;
-    private ResourceFactory $resourceFactory;
     private int $totalTransfers = 0;
     private int $erroneousTransfers = 0;
 
     public function __construct(
-        PersistenceManagerInterface $persistenceManager,
-        RestClientFactory $restClientFactory,
-        StepRepository $stepRepository,
-        Decrypter $decrypter,
-        TransferRepository $transferRepository,
-        ResourceFactory $resourceFactory
+        private readonly PersistenceManagerInterface $persistenceManager,
+        private readonly RestClientFactory $restClientFactory,
+        private readonly StepRepository $stepRepository,
+        private readonly Decrypter $decrypter,
+        private readonly TransferRepository $transferRepository,
+        private readonly ResourceFactory $resourceFactory
     ) {
-        $this->persistenceManager = $persistenceManager;
-        $this->restClientFactory = $restClientFactory;
-        $this->stepRepository = $stepRepository;
-        $this->decrypter = $decrypter;
-        $this->transferRepository = $transferRepository;
-        $this->resourceFactory = $resourceFactory;
     }
 
     public function run(): CountResult
@@ -103,7 +90,7 @@ class Starter implements LoggerAwareInterface
             // @phpstan-ignore-next-line
             $context = [
                 'transfer uid' => $transfer->getUid(),
-                'exception class' => \get_class($e),
+                'exception class' => $e::class,
                 'exception code' => $e->getCode(),
             ];
             $this->logger->error($e->getMessage(), $context);
@@ -230,7 +217,7 @@ class Starter implements LoggerAwareInterface
         if ($transfer->getProcesstable() !== '') {
             try {
                 $processTable = \json_decode($transfer->getProcesstable(), true, 512, JSON_THROW_ON_ERROR);
-            } catch (\JsonException $e) {
+            } catch (\JsonException) {
                 $processTable = null;
             }
 

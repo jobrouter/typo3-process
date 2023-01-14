@@ -22,18 +22,15 @@ use TYPO3\CMS\Core\Registry;
  */
 final class ToolbarItemProvider
 {
-    private LanguageService $languageService;
-    private Registry $registry;
-
     /**
      * @var array{exitCode?: int, start?: int}
      */
     private array $lastRunInformation = [];
 
-    public function __construct(LanguageService $languageService, Registry $registry)
-    {
-        $this->languageService = $languageService;
-        $this->registry = $registry;
+    public function __construct(
+        private readonly LanguageService $languageService,
+        private readonly Registry $registry
+    ) {
     }
 
     public function __invoke(SystemInformationToolbarCollectorEvent $event): void

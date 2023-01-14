@@ -20,11 +20,9 @@ class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_transfer';
 
-    private ConnectionPool $connectionPool;
-
-    public function __construct(ConnectionPool $connectionPool)
-    {
-        $this->connectionPool = $connectionPool;
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
     }
 
     /**

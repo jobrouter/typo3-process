@@ -239,11 +239,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         return $processTableFields;
     }
 
-    /**
-     * @param string|int $value
-     * @return string|int
-     */
-    private function considerTypeForFieldValue($value, int $type, int $fieldSize)
+    private function considerTypeForFieldValue(string|int $value, int $type, int $fieldSize): string|int
     {
         if ($type === FieldTypeEnumeration::TEXT) {
             $value = (string)$value;

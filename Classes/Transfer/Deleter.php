@@ -28,25 +28,17 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private AttachmentDeleter $attachmentDeleter;
-    private Crypt $crypt;
-    private ProcessRepository $processRepository;
-    private TransferRepository $transferRepository;
     /**
      * @var array<int, string[]> Key is the process uid, the values are the process table fields defined as attachment
      */
     private array $attachmentFieldsForProcess = [];
 
     public function __construct(
-        AttachmentDeleter $attachmentDeleter,
-        Crypt $crypt,
-        ProcessRepository $processRepository,
-        TransferRepository $transferRepository
+        private readonly AttachmentDeleter $attachmentDeleter,
+        private readonly Crypt $crypt,
+        private readonly ProcessRepository $processRepository,
+        private readonly TransferRepository $transferRepository
     ) {
-        $this->attachmentDeleter = $attachmentDeleter;
-        $this->crypt = $crypt;
-        $this->processRepository = $processRepository;
-        $this->transferRepository = $transferRepository;
     }
 
     public function run(int $ageInDays): int

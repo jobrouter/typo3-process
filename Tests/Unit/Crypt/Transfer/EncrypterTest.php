@@ -25,10 +25,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 class EncrypterTest extends TestCase
 {
-    /**
-     * @var Stub&ExtensionConfiguration
-     */
-    private $extensionConfigurationStub;
+    private ExtensionConfiguration & Stub $extensionConfigurationStub;
     /**
      * @var MockObject&Crypt
      */

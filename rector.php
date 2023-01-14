@@ -14,7 +14,7 @@ use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector;
 use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 
 return static function (RectorConfig $config): void {
-    $config->phpVersion(PhpVersion::PHP_74);
+    $config->phpVersion(PhpVersion::PHP_81);
 
     $config->autoloadPaths([
         __DIR__ . '/.Build/vendor/autoload.php',
@@ -25,7 +25,7 @@ return static function (RectorConfig $config): void {
         __DIR__ . '/Tests',
     ]);
     $config->sets([
-        LevelSetList::UP_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_81,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
@@ -39,13 +39,13 @@ return static function (RectorConfig $config): void {
         __DIR__ . '/Configuration/Services.php',
         AddArrayParamDocTypeRector::class => [
             __DIR__ . '/Classes/Domain/Model/Process.php',
+            __DIR__ . '/Classes/Domain/Model/Transfer.php',
             __DIR__ . '/Tests/*',
         ],
         AddArrayReturnDocTypeRector::class => [
             __DIR__ . '/Tests/*',
         ],
         AddLiteralSeparatorToNumberRector::class,
-        RemoveUnusedPromotedPropertyRector::class, // Skip until compatibility with PHP >= 8.0
         ReturnTypeDeclarationRector::class => [
             __DIR__ . '/Classes/Domain/Repository/ProcessRepository.php',
             __DIR__ . '/Classes/Domain/Repository/StepRepository.php',

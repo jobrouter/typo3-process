@@ -36,7 +36,22 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Transfer.php
+
+		-
 			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/ProcessRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/ProcessRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/ProcessRepository.php
 
@@ -66,12 +81,32 @@ parameters:
 			path: Classes/Domain/Repository/StepRepository.php
 
 		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/StepRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/StepRepository.php
+
+		-
 			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
 			count: 1
 			path: Classes/Domain/Repository/StepRepository.php
 
 		-
 			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/TransferRepository.php
 

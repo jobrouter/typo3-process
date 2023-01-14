@@ -106,18 +106,6 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function setProcessTableWithNotAllowedTypeAsArgumentThrowsException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionCode(1582744898);
-        $this->expectExceptionMessage('Argument "processtable" must be either a string or an array, "object" given');
-
-        $this->subject->setProcesstable(new \stdClass());
-    }
-
-    /**
-     * @test
-     */
     public function isAndSetStartSuccessImplementedCorrectly(): void
     {
         self::assertFalse($this->subject->isStartSuccess());

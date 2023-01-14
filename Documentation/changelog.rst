@@ -11,6 +11,19 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.2.0...HEAD>`_
 -----------------------------------------------------------------------------------------------
 
+Added
+^^^^^
+
+
+* Allow attachments for an instance start (#9)
+
+Removed
+^^^^^^^
+
+
+* Compatibility with TYPO3 v10 (#5)
+* Compatibility with PHP 7.4 and 8.0
+
 `1.2.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.1...v1.2.0>`_ - 2022-05-31
 ---------------------------------------------------------------------------------------------------------
 

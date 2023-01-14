@@ -22,13 +22,11 @@
 		"docs": "https://typo3-jobrouter.readthedocs.io/projects/process/"
 	},
 	"require": {
-		"php": ">=7.4",
-		"ext-json": "*",
+		"php": ">=8.1",
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",
 		"brotkrueml/typo3-jobrouter-base": "^1.4@dev",
 		"brotkrueml/typo3-jobrouter-connector": "^1.0",
-		"symfony/polyfill-php80": "^1.15",
 		"typo3/cms-backend": "^11.5.3",
 		"typo3/cms-core": "^11.5.3",
 		"typo3/cms-extbase": "^11.5.3",

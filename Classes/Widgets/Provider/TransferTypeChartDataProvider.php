@@ -22,8 +22,6 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
  */
 final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 {
-    private LanguageService $languageService;
-    private TransferRepository $transferRepository;
     private int $numberOfDays = Extension::WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS;
     /**
      * @var mixed[]
@@ -35,11 +33,9 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     private array $data = [];
 
     public function __construct(
-        LanguageService $languageService,
-        TransferRepository $transferRepository
+        private readonly LanguageService $languageService,
+        private readonly TransferRepository $transferRepository
     ) {
-        $this->languageService = $languageService;
-        $this->transferRepository = $transferRepository;
     }
 
     public function setNumberOfDays(int $numberOfDays): void

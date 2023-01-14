@@ -37,11 +37,6 @@ class BackendController extends ActionController
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    private ProcessRepository $processRepository;
-    private StepRepository $stepRepository;
-    private IconFactory $iconFactory;
-    private LanguageService $languageService;
-
     /**
      * @var ModuleTemplate
      * @noRector
@@ -55,15 +50,11 @@ class BackendController extends ActionController
     private $buttonBar;
 
     public function __construct(
-        IconFactory $iconFactory,
-        LanguageService $languageService,
-        ProcessRepository $processRepository,
-        StepRepository $stepRepository
+        private readonly IconFactory $iconFactory,
+        private readonly LanguageService $languageService,
+        private readonly ProcessRepository $processRepository,
+        private readonly StepRepository $stepRepository
     ) {
-        $this->iconFactory = $iconFactory;
-        $this->languageService = $languageService;
-        $this->processRepository = $processRepository;
-        $this->stepRepository = $stepRepository;
     }
 
     protected function initializeView(ViewInterface $view): void

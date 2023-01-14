@@ -22,8 +22,6 @@ use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
  */
 final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 {
-    private LanguageService $languageService;
-    private TransferRepository $transferRepository;
     private int $numberOfDays = 14;
     /**
      * @var string[]
@@ -32,12 +30,12 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
     /**
      * @var int[]|mixed[]
      */
-    private $data = [];
+    private array $data = [];
 
-    public function __construct(LanguageService $languageService, TransferRepository $transferRepository)
-    {
-        $this->languageService = $languageService;
-        $this->transferRepository = $transferRepository;
+    public function __construct(
+        private readonly LanguageService $languageService,
+        private readonly TransferRepository $transferRepository
+    ) {
     }
 
     public function setNumberOfDays(int $numberOfDays): void

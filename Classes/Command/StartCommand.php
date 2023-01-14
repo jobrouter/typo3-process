@@ -30,10 +30,6 @@ final class StartCommand extends Command
     public const EXIT_CODE_OK = 0;
     public const EXIT_CODE_ERRORS_ON_START = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
-
-    private LockFactory $lockFactory;
-    private Registry $registry;
-    private Starter $starter;
     private ?int $startTime = null;
 
     /**
@@ -42,12 +38,11 @@ final class StartCommand extends Command
      */
     private $outputStyle;
 
-    public function __construct(LockFactory $lockFactory, Registry $registry, Starter $starter)
-    {
-        $this->lockFactory = $lockFactory;
-        $this->registry = $registry;
-        $this->starter = $starter;
-
+    public function __construct(
+        private readonly LockFactory $lockFactory,
+        private readonly Registry $registry,
+        private readonly Starter $starter
+    ) {
         parent::__construct();
     }
 
@@ -72,7 +67,7 @@ final class StartCommand extends Command
             $this->recordLastRun($exitCode);
 
             return $exitCode;
-        } catch (LockException $e) {
+        } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
