@@ -209,3 +209,8 @@ parameters:
 			message: "#^Class cognitive complexity is 31, keep it under 25$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Cognitive complexity for \"Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
+			count: 1
+			path: Classes/Transfer/Starter.php

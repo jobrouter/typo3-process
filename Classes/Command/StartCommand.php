@@ -95,7 +95,6 @@ final class StartCommand extends Command
 
     private function recordLastRun(int $exitCode): void
     {
-        // @phpstan-ignore-next-line
         $runInformation = [
             'start' => $this->startTime,
             'end' => \time(),
