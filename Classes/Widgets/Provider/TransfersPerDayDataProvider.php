@@ -44,7 +44,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
     }
 
     /**
-     * @return array<string, array<int, mixed>>
+     * @return array{labels: string[], datasets: array<int, array{label: string, backgroundColor: string, data: mixed[]}>}
      */
     public function getChartData(): array
     {

@@ -15,20 +15,9 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Step extends AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $handle = '';
-
-    /**
-     * @var string
-     */
-    protected $name = '';
-
-    /**
-     * @var \Brotkrueml\JobRouterProcess\Domain\Model\Process|null
-     */
-    protected $process;
+    protected string $handle = '';
+    protected string $name = '';
+    protected ?Process $process = null;
 
     /**
      * @var int

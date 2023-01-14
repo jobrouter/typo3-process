@@ -17,27 +17,16 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Process extends AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $name = '';
+    protected string $name = '';
+    protected string $description = '';
+    protected ?Connection $connection = null;
 
     /**
-     * @var string
-     */
-    protected $description = '';
-
-    /**
-     * @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null
-     */
-    protected $connection;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield>
+     * @var ObjectStorage<\Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $processtablefields;
+    protected ObjectStorage $processtablefields;
 
     /**
      * @var bool

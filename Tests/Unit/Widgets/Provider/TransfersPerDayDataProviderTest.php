@@ -159,7 +159,7 @@ class TransfersPerDayDataProviderTest extends TestCase
     /**
      * @return string[]
      */
-    private function getDays($timestamps): array
+    private function getDays(array $timestamps): array
     {
         $days = [];
         foreach ($timestamps as $timestamp) {

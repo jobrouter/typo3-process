@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayParamDocTypeRector;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector;
-use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 
 return static function (RectorConfig $config): void {
     $config->phpVersion(PhpVersion::PHP_81);
@@ -36,20 +32,7 @@ return static function (RectorConfig $config): void {
         PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER
     ]);
     $config->skip([
-        __DIR__ . '/Configuration/Services.php',
-        AddArrayParamDocTypeRector::class => [
-            __DIR__ . '/Classes/Domain/Model/Process.php',
-            __DIR__ . '/Classes/Domain/Model/Transfer.php',
-            __DIR__ . '/Tests/*',
-        ],
-        AddArrayReturnDocTypeRector::class => [
-            __DIR__ . '/Tests/*',
-        ],
+        __DIR__ . '/Classes/Domain/Model/Transfer.php',
         AddLiteralSeparatorToNumberRector::class,
-        ReturnTypeDeclarationRector::class => [
-            __DIR__ . '/Classes/Domain/Repository/ProcessRepository.php',
-            __DIR__ . '/Classes/Domain/Repository/StepRepository.php',
-            __DIR__ . '/Classes/Domain/Repository/TransferRepository.php',
-        ],
     ]);
 };

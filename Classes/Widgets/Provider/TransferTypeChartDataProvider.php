@@ -44,7 +44,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{datasets: array<int, array{backgroundColor: string[], data: mixed[]}>, labels: mixed[]}
      */
     public function getChartData(): array
     {

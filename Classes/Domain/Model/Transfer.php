@@ -34,35 +34,17 @@ class Transfer extends AbstractEntity
      */
     protected $stepUid = 0;
 
-    /**
-     * @var string
-     */
-    protected $correlationId = '';
+    protected string $correlationId = '';
 
-    /**
-     * @var string
-     */
-    protected $type = '';
+    protected string $type = '';
 
-    /**
-     * @var string
-     */
-    protected $initiator = '';
+    protected string $initiator = '';
 
-    /**
-     * @var string
-     */
-    protected $username = '';
+    protected string $username = '';
 
-    /**
-     * @var string
-     */
-    protected $jobfunction = '';
+    protected string $jobfunction = '';
 
-    /**
-     * @var string
-     */
-    protected $summary = '';
+    protected string $summary = '';
 
     /**
      * @var int
@@ -74,10 +56,7 @@ class Transfer extends AbstractEntity
      */
     protected $pool = 1;
 
-    /**
-     * @var string
-     */
-    protected $processtable = '';
+    protected string $processtable = '';
 
     /**
      * @see class Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet
@@ -90,15 +69,9 @@ class Transfer extends AbstractEntity
      */
     protected $startSuccess = false;
 
-    /**
-     * @var \DateTime|null
-     */
-    protected $startDate;
+    protected ?\DateTime $startDate = null;
 
-    /**
-     * @var string
-     */
-    protected $startMessage = '';
+    protected string $startMessage = '';
 
     public function __construct()
     {
@@ -254,7 +227,6 @@ class Transfer extends AbstractEntity
             return;
         }
 
-        // @noRector \Rector\DeadCode\Rector\If_\RemoveAlwaysTrueIfConditionRector
         if (\is_string($processtable)) {
             $this->processtable = $processtable;
             return;

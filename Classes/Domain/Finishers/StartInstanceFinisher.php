@@ -32,17 +32,8 @@ use Brotkrueml\JobRouterProcess\Transfer\Preparer;
  */
 final class StartInstanceFinisher extends AbstractTransferFinisher
 {
-    /**
-     * @var Preparer
-     * @noRector
-     */
-    private $preparer;
-
-    /**
-     * @var StepRepository
-     * @noRector
-     */
-    private $stepRepository;
+    private Preparer $preparer;
+    private StepRepository $stepRepository;
 
     /**
      * @var string[]
@@ -57,17 +48,8 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         'username',
     ];
 
-    /**
-     * @var Step
-     * @noRector
-     */
-    private $step;
-
-    /**
-     * @var Transfer
-     * @noRector
-     */
-    private $transfer;
+    private ?Step $step = null;
+    private ?Transfer $transfer = null;
 
     public function injectPreparer(Preparer $preparer): void
     {

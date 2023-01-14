@@ -32,11 +32,7 @@ final class StartCommand extends Command
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
     private ?int $startTime = null;
 
-    /**
-     * @var SymfonyStyle
-     * @noRector
-     */
-    private $outputStyle;
+    private SymfonyStyle $outputStyle;
 
     public function __construct(
         private readonly LockFactory $lockFactory,
