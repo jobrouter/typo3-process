@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
@@ -39,6 +40,7 @@ final class ListController
         private readonly PageRenderer $pageRenderer,
         private readonly ProcessRepository $processRepository,
         private readonly StepRepository $stepRepository,
+        private readonly UriBuilder $uriBuilder,
     ) {
     }
 
@@ -51,8 +53,18 @@ final class ListController
         );
 
         $this->initializeView();
-        $this->configureDocHeader($request->getAttribute('normalizedParams')?->getRequestUri() ?? '');
-        $this->listAction();
+
+        $processes = $this->processRepository->findAllWithHidden();
+        $steps = $this->stepRepository->findAllWithHidden();
+        $this->view->assignMultiple([
+            'processes' => $processes,
+            'steps' => $steps,
+        ]);
+
+        $this->configureDocHeader(
+            $request->getAttribute('normalizedParams')?->getRequestUri() ?? '',
+            \count($processes) > 0,
+        );
 
         $this->moduleTemplate->setContent($this->view->render());
 
@@ -66,9 +78,41 @@ final class ListController
         $this->view->setTemplateRootPaths(['EXT:' . Extension::KEY . '/Resources/Private/Templates/Backend']);
     }
 
-    private function configureDocHeader(string $requestUri): void
+    private function configureDocHeader(string $requestUri, bool $hasProcesses): void
     {
         $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+
+        $newProcessButton = $buttonBar->makeLinkButton()
+            ->setHref((string)$this->uriBuilder->buildUriFromRoute(
+                'record_edit',
+                [
+                    'edit' => [
+                        'tx_jobrouterprocess_domain_model_process' => ['new'],
+                    ],
+                    'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
+                ],
+            ))
+            ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_process'))
+            ->setShowLabelText(true)
+            ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
+        $buttonBar->addButton($newProcessButton, buttonGroup: 10);
+
+        if ($hasProcesses) {
+            $newStepButton = $buttonBar->makeLinkButton()
+                ->setHref((string)$this->uriBuilder->buildUriFromRoute(
+                    'record_edit',
+                    [
+                        'edit' => [
+                            'tx_jobrouterprocess_domain_model_step' => ['new'],
+                        ],
+                        'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
+                    ],
+                ))
+                ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_step'))
+                ->setShowLabelText(true)
+                ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
+            $buttonBar->addButton($newStepButton, buttonGroup: 20);
+        }
 
         $reloadButton = $buttonBar->makeLinkButton()
             ->setHref($requestUri)
@@ -82,17 +126,6 @@ final class ListController
                 ->setDisplayName($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':heading_text'));
             $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
         }
-    }
-
-    private function listAction(): void
-    {
-        $processes = $this->processRepository->findAllWithHidden();
-        $steps = $this->stepRepository->findAllWithHidden();
-
-        $this->view->assignMultiple([
-            'processes' => $processes,
-            'steps' => $steps,
-        ]);
     }
 
     private function getLanguageService(): LanguageService

@@ -14,12 +14,7 @@
 </f:if>
 
 <f:section name="processes">
-    <h2>
-        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_title"/>
-        <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_process" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_process')}">
-            <core:icon identifier="actions-add"/>
-        </be:link.newRecord>
-    </h2>
+    <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_title"/></h2>
 
     <f:if condition="{processes}">
         <f:then>
@@ -103,12 +98,7 @@
 </f:section>
 
 <f:section name="steps">
-    <h2>
-        <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_title"/>
-        <be:link.newRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_step" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.add_step')}">
-            <core:icon identifier="actions-add"/>
-        </be:link.newRecord>
-    </h2>
+    <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_title"/></h2>
 
     <f:if condition="{steps}">
         <f:then>

@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/BackendController.php
-
-		-
-			message: "#^Parameter \\#1 \\$href of method TYPO3\\\\CMS\\\\Backend\\\\Template\\\\Components\\\\Buttons\\\\LinkButton\\:\\:setHref\\(\\) expects string, array\\<string, bool\\|string\\|null\\>\\|bool\\|string\\|null given\\.$#"
-			count: 1
-			path: Classes/Controller/BackendController.php
-
-		-
 			message: "#^Cannot call method get\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
 			count: 1
 			path: Classes/Crypt/Transfer/Decrypter.php
