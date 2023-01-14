@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Allow attachments for an instance start (#9)
 
+### Removed
+- Compatibility with TYPO3 v10 (#5)
+
 ## [1.2.0] - 2022-05-31
 
 ### Removed
