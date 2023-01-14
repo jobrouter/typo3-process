@@ -86,21 +86,6 @@ parameters:
 			path: Classes/Domain/Repository/ProcessRepository.php
 
 		-
-			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 3
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
-			message: "#^Cannot call method fetchAllAssociative\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
-			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 2
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
 			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
 			count: 1
 			path: Classes/Domain/Repository/StepRepository.php

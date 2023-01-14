@@ -34,7 +34,107 @@ final class TransferRepositoryTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function findForDeletionReturnsRecordsCorrectly(): void
+    public function countGroupByStartSuccessWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->countGroupByStartSuccess();
+
+        self::assertSame([], $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countGroupByStartSuccess(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../../Fixtures/Transfers.csv');
+
+        $actual = $this->subject->countGroupByStartSuccess();
+
+        self::assertCount(2, $actual);
+        self::assertSame(0, $actual[0]['start_success']);
+        self::assertSame(4, $actual[0]['count']);
+        self::assertSame(1, $actual[1]['start_success']);
+        self::assertSame(2, $actual[1]['count']);
+    }
+
+    /**
+     * @test
+     */
+    public function countStartFailedWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->countStartFailed();
+
+        self::assertSame(0, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countStartFailed(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../../Fixtures/Transfers.csv');
+
+        $actual = $this->subject->countStartFailed();
+
+        self::assertSame(1, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countTypesWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->countTypes(30);
+
+        self::assertSame([], $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countByDayWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->countTypes(30);
+
+        self::assertSame([], $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function findFirstCreationDateWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->findFirstCreationDate();
+
+        self::assertSame(0, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function findFirstCreationDate(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../../Fixtures/Transfers.csv');
+
+        $actual = $this->subject->findFirstCreationDate();
+
+        self::assertSame(1111111111, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function findForDeletionWithNoEntriesInTransferTable(): void
+    {
+        $actual = $this->subject->findForDeletion(1111111111);
+
+        self::assertSame([], $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function findForDeletion(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../../Fixtures/TransferFindForDeletion.csv');
 
@@ -47,6 +147,16 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertNull($actual[1]['process_uid']);
         self::assertSame(103, (int)$actual[2]['uid']);
         self::assertNull($actual[2]['process_uid']);
+    }
+
+    /**
+     * @test
+     */
+    public function deleteWithNonExistingUid(): void
+    {
+        $actual = $this->subject->delete(9999);
+
+        self::assertSame(0, $actual);
     }
 
     /**

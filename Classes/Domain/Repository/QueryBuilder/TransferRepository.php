@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -26,7 +27,7 @@ class TransferRepository
     }
 
     /**
-     * @return mixed[]
+     * @return array<int,array<string,mixed>>
      */
     public function countGroupByStartSuccess(): array
     {
@@ -37,8 +38,9 @@ class TransferRepository
             ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
             ->from(self::TABLE_NAME)
             ->groupBy('start_success')
-            ->execute()
-            ->fetchAll();
+            ->orderBy('start_success')
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     public function countStartFailed(): int
@@ -48,30 +50,24 @@ class TransferRepository
         $whereExpressions = [
             $queryBuilder->expr()->eq(
                 'start_success',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT),
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
             ),
             $queryBuilder->expr()->gt(
                 'start_date',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT),
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
             ),
         ];
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('*')
             ->from(self::TABLE_NAME)
             ->where(...$whereExpressions)
-            ->execute()
-            ->fetchColumn();
-
-        if ($count === false) {
-            return 0;
-        }
-
-        return $count;
+            ->executeQuery()
+            ->fetchOne() ?: 0;
     }
 
     /**
-     * @return mixed[]
+     * @return array<int,array<string,mixed>>
      */
     public function countTypes(int $numberOfDays): array
     {
@@ -86,13 +82,13 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->gte(
                     'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT),
+                    $queryBuilder->createNamedParameter($startDate->format('U'), Connection::PARAM_INT),
                 ),
             )
             ->groupBy('type')
             ->orderBy('count', 'DESC')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     private function getDateBackFromToday(int $numberOfDays): \DateTime
@@ -105,7 +101,7 @@ class TransferRepository
     }
 
     /**
-     * @return mixed[]
+     * @return array<int,array<string,mixed>>
      */
     public function countByDay(int $numberOfDays): array
     {
@@ -128,13 +124,13 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->gte(
                     'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), \PDO::PARAM_INT),
+                    $queryBuilder->createNamedParameter($startDate->format('U'), Connection::PARAM_INT),
                 ),
             )
             ->groupBy('day')
             ->orderBy('day', 'ASC')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     public function findFirstCreationDate(): int
@@ -146,8 +142,8 @@ class TransferRepository
         return $queryBuilder
             ->selectLiteral(\sprintf('MIN(%s)', $quotedCrdate))
             ->from(self::TABLE_NAME)
-            ->execute()
-            ->fetchColumn() ?: 0;
+            ->executeQuery()
+            ->fetchOne() ?: 0;
     }
 
     /**
@@ -175,15 +171,15 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->eq(
                     't.start_success',
-                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT),
+                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
                 ),
                 $queryBuilder->expr()->lt(
                     't.crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestamp, \PDO::PARAM_INT),
+                    $queryBuilder->createNamedParameter($maximumTimestamp, Connection::PARAM_INT),
                 ),
             )
             ->orderBy('t.uid')
-            ->execute()
+            ->executeQuery()
             ->fetchAllAssociative();
     }
 
@@ -196,12 +192,12 @@ class TransferRepository
                 self::TABLE_NAME,
                 [
                     'uid' => $uid,
-                    // This is just a failsafe, so no transfer which was not sent is deleted
+                    // This is just a failsafe, so no transfer is deleted, which was not sent,
                     'start_success' => 1,
                 ],
                 [
-                    \PDO::PARAM_INT,
-                    \PDO::PARAM_INT,
+                    Connection::PARAM_INT,
+                    Connection::PARAM_INT,
                 ],
             );
     }
