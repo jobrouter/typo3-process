@@ -36,6 +36,31 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
+			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
+			message: "#^Cannot call method setProcesstable\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
+			message: "#^Cannot call method setType\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
+			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null given\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
+			message: "#^Parameter \\#1 \\$transfer of method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Preparer\\:\\:store\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null given\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
+
+		-
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: Classes/Domain/Model/Transfer.php
