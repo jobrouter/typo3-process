@@ -50,7 +50,6 @@
 		"typo3/testing-framework": "^6.16"
 	},
 	"suggest": {
-		"co-stack/logs": "Backend module for displaying logs written to log table",
 		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts"
 	},
 	"autoload": {

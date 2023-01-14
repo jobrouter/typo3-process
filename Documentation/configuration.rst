@@ -28,38 +28,6 @@ extensions` button. Open the :guilabel:`jobrouter_process` configuration:
 
    Log options in the extension configuration
 
-Log
----
-
-.. deprecated:: 1.1.0
-   The configuration of logging is deprecated and will be removed in version
-   2.0.0. :ref:`Configure the required log writers <configuration-logging>` in
-   your site package instead.
-
-Log into file
-~~~~~~~~~~~~~
-
-If this option is activated, the log output is written to the file
-:file:`var/log/typo3_jobrouter_process_<hash>.log`. It is enabled by default.
-
-Log into table
-~~~~~~~~~~~~~~
-
-Activate this option to log into the table `tx_jobrouterbase_log`. It is
-disabled by default.
-
-.. hint::
-
-   To display the log entries of this table in the TYPO3 backend, install the
-   extension `co-stack/logs`_.
-
-Log level
-~~~~~~~~~
-
-Using the drop down menu you can select the log level for the activated log
-options. :guilabel:`warning` is selected by default.
-
-
 Encryption
 ----------
 
