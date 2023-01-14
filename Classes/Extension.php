@@ -18,6 +18,8 @@ final class Extension
 {
     public const KEY = 'jobrouter_process';
 
+    public const MODULE_NAME = 'jobrouter_process';
+
     private const LANGUAGE_PATH = 'LLL:EXT:' . self::KEY . '/Resources/Private/Language/';
     public const LANGUAGE_PATH_BACKEND_MODULE = self::LANGUAGE_PATH . 'BackendModule.xlf';
     public const LANGUAGE_PATH_DASHBOARD = self::LANGUAGE_PATH . 'Dashboard.xlf';

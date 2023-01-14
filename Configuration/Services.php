@@ -15,6 +15,7 @@ use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
 use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
 use Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand;
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
+use Brotkrueml\JobRouterProcess\Controller\ListController;
 use Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
@@ -39,6 +40,10 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services
         ->load('Brotkrueml\JobRouterProcess\\', '../Classes/*')
         ->exclude('../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php}');
+
+    $services
+        ->set(ListController::class)
+        ->tag('backend.controller');
 
     $services
         ->set(CleanUpTransfersCommand::class)
