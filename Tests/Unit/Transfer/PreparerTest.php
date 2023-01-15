@@ -21,24 +21,12 @@ use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-class PreparerTest extends TestCase
+final class PreparerTest extends TestCase
 {
     private Preparer $subject;
-
-    /**
-     * @var MockObject&PersistenceManager
-     */
-    private MockObject $persistenceManagerMock;
-
-    /**
-     * @var MockObject&Encrypter
-     */
-    private MockObject $encrypterMock;
-
-    /**
-     * @var MockObject&TransferRepository
-     */
-    private MockObject $transferRepositoryMock;
+    private PersistenceManager&MockObject $persistenceManagerMock;
+    private Encrypter&MockObject $encrypterMock;
+    private TransferRepository&MockObject $transferRepositoryMock;
 
     protected function setUp(): void
     {
@@ -49,9 +37,9 @@ class PreparerTest extends TestCase
         $this->subject = new Preparer(
             $this->persistenceManagerMock,
             $this->encrypterMock,
+            new NullLogger(),
             $this->transferRepositoryMock,
         );
-        $this->subject->setLogger(new NullLogger());
     }
 
     /**

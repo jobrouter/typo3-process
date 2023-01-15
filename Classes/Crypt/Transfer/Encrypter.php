@@ -15,20 +15,18 @@ use Brotkrueml\JobRouterConnector\Exception\CryptException;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
-class Encrypter implements LoggerAwareInterface
+class Encrypter
 {
-    use LoggerAwareTrait;
-
     private ?Transfer $encryptedTransfer = null;
     private ?EncryptedFieldsBitSet $encryptedFields = null;
 
     public function __construct(
         private readonly Crypt $cryptService,
         private readonly ExtensionConfiguration $extensionConfiguration,
+        private readonly LoggerInterface $logger,
     ) {
     }
 

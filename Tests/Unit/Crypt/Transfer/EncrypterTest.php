@@ -21,15 +21,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
-class EncrypterTest extends TestCase
+final class EncrypterTest extends TestCase
 {
     private ExtensionConfiguration & Stub $extensionConfigurationStub;
-    /**
-     * @var MockObject&Crypt
-     */
-    private MockObject $cryptServiceMock;
+    private Crypt & MockObject $cryptServiceMock;
     private Encrypter $subject;
 
     protected function setUp(): void
@@ -37,7 +35,7 @@ class EncrypterTest extends TestCase
         $this->extensionConfigurationStub = $this->createStub(ExtensionConfiguration::class);
         $this->cryptServiceMock = $this->createMock(Crypt::class);
 
-        $this->subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub);
+        $this->subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub, new NullLogger());
     }
 
     /**
@@ -140,13 +138,14 @@ class EncrypterTest extends TestCase
             ->expects(self::once())
             ->method('warning')
             ->with('Field "processtable" in transfer with uid "38" cannot be encrypted, it will be stored unencrypted, reason: some crypt error');
-        $this->subject->setLogger($loggerMock);
+
+        $subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub, $loggerMock);
 
         $transfer = new Transfer();
         $transfer->_setProperty('uid', 38);
         $transfer->setCorrelationId('some identifier');
         $transfer->setProcesstable('processtable');
-        $actual = $this->subject->encryptIfConfigured($transfer);
+        $actual = $subject->encryptIfConfigured($transfer);
 
         self::assertNotSame($transfer, $actual);
         self::assertSame('processtable', $actual->getProcesstable());

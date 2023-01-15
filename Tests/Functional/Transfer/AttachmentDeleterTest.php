@@ -44,8 +44,7 @@ final class AttachmentDeleterTest extends FunctionalTestCase
         }
 
         parent::setUp();
-        $this->subject = new AttachmentDeleter(GeneralUtility::makeInstance(ResourceFactory::class));
-        $this->subject->setLogger(new NullLogger());
+        $this->subject = new AttachmentDeleter(new NullLogger(), GeneralUtility::makeInstance(ResourceFactory::class));
     }
 
     /**

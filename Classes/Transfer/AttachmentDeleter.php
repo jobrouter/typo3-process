@@ -11,16 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 
-class AttachmentDeleter implements LoggerAwareInterface
+class AttachmentDeleter
 {
-    use LoggerAwareTrait;
-
     public function __construct(
+        private readonly LoggerInterface $logger,
         private readonly ResourceFactory $resourceFactory,
     ) {
     }

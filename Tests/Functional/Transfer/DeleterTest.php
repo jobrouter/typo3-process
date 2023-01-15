@@ -37,13 +37,11 @@ final class DeleterTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $attachmentDeleter = new AttachmentDeleter(GeneralUtility::makeInstance(ResourceFactory::class));
-        $crypt = new Crypt();
+        $attachmentDeleter = new AttachmentDeleter(new NullLogger(), GeneralUtility::makeInstance(ResourceFactory::class));
         $processRepository = GeneralUtility::makeInstance(ProcessRepository::class);
         $transferRepository = new TransferRepository($this->getConnectionPool());
 
-        $this->subject = new Deleter($attachmentDeleter, $crypt, $processRepository, $transferRepository);
-        $this->subject->setLogger(new NullLogger());
+        $this->subject = new Deleter($attachmentDeleter, new Crypt(), new NullLogger(), $processRepository, $transferRepository);
     }
 
     /**

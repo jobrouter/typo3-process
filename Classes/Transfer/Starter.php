@@ -29,8 +29,7 @@ use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
@@ -38,10 +37,8 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
  */
-class Starter implements LoggerAwareInterface
+class Starter
 {
-    use LoggerAwareTrait;
-
     private const INCIDENTS_RESOURCE_TEMPLATE = 'application/incidents/%s';
     private int $totalTransfers = 0;
     private int $erroneousTransfers = 0;
@@ -53,6 +50,7 @@ class Starter implements LoggerAwareInterface
         private readonly Decrypter $decrypter,
         private readonly TransferRepository $transferRepository,
         private readonly ResourceFactory $resourceFactory,
+        private readonly LoggerInterface $logger,
     ) {
     }
 

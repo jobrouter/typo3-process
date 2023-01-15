@@ -15,20 +15,18 @@ use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
 use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @api
  */
-class Preparer implements LoggerAwareInterface
+class Preparer
 {
-    use LoggerAwareTrait;
-
     public function __construct(
         private readonly PersistenceManagerInterface $persistenceManager,
         private readonly Encrypter $encrypter,
+        private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
     ) {
     }

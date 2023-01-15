@@ -18,16 +18,13 @@ use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
  */
-class Deleter implements LoggerAwareInterface
+class Deleter
 {
-    use LoggerAwareTrait;
-
     /**
      * @var array<int, string[]> Key is the process uid, the values are the process table fields defined as attachment
      */
@@ -36,6 +33,7 @@ class Deleter implements LoggerAwareInterface
     public function __construct(
         private readonly AttachmentDeleter $attachmentDeleter,
         private readonly Crypt $crypt,
+        private readonly LoggerInterface $logger,
         private readonly ProcessRepository $processRepository,
         private readonly TransferRepository $transferRepository,
     ) {

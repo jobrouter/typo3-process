@@ -21,11 +21,6 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Crypt/Transfer/Encrypter.php
-
-		-
 			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
 			count: 1
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
@@ -136,46 +131,6 @@ parameters:
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/AttachmentDeleter.php
-
-		-
-			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/AttachmentDeleter.php
-
-		-
-			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/AttachmentDeleter.php
-
-		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 3
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method warning\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, int\\|string\\|null given\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
@@ -184,26 +139,6 @@ parameters:
 			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Deleter\\:\\:\\$attachmentFieldsForProcess \\(array\\<int, array\\<string\\>\\>\\) does not accept array\\<int\\|string, array\\<string\\>\\>\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Preparer.php
-
-		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/Starter.php
 
 		-
 			message: "#^Class cognitive complexity is 31, keep it under 25$#"

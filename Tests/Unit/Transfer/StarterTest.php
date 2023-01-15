@@ -22,29 +22,13 @@ use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
-class StarterTest extends TestCase
+final class StarterTest extends TestCase
 {
     private Starter $subject;
-
-    /**
-     * @var MockObject&PersistenceManagerInterface
-     */
-    private MockObject $persistenceManagerMock;
-
-    /**
-     * @var MockObject&TransferRepository
-     */
-    private MockObject $transferRepositoryMock;
-
-    /**
-     * @var MockObject&StepRepository
-     */
-    private MockObject $stepRepositoryMock;
-
-    /**
-     * @var MockObject&Decrypter
-     */
-    private MockObject $decrypter;
+    private PersistenceManagerInterface&MockObject $persistenceManagerMock;
+    private TransferRepository&MockObject $transferRepositoryMock;
+    private StepRepository&MockObject $stepRepositoryMock;
+    private Decrypter&MockObject $decrypter;
 
     protected function setUp(): void
     {
@@ -71,8 +55,8 @@ class StarterTest extends TestCase
             $this->decrypter,
             $this->transferRepositoryMock,
             $resourceFactoryStub,
+            new NullLogger(),
         );
-        $this->subject->setLogger(new NullLogger());
     }
 
     /**
