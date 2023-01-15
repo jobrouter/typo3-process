@@ -14,7 +14,9 @@ namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 use Brotkrueml\JobRouterBase\Extension as BaseExtension;
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 /**
@@ -33,7 +35,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
     private array $data = [];
 
     public function __construct(
-        private readonly LanguageService $languageService,
+        private readonly LanguageServiceFactory $languageServiceFactory,
         private readonly TransferRepository $transferRepository,
     ) {
     }
@@ -48,13 +50,15 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
      */
     public function getChartData(): array
     {
-        $this->prepareData();
+        $languageService = $this->languageServiceFactory->createFromUserPreferences($this->getBackendUser());
+
+        $this->prepareData($languageService);
 
         return [
             'labels' => $this->labels,
             'datasets' => [
                 [
-                    'label' => $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':numberOfStarts'),
+                    'label' => $languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':numberOfStarts'),
                     'backgroundColor' => Extension::WIDGET_DEFAULT_CHART_COLOUR,
                     'data' => $this->data,
                 ],
@@ -62,7 +66,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
         ];
     }
 
-    private function prepareData(): void
+    private function prepareData(LanguageService $languageService): void
     {
         $days = $this->transferRepository->countByDay($this->numberOfDays);
 
@@ -74,7 +78,7 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 
         for ($ts = $startDate->format('U'); $ts < $endDate->format('U'); $ts += 86400) {
             $this->labels[(int)$ts] = \date(
-                $this->languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
+                $languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
                 (int)$ts,
             );
 
@@ -87,5 +91,10 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
 
         $this->labels = \array_values($this->labels);
         $this->data = \array_values($this->data);
+    }
+
+    private function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }

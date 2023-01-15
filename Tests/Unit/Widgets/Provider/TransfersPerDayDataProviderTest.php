@@ -17,7 +17,9 @@ use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class TransfersPerDayDataProviderTest extends TestCase
@@ -41,13 +43,25 @@ class TransfersPerDayDataProviderTest extends TestCase
             ->method('sL')
             ->willReturnMap($translationMap);
 
+        $languageServiceFactoryStub = $this->createStub(LanguageServiceFactory::class);
+        $languageServiceFactoryStub
+            ->method('createFromUserPreferences')
+            ->willReturn($languageServiceStub);
+
         $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
 
         $this->subject = new TransfersPerDayDataProvider(
-            $languageServiceStub,
+            $languageServiceFactoryStub,
             $this->transferRepositoryStub,
         );
         $this->subject->setNumberOfDays(5);
+
+        $GLOBALS['BE_USER'] = $this->createStub(BackendUserAuthentication::class);
+    }
+
+    protected function tearDown(): void
+    {
+        unset($GLOBALS['BE_USER']);
     }
 
     /**

@@ -15,7 +15,9 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepositor
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class TransferTypeChartDataProviderTest extends TestCase
@@ -34,13 +36,25 @@ class TransferTypeChartDataProviderTest extends TestCase
             ->method('sL')
             ->willReturn('unknown');
 
+        $languageServiceFactoryStub = $this->createStub(LanguageServiceFactory::class);
+        $languageServiceFactoryStub
+            ->method('createFromUserPreferences')
+            ->willReturn($languageServiceStub);
+
         $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
 
         $this->subject = new TransferTypeChartDataProvider(
-            $languageServiceStub,
+            $languageServiceFactoryStub,
             $this->transferRepositoryStub,
         );
         $this->subject->setNumberOfDays(13);
+
+        $GLOBALS['BE_USER'] = $this->createStub(BackendUserAuthentication::class);
+    }
+
+    protected function tearDown(): void
+    {
+        unset($GLOBALS['BE_USER']);
     }
 
     /**

@@ -13,7 +13,8 @@ namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
-use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\WidgetApi;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
@@ -33,7 +34,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     private array $data = [];
 
     public function __construct(
-        private readonly LanguageService $languageService,
+        private readonly LanguageServiceFactory $languageServiceFactory,
         private readonly TransferRepository $transferRepository,
     ) {
     }
@@ -63,7 +64,8 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
 
     private function prepareData(): void
     {
-        $unknownLabel = $this->languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':unknown');
+        $languageService = $this->languageServiceFactory->createFromUserPreferences($this->getBackendUser());
+        $unknownLabel = $languageService->sL(Extension::LANGUAGE_PATH_DASHBOARD . ':unknown');
 
         $types = $this->transferRepository->countTypes($this->numberOfDays);
         foreach ($types as $type) {
@@ -84,5 +86,10 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
         }
 
         return \array_slice($chartColours, 0, $count);
+    }
+
+    private function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }
