@@ -50,10 +50,7 @@ final class StartCommand extends Command
         $this->outputStyle = new SymfonyStyle($input, $output);
 
         try {
-            $locker = $this->lockFactory->createLocker(
-                self::class,
-                LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE,
-            );
+            $locker = $this->lockFactory->createLocker(self::class);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
             $exitCode = $this->start();
             $locker->release();
