@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
-use Brotkrueml\JobRouterProcess\Domain\Entity\CountResult;
+use Brotkrueml\JobRouterProcess\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Transfer\Starter;
 use PHPUnit\Framework\MockObject\MockObject;
