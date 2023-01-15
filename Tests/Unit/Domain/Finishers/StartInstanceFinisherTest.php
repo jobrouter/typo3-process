@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Finishers;
 use Brotkrueml\JobRouterBase\Domain\Correlation\IdGenerator;
 use Brotkrueml\JobRouterBase\Domain\VariableResolvers\VariableResolver;
 use Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher;
+use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -21,19 +22,11 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
 
-class StartInstanceFinisherTest extends TestCase
+final class StartInstanceFinisherTest extends TestCase
 {
     private StartInstanceFinisher $subject;
-
-    /**
-     * @var MockObject&FinisherContext
-     */
-    private MockObject $finisherContextMock;
-
-    /**
-     * @var MockObject&Preparer
-     */
-    private MockObject $preparerMock;
+    private FinisherContext&MockObject $finisherContextMock;
+    private Preparer&MockObject $preparerMock;
 
     protected function setUp(): void
     {
@@ -53,10 +46,11 @@ class StartInstanceFinisherTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->subject = new StartInstanceFinisher('JobRouterStartInstance');
+        $stepRepositoryStub = $this->createStub(StepRepository::class);
+
+        $this->subject = new StartInstanceFinisher($this->preparerMock, $stepRepositoryStub);
         $this->subject->injectVariableResolver($variableResolverStub);
         $this->subject->injectIdGenerator($idGeneratorStub);
-        $this->subject->injectPreparer($this->preparerMock);
 
         $this->finisherContextMock = $this->createMock(FinisherContext::class);
     }
