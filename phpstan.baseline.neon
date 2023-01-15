@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method get\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
-			count: 1
-			path: Classes/Crypt/Transfer/Decrypter.php
-
-		-
-			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
-			count: 1
-			path: Classes/Crypt/Transfer/Decrypter.php
-
-		-
-			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
-			count: 1
-			path: Classes/Crypt/Transfer/Encrypter.php
-
-		-
 			message: "#^Cannot call method set\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
@@ -24,31 +9,6 @@ parameters:
 			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
 			count: 1
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot call method setProcesstable\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot call method setType\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Parameter \\#1 \\$transfer of method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Preparer\\:\\:store\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Transfer\\|null given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Transfer.php
 
 		-
 			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
@@ -89,26 +49,6 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
 			count: 1
 			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
 			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"

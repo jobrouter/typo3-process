@@ -15,7 +15,7 @@ use Brotkrueml\JobRouterConnector\Exception\CryptException;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -48,7 +48,7 @@ final class EncrypterTest extends TestCase
             ->with(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)
             ->willReturn(false);
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $actual = $this->subject->encryptIfConfigured($transfer);
 
         self::assertSame($transfer, $actual);
@@ -73,7 +73,7 @@ final class EncrypterTest extends TestCase
             ->method('encrypt')
             ->willReturnMap($cryptServiceReturnMap);
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $transfer->setProcesstable('processtable');
         $transfer->setSummary('summary');
         $actual = $this->subject->encryptIfConfigured($transfer);
@@ -83,7 +83,7 @@ final class EncrypterTest extends TestCase
         $expectedEncryptedFields->set(EncryptedFieldsBitSet::SUMMARY);
 
         self::assertNotSame($actual, $transfer);
-        self::assertSame($expectedEncryptedFields->__toInt(), $actual->getEncryptedFields());
+        self::assertSame($expectedEncryptedFields->__toInt(), $actual->getEncryptedFields()->__toInt());
         self::assertSame('encrypted processtable', $actual->getProcesstable());
         self::assertSame('encrypted summary', $actual->getSummary());
     }
@@ -106,7 +106,7 @@ final class EncrypterTest extends TestCase
             ->method('encrypt')
             ->willReturnMap($cryptServiceReturnMap);
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $transfer->setProcesstable('processtable');
         $actual = $this->subject->encryptIfConfigured($transfer);
 
@@ -114,7 +114,7 @@ final class EncrypterTest extends TestCase
         $expectedEncryptedFields->set(EncryptedFieldsBitSet::PROCESSTABLE);
 
         self::assertNotSame($actual, $transfer);
-        self::assertSame($expectedEncryptedFields->__toInt(), $actual->getEncryptedFields());
+        self::assertSame($expectedEncryptedFields->__toInt(), $actual->getEncryptedFields()->__toInt());
         self::assertSame('encrypted processtable', $actual->getProcesstable());
         self::assertSame('', $actual->getSummary());
     }
@@ -137,18 +137,16 @@ final class EncrypterTest extends TestCase
         $loggerMock
             ->expects(self::once())
             ->method('warning')
-            ->with('Field "processtable" in transfer with uid "38" cannot be encrypted, it will be stored unencrypted, reason: some crypt error');
+            ->with('Field "processtable" in transfer DTO cannot be encrypted, it will be stored unencrypted, reason: some crypt error');
 
         $subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub, $loggerMock);
 
-        $transfer = new Transfer();
-        $transfer->_setProperty('uid', 38);
-        $transfer->setCorrelationId('some identifier');
+        $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $transfer->setProcesstable('processtable');
         $actual = $subject->encryptIfConfigured($transfer);
 
         self::assertNotSame($transfer, $actual);
         self::assertSame('processtable', $actual->getProcesstable());
-        self::assertSame(0, $actual->getEncryptedFields());
+        self::assertSame(0, $actual->getEncryptedFields()->__toInt());
     }
 }

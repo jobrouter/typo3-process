@@ -20,20 +20,16 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 final class StarterTest extends TestCase
 {
     private Starter $subject;
-    private PersistenceManagerInterface&MockObject $persistenceManagerMock;
     private TransferRepository&MockObject $transferRepositoryMock;
     private StepRepository&MockObject $stepRepositoryMock;
     private Decrypter&MockObject $decrypter;
 
     protected function setUp(): void
     {
-        $this->persistenceManagerMock = $this->createMock(PersistenceManagerInterface::class);
-
         $this->stepRepositoryMock = $this->getMockBuilder(StepRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -42,14 +38,11 @@ final class StarterTest extends TestCase
 
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
-            ->addMethods(['findByStartSuccess'])
-            ->onlyMethods(['update'])
             ->getMock();
 
         $resourceFactoryStub = $this->createStub(ResourceFactory::class);
 
         $this->subject = new Starter(
-            $this->persistenceManagerMock,
             new RestClientFactory(),
             $this->stepRepositoryMock,
             $this->decrypter,
@@ -65,7 +58,7 @@ final class StarterTest extends TestCase
     public function runWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
         $this->transferRepositoryMock
-            ->method('findByStartSuccess')
+            ->method('findNotStarted')
             ->willReturn([]);
 
         $actual = $this->subject->run();

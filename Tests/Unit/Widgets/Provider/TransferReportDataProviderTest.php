@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
 use Brotkrueml\JobRouterBase\Domain\Model\TransferReportItem;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
@@ -41,7 +41,7 @@ class TransferReportDataProviderTest extends TestCase
     public function getItemsReturnsEmptyArrayIfNoErrorsFound(): void
     {
         $this->transferRepositoryStub
-            ->method('findErroneousTransfers')
+            ->method('findErroneous')
             ->willReturn([]);
 
         self::assertSame([], $this->subject->getItems());
@@ -52,18 +52,46 @@ class TransferReportDataProviderTest extends TestCase
      */
     public function getItemsReturnsItemsCorrectlyIfErrorsFound(): void
     {
-        $transfer1 = new Transfer();
-        $transfer1->_setProperty('crdate', 1615052053);
-        $transfer1->setStartMessage('some message');
-        $transfer1->setCorrelationId('some correlation id');
+        $transfer1 = Transfer::fromArray([
+            'uid' => 1,
+            'crdate' => 1615052053,
+            'step_uid' => 42,
+            'correlation_id' => 'some correlation id',
+            'type' => '',
+            'initiator' => '',
+            'username' => '',
+            'jobfunction' => '',
+            'summary' => '',
+            'priority' => 2,
+            'pool' => 1,
+            'processtable' => '',
+            'encrypted_fields' => 0,
+            'start_success' => 0,
+            'start_date' => 123,
+            'start_message' => 'some message',
+        ]);
 
-        $transfer2 = new Transfer();
-        $transfer2->_setProperty('crdate', 1615052084);
-        $transfer2->setStartMessage('another message');
-        $transfer2->setCorrelationId('another correlation id');
+        $transfer2 = Transfer::fromArray([
+            'uid' => 2,
+            'crdate' => 1615052084,
+            'step_uid' => 42,
+            'correlation_id' => 'another correlation id',
+            'type' => '',
+            'initiator' => '',
+            'username' => '',
+            'jobfunction' => '',
+            'summary' => '',
+            'priority' => 2,
+            'pool' => 1,
+            'processtable' => '',
+            'encrypted_fields' => 0,
+            'start_success' => 0,
+            'start_date' => 123,
+            'start_message' => 'another message',
+        ]);
 
         $this->transferRepositoryStub
-            ->method('findErroneousTransfers')
+            ->method('findErroneous')
             ->willReturn([$transfer1, $transfer2]);
 
         /** @var TransferReportItem[] $actual */

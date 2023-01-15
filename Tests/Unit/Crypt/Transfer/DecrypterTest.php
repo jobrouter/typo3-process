@@ -15,17 +15,14 @@ use Brotkrueml\JobRouterConnector\Exception\CryptException;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Exception\DecryptException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class DecrypterTest extends TestCase
+final class DecrypterTest extends TestCase
 {
-    /**
-     * @var Crypt&MockObject
-     */
-    private MockObject $cryptServiceMock;
+    private Crypt&MockObject $cryptServiceMock;
     private Decrypter $subject;
 
     protected function setUp(): void
@@ -43,7 +40,7 @@ class DecrypterTest extends TestCase
             ->expects(self::never())
             ->method('decrypt');
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(12345567890, 42, 'some correlation');
         $actual = $this->subject->decryptIfEncrypted($transfer);
 
         self::assertSame($transfer, $actual);
@@ -63,20 +60,20 @@ class DecrypterTest extends TestCase
             ->method('decrypt')
             ->willReturnMap($cryptServiceValueMap);
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(12345567890, 42, 'some correlation');
         $transfer->setProcesstable('encrypted processtable');
         $transfer->setSummary('encrypted summary');
         $encryptedFields = new EncryptedFieldsBitSet();
         $encryptedFields->set(EncryptedFieldsBitSet::PROCESSTABLE);
         $encryptedFields->set(EncryptedFieldsBitSet::SUMMARY);
-        $transfer->setEncryptedFields($encryptedFields->__toInt());
+        $transfer->setEncryptedFields($encryptedFields);
 
         $actual = $this->subject->decryptIfEncrypted($transfer);
 
         self::assertNotSame($transfer, $actual);
         self::assertSame('processtable', $actual->getProcesstable());
         self::assertSame('summary', $actual->getSummary());
-        self::assertSame(0, $actual->getEncryptedFields());
+        self::assertSame(0, $actual->getEncryptedFields()->__toInt());
     }
 
     /**
@@ -92,18 +89,18 @@ class DecrypterTest extends TestCase
             ->method('decrypt')
             ->willReturnMap($cryptServiceValueMap);
 
-        $transfer = new Transfer();
+        $transfer = new Transfer(12345567890, 42, 'some correlation');
         $transfer->setProcesstable('encrypted processtable');
         $encryptedFields = new EncryptedFieldsBitSet();
         $encryptedFields->set(EncryptedFieldsBitSet::PROCESSTABLE);
-        $transfer->setEncryptedFields($encryptedFields->__toInt());
+        $transfer->setEncryptedFields($encryptedFields);
 
         $actual = $this->subject->decryptIfEncrypted($transfer);
 
         self::assertNotSame($transfer, $actual);
         self::assertSame('processtable', $actual->getProcesstable());
         self::assertSame('', $actual->getSummary());
-        self::assertSame(0, $actual->getEncryptedFields());
+        self::assertSame(0, $actual->getEncryptedFields()->__toInt());
     }
 
     /**
@@ -113,19 +110,17 @@ class DecrypterTest extends TestCase
     {
         $this->expectException(DecryptException::class);
         $this->expectExceptionCode(1599323431);
-        $this->expectExceptionMessage('Field "processtable" in transfer with uid "21" cannot be decrypted, reason: some crypt error');
+        $this->expectExceptionMessage('Field "processtable" in transfer cannot be decrypted, reason: some crypt error');
 
         $this->cryptServiceMock
             ->method('decrypt')
             ->willThrowException(new CryptException('some crypt error'));
 
-        $transfer = new Transfer();
-        $transfer->_setProperty('uid', 21);
-        $transfer->setCorrelationId('some identifier');
+        $transfer = new Transfer(12345567890, 42, 'some correlation');
         $transfer->setProcesstable('encrypted processtable');
         $encryptedFields = new EncryptedFieldsBitSet();
         $encryptedFields->set(EncryptedFieldsBitSet::PROCESSTABLE);
-        $transfer->setEncryptedFields($encryptedFields->__toInt());
+        $transfer->setEncryptedFields($encryptedFields);
 
         $this->subject->decryptIfEncrypted($transfer);
     }

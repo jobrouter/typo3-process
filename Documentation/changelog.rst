@@ -17,13 +17,20 @@ Added
 
 * Allow attachments for an instance start (#9)
 
+Changed
+^^^^^^^
+
+
+* Transfer model is no longer Extbase-based and is moved to the Domain/Entity namespace
+* Transfer repository is no longer Extbase-based
+
 Removed
 ^^^^^^^
 
 
 * Compatibility with TYPO3 v10 (#5)
 * Compatibility with PHP 7.4 and 8.0
-* Configuration of logging in the extension configuration
+* Configuration of log writers in the extension configuration
 
 `1.2.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.1...v1.2.0>`_ - 2022-05-31
 ---------------------------------------------------------------------------------------------------------

@@ -24,6 +24,8 @@ CREATE TABLE tx_jobrouterprocess_domain_model_step (
 );
 
 CREATE TABLE tx_jobrouterprocess_domain_model_transfer(
+	uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	step_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	correlation_id varchar(255) DEFAULT '' NOT NULL,
 	type varchar(50) DEFAULT '' NOT NULL,
@@ -39,6 +41,7 @@ CREATE TABLE tx_jobrouterprocess_domain_model_transfer(
 	start_date int(11) unsigned DEFAULT '0' NOT NULL,
 	start_message text,
 
+	PRIMARY KEY (uid),
 	KEY success (start_success),
 	KEY success_date (start_success, start_date)
 );

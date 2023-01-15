@@ -18,10 +18,11 @@ use Brotkrueml\JobRouterClient\Resource\File;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Dto\CountResult;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer as TransferDto;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
@@ -32,7 +33,6 @@ use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @internal Only to be used within the jobrouter_process extension, not part of the public API
@@ -44,7 +44,6 @@ class Starter
     private int $erroneousTransfers = 0;
 
     public function __construct(
-        private readonly PersistenceManagerInterface $persistenceManager,
         private readonly RestClientFactory $restClientFactory,
         private readonly StepRepository $stepRepository,
         private readonly Decrypter $decrypter,
@@ -57,7 +56,7 @@ class Starter
     public function run(): CountResult
     {
         $this->logger->info('Start instances');
-        $transfers = $this->transferRepository->findByStartSuccess(0);
+        $transfers = $this->transferRepository->findNotStarted();
 
         $this->totalTransfers = 0;
         $this->erroneousTransfers = 0;
@@ -78,31 +77,32 @@ class Starter
 
     private function processTransfer(Transfer $transfer): void
     {
-        $this->logger->debug(\sprintf('Processing transfer with uid "%d"', $transfer->getUid()));
+        $this->logger->debug(\sprintf('Processing transfer with uid "%d"', $transfer->uid));
 
         $this->totalTransfers++;
         try {
-            $this->startTransfer($transfer);
+            $message = $this->startTransfer($transfer);
+            $isSuccess = true;
         } catch (\Exception $e) {
+            $isSuccess = true;
+            $message = $e->getMessage();
+
             $this->erroneousTransfers++;
             $context = [
-                'transfer uid' => $transfer->getUid(),
+                'transfer uid' => $transfer->uid,
                 'exception class' => $e::class,
                 'exception code' => $e->getCode(),
             ];
-            $this->logger->error($e->getMessage(), $context);
-            $transfer->setStartMessage($e->getMessage());
+            $this->logger->error($message, $context);
         }
 
-        $transfer->setStartDate(new \DateTime());
-        $this->transferRepository->update($transfer);
-        $this->persistenceManager->persistAll();
+        $this->transferRepository->updateStartFields($transfer->uid, $isSuccess, \time(), $message);
     }
 
-    private function startTransfer(Transfer $transfer): void
+    private function startTransfer(Transfer $transfer): string
     {
-        $step = $this->getStep($transfer->getStepUid());
-        $incident = $this->createIncidentFromTransferItem($step, $this->decrypter->decryptIfEncrypted($transfer));
+        $step = $this->getStep($transfer->stepUid);
+        $incident = $this->createIncidentFromTransferItem($step, $this->decrypter->decryptIfEncrypted(TransferDto::fromEntity($transfer)));
 
         $client = $this->getRestClientForStep($step);
         $response = $client->request(
@@ -112,21 +112,21 @@ class Starter
         );
 
         $successMessage = '';
-        $body = \json_decode($response->getBody()->getContents(), true, 512, \JSON_THROW_ON_ERROR);
+        $body = \json_decode($response->getBody()->getContents(), true, flags: \JSON_THROW_ON_ERROR);
         if (\is_array($body)) {
             $successMessage = $body['incidents'][0] ?? '';
         }
-
-        $transfer->setStartSuccess(true);
-        $transfer->setStartMessage(\is_array($successMessage) ? \json_encode($successMessage, \JSON_THROW_ON_ERROR) : $successMessage);
+        $successMessage = \is_array($successMessage) ? \json_encode($successMessage, \JSON_THROW_ON_ERROR) : $successMessage;
 
         $this->logger->debug(
             \sprintf(
                 'Response of starting the transfer with uid "%d": "%s"',
-                $transfer->getUid(),
-                $transfer->getStartMessage(),
+                $transfer->uid,
+                $successMessage,
             ),
         );
+
+        return $successMessage;
     }
 
     private function getStep(int $stepUid): Step
@@ -192,7 +192,7 @@ class Starter
         return $clients[$connectionUid] = new IncidentsClientDecorator($client);
     }
 
-    private function createIncidentFromTransferItem(Step $step, Transfer $transfer): Incident
+    private function createIncidentFromTransferItem(Step $step, TransferDto $transfer): Incident
     {
         $incident = new Incident();
         $incident->setStep($step->getStepNumber()); // @phpstan-ignore-line
@@ -213,7 +213,7 @@ class Starter
 
         if ($transfer->getProcesstable() !== '') {
             try {
-                $processTable = \json_decode($transfer->getProcesstable(), true, 512, \JSON_THROW_ON_ERROR);
+                $processTable = \json_decode($transfer->getProcesstable(), true, flags: \JSON_THROW_ON_ERROR);
             } catch (\JsonException) {
                 $processTable = null;
             }

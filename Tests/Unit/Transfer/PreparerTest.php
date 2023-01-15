@@ -12,30 +12,26 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Transfer;
 
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 final class PreparerTest extends TestCase
 {
     private Preparer $subject;
-    private PersistenceManager&MockObject $persistenceManagerMock;
     private Encrypter&MockObject $encrypterMock;
     private TransferRepository&MockObject $transferRepositoryMock;
 
     protected function setUp(): void
     {
-        $this->persistenceManagerMock = $this->createMock(PersistenceManager::class);
         $this->encrypterMock = $this->createMock(Encrypter::class);
         $this->transferRepositoryMock = $this->createMock(TransferRepository::class);
 
         $this->subject = new Preparer(
-            $this->persistenceManagerMock,
             $this->encrypterMock,
             new NullLogger(),
             $this->transferRepositoryMock,
@@ -47,21 +43,17 @@ final class PreparerTest extends TestCase
      */
     public function storePersistsRecordCorrectly(): void
     {
-        $transfer = new Transfer();
-        $transfer->setStepUid(42);
-        $transfer->setCorrelationId('some identifier');
+        $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $transfer->setProcesstable('some data');
 
-        $this->persistenceManagerMock
-            ->expects(self::once())
-            ->method('persistAll');
         $this->encrypterMock
             ->expects(self::once())
             ->method('encryptIfConfigured')
             ->willReturn($transfer);
         $this->transferRepositoryMock
             ->expects(self::once())
-            ->method('add');
+            ->method('add')
+            ->willReturn(1);
 
         $this->subject->store($transfer);
     }
@@ -73,16 +65,16 @@ final class PreparerTest extends TestCase
     {
         $this->expectException(PrepareException::class);
         $this->expectExceptionCode(1581278897);
-        $this->expectExceptionMessage('Transfer record cannot be written');
+        $this->expectExceptionMessage('Transfer record cannot be written, see log file for details.');
 
         $this->encrypterMock
             ->expects(self::once())
             ->method('encryptIfConfigured')
-            ->willReturn(new Transfer());
+            ->willReturn(new Transfer(1234567890, 42, 'some-correlation'));
         $this->transferRepositoryMock
             ->method('add')
-            ->willThrowException(new \Exception());
+            ->willReturn(0);
 
-        $this->subject->store(new Transfer());
+        $this->subject->store(new Transfer(1234567890, 42, 'some-correlation'));
     }
 }

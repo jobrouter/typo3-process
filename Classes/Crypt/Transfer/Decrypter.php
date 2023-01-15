@@ -13,14 +13,14 @@ namespace Brotkrueml\JobRouterProcess\Crypt\Transfer;
 
 use Brotkrueml\JobRouterConnector\Exception\CryptException;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Exception\DecryptException;
 use Brotkrueml\JobRouterProcess\Extension;
 
 class Decrypter
 {
-    private ?Transfer $decryptedTransfer = null;
-    private ?EncryptedFieldsBitSet $encryptedFields = null;
+    private Transfer $decryptedTransfer;
+    private EncryptedFieldsBitSet $encryptedFields;
 
     public function __construct(
         private readonly Crypt $cryptService,
@@ -29,17 +29,17 @@ class Decrypter
 
     public function decryptIfEncrypted(Transfer $transfer): Transfer
     {
-        if ($transfer->getEncryptedFields() === 0) {
+        if ($transfer->getEncryptedFields()->__toInt() === 0) {
             return $transfer;
         }
 
         $this->decryptedTransfer = clone $transfer;
-        $this->encryptedFields = new EncryptedFieldsBitSet($transfer->getEncryptedFields());
+        $this->encryptedFields = $transfer->getEncryptedFields();
         $fields = Extension::ENCRYPTED_TRANSFER_FIELDS;
-        \array_walk($fields, function (string $field): void {
+        foreach ($fields as $field) {
             $this->decryptField($field);
-        });
-        $this->decryptedTransfer->setEncryptedFields(0);
+        }
+        $this->decryptedTransfer->setEncryptedFields(new EncryptedFieldsBitSet(0));
 
         return $this->decryptedTransfer;
     }
@@ -56,9 +56,8 @@ class Decrypter
         } catch (CryptException $e) {
             throw new DecryptException(
                 \sprintf(
-                    'Field "%s" in transfer with uid "%s" cannot be decrypted, reason: %s',
+                    'Field "%s" in transfer cannot be decrypted, reason: %s',
                     $field,
-                    $this->decryptedTransfer->getUid(),
                     $e->getMessage(),
                 ),
                 1599323431,

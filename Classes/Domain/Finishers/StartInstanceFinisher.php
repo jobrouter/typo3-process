@@ -14,10 +14,10 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
 use Brotkrueml\JobRouterProcess\Domain\Model\Step;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
@@ -46,7 +46,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
     ];
 
     private ?Step $step = null;
-    private ?Transfer $transfer = null;
+    private Transfer $transfer;
 
     /**
      * @noinspection PhpMissingParentConstructorInspection
@@ -110,16 +110,17 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
     private function initialiseTransfer(): void
     {
-        $this->transfer = new Transfer();
-        $this->transfer->setCrdate(\time());
-        $this->transfer->setStepUid((int)$this->step->getUid());
-        $this->transfer->setCorrelationId($this->correlationId);
+        $this->transfer = new Transfer(
+            \time(),
+            (int)$this->step->getUid(),
+            $this->correlationId,
+        );
     }
 
     private function prepareStepParametersForTransfer(): void
     {
-        foreach ($this->stepParameters as $parameter) {
-            $value = $this->parseOption($parameter);
+        foreach ($this->stepParameters as $property) {
+            $value = $this->parseOption($property);
             if (! \is_string($value)) {
                 continue;
             }
@@ -127,15 +128,19 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                 continue;
             }
 
-            $setter = 'set' . \ucfirst($parameter);
+            $setter = 'set' . \ucfirst($property);
             if (! \method_exists($this->transfer, $setter)) {
                 throw new CommonParameterNotFoundException(
-                    \sprintf('Method "%s" in Transfer domain model not found', $setter),
+                    \sprintf('Method "%s" in Transfer DTO not found', $setter),
                     1581703904,
                 );
             }
 
             $value = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $value);
+
+            if ($property === 'priority' || $property === 'pool') {
+                $value = (int)$value;
+            }
 
             $this->transfer->{$setter}($value);
         }
@@ -151,8 +156,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return;
         }
 
-        $type = (string)$this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type);
-        $this->transfer->setType($type);
+        $this->transfer->setType((string)$this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type));
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -197,7 +201,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             );
         }
 
-        $this->transfer->setProcesstable($processTable);
+        $this->transfer->setProcesstable(\json_encode($processTable, \JSON_THROW_ON_ERROR));
     }
 
     /**

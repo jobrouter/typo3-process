@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
+use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -32,7 +33,7 @@ return static function (RectorConfig $config): void {
         PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER
     ]);
     $config->skip([
-        __DIR__ . '/Classes/Domain/Model/Transfer.php',
         AddLiteralSeparatorToNumberRector::class,
+        AddSeeTestAnnotationRector::class,
     ]);
 };

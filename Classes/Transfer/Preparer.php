@@ -12,11 +12,10 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
 use Psr\Log\LoggerInterface;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @api
@@ -24,7 +23,6 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 class Preparer
 {
     public function __construct(
-        private readonly PersistenceManagerInterface $persistenceManager,
         private readonly Encrypter $encrypter,
         private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
@@ -33,15 +31,15 @@ class Preparer
 
     public function store(Transfer $transfer): void
     {
-        try {
-            $this->transferRepository->add($this->encrypter->encryptIfConfigured($transfer));
-            $this->persistenceManager->persistAll();
-        } catch (\Exception $e) {
-            $this->logger->critical($e->getMessage());
+        $encryptedTransfer = $this->encrypter->encryptIfConfigured($transfer);
+        $numberOfRecords = $this->transferRepository->add($encryptedTransfer);
+        if ($numberOfRecords === 0) {
+            $message = 'Transfer record cannot be written';
+            $this->logger->critical($message, $encryptedTransfer->toArray());
+
             throw new PrepareException(
-                'Transfer record cannot be written, reason: ' . $e->getMessage(),
+                'Transfer record cannot be written, see log file for details.',
                 1581278897,
-                $e,
             );
         }
     }

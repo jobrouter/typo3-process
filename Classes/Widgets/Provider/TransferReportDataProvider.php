@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
 use Brotkrueml\JobRouterBase\Domain\Model\TransferReportItem;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 
@@ -31,15 +30,14 @@ final class TransferReportDataProvider implements ListDataProviderInterface
      */
     public function getItems(): array
     {
-        $transfers = $this->transferRepository->findErroneousTransfers();
+        $transfers = $this->transferRepository->findErroneous();
 
         $items = [];
         foreach ($transfers as $transfer) {
-            /** @var Transfer $transfer */
             $items[] = new TransferReportItem(
-                $transfer->getCrdate(),
-                $transfer->getStartMessage(),
-                $transfer->getCorrelationId(),
+                $transfer->crdate,
+                $transfer->startMessage,
+                $transfer->correlationId,
             );
         }
 

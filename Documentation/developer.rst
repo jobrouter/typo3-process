@@ -42,7 +42,7 @@ Preparing the instance data
 ---------------------------
 
 If you want to start instances programmatically in a JobRouter® installation,
-you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
+you can use the :php:`Preparer` class within TYPO3, for example in an Extbase
 controller:
 
 ::
@@ -52,7 +52,7 @@ controller:
 
    namespace Vendor\Extension\Controller;
 
-   use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+   use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
    use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
    use Brotkrueml\JobRouterProcess\Exception\PrepareException;
    use Brotkrueml\JobRouterProcess\Transfer\Preparer;
@@ -82,19 +82,19 @@ controller:
          // from development to production system (it is an auto increment).
          $step = $this->stepRepository->findOneByHandle('your_step_handle');
 
-         // Define the transfer domain model with your parameters
-         // Have a look in the Transfer model to see the available setters
-         $transfer = new Transfer();
-         $transfer->setCrdate(time());
-         $transfer->setStepUid($step->getUid());
+         // Define the transfer DTO with your parameters
+         // Have a look in the Domain\Dto\Transfer class to see the available setters
+         $transfer = new Transfer(time(), $step->getUid(), 'my-correlation-id);
          $transfer->setType('Demo');
          $transfer->setSummary('My summary');
-         $transfer->setProcesstable([
-            'name' => 'John Doe',
-            'company' => 'Acme Ltd.',
-            'email_address' => 'jdoe@example.com',
-            'message' => 'Please send me information.',
-         ]);
+         $transfer->setProcesstable(
+            \json_encode([
+               'name' => 'John Doe',
+               'company' => 'Acme Ltd.',
+               'email_address' => 'jdoe@example.com',
+               'message' => 'Please send me information.',
+            ])
+         );
 
          try {
             $this->preparer->store($transfer);
@@ -105,7 +105,3 @@ controller:
 
 The :ref:`start command <command-start>` must be activated with a
 cron job to periodically start instances in the JobRouter® installation(s).
-
-Instead of the :php:`Preparer` class, you can also use the
-:php:`Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository` to store
-transfer records in the database.

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Allow attachments for an instance start (#9)
 
+### Changed
+- Transfer model is no longer Extbase-based and is moved to the Domain/Entity namespace
+- Transfer repository is no longer Extbase-based
+
 ### Removed
 - Compatibility with TYPO3 v10 (#5)
 - Compatibility with PHP 7.4 and 8.0

@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Crypt\Transfer;
 
 use Brotkrueml\JobRouterConnector\Exception\CryptException;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
-use Brotkrueml\JobRouterProcess\Domain\Model\Transfer;
+use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -42,7 +42,7 @@ class Encrypter
         \array_walk($fields, function (string $field): void {
             $this->encryptField($field);
         });
-        $this->encryptedTransfer->setEncryptedFields($this->encryptedFields->__toInt());
+        $this->encryptedTransfer->setEncryptedFields($this->encryptedFields);
 
         return $this->encryptedTransfer;
     }
@@ -61,9 +61,8 @@ class Encrypter
         } catch (CryptException $e) {
             $this->logger->warning(
                 \sprintf(
-                    'Field "%s" in transfer with uid "%s" cannot be encrypted, it will be stored unencrypted, reason: %s',
+                    'Field "%s" in transfer DTO cannot be encrypted, it will be stored unencrypted, reason: %s',
                     $field,
-                    $this->encryptedTransfer->getUid(),
                     $e->getMessage(),
                 ),
             );
