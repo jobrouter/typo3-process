@@ -24,10 +24,11 @@ final class ProcessRelationsHydrator
     ) {
     }
 
-    public function hydrate(Process $process): Process
+    public function hydrate(Process $process, bool $withDisabled = false): Process
     {
         return $this->connectionHydrator->hydrate(
             $this->processtablefieldsHydrator->hydrate($process),
+            $withDisabled,
         );
     }
 
@@ -35,8 +36,13 @@ final class ProcessRelationsHydrator
      * @param Process[] $processes
      * @return Process[]
      */
-    public function hydrateMultiple(array $processes): array
+    public function hydrateMultiple(array $processes, bool $withDisabled = false): array
     {
-        return \array_map($this->hydrate(...), $processes);
+        $hydratedProcesses = [];
+        foreach ($processes as $process) {
+            $hydratedProcesses[] = $this->hydrate($process, $withDisabled);
+        }
+
+        return $hydratedProcesses;
     }
 }

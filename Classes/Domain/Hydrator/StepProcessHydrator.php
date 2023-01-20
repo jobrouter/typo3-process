@@ -24,17 +24,22 @@ final class StepProcessHydrator
     ) {
     }
 
-    public function hydrate(Step $step): Step
+    public function hydrate(Step $step, bool $withDisabled = false): Step
     {
-        return $step->withProcess($this->processRepository->findByUid($step->processUid, true));
+        return $step->withProcess($this->processRepository->findByUid($step->processUid, $withDisabled));
     }
 
     /**
      * @param Step[] $steps
      * @return Step[]
      */
-    public function hydrateMultiple(array $steps): array
+    public function hydrateMultiple(array $steps, bool $withDisabled = false): array
     {
-        return \array_map($this->hydrate(...), $steps);
+        $hydratedSteps = [];
+        foreach ($steps as $step) {
+            $hydratedSteps[] = $this->hydrate($step, $withDisabled);
+        }
+
+        return $hydratedSteps;
     }
 }

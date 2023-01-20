@@ -31,11 +31,11 @@ final class ProcessConnectionHydrator
     ) {
     }
 
-    public function hydrate(Process $process): Process
+    public function hydrate(Process $process, bool $withDisabled = false): Process
     {
         if (! isset($this->connectionsCache[$process->connectionUid])) {
             try {
-                $this->connectionsCache[$process->connectionUid] = $this->connectionRepository->findByUid($process->connectionUid);
+                $this->connectionsCache[$process->connectionUid] = $this->connectionRepository->findByUid($process->connectionUid, $withDisabled);
             } catch (ConnectionNotFoundException) {
                 $this->connectionsCache[$process->connectionUid] = null;
             }

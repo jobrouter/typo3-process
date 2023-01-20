@@ -58,8 +58,15 @@ final class ListController
 
         $this->initializeView();
 
-        $processes = $this->processRelationsHydrator->hydrateMultiple($this->processRepository->findAll(true));
-        $steps = $this->stepProcessHydrator->hydrateMultiple($this->stepRepository->findAll(true));
+        $processes = $this->processRelationsHydrator->hydrateMultiple(
+            $this->processRepository->findAll(true),
+            true,
+        );
+        $steps = $this->stepProcessHydrator->hydrateMultiple(
+            $this->stepRepository->findAll(true),
+            true,
+        );
+
         $this->view->assignMultiple([
             'processes' => $processes,
             'steps' => $steps,
