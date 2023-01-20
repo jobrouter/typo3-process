@@ -45,7 +45,7 @@
 		"symplify/phpstan-rules": "^11.1",
 		"tomasvotruba/cognitive-complexity": "^0.0.5",
 		"typo3/cms-dashboard": "^11.5.4",
-		"typo3/testing-framework": "^6.16"
+		"typo3/testing-framework": "^7.0@dev"
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about instance starts"

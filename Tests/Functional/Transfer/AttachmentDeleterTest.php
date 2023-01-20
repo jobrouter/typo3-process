@@ -23,7 +23,8 @@ final class AttachmentDeleterTest extends FunctionalTestCase
     /**
      * @var string[]
      */
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/jobrouter_base',
         'typo3conf/ext/jobrouter_connector',
         'typo3conf/ext/jobrouter_process',
     ];
@@ -31,7 +32,7 @@ final class AttachmentDeleterTest extends FunctionalTestCase
     /**
      * @var string[]
      */
-    protected $additionalFoldersToCreate = [
+    protected array $additionalFoldersToCreate = [
         'fileadmin/user_upload',
     ];
 
