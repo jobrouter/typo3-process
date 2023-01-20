@@ -217,7 +217,6 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             $processTableFields[$field->getName()] = $field;
         }
 
-        // @phpstan-ignore-next-line
         return $processTableFields;
     }
 
