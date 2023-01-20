@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Domain\Entity;
+namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use PHPUnit\Framework\TestCase;
