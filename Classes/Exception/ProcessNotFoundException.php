@@ -13,4 +13,14 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class ProcessNotFoundException extends \RuntimeException
 {
+    public static function forUid(int $uid): self
+    {
+        return new self(
+            \sprintf(
+                'Process with uid "%d" not found.',
+                $uid,
+            ),
+            1674201139,
+        );
+    }
 }

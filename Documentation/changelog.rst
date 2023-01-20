@@ -21,8 +21,11 @@ Changed
 ^^^^^^^
 
 
-* Transfer model is no longer Extbase-based and is moved to the Domain/Entity namespace
-* Transfer repository is no longer Extbase-based
+* Require JobRouter Client in version 2
+* Require JobRouter Connector extension in version 2
+* Require JobRouter Base extension in version 2
+* Models are no longer Extbase-based and are moved to the Domain/Entity namespace
+* Repositories are no longer Extbase-based
 
 Removed
 ^^^^^^^

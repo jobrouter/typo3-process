@@ -13,18 +13,17 @@ namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Model\Process;
-use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
-use Brotkrueml\JobRouterProcess\Domain\Model\Step;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
+use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
-use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 
 /**
@@ -53,7 +52,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
      */
     public function __construct(
         private readonly Preparer $preparer,
+        private readonly ProcesstablefieldRepository $processtablefieldRepository,
         private readonly StepRepository $stepRepository,
+        private readonly StepProcessHydrator $stepProcessHydrator,
     ) {
     }
 
@@ -70,7 +71,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             );
         }
 
-        $this->determineStep($handle);
+        $this->step = $this->stepProcessHydrator->hydrate($this->stepRepository->findByHandle($handle));
 
         $this->initialiseTransfer();
         $this->prepareStepParametersForTransfer();
@@ -79,40 +80,11 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         $this->preparer->store($this->transfer);
     }
 
-    private function determineStep(string $handle): void
-    {
-        /** @var Step|null $step */
-        $step = $this->stepRepository->findOneByHandle($handle);
-        if (! $step instanceof Step) {
-            throw new StepNotFoundException(
-                \sprintf(
-                    'Step with handle "%s" is not available, defined in form with identifier "%s"',
-                    $handle,
-                    $this->getFormIdentifier(),
-                ),
-                1581270832,
-            );
-        }
-
-        if (! $step->getProcess() instanceof Process) {
-            throw new ProcessNotFoundException(
-                \sprintf(
-                    'Process for step with handle "%s" is not available, defined in form with identifier "%s"',
-                    $handle,
-                    $this->getFormIdentifier(),
-                ),
-                1581281395,
-            );
-        }
-
-        $this->step = $step;
-    }
-
     private function initialiseTransfer(): void
     {
         $this->transfer = new Transfer(
             \time(),
-            (int)$this->step->getUid(),
+            $this->step->uid,
             $this->correlationId,
         );
     }
@@ -136,7 +108,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                 );
             }
 
-            $value = $this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $value);
+            $value = $this->variableResolver->resolve(FieldType::Text, $value);
 
             if ($property === 'priority' || $property === 'pool') {
                 $value = (int)$value;
@@ -156,7 +128,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return;
         }
 
-        $this->transfer->setType((string)$this->variableResolver->resolve(FieldTypeEnumeration::TEXT, $type));
+        $this->transfer->setType((string)$this->variableResolver->resolve(FieldType::Text, $type));
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -180,15 +152,14 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                         'Process table field "%s" is used in form with identifier "%s" but not defined in process link "%s"',
                         $processTableField,
                         $this->getFormIdentifier(),
-                        // @phpstan-ignore-next-line Already checked before if process is available
-                        $this->step->getProcess()->getName(),
+                        $this->step->process->name,
                     ),
                     1585930166,
                 );
             }
 
             $value = $this->variableResolver->resolve(
-                $processTableFields[$processTableField]->getType(),
+                $processTableFields[$processTableField]->type,
                 $value,
             );
 
@@ -196,8 +167,8 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
-                $processTableFields[$processTableField]->getType(),
-                $processTableFields[$processTableField]->getFieldSize(),
+                $processTableFields[$processTableField]->type,
+                $processTableFields[$processTableField]->fieldSize,
             );
         }
 
@@ -209,20 +180,19 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
      */
     private function prepareProcessTableFields(): array
     {
-        /** @var Processtablefield[] $fields */
-        $fields = $this->step->getProcess()->getProcesstablefields(); // @phpstan-ignore-line Already checked before if process is available
+        $fields = $this->processtablefieldRepository->findByProcessUid($this->step->processUid);
 
         $processTableFields = [];
         foreach ($fields as $field) {
-            $processTableFields[$field->getName()] = $field;
+            $processTableFields[$field->name] = $field;
         }
 
         return $processTableFields;
     }
 
-    private function considerTypeForFieldValue(string|int $value, int $type, int $fieldSize): string|int
+    private function considerTypeForFieldValue(string|int $value, FieldType $type, int $fieldSize): string|int
     {
-        if ($type === FieldTypeEnumeration::TEXT) {
+        if ($type === FieldType::Text) {
             $value = (string)$value;
 
             if ($fieldSize !== 0) {
@@ -232,16 +202,16 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return $value;
         }
 
-        if ($type === FieldTypeEnumeration::INTEGER) {
+        if ($type === FieldType::Integer) {
             return $value === '' ? '' : (int)$value;
         }
 
-        if ($type === FieldTypeEnumeration::ATTACHMENT) {
+        if ($type === FieldType::Attachment) {
             return $value;
         }
 
         throw new InvalidFieldTypeException(
-            \sprintf('The field type "%d" is invalid', $type),
+            \sprintf('The field type "%s" is invalid', $type->name),
             1581344823,
         );
     }

@@ -6,49 +6,24 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Model\\\\Step\\|null\\.$#"
+			message: "#^Cannot access property \\$name on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
 			count: 1
 			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			message: "#^Cannot access property \\$process on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
 			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Cannot access property \\$processUid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
 			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
+			message: "#^Cannot access property \\$uid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
 			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\ProcessRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
-			count: 1
-			path: Classes/Domain/Repository/ProcessRepository.php
-
-		-
-			message: "#^Class Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type has no value type specified in iterable type array\\|\\(iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\)\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Repository\\\\StepRepository\\:\\:findAllWithHidden\\(\\) return type with generic interface TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface does not specify its types\\: ModelType$#"
-			count: 1
-			path: Classes/Domain/Repository/StepRepository.php
+			path: Classes/Domain/Finishers/StartInstanceFinisher.php
 
 		-
 			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"
@@ -81,11 +56,41 @@ parameters:
 			path: Classes/Transfer/Deleter.php
 
 		-
-			message: "#^Class cognitive complexity is 31, keep it under 25$#"
+			message: "#^Cannot access property \\$connection on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Cannot access property \\$connectionUid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
+			count: 3
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Class cognitive complexity is 27, keep it under 25$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
 
 		-
 			message: "#^Cognitive complexity for \"Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
+			count: 1
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_filter expects array, array\\<Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Processtablefield\\>\\|null given\\.$#"
+			count: 1
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Parameter \\#1 \\$connection of method Brotkrueml\\\\JobRouterConnector\\\\RestClient\\\\RestClientFactory\\:\\:create\\(\\) expects Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Entity\\\\Connection, Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Entity\\\\Connection\\|null given\\.$#"
+			count: 1
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Parameter \\#1 \\$process of method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Hydrator\\\\ProcessRelationsHydrator\\:\\:hydrate\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null given\\.$#"
+			count: 1
+			path: Classes/Transfer/Starter.php
+
+		-
+			message: "#^Parameter \\#2 \\$process of method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:getProcessTableField\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null given\\.$#"
 			count: 1
 			path: Classes/Transfer/Starter.php

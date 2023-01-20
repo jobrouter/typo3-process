@@ -12,13 +12,13 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
 
 use Brotkrueml\JobRouterConnector\Service\Crypt;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
+use Brotkrueml\JobRouterConnector\Service\FileService;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class DeleterTest extends FunctionalTestCase
@@ -38,11 +38,17 @@ final class DeleterTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $attachmentDeleter = new AttachmentDeleter(new NullLogger(), GeneralUtility::makeInstance(ResourceFactory::class));
-        $processRepository = GeneralUtility::makeInstance(ProcessRepository::class);
+        $attachmentDeleter = new AttachmentDeleter(new NullLogger(), $this->getContainer()->get(ResourceFactory::class));
+        $processtablefieldRepository = new ProcesstablefieldRepository($this->getConnectionPool());
         $transferRepository = new TransferRepository($this->getConnectionPool());
 
-        $this->subject = new Deleter($attachmentDeleter, new Crypt(), new NullLogger(), $processRepository, $transferRepository);
+        $this->subject = new Deleter(
+            $attachmentDeleter,
+            new Crypt(new FileService()),
+            new NullLogger(),
+            $processtablefieldRepository,
+            $transferRepository,
+        );
     }
 
     /**

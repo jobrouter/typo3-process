@@ -59,8 +59,8 @@
                                                         <f:else>{field.name}</f:else>
                                                     </f:if>
 
-                                                    (<f:translate key="LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.{field.type}"/><f:spaceless>
-                                                        <f:if condition="{field.type} == 1 && {field.fieldSize} > 0">, {field.fieldSize}</f:if>
+                                                    (<f:translate key="LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.{field.type.value}"/><f:spaceless>
+                                                        <f:if condition="{field.type.value} == 1 && {field.fieldSize} > 0">, {field.fieldSize}</f:if>
                                                     </f:spaceless>)
                                                 </li>
                                             </f:for>

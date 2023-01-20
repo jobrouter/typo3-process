@@ -1,0 +1,6 @@
+tx_jobrouterprocess_domain_model_process
+,uid,disabled,deleted,name
+,1,1,0,"process 1"
+,2,0,0,"process 2"
+,3,0,0,"process 3"
+,4,0,1,"process 4"

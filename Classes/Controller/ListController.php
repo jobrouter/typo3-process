@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Controller;
 
+use Brotkrueml\JobRouterProcess\Domain\Hydrator\ProcessRelationsHydrator;
+use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Extension;
@@ -38,7 +40,9 @@ final class ListController
         private readonly IconFactory $iconFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
         private readonly PageRenderer $pageRenderer,
+        private readonly ProcessRelationsHydrator $processRelationsHydrator,
         private readonly ProcessRepository $processRepository,
+        private readonly StepProcessHydrator $stepProcessHydrator,
         private readonly StepRepository $stepRepository,
         private readonly UriBuilder $uriBuilder,
     ) {
@@ -54,8 +58,8 @@ final class ListController
 
         $this->initializeView();
 
-        $processes = $this->processRepository->findAllWithHidden();
-        $steps = $this->stepRepository->findAllWithHidden();
+        $processes = $this->processRelationsHydrator->hydrateMultiple($this->processRepository->findAll(true));
+        $steps = $this->stepProcessHydrator->hydrateMultiple($this->stepRepository->findAll(true));
         $this->view->assignMultiple([
             'processes' => $processes,
             'steps' => $steps,
@@ -63,7 +67,7 @@ final class ListController
 
         $this->configureDocHeader(
             $request->getAttribute('normalizedParams')?->getRequestUri() ?? '',
-            \count($processes) > 0,
+            $processes !== [],
         );
 
         $this->moduleTemplate->setContent($this->view->render());

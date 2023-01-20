@@ -70,16 +70,16 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
                     ],
                 ],
                 'eval' => 'required',
@@ -100,21 +100,21 @@ return [
         ],
     ],
     'types' => [
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT => [
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 --palette--;;textType,
             ',
         ],
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER => [
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
             ',
         ],
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::ATTACHMENT => [
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,

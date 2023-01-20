@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Domain\Model\Process;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerInterface;
@@ -34,7 +34,7 @@ class Deleter
         private readonly AttachmentDeleter $attachmentDeleter,
         private readonly Crypt $crypt,
         private readonly LoggerInterface $logger,
-        private readonly ProcessRepository $processRepository,
+        private readonly ProcesstablefieldRepository $processtablefieldRepository,
         private readonly TransferRepository $transferRepository,
     ) {
     }
@@ -90,7 +90,7 @@ class Deleter
             if ($encryptedFields->get(EncryptedFieldsBitSet::PROCESSTABLE)) {
                 $transfer['processtable'] = $this->crypt->decrypt((string)$transfer['processtable']);
             }
-            $processtable = \json_decode($transfer['processtable'], true, 512, \JSON_THROW_ON_ERROR);
+            $processtable = \json_decode($transfer['processtable'], true, flags: \JSON_THROW_ON_ERROR);
             $this->deleteAttachments($processtable, $this->attachmentFieldsForProcess[$transfer['process_uid']]);
         }
 
@@ -109,17 +109,12 @@ class Deleter
      */
     private function getAttachmentFieldsForProcess(int $processUid): array
     {
-        /** @var Process|null $process */
-        $process = $this->processRepository->findByIdentifier($processUid);
-
-        if (! $process instanceof Process) {
-            return [];
-        }
+        $processtablefields = $this->processtablefieldRepository->findByProcessUid($processUid);
 
         $attachmentFields = [];
-        foreach ($process->getProcesstablefields() as $field) {
-            if ($field->getType() === FieldTypeEnumeration::ATTACHMENT) {
-                $attachmentFields[] = $field->getName();
+        foreach ($processtablefields as $field) {
+            if ($field->type === FieldType::Attachment) {
+                $attachmentFields[] = $field->name;
             }
         }
 

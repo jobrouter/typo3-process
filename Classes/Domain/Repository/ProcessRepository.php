@@ -11,29 +11,66 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
+use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 
-class ProcessRepository extends Repository
+class ProcessRepository
 {
-    /**
-     * @var array<string, string>
-     * @phpstan-ignore-next-line
-     */
-    protected $defaultOrderings = [
-        'disabled' => QueryInterface::ORDER_ASCENDING,
-        'name' => QueryInterface::ORDER_ASCENDING,
-    ];
+    private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_process';
+
+    public function __construct(
+        private readonly ConnectionPool $connectionPool,
+    ) {
+    }
 
     /**
-     * @return mixed[]|QueryResultInterface
+     * @return Process[]
      */
-    public function findAllWithHidden(): array|QueryResultInterface
+    public function findAll(bool $withDisabled = false): array
     {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        if ($withDisabled) {
+            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        }
 
-        return $query->execute();
+        $result = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->orderBy('disabled')
+            ->addOrderBy('name')
+            ->executeQuery();
+
+        $processes = [];
+        while ($row = $result->fetchAssociative()) {
+            $processes[] = Process::fromArray($row);
+        }
+
+        return $processes;
+    }
+
+    public function findByUid(int $uid, bool $withDisabled = false): Process
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        if ($withDisabled) {
+            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        }
+
+        $row = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
+            )
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw ProcessNotFoundException::forUid($uid);
+        }
+
+        return Process::fromArray($row);
     }
 }

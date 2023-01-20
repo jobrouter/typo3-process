@@ -11,25 +11,25 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
+use Brotkrueml\JobRouterClient\Enumerations\Priority;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterClient\Resource\File;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer as TransferDto;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Model\Process;
-use Brotkrueml\JobRouterProcess\Domain\Model\Processtablefield;
-use Brotkrueml\JobRouterProcess\Domain\Model\Step;
+use Brotkrueml\JobRouterProcess\Domain\Hydrator\ProcessRelationsHydrator;
+use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
@@ -44,12 +44,14 @@ class Starter
     private int $erroneousTransfers = 0;
 
     public function __construct(
+        private readonly Decrypter $decrypter,
+        private readonly LoggerInterface $logger,
+        private readonly ProcessRelationsHydrator $processRelationsHydrator,
+        private readonly StepProcessHydrator $stepProcessHydrator,
+        private readonly ResourceFactory $resourceFactory,
         private readonly RestClientFactory $restClientFactory,
         private readonly StepRepository $stepRepository,
-        private readonly Decrypter $decrypter,
         private readonly TransferRepository $transferRepository,
-        private readonly ResourceFactory $resourceFactory,
-        private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -84,7 +86,7 @@ class Starter
             $message = $this->startTransfer($transfer);
             $isSuccess = true;
         } catch (\Exception $e) {
-            $isSuccess = true;
+            $isSuccess = false;
             $message = $e->getMessage();
 
             $this->erroneousTransfers++;
@@ -107,7 +109,7 @@ class Starter
         $client = $this->getRestClientForStep($step);
         $response = $client->request(
             'POST',
-            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->getProcess()->getName()), // @phpstan-ignore-line
+            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->process->name), // @phpstan-ignore-line
             $incident,
         );
 
@@ -131,71 +133,28 @@ class Starter
 
     private function getStep(int $stepUid): Step
     {
-        $step = $this->stepRepository->findByIdentifier($stepUid);
+        $step = $this->stepProcessHydrator->hydrate($this->stepRepository->findByUid($stepUid));
 
-        if (! $step instanceof Step) {
-            throw new StepNotFoundException(
-                \sprintf(
-                    'Step link with uid "%d" is not available',
-                    $stepUid,
-                ),
-                1581331820,
-            );
-        }
-
-        if (! $step->getProcess() instanceof Process) {
-            throw new ProcessNotFoundException(
-                \sprintf(
-                    'Process for step link with handle "%s" is not available',
-                    $step->getHandle(),
-                ),
-                1635596424,
-            );
-        }
-
-        return $step;
+        /** @phpstan-assert Process $step->process */
+        return $step->withProcess($this->processRelationsHydrator->hydrate($step->process));
     }
 
     private function getRestClientForStep(Step $step): IncidentsClientDecorator
     {
         static $clients = [];
 
-        $process = $step->getProcess();
-        if (! $process instanceof Process) {
-            throw new ProcessNotFoundException(
-                \sprintf(
-                    'Process for step link with handle "%s" is not available',
-                    $step->getHandle(),
-                ),
-                1581331785,
-            );
+        if ($clients[$step->process->connectionUid] ?? false) {
+            return $clients[$step->process->connectionUid];
         }
 
-        $connection = $process->getConnection();
-        if (! $connection instanceof \Brotkrueml\JobRouterConnector\Domain\Model\Connection) {
-            throw new ConnectionNotFoundException(
-                \sprintf(
-                    'Connection for process link "%s" is not available',
-                    $process->getName(),
-                ),
-                1581331915,
-            );
-        }
+        $client = $this->restClientFactory->create($step->process->connection);
 
-        $connectionUid = $connection->getUid();
-        if ($clients[$connectionUid] ?? false) {
-            return $clients[$connectionUid];
-        }
-
-        $client = $this->restClientFactory->create($connection);
-
-        return $clients[$connectionUid] = new IncidentsClientDecorator($client);
+        return $clients[$step->process->connectionUid] = new IncidentsClientDecorator($client);
     }
 
     private function createIncidentFromTransferItem(Step $step, TransferDto $transfer): Incident
     {
-        $incident = new Incident();
-        $incident->setStep($step->getStepNumber()); // @phpstan-ignore-line
+        $incident = new Incident($step->stepNumber);
         if ($transfer->getInitiator() !== '') {
             $incident->setInitiator($transfer->getInitiator());
         }
@@ -208,8 +167,8 @@ class Starter
         if ($transfer->getSummary() !== '') {
             $incident->setSummary($transfer->getSummary());
         }
-        $incident->setPriority($transfer->getPriority()); // @phpstan-ignore-line
-        $incident->setPool($transfer->getPool()); // @phpstan-ignore-line
+        $incident->setPriority(Priority::from($transfer->getPriority()));
+        $incident->setPool($transfer->getPool());
 
         if ($transfer->getProcesstable() !== '') {
             try {
@@ -219,20 +178,18 @@ class Starter
             }
 
             foreach ($processTable ?? [] as $name => $value) {
-                /** @var Process $process */
-                $process = $step->getProcess();
-                $configuredProcessTableField = $this->getProcessTableField($name, $process);
+                $configuredProcessTableField = $this->getProcessTableField($name, $step->process);
 
-                if ($configuredProcessTableField->getType() === FieldTypeEnumeration::TEXT) {
+                if ($configuredProcessTableField->type === FieldType::Text) {
                     // A numeric static value in form finisher can be an integer
                     $value = (string)$value;
 
-                    if ($configuredProcessTableField->getFieldSize() !== 0) {
-                        $value = \mb_substr($value, 0, $configuredProcessTableField->getFieldSize());
+                    if ($configuredProcessTableField->fieldSize !== 0) {
+                        $value = \mb_substr($value, 0, $configuredProcessTableField->fieldSize);
                     }
                 }
 
-                if ($configuredProcessTableField->getType() === FieldTypeEnumeration::ATTACHMENT && $value !== '') {
+                if ($configuredProcessTableField->type === FieldType::Attachment && $value !== '') {
                     $file = $this->resourceFactory->getFileObjectFromCombinedIdentifier($value);
                     if (! $file instanceof FileInterface) {
                         throw new FileNotFoundException(
@@ -252,13 +209,10 @@ class Starter
 
     private function getProcessTableField(string $name, Process $process): Processtablefield
     {
-        $configuredProcessTableFields = $process->getProcesstablefields()->toArray();
-
         $processTableField = \array_filter(
-            $configuredProcessTableFields,
+            $process->processtablefields,
             static fn ($field): bool =>
-                /** @var Processtablefield $field */
-                $name === $field->getName(),
+                $name === $field->name,
         );
 
         if ($processTableField === []) {
@@ -266,7 +220,7 @@ class Starter
                 \sprintf(
                     'Process table field "%s" is not configured in process link "%s"',
                     $name,
-                    $process->getName(),
+                    $process->name,
                 ),
                 1582053551,
             );

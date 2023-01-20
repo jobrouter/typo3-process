@@ -11,29 +11,82 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
+use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 
-class StepRepository extends Repository
+class StepRepository
 {
-    /**
-     * @var array<string, string>
-     * @phpstan-ignore-next-line
-     */
-    protected $defaultOrderings = [
-        'disabled' => QueryInterface::ORDER_ASCENDING,
-        'handle' => QueryInterface::ORDER_ASCENDING,
-    ];
+    private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_step';
+
+    public function __construct(
+        private readonly ConnectionPool $connectionPool,
+    ) {
+    }
 
     /**
-     * @return mixed[]|QueryResultInterface
+     * @return Step[]
      */
-    public function findAllWithHidden(): array|QueryResultInterface
+    public function findAll(bool $withDisabled = false): array
     {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        if ($withDisabled) {
+            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        }
 
-        return $query->execute();
+        $result = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->orderBy('disabled')
+            ->addOrderBy('handle')
+            ->executeQuery();
+
+        $steps = [];
+        while ($row = $result->fetchAssociative()) {
+            $steps[] = Step::fromArray($row);
+        }
+
+        return $steps;
+    }
+
+    public function findByUid(int $uid): Step
+    {
+        $row = $this->connectionPool
+            ->getConnectionForTable(self::TABLE_NAME)
+            ->select(
+                ['*'],
+                self::TABLE_NAME,
+                [
+                    'uid' => $uid,
+                ],
+            )
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw StepNotFoundException::forUid($uid);
+        }
+
+        return Step::fromArray($row);
+    }
+
+    public function findByHandle(string $handle): Step
+    {
+        $row = $this->connectionPool
+            ->getConnectionForTable(self::TABLE_NAME)
+            ->select(
+                ['*'],
+                self::TABLE_NAME,
+                [
+                    'handle' => $handle,
+                ],
+            )
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw StepNotFoundException::forHandle($handle);
+        }
+
+        return Step::fromArray($row);
     }
 }

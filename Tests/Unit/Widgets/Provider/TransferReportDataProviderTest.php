@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Model\TransferReportItem;
+use Brotkrueml\JobRouterBase\Domain\Dto\TransferReportItem;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
@@ -99,12 +99,12 @@ class TransferReportDataProviderTest extends TestCase
 
         self::assertCount(2, $actual);
         self::assertInstanceOf(TransferReportItem::class, $actual[0]);
-        self::assertSame(1615052053, $actual[0]->getCreationDate());
-        self::assertSame('some message', $actual[0]->getMessage());
-        self::assertSame('some correlation id', $actual[0]->getCorrelationId());
+        self::assertSame(1615052053, $actual[0]->creationDate);
+        self::assertSame('some message', $actual[0]->message);
+        self::assertSame('some correlation id', $actual[0]->correlationId);
         self::assertInstanceOf(TransferReportItem::class, $actual[1]);
-        self::assertSame(1615052084, $actual[1]->getCreationDate());
-        self::assertSame('another message', $actual[1]->getMessage());
-        self::assertSame('another correlation id', $actual[1]->getCorrelationId());
+        self::assertSame(1615052084, $actual[1]->creationDate);
+        self::assertSame('another message', $actual[1]->message);
+        self::assertSame('another correlation id', $actual[1]->correlationId);
     }
 }
