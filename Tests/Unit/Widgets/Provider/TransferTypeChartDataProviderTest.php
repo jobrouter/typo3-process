@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

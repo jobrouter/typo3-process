@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;

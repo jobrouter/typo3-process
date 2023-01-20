@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
 
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use Psr\Log\NullLogger;

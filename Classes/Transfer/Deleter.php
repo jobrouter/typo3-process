@@ -16,7 +16,7 @@ use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Model\Process;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerInterface;
 

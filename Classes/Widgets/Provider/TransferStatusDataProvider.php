@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
 use Brotkrueml\JobRouterBase\Domain\Model\TransferStatus;
 use Brotkrueml\JobRouterBase\Widgets\Provider\TransferStatusDataProviderInterface;
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use TYPO3\CMS\Core\Registry;
 

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
 use Brotkrueml\JobRouterBase\Extension as BaseExtension;
-use Brotkrueml\JobRouterProcess\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
