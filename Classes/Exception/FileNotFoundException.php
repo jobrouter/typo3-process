@@ -13,4 +13,11 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class FileNotFoundException extends \RuntimeException
 {
+    public static function forIdentifier(string $identifier): self
+    {
+        return new self(
+            \sprintf('File with identifier "%s" is not available!', $identifier),
+            1664109447,
+        );
+    }
 }

@@ -62,13 +62,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
     {
         $handle = $this->parseOption('handle');
         if (! \is_string($handle) || $handle === '') {
-            throw new MissingFinisherOptionException(
-                \sprintf(
-                    'Step handle in StartInstanceFinisher of form with identifier "%s" is not defined.',
-                    $this->getFormIdentifier(),
-                ),
-                1581270462,
-            );
+            throw MissingFinisherOptionException::forStepWithFormIdentifier($this->getFormIdentifier());
         }
 
         $this->step = $this->stepProcessHydrator->hydrate($this->stepRepository->findByHandle($handle));
@@ -102,10 +96,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
             $setter = 'set' . \ucfirst($property);
             if (! \method_exists($this->transfer, $setter)) {
-                throw new CommonParameterNotFoundException(
-                    \sprintf('Method "%s" in Transfer DTO not found', $setter),
-                    1581703904,
-                );
+                throw CommonParameterNotFoundException::forMethod($setter);
             }
 
             $value = $this->variableResolver->resolve(FieldType::Text, $value);
@@ -147,14 +138,10 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         $processTable = [];
         foreach ($this->options['processtable'] as $processTableField => $value) {
             if (! \array_key_exists($processTableField, $processTableFields)) {
-                throw new MissingProcessTableFieldException(
-                    \sprintf(
-                        'Process table field "%s" is used in form with identifier "%s" but not defined in process link "%s"',
-                        $processTableField,
-                        $this->getFormIdentifier(),
-                        $this->step->process->name,
-                    ),
-                    1585930166,
+                throw MissingProcessTableFieldException::forField(
+                    $processTableField,
+                    $this->getFormIdentifier(),
+                    $this->step->process->name,
                 );
             }
 
@@ -210,9 +197,6 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return $value;
         }
 
-        throw new InvalidFieldTypeException(
-            \sprintf('The field type "%s" is invalid', $type->name),
-            1581344823,
-        );
+        throw InvalidFieldTypeException::forFieldType($type);
     }
 }

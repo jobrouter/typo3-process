@@ -54,15 +54,7 @@ class Decrypter
             $decryptedValue = $this->cryptService->decrypt($this->decryptedTransfer->{'get' . \ucfirst($field)}());
             $this->decryptedTransfer->{'set' . \ucfirst($field)}($decryptedValue);
         } catch (CryptException $e) {
-            throw new DecryptException(
-                \sprintf(
-                    'Field "%s" in transfer cannot be decrypted, reason: %s',
-                    $field,
-                    $e->getMessage(),
-                ),
-                1599323431,
-                $e,
-            );
+            throw DecryptException::forField($field, $e);
         }
     }
 

@@ -13,4 +13,11 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class CommonParameterNotFoundException extends \RuntimeException
 {
+    public static function forMethod(string $method): self
+    {
+        return new self(
+            \sprintf('Method "%s" in Transfer DTO not found', $method),
+            1581703904,
+        );
+    }
 }

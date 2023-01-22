@@ -13,4 +13,11 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class PrepareException extends \RuntimeException
 {
+    public static function forNotWritable(): self
+    {
+        return new self(
+            'Transfer record cannot be written, see log file for details.',
+            1581278897,
+        );
+    }
 }

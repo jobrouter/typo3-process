@@ -11,6 +11,15 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
+
 final class InvalidFieldTypeException extends \RuntimeException
 {
+    public static function forFieldType(FieldType $fieldType): self
+    {
+        return new self(
+            \sprintf('The field type "%s" is invalid.', $fieldType->name),
+            1581344823,
+        );
+    }
 }

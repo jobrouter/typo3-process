@@ -13,4 +13,16 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class DecryptException extends \RuntimeException
 {
+    public static function forField(string $field, \Throwable $previous): self
+    {
+        return new self(
+            \sprintf(
+                'Field "%s" in transfer cannot be decrypted, reason: %s',
+                $field,
+                $previous->getMessage(),
+            ),
+            1599323431,
+            $previous,
+        );
+    }
 }

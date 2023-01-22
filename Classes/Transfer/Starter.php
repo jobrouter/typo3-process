@@ -192,10 +192,7 @@ class Starter
                 if ($configuredProcessTableField->type === FieldType::Attachment && $value !== '') {
                     $file = $this->resourceFactory->getFileObjectFromCombinedIdentifier($value);
                     if (! $file instanceof FileInterface) {
-                        throw new FileNotFoundException(
-                            \sprintf('File with identifier "%s" is not available!', $value),
-                            1664109447,
-                        );
+                        throw FileNotFoundException::forIdentifier($value);
                     }
                     $value = new File($file->getForLocalProcessing(false));
                 }
@@ -211,19 +208,11 @@ class Starter
     {
         $processTableField = \array_filter(
             $process->processTableFields,
-            static fn ($field): bool =>
-                $name === $field->name,
+            static fn ($field): bool => $name === $field->name,
         );
 
         if ($processTableField === []) {
-            throw new ProcessTableFieldNotFoundException(
-                \sprintf(
-                    'Process table field "%s" is not configured in process link "%s"',
-                    $name,
-                    $process->name,
-                ),
-                1582053551,
-            );
+            throw ProcessTableFieldNotFoundException::forField($name, $process->name);
         }
 
         return \array_shift($processTableField);

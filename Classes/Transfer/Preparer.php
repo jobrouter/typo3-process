@@ -36,11 +36,7 @@ class Preparer
         if ($numberOfRecords === 0) {
             $message = 'Transfer record cannot be written';
             $this->logger->critical($message, $encryptedTransfer->toArray());
-
-            throw new PrepareException(
-                'Transfer record cannot be written, see log file for details.',
-                1581278897,
-            );
+            throw PrepareException::forNotWritable();
         }
     }
 }

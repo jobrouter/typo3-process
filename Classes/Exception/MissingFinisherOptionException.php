@@ -13,4 +13,14 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class MissingFinisherOptionException extends \RuntimeException
 {
+    public static function forStepWithFormIdentifier(string $formIdentifier): self
+    {
+        return new self(
+            \sprintf(
+                'Step handle of form with identifier "%s" is not defined.',
+                $formIdentifier,
+            ),
+            1581270462,
+        );
+    }
 }
