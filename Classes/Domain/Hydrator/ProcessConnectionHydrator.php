@@ -13,8 +13,8 @@ namespace Brotkrueml\JobRouterProcess\Domain\Hydrator;
 
 use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Exception\ConnectionNotFoundException;
 
 /**
  * @internal
