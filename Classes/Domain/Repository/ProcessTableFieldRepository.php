@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
  */
-class ProcesstablefieldRepository
+class ProcessTableFieldRepository
 {
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_processtablefield';
 
@@ -27,7 +27,7 @@ class ProcesstablefieldRepository
     }
 
     /**
-     * @return Processtablefield[]
+     * @return ProcessTableField[]
      */
     public function findByProcessUid(int $uid): array
     {
@@ -46,7 +46,7 @@ class ProcesstablefieldRepository
 
         $fields = [];
         while ($row = $result->fetchAssociative()) {
-            $fields[] = Processtablefield::fromArray($row);
+            $fields[] = ProcessTableField::fromArray($row);
         }
 
         return $fields;

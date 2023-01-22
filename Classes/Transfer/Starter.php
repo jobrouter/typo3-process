@@ -21,7 +21,7 @@ use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer as TransferDto;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Hydrator\ProcessRelationsHydrator;
@@ -207,10 +207,10 @@ class Starter
         return $incident;
     }
 
-    private function getProcessTableField(string $name, Process $process): Processtablefield
+    private function getProcessTableField(string $name, Process $process): ProcessTableField
     {
         $processTableField = \array_filter(
-            $process->processtablefields,
+            $process->processTableFields,
             static fn ($field): bool =>
                 $name === $field->name,
         );

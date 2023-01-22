@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 
-final class Processtablefield
+final class ProcessTableField
 {
     private function __construct(
         public readonly int $uid,

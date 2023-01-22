@@ -20,14 +20,14 @@ final class ProcessRelationsHydrator
 {
     public function __construct(
         private readonly ProcessConnectionHydrator $connectionHydrator,
-        private readonly ProcessProcesstablefieldsHydrator $processtablefieldsHydrator,
+        private readonly ProcessProcessTableFieldHydrator $processTableFieldHydrator,
     ) {
     }
 
     public function hydrate(Process $process, bool $withDisabled = false): Process
     {
         return $this->connectionHydrator->hydrate(
-            $this->processtablefieldsHydrator->hydrate($process),
+            $this->processTableFieldHydrator->hydrate($process),
             $withDisabled,
         );
     }

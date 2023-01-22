@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use PHPUnit\Framework\TestCase;
 
 final class ProcesstablefieldTest extends TestCase
@@ -22,7 +22,7 @@ final class ProcesstablefieldTest extends TestCase
      */
     public function fromArray(): void
     {
-        $actual = Processtablefield::fromArray([
+        $actual = ProcessTableField::fromArray([
             'uid' => '1',
             'name' => 'some name',
             'description' => 'some description',

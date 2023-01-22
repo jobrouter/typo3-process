@@ -12,20 +12,20 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Domain\Hydrator;
 
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 
 /**
  * @internal
  */
-final class ProcessProcesstablefieldsHydrator
+final class ProcessProcessTableFieldHydrator
 {
     public function __construct(
-        private readonly ProcesstablefieldRepository $processtablefieldRepository,
+        private readonly ProcessTableFieldRepository $processTableFieldRepository,
     ) {
     }
 
     public function hydrate(Process $process): Process
     {
-        return $process->withProcesstablefields($this->processtablefieldRepository->findByProcessUid($process->uid));
+        return $process->withProcessTableFields($this->processTableFieldRepository->findByProcessUid($process->uid));
     }
 }

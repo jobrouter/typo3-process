@@ -15,7 +15,7 @@ use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
 use Psr\Log\LoggerInterface;
@@ -34,7 +34,7 @@ class Deleter
         private readonly AttachmentDeleter $attachmentDeleter,
         private readonly Crypt $crypt,
         private readonly LoggerInterface $logger,
-        private readonly ProcesstablefieldRepository $processtablefieldRepository,
+        private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly TransferRepository $transferRepository,
     ) {
     }
@@ -109,10 +109,10 @@ class Deleter
      */
     private function getAttachmentFieldsForProcess(int $processUid): array
     {
-        $processtablefields = $this->processtablefieldRepository->findByProcessUid($processUid);
+        $processTableFields = $this->processTableFieldRepository->findByProcessUid($processUid);
 
         $attachmentFields = [];
-        foreach ($processtablefields as $field) {
+        foreach ($processTableFields as $field) {
             if ($field->type === FieldType::Attachment) {
                 $attachmentFields[] = $field->name;
             }

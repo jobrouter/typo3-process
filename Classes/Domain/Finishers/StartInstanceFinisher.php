@@ -15,10 +15,10 @@ use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
@@ -52,7 +52,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
      */
     public function __construct(
         private readonly Preparer $preparer,
-        private readonly ProcesstablefieldRepository $processtablefieldRepository,
+        private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly StepRepository $stepRepository,
         private readonly StepProcessHydrator $stepProcessHydrator,
     ) {
@@ -176,11 +176,11 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
     }
 
     /**
-     * @return Processtablefield[]
+     * @return ProcessTableField[]
      */
     private function prepareProcessTableFields(): array
     {
-        $fields = $this->processtablefieldRepository->findByProcessUid($this->step->processUid);
+        $fields = $this->processTableFieldRepository->findByProcessUid($this->step->processUid);
 
         $processTableFields = [];
         foreach ($fields as $field) {

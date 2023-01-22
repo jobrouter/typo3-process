@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
 
 use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterConnector\Service\FileService;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
@@ -39,14 +39,14 @@ final class DeleterTest extends FunctionalTestCase
         parent::setUp();
 
         $attachmentDeleter = new AttachmentDeleter(new NullLogger(), $this->getContainer()->get(ResourceFactory::class));
-        $processtablefieldRepository = new ProcesstablefieldRepository($this->getConnectionPool());
+        $processTableFieldRepository = new ProcessTableFieldRepository($this->getConnectionPool());
         $transferRepository = new TransferRepository($this->getConnectionPool());
 
         $this->subject = new Deleter(
             $attachmentDeleter,
             new Crypt(new FileService()),
             new NullLogger(),
-            $processtablefieldRepository,
+            $processTableFieldRepository,
             $transferRepository,
         );
     }

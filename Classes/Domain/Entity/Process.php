@@ -16,7 +16,7 @@ use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 final class Process
 {
     /**
-     * @param Processtablefield[]|null $processtablefields
+     * @param ProcessTableField[]|null $processTableFields
      */
     private function __construct(
         public readonly int $uid,
@@ -24,7 +24,7 @@ final class Process
         public readonly int $connectionUid,
         public readonly bool $disabled,
         public readonly ?Connection $connection = null,
-        public readonly ?array $processtablefields = null,
+        public readonly ?array $processTableFields = null,
     ) {
     }
 
@@ -49,14 +49,14 @@ final class Process
             $this->connectionUid,
             $this->disabled,
             $connection,
-            $this->processtablefields,
+            $this->processTableFields,
         );
     }
 
     /**
-     * @param Processtablefield[] $processtablefields
+     * @param ProcessTableField[] $processTableFields
      */
-    public function withProcesstablefields(array $processtablefields): self
+    public function withProcessTableFields(array $processTableFields): self
     {
         return new self(
             $this->uid,
@@ -64,7 +64,7 @@ final class Process
             $this->connectionUid,
             $this->disabled,
             $this->connection,
-            $processtablefields,
+            $processTableFields,
         );
     }
 }

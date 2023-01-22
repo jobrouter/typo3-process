@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Processtablefield;
+use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use PHPUnit\Framework\TestCase;
 
 final class ProcessTest extends TestCase
@@ -35,7 +35,7 @@ final class ProcessTest extends TestCase
         self::assertSame(42, $actual->connectionUid);
         self::assertFalse($actual->disabled);
         self::assertNull($actual->connection);
-        self::assertNull($actual->processtablefields);
+        self::assertNull($actual->processTableFields);
     }
 
     /**
@@ -73,7 +73,7 @@ final class ProcessTest extends TestCase
     public function withProcesstablefields(): void
     {
         $fields = [
-            Processtablefield::fromArray([
+            ProcessTableField::fromArray([
                 'uid' => 21,
                 'name' => '',
                 'description' => '',
@@ -87,8 +87,8 @@ final class ProcessTest extends TestCase
             'name' => 'some name',
             'connection' => 42,
             'disabled' => false,
-        ])->withProcesstablefields($fields);
+        ])->withProcessTableFields($fields);
 
-        self::assertSame($fields, $actual->processtablefields);
+        self::assertSame($fields, $actual->processTableFields);
     }
 }

@@ -76,7 +76,7 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Parameter \\#1 \\$array of function array_filter expects array, array\\<Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Processtablefield\\>\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$array of function array_filter expects array, array\\<Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\ProcessTableField\\>\\|null given\\.$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
 

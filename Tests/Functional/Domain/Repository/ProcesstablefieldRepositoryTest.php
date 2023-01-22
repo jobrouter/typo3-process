@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcesstablefieldRepository;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class ProcesstablefieldRepositoryTest extends FunctionalTestCase
@@ -25,12 +25,12 @@ final class ProcesstablefieldRepositoryTest extends FunctionalTestCase
         'typo3conf/ext/jobrouter_process',
     ];
 
-    private ProcesstablefieldRepository $subject;
+    private ProcessTableFieldRepository $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->subject = new ProcesstablefieldRepository($this->getConnectionPool());
+        $this->subject = new ProcessTableFieldRepository($this->getConnectionPool());
     }
 
     /**
