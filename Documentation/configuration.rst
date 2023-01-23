@@ -19,14 +19,14 @@ Target group: **Administrators**
 Extension configuration
 =======================
 
-To configure the extension, go to :guilabel:`Admin Tools` > :guilabel:`Settings`
-> :guilabel:`Extension Configuration` and click on the :guilabel:`Configure
-extensions` button. Open the :guilabel:`jobrouter_process` configuration:
+To configure the extension, go to :guilabel:`Admin Tools > Settings > Extension
+Configuration` and click on the :guilabel:`Configure extensions` button. Open
+the :guilabel:`jobrouter_process` configuration:
 
 .. figure:: _images/extension-configuration.png
-   :alt: Log options in the extension configuration
+   :alt: Options in the extension configuration
 
-   Log options in the extension configuration
+   Options in the extension configuration
 
 Encryption
 ----------
@@ -54,7 +54,7 @@ finisher.
 Dashboard widget configuration
 ==============================
 
-Instance Starts
+Instance starts
 ---------------
 
 The number of instance starts by days can be visualised by the widget
@@ -102,14 +102,14 @@ package extension:
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][\Psr\Log\Level::WARNING] = [
-      \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
+   use Psr\Log\Level;
+   use TYPO3\CMS\Core\Log\Writer\FileWriter;
+
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][Level::WARNING] = [
+      FileWriter::class => [
          'logFileInfix' => 'jobrouter_process'
       ]
    ];
 
 The messages are then written to the
 :file:`var/log/typo3_jobrouter_process_<hash>.log` file.
-
-
-.. _co-stack/logs: https://extensions.typo3.org/extension/logs

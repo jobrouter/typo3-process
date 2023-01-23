@@ -12,7 +12,7 @@ Target group: **Editors, Integrators, Administrators**
    :depth: 1
    :local:
 
-With the :ref:`Dashboard <ext_dashboard:introduction>` system extension installed,
+With the :ref:`dashboard <ext_dashboard:introduction>` system extension installed,
 some widgets can be used to display process statistics. You can find them in the
 :guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 
@@ -29,8 +29,8 @@ data is the availability of types in this transfer table - either configured in
 <developer-start-instance>`.
 
 .. note::
-
-   The available widgets depend on the access rights of a user.
+   The available widgets for a user depend on the
+   :ref:`access rights <ext_dashboard:permission-handling-of-widgets>`.
 
 
 .. _dashboard-widget-instance-starts:
@@ -38,7 +38,7 @@ data is the availability of types in this transfer table - either configured in
 Instance starts
 ===============
 
-The number of instance starts per day can be visually displayed with a Dashboard
+The number of instance starts per day can be displayed visually with a dashboard
 widget:
 
 .. figure:: _images/dashboard-widget-instance-starts.png

@@ -16,7 +16,6 @@ The links to processes and instances in JobRouter® installations are managed in
 the module :guilabel:`JobRouter > Processes`.
 
 .. note::
-
    The module is only available in the live workspace.
 
 On your first visit after installing the extension you will see the following
@@ -25,7 +24,7 @@ screen:
 .. figure:: _images/no-process-links-found.png
    :alt: Initial Process module screen
 
-   Initial Process module screen
+   Initial :guilabel:`Process` module screen
 
 First you have to define a process link. It is the representation of a JobRouter®
 process. Then configure the step links you need. These represent the steps
@@ -132,9 +131,9 @@ There are two buttons available for each table link:
 
 .. image:: _images/process-link-buttons.png
 
-- You can edit a table link with the pencil. Alternatively click on the handle
-  of the process link to open the edit form.
-- The second icon is a link to the process of the JobRouter® Designer.
+*  You can edit a table link with the pencil. Alternatively click on the handle
+   of the process link to open the edit form.
+*  The second icon is a link to the process of the JobRouter® Designer.
 
 The process link records are stored under the root page. You can edit a process
 link also inside the :guilabel:`Web > List` module on the root page.
@@ -164,7 +163,7 @@ General
 
 Handle (required)
    A handle for usage in the form finisher. It is unique in the TYPO3
-   installation. Only the characters A-Z, a-z, 0-9, - and _ are allowed.
+   installation. Only the characters `A-Z`, `a-z`, `0-9`, `-` and `_` are allowed.
 
 Name (required)
    A descriptive name for the step.
@@ -200,4 +199,4 @@ Delete a process link or step link
 ----------------------------------
 
 To delete a record, open the edit page of the process or step link. In the upper
-menu bar you will find the :guilabel:`delete` button.
+menu bar you will find the :guilabel:`Delete` button.

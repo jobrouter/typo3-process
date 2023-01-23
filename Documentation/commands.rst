@@ -1,7 +1,5 @@
 .. include:: _includes.rst.txt
 
-.. highlight:: bash
-
 .. _commands:
 
 ========
@@ -15,8 +13,8 @@ Target group: **Administrators**
    :local:
 
 Surely you want to execute the commands regularly. Simply set up cron jobs that
-will execute the commands regularly, e.g. once an hour or once a day, depending
-on your needs.
+will execute the commands regularly, for example, once an hour or once a day,
+depending on your needs.
 
 .. _command-start:
 
@@ -26,11 +24,15 @@ Starting instances
 If you rely on the :ref:`form finisher <form-finisher>` or use the
 :ref:`transfer table <developer-start-instance>` directly to start instances in
 JobRouter® installations, you have to use the start command in the project
-directory for a composer installation::
+directory for a composer installation
+
+.. code-block:: bash
 
    vendor/bin/typo3 jobrouter:process:start
 
-In a non-composer installation execute::
+In a non-composer installation execute
+
+.. code-block:: bash
 
    php public/typo3/sysext/core/bin/typo3 jobrouter:process:start
 
@@ -55,7 +57,7 @@ also logged.
    another is in progress, the second command is terminated and a warning
    is displayed.
 
-The last run of the command is shown in the system information toolbar
+The last run of the command is displayed in the system information toolbar
 (:guilabel:`Last Instance Start`):
 
 .. figure:: _images/system-information.png
@@ -72,11 +74,15 @@ Clean up transfers
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
 regularly. A command is available for this task. Enter in the project
-directory for a composer installation::
+directory for a composer installation:
+
+.. code-block:: bash
 
    vendor/bin/typo3 jobrouter:process:cleanuptransfers
 
-In a non-composer installation execute::
+In a non-composer installation execute:
+
+.. code-block:: bash
 
    php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers
 
@@ -87,7 +93,9 @@ In general you should receive a successful answer:
    [OK] 42 successful transfers older than 30 days deleted
 
 By default, successful transfer records that are older than 30 days are deleted.
-You can adjust this value by adding an argument to the command::
+You can adjust this value by adding an argument to the command:
+
+.. code-block:: php
 
    vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
 

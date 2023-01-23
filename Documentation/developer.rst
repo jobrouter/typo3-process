@@ -45,12 +45,13 @@ If you want to start instances programmatically in a JobRouter® installation,
 you can use the :php:`Preparer` class within TYPO3, for example in an Extbase
 controller:
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Controller/MyController.php
 
    <?php
    declare(strict_types=1);
 
-   namespace Vendor\Extension\Controller;
+   namespace MyVendor\MyExtension\Controller;
 
    use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
    use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
@@ -60,17 +61,10 @@ controller:
 
    final class MyController extends ActionController
    {
-      private Preparer $preparer;
-      private StepRepository $stepRepository;
-
-      // It's important to use dependency injection to inject all necessary
-      // dependencies
       public function __construct(
-         Preparer $preparer,
-         StepRepository $stepRepository
+         private readonly Preparer $preparer,
+         private readonly StepRepository $stepRepository,
       ) {
-         $this->preparer = $preparer;
-         $this->stepRepository = $stepRepository;
       }
 
       public function myAction()
@@ -80,7 +74,7 @@ controller:
          // First get the step link uid from the step handle.
          // It is advised to use the handle because the step link uid can differ
          // from development to production system (it is an auto increment).
-         $step = $this->stepRepository->findOneByHandle('your_step_handle');
+         $step = $this->stepRepository->findByHandle('your_step_handle');
 
          // Define the transfer DTO with your parameters
          // Have a look in the Domain\Dto\Transfer class to see the available setters

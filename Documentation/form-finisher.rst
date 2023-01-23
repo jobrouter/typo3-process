@@ -61,8 +61,7 @@ or network problems. Also the submitting of a form on the website should be as
 fast as possible for a good user experience.
 
 .. note::
-
-   The finisher can only be used in the yaml form definition, not in the
+   The finisher can only be used in the YAML form definition, not in the
    :guilabel:`Form` backend module.
 
 
@@ -165,7 +164,7 @@ installations. Just use the array notation in :yaml:`options`:
 Attachments
 -----------
 
-.. versionadded:: 1.3.0
+.. versionadded:: 2.0.0
 
 One or more attachments (files) can be added to a form and processed with the
 :yaml:`JobRouterStartInstance` form finisher. By default, the files are stored
@@ -214,8 +213,8 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields.
 
 For more information have a look into the available :ref:`variable resolvers
-<ext_jobrouter_base:variable-resolvers>`. You can also write your :ref:`own variable
-resolvers <developer-variable-resolvers>`.
+<ext_jobrouter_base:variable-resolvers>`. You can also write your :ref:`own
+variable resolvers <developer-variable-resolvers>`.
 
 
 .. _overwritten in your form configuration: https://docs.typo3.org/c/typo3/cms-form/11.5/en-us/I/Config/proto/formElements/formElementTypes/FileUpload.html#properties-savetofilemount
