@@ -20,6 +20,13 @@ final class ProcessRepositoryTest extends FunctionalTestCase
     /**
      * @var string[]
      */
+    protected array $coreExtensionsToLoad = [
+        'form',
+    ];
+
+    /**
+     * @var string[]
+     */
     protected array $testExtensionsToLoad = [
         'typo3conf/ext/jobrouter_base',
         'typo3conf/ext/jobrouter_connector',

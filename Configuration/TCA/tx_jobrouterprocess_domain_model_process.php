@@ -47,7 +47,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'alphanum_x,required,trim',
+                'eval' => 'alphanum_x,trim',
+                'required' => true,
             ],
         ],
         'connection' => [
@@ -57,7 +58,8 @@ return [
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
-                'eval' => 'int,required',
+                'eval' => 'int',
+                'required' => 'true',
             ],
         ],
         'processtablefields' => [

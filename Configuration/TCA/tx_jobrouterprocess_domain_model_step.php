@@ -45,7 +45,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 30,
-                'eval' => 'alphanum_x,required,trim,unique',
+                'eval' => 'alphanum_x,trim,unique',
+                'required' => true,
             ],
         ],
         'name' => [
@@ -54,7 +55,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'process' => [
@@ -64,16 +66,17 @@ return [
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_jobrouterprocess_domain_model_process',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterprocess_domain_model_process.name',
-                'eval' => 'int,required',
+                'eval' => 'int',
+                'required' => true,
             ],
         ],
         'step_number' => [
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.step_number',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
                 'max' => 5,
-                'eval' => 'int,required',
+                'required' => true,
             ],
         ],
         'description' => [

@@ -49,7 +49,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'max' => 20,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'description' => [
@@ -81,19 +82,18 @@ return [
                         Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
                     ],
                 ],
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'field_size' => [
             'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_processtablefields.field_size',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
                 'max' => 5,
                 'range' => [
                     'lower' => 0,
                 ],
-                'eval' => 'int',
                 'default' => 0,
             ],
         ],
