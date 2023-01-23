@@ -89,7 +89,7 @@
         <f:else>
             <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.title')}">
                 <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.message"/></p>
-                <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_process">
+                <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_process" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
                     <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:process_link_create"/>
                 </be:link.newRecord>
             </f:be.infobox>
@@ -147,7 +147,7 @@
         <f:else>
             <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_not_found.title')}">
                 <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_not_found.message"/></p>
-                <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_step">
+                <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_step" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
                     <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:step_link_create"/>
                 </be:link.newRecord>
             </f:be.infobox>
