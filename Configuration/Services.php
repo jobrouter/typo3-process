@@ -21,13 +21,13 @@ use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
-use Brotkrueml\JobRouterProcess\Widgets\TypeOfInstanceStartsWidget;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Dashboard\Dashboard;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
+use TYPO3\CMS\Dashboard\Widgets\DoughnutChartWidget;
 
 return static function (ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void {
     $services = $containerConfigurator->services();
@@ -112,7 +112,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
         $services
             ->set('dashboard.widget.brotkrueml.jobrouter_process.typeOfInstanceStarts')
-            ->class(TypeOfInstanceStartsWidget::class)
+            ->class(DoughnutChartWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
             ->arg(
