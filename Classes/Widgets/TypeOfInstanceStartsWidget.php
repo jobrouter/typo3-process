@@ -19,6 +19,9 @@ use TYPO3\CMS\Dashboard\Widgets\WidgetConfiguration;
 use TYPO3\CMS\Dashboard\Widgets\WidgetConfigurationInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
+/**
+ * @internal
+ */
 class TypeOfInstanceStartsWidget extends DoughnutChartWidget
 {
     /**

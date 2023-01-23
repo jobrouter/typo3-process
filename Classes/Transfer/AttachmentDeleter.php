@@ -15,6 +15,9 @@ use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 
+/**
+ * @internal
+ */
 class AttachmentDeleter
 {
     public function __construct(
