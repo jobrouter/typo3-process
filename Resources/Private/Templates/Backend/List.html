@@ -34,7 +34,7 @@
                             <td><f:render section="processName" arguments="{process: process}"/></td>
                             <td>{process.connection.name}</td>
                             <td>
-                                <f:variable name="count" value="{process.processtablefields -> f:count()}"/>
+                                <f:variable name="count" value="{process.processTableFields -> f:count()}"/>
                                 <f:if condition="{count} == 0">
                                     <f:then>
                                         <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:x_process_table_fields_defined" arguments="{0: 'No'}"/>
@@ -52,7 +52,7 @@
                                             </f:if>
                                         </div>
                                         <ul class="jobrouter-process-table-fields-list" style="display:none;">
-                                            <f:for each="{process.processtablefields}" as="field">
+                                            <f:for each="{process.processTableFields}" as="field">
                                                 <li>
                                                     <f:if condition="{field.description}">
                                                         <f:then>{field.description}</f:then>
