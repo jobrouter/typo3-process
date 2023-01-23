@@ -45,6 +45,7 @@ This extension connects TYPO3 with processes in a JobRouter® installation.
    form-finisher
    dashboard
    developer
+   upgrade
    changelog
    copyright
 
