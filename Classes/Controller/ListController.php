@@ -51,6 +51,7 @@ final class ListController
     {
         $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
 
+        $this->pageRenderer->addCssFile('EXT:' . Extension::KEY . '/Resources/Public/Css/styles.css');
         $this->pageRenderer->loadRequireJsModule(
             'TYPO3/CMS/JobrouterProcess/ProcessTableFieldsToggler',
         );
@@ -66,7 +67,6 @@ final class ListController
 
         $this->configureDocHeader(
             $request->getAttribute('normalizedParams')?->getRequestUri() ?? '',
-            $processDemands !== [],
         );
 
         $this->moduleTemplate->setContent($this->view->render());
@@ -81,7 +81,7 @@ final class ListController
         $this->view->setTemplateRootPaths(['EXT:' . Extension::KEY . '/Resources/Private/Templates/Backend']);
     }
 
-    private function configureDocHeader(string $requestUri, bool $hasProcesses): void
+    private function configureDocHeader(string $requestUri): void
     {
         $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
 
@@ -99,23 +99,6 @@ final class ListController
             ->setShowLabelText(true)
             ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
         $buttonBar->addButton($newProcessButton, buttonGroup: 10);
-
-        if ($hasProcesses) {
-            $newStepButton = $buttonBar->makeLinkButton()
-                ->setHref((string)$this->uriBuilder->buildUriFromRoute(
-                    'record_edit',
-                    [
-                        'edit' => [
-                            'tx_jobrouterprocess_domain_model_step' => ['new'],
-                        ],
-                        'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
-                    ],
-                ))
-                ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_step'))
-                ->setShowLabelText(true)
-                ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
-            $buttonBar->addButton($newStepButton, buttonGroup: 20);
-        }
 
         $reloadButton = $buttonBar->makeLinkButton()
             ->setHref($requestUri)
