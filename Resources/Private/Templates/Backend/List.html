@@ -38,7 +38,7 @@
                                         </f:for>
                                     </ul>
                                 </f:if>
-                                <be:link.newRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_step" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
+                                <be:link.newRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_step" returnUrl="{f:be.uri(route: 'jobrouter_process')}" defaultValues="{tx_jobrouterprocess_domain_model_step: {process: process.uid}}">
                                     <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:step_link_create"/>
                                 </be:link.newRecord>
                             </td>
