@@ -1,3 +1,7 @@
 .jobrouter-process-items {
     padding-left: 16px;
 }
+
+.jobrouter-process-link {
+    text-decoration: underline;
+}

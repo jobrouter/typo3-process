@@ -38,7 +38,7 @@
                                         </f:for>
                                     </ul>
                                 </f:if>
-                                <be:link.newRecord class="btn btn-primary btn-sm" table="tx_jobrouterprocess_domain_model_step" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
+                                <be:link.newRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_step" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
                                     <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:step_link_create"/>
                                 </be:link.newRecord>
                             </td>
@@ -107,7 +107,7 @@
 </f:section>
 
 <f:section name="processName">
-    <be:link.editRecord table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
+    <be:link.editRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
     <f:if condition="{process.disabled}">
         ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
     </f:if>
@@ -118,7 +118,7 @@
     <f:if condition="{step.disabled}">
         <f:variable name="disabled" value=", disabled"/>
     </f:if>
-    <be:link.editRecord table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">{step.name}</be:link.editRecord>
+    <be:link.editRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_step" uid="{step.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_step')}">{step.name}</be:link.editRecord>
     ({step.handle}, {step.stepNumber}{disabled})
 </f:section>
 
