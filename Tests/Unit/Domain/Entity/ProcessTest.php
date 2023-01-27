@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use PHPUnit\Framework\TestCase;
 
 final class ProcessTest extends TestCase
@@ -34,61 +32,5 @@ final class ProcessTest extends TestCase
         self::assertSame('some name', $actual->name);
         self::assertSame(42, $actual->connectionUid);
         self::assertFalse($actual->disabled);
-        self::assertNull($actual->connection);
-        self::assertNull($actual->processTableFields);
-    }
-
-    /**
-     * @test
-     */
-    public function withConnection(): void
-    {
-        $connection = Connection::fromArray([
-            'uid' => 42,
-            'name' => '',
-            'handle' => '',
-            'base_url' => '',
-            'username' => '',
-            'password' => '',
-            'timeout' => 0,
-            'verify' => true,
-            'proxy' => '',
-            'jobrouter_version' => '',
-            'disabled' => false,
-        ]);
-
-        $actual = Process::fromArray([
-            'uid' => 1,
-            'name' => 'some name',
-            'connection' => 42,
-            'disabled' => false,
-        ])->withConnection($connection);
-
-        self::assertSame($connection, $actual->connection);
-    }
-
-    /**
-     * @test
-     */
-    public function withProcesstablefields(): void
-    {
-        $fields = [
-            ProcessTableField::fromArray([
-                'uid' => 21,
-                'name' => '',
-                'description' => '',
-                'type' => 1,
-                'field_size' => 0,
-            ]),
-        ];
-
-        $actual = Process::fromArray([
-            'uid' => 1,
-            'name' => 'some name',
-            'connection' => 42,
-            'disabled' => false,
-        ])->withProcessTableFields($fields);
-
-        self::assertSame($fields, $actual->processTableFields);
     }
 }

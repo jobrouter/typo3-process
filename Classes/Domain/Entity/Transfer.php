@@ -13,6 +13,9 @@ namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 
+/**
+ * The entity represents a row from the tx_jobrouterprocess_domain_model_transfer database table
+ */
 final class Transfer
 {
     private function __construct(

@@ -20,7 +20,8 @@ CREATE TABLE tx_jobrouterprocess_domain_model_step (
 	step_number smallint(5) unsigned DEFAULT '0' NOT NULL,
 	description text,
 
-	UNIQUE KEY handle (handle)
+	UNIQUE KEY handle (handle),
+	KEY process (process)
 );
 
 CREATE TABLE tx_jobrouterprocess_domain_model_transfer(

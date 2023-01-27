@@ -6,26 +6,6 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Cannot access property \\$name on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot access property \\$process on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot access property \\$processUid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
-			message: "#^Cannot access property \\$uid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Step\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/StartInstanceFinisher.php
-
-		-
 			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
@@ -56,41 +36,11 @@ parameters:
 			path: Classes/Transfer/Deleter.php
 
 		-
-			message: "#^Cannot access property \\$connection on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Cannot access property \\$connectionUid on Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null\\.$#"
-			count: 3
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Class cognitive complexity is 27, keep it under 25$#"
+			message: "#^Class cognitive complexity is 28, keep it under 25$#"
 			count: 1
 			path: Classes/Transfer/Starter.php
 
 		-
 			message: "#^Cognitive complexity for \"Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$array of function array_filter expects array, array\\<Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\ProcessTableField\\>\\|null given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$connection of method Brotkrueml\\\\JobRouterConnector\\\\RestClient\\\\RestClientFactory\\:\\:create\\(\\) expects Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Entity\\\\Connection, Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Entity\\\\Connection\\|null given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#1 \\$process of method Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Hydrator\\\\ProcessRelationsHydrator\\:\\:hydrate\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null given\\.$#"
-			count: 1
-			path: Classes/Transfer/Starter.php
-
-		-
-			message: "#^Parameter \\#2 \\$process of method Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:getProcessTableField\\(\\) expects Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process, Brotkrueml\\\\JobRouterProcess\\\\Domain\\\\Entity\\\\Process\\|null given\\.$#"
 			count: 1
 			path: Classes/Transfer/Starter.php

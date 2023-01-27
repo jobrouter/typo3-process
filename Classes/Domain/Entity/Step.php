@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
+/**
+ * The entity represents a row from the tx_jobrouterprocess_domain_model_step database table
+ */
 final class Step
 {
     private function __construct(
@@ -20,7 +23,6 @@ final class Step
         public readonly int $processUid,
         public readonly int $stepNumber,
         public readonly bool $disabled,
-        public readonly ?Process $process = null,
     ) {
     }
 
@@ -36,19 +38,6 @@ final class Step
             (int)$data['process'],
             (int)$data['step_number'],
             (bool)$data['disabled'],
-        );
-    }
-
-    public function withProcess(Process $process): self
-    {
-        return new self(
-            $this->uid,
-            $this->handle,
-            $this->name,
-            $this->processUid,
-            $this->stepNumber,
-            $this->disabled,
-            $process,
         );
     }
 }

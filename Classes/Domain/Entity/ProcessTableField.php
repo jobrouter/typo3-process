@@ -13,6 +13,9 @@ namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 
+/**
+ * The entity represents a row from the tx_jobrouterprocess_domain_model_processtablefield database table
+ */
 final class ProcessTableField
 {
     private function __construct(

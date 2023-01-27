@@ -11,10 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Controller;
 
-use Brotkrueml\JobRouterProcess\Domain\Hydrator\ProcessRelationsHydrator;
-use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
+use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemandFactory;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -43,10 +41,8 @@ final class ListController
         private readonly IconFactory $iconFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
         private readonly PageRenderer $pageRenderer,
-        private readonly ProcessRelationsHydrator $processRelationsHydrator,
+        private readonly ProcessDemandFactory $processDemandFactory,
         private readonly ProcessRepository $processRepository,
-        private readonly StepProcessHydrator $stepProcessHydrator,
-        private readonly StepRepository $stepRepository,
         private readonly UriBuilder $uriBuilder,
     ) {
     }
@@ -61,23 +57,16 @@ final class ListController
 
         $this->initializeView();
 
-        $processes = $this->processRelationsHydrator->hydrateMultiple(
+        $processDemands = $this->processDemandFactory->createMultiple(
             $this->processRepository->findAll(true),
             true,
         );
-        $steps = $this->stepProcessHydrator->hydrateMultiple(
-            $this->stepRepository->findAll(true),
-            true,
-        );
 
-        $this->view->assignMultiple([
-            'processes' => $processes,
-            'steps' => $steps,
-        ]);
+        $this->view->assign('processDemands', $processDemands);
 
         $this->configureDocHeader(
             $request->getAttribute('normalizedParams')?->getRequestUri() ?? '',
-            $processes !== [],
+            $processDemands !== [],
         );
 
         $this->moduleTemplate->setContent($this->view->render());

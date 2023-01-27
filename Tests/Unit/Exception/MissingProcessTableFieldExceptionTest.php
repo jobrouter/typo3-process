@@ -23,11 +23,11 @@ final class MissingProcessTableFieldExceptionTest extends TestCase
     {
         $actual = MissingProcessTableFieldException::forField(
             'someProcessField',
-            'someProcess',
+            42,
             'someFormIdentifier',
         );
 
-        self::assertSame('Process table field "someProcessField" is used in form with identifier "someFormIdentifier", but not defined in process link "someProcess".', $actual->getMessage());
+        self::assertSame('Process table field "someProcessField" is used in form with identifier "someFormIdentifier", but not defined in process uid "42".', $actual->getMessage());
         self::assertSame(1585930166, $actual->getCode());
     }
 }

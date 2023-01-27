@@ -16,20 +16,22 @@ use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
 use Brotkrueml\JobRouterClient\Enumerations\Priority;
 use Brotkrueml\JobRouterClient\Model\Incident;
 use Brotkrueml\JobRouterClient\Resource\File;
+use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
+use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemand;
+use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemandFactory;
 use Brotkrueml\JobRouterProcess\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer as TransferDto;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Hydrator\ProcessRelationsHydrator;
-use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
+use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
+use Brotkrueml\JobRouterProcess\Exception\StartException;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
@@ -46,8 +48,8 @@ class Starter
     public function __construct(
         private readonly Decrypter $decrypter,
         private readonly LoggerInterface $logger,
-        private readonly ProcessRelationsHydrator $processRelationsHydrator,
-        private readonly StepProcessHydrator $stepProcessHydrator,
+        private readonly ProcessDemandFactory $processDemandFactory,
+        private readonly ProcessRepository $processRepository,
         private readonly ResourceFactory $resourceFactory,
         private readonly RestClientFactory $restClientFactory,
         private readonly StepRepository $stepRepository,
@@ -103,13 +105,18 @@ class Starter
 
     private function startTransfer(Transfer $transfer): string
     {
-        $step = $this->getStep($transfer->stepUid);
-        $incident = $this->createIncidentFromTransferItem($step, $this->decrypter->decryptIfEncrypted(TransferDto::fromEntity($transfer)));
+        $step = $this->stepRepository->findByUid($transfer->stepUid);
+        $processDemand = $this->processDemandFactory->create($this->processRepository->findByUid($step->uid));
+        if (! $processDemand->connection instanceof Connection) {
+            throw StartException::forUnavailableConnection($processDemand->name);
+        }
 
-        $client = $this->getRestClientForStep($step);
+        $incident = $this->createIncidentFromTransferItem($step, $processDemand, $this->decrypter->decryptIfEncrypted(TransferDto::fromEntity($transfer)));
+
+        $client = $this->getRestClientForConnection($processDemand->connection);
         $response = $client->request(
             'POST',
-            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $step->process->name), // @phpstan-ignore-line
+            \sprintf(self::INCIDENTS_RESOURCE_TEMPLATE, $processDemand->name),
             $incident,
         );
 
@@ -131,28 +138,20 @@ class Starter
         return $successMessage;
     }
 
-    private function getStep(int $stepUid): Step
-    {
-        $step = $this->stepProcessHydrator->hydrate($this->stepRepository->findByUid($stepUid));
-
-        /** @phpstan-assert Process $step->process */
-        return $step->withProcess($this->processRelationsHydrator->hydrate($step->process));
-    }
-
-    private function getRestClientForStep(Step $step): IncidentsClientDecorator
+    private function getRestClientForConnection(Connection $connection): IncidentsClientDecorator
     {
         static $clients = [];
 
-        if ($clients[$step->process->connectionUid] ?? false) {
-            return $clients[$step->process->connectionUid];
+        if ($clients[$connection->uid] ?? false) {
+            return $clients[$connection->uid];
         }
 
-        $client = $this->restClientFactory->create($step->process->connection);
+        $client = $this->restClientFactory->create($connection);
 
-        return $clients[$step->process->connectionUid] = new IncidentsClientDecorator($client);
+        return $clients[$connection->uid] = new IncidentsClientDecorator($client);
     }
 
-    private function createIncidentFromTransferItem(Step $step, TransferDto $transfer): Incident
+    private function createIncidentFromTransferItem(Step $step, ProcessDemand $processDemand, TransferDto $transfer): Incident
     {
         $incident = new Incident($step->stepNumber);
         if ($transfer->getInitiator() !== '') {
@@ -178,7 +177,7 @@ class Starter
             }
 
             foreach ($processTable ?? [] as $name => $value) {
-                $configuredProcessTableField = $this->getProcessTableField($name, $step->process);
+                $configuredProcessTableField = $this->getProcessTableField($name, $processDemand);
 
                 if ($configuredProcessTableField->type === FieldType::Text) {
                     // A numeric static value in form finisher can be an integer
@@ -204,15 +203,15 @@ class Starter
         return $incident;
     }
 
-    private function getProcessTableField(string $name, Process $process): ProcessTableField
+    private function getProcessTableField(string $name, ProcessDemand $processDemand): ProcessTableField
     {
         $processTableField = \array_filter(
-            $process->processTableFields,
+            $processDemand->processTableFields,
             static fn ($field): bool => $name === $field->name,
         );
 
         if ($processTableField === []) {
-            throw ProcessTableFieldNotFoundException::forField($name, $process->name);
+            throw ProcessTableFieldNotFoundException::forField($name, $processDemand->name);
         }
 
         return \array_shift($processTableField);

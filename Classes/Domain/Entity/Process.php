@@ -11,20 +11,16 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
-
+/**
+ * The entity represents a row from the tx_jobrouterprocess_domain_model_process database table
+ */
 final class Process
 {
-    /**
-     * @param ProcessTableField[]|null $processTableFields
-     */
     private function __construct(
         public readonly int $uid,
         public readonly string $name,
         public readonly int $connectionUid,
         public readonly bool $disabled,
-        public readonly ?Connection $connection = null,
-        public readonly ?array $processTableFields = null,
     ) {
     }
 
@@ -38,33 +34,6 @@ final class Process
             $data['name'],
             (int)$data['connection'],
             (bool)$data['disabled'],
-        );
-    }
-
-    public function withConnection(Connection $connection): self
-    {
-        return new self(
-            $this->uid,
-            $this->name,
-            $this->connectionUid,
-            $this->disabled,
-            $connection,
-            $this->processTableFields,
-        );
-    }
-
-    /**
-     * @param ProcessTableField[] $processTableFields
-     */
-    public function withProcessTableFields(array $processTableFields): self
-    {
-        return new self(
-            $this->uid,
-            $this->name,
-            $this->connectionUid,
-            $this->disabled,
-            $this->connection,
-            $processTableFields,
         );
     }
 }

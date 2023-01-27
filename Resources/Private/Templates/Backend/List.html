@@ -7,16 +7,16 @@
 
 <h1><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
 
-<f:render section="processes" arguments="{processes: processes}"/>
+<f:render section="processDemands" arguments="{processDemands: processDemands}"/>
 
-<f:if condition="{processes}">
+<f:if condition="{processDemands}">
     <f:render section="steps" arguments="{steps: steps}"/>
 </f:if>
 
-<f:section name="processes">
-    <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_title"/></h2>
+<f:section name="processDemands">
+    <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processDemands_title"/></h2>
 
-    <f:if condition="{processes}">
+    <f:if condition="{processDemands}">
         <f:then>
             <table id="jobrouter-process-links-table" class="table table-vertical-top table-striped table-hover">
                 <thead>
@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <f:for each="{processes}" as="process">
+                    <f:for each="{processDemands}" as="process">
                         <f:variable name="manageProcessLink">{process.connection.baseUrl}?cmd=OpenDesigner&processname={process.name}</f:variable>
                         <tr>
                             <td><f:render section="processName" arguments="{process: process}"/></td>
@@ -87,8 +87,8 @@
 
         </f:then>
         <f:else>
-            <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.title')}">
-                <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processes_not_found.message"/></p>
+            <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processDemands_not_found.title')}">
+                <p><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processDemands_not_found.message"/></p>
                 <be:link.newRecord class="btn btn-primary" table="tx_jobrouterprocess_domain_model_process" returnUrl="{f:be.uri(route: 'jobrouter_process')}">
                     <f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:process_link_create"/>
                 </be:link.newRecord>
@@ -100,6 +100,7 @@
 <f:section name="steps">
     <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:steps_title"/></h2>
 
+    TODO: Show steps again!
     <f:if condition="{steps}">
         <f:then>
             <table class="table table-striped table-hover">

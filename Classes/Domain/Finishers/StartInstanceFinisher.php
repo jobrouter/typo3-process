@@ -17,7 +17,6 @@ use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
-use Brotkrueml\JobRouterProcess\Domain\Hydrator\StepProcessHydrator;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
@@ -44,17 +43,13 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         'username',
     ];
 
-    private ?Step $step = null;
+    private Step $step;
     private Transfer $transfer;
 
-    /**
-     * @noinspection PhpMissingParentConstructorInspection
-     */
     public function __construct(
         private readonly Preparer $preparer,
         private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly StepRepository $stepRepository,
-        private readonly StepProcessHydrator $stepProcessHydrator,
     ) {
     }
 
@@ -65,7 +60,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             throw MissingFinisherOptionException::forStepWithFormIdentifier($this->getFormIdentifier());
         }
 
-        $this->step = $this->stepProcessHydrator->hydrate($this->stepRepository->findByHandle($handle));
+        $this->step = $this->stepRepository->findByHandle($handle);
 
         $this->initialiseTransfer();
         $this->prepareStepParametersForTransfer();
@@ -140,8 +135,8 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             if (! \array_key_exists($processTableField, $processTableFields)) {
                 throw MissingProcessTableFieldException::forField(
                     $processTableField,
+                    $this->step->processUid,
                     $this->getFormIdentifier(),
-                    $this->step->process->name,
                 );
             }
 

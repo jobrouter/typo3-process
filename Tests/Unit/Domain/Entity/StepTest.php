@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use PHPUnit\Framework\TestCase;
 
@@ -37,30 +36,5 @@ final class StepTest extends TestCase
         self::assertSame(21, $actual->processUid);
         self::assertSame(42, $actual->stepNumber);
         self::assertTrue($actual->disabled);
-        self::assertNull($actual->process);
-    }
-
-    /**
-     * @test
-     */
-    public function withProcess(): void
-    {
-        $process = Process::fromArray([
-            'uid' => 21,
-            'name' => '',
-            'connection' => 1,
-            'disabled' => false,
-        ]);
-
-        $actual = Step::fromArray([
-            'uid' => '1',
-            'handle' => 'some_handle',
-            'name' => 'some name',
-            'process' => '21',
-            'step_number' => '42',
-            'disabled' => '1',
-        ])->withProcess($process);
-
-        self::assertSame($process, $actual->process);
     }
 }

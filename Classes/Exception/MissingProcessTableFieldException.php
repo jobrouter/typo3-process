@@ -13,14 +13,14 @@ namespace Brotkrueml\JobRouterProcess\Exception;
 
 final class MissingProcessTableFieldException extends \RuntimeException
 {
-    public static function forField(string $processField, string $processName, string $formIdentifier): self
+    public static function forField(string $processField, int $processUid, string $formIdentifier): self
     {
         return new self(
             \sprintf(
-                'Process table field "%s" is used in form with identifier "%s", but not defined in process link "%s".',
+                'Process table field "%s" is used in form with identifier "%s", but not defined in process uid "%d".',
                 $processField,
                 $formIdentifier,
-                $processName,
+                $processUid,
             ),
             1585930166,
         );

@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Domain\Repository;
 
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 
@@ -88,5 +89,33 @@ class StepRepository
         }
 
         return Step::fromArray($row);
+    }
+
+    /**
+     * @return Step[]
+     * @internal
+     */
+    public function findByProcessUid(int $processUid, bool $withDisabled = false): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        if ($withDisabled) {
+            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        }
+
+        $result = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('process', $queryBuilder->createNamedParameter($processUid, Connection::PARAM_INT)),
+            )
+            ->orderBy('uid')
+            ->executeQuery();
+
+        $steps = [];
+        while ($row = $result->fetchAssociative()) {
+            $steps[] = Step::fromArray($row);
+        }
+
+        return $steps;
     }
 }

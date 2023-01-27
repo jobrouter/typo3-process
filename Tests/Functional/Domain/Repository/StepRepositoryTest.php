@@ -113,8 +113,43 @@ final class StepRepositoryTest extends FunctionalTestCase
     {
         $this->expectException(StepNotFoundException::class);
 
+        $this->subject->findByHandle('non_existing');
+    }
+
+    /**
+     * @test
+     */
+    public function findByProcessUidWithoutDisabled(): void
+    {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
 
-        $this->subject->findByHandle('non_existing');
+        $actual = $this->subject->findByProcessUid(42);
+
+        self::assertCount(1, $actual);
+        self::assertSame(2, $actual[0]->uid);
+    }
+
+    /**
+     * @test
+     */
+    public function findByProcessUidWithDisabled(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
+
+        $actual = $this->subject->findByProcessUid(42, true);
+
+        self::assertCount(2, $actual);
+        self::assertSame(1, $actual[0]->uid);
+        self::assertSame(2, $actual[1]->uid);
+    }
+
+    /**
+     * @test
+     */
+    public function findByProcessUidAndNoRecordsFound(): void
+    {
+        $actual = $this->subject->findByProcessUid(9999);
+
+        self::assertSame([], $actual);
     }
 }

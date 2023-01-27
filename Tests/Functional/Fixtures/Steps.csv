@@ -1,6 +1,6 @@
 tx_jobrouterprocess_domain_model_step
-,uid,disabled,deleted,handle
-,1,1,0,"handle_1"
-,2,0,0,"handle_2"
-,3,0,0,"handle_3"
-,4,0,1,"handle_4"
+,uid,disabled,deleted,handle,process
+,1,1,0,"handle_1",42
+,2,0,0,"handle_2",42
+,3,0,0,"handle_3",43
+,4,0,1,"handle_4",44
