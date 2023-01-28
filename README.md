@@ -12,6 +12,13 @@ What this extension does:
   * Manage process and step links to JobRouter® installations
   * Provide a form finisher to start a process instance
 
+## Versions and support
+
+| Latest release | TYPO3       | PHP   | Updates will contain |
+|----------------|-------------|-------|----------------------|
+| 2.x            | 11.5 - 12.4 | ≥ 8.1 | In development       |
+| 1.x            | 10.4 - 11.5 | ≥ 7.4 | Security fixes       |
+
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/process/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterproce) |
 [Changelog](https://github.com/brotkrueml/typo3-jobrouter-process/blob/main/CHANGELOG.md) |
