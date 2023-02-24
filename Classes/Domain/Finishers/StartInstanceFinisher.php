@@ -172,11 +172,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         return $processTableFields;
     }
 
-    private function considerTypeForFieldValue(string|int $value, FieldType $type, int $fieldSize): string|int
+    private function considerTypeForFieldValue(string $value, FieldType $type, int $fieldSize): string|int
     {
         if ($type === FieldType::Text) {
-            $value = (string)$value;
-
             if ($fieldSize !== 0) {
                 return \mb_substr($value, 0, $fieldSize);
             }
@@ -186,6 +184,10 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
         if ($type === FieldType::Integer) {
             return $value === '' ? '' : (int)$value;
+        }
+
+        if ($type === FieldType::Date) {
+            return (new \DateTimeImmutable($value))->setTime(0, 0)->format('c');
         }
 
         if ($type === FieldType::Attachment) {

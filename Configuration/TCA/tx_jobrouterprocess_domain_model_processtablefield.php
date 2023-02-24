@@ -78,6 +78,10 @@ return [
                         Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
                     ],
                     [
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
+                    ],
+                    [
                         'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
                         Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
                     ],
@@ -107,6 +111,13 @@ return [
             ',
         ],
         (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value => [
+            'showitem' => '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                --palette--;;nameDescription,
+                type,
+            ',
+        ],
+        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,

@@ -15,7 +15,7 @@ Added
 ^^^^^
 
 
-* Allow attachments for an instance start (#9)
+* Allow attachment and date types for an instance start (#9)
 * Compatibility with TYPO3 v12
 
 Changed

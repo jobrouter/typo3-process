@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Allow attachments for an instance start (#9)
+- Allow attachment and date types for an instance start (#9)
 - Compatibility with TYPO3 v12
 
 ### Changed
