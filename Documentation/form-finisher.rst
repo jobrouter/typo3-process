@@ -47,6 +47,10 @@ start step.
 
       Robot user in Job Function of start step
 
+.. note::
+   Make sure to add the JobRobot username to your finisher configuration, so the
+   instance can be sent correctly.
+
 .. _form-finisher-start-instances:
 
 Start instances
@@ -80,6 +84,10 @@ configuration of the specific form:
             handle: 'start_website_contact'
             type: 'Demo'
             summary: 'Demo Contact'
+            # It is important to add the JobRobot username.
+            # The concrete name depends on your configuration above,
+            # we assume "robot" here:
+            username: 'robot'
             processtable:
                name: '{preName} {lastName}'
                company: '{company}'
@@ -144,6 +152,7 @@ installations. Just use the array notation in :yaml:`options`:
             -
                handle: 'start_website_contact'
                summary: 'Demo Contact'
+               username: 'robot'
                processtable:
                   name: '{preName} {lastName}'
                   company: '{company}'
@@ -154,6 +163,7 @@ installations. Just use the array notation in :yaml:`options`:
             -
                handle: 'collect_anonymous_messages'
                summary: 'Demo Contact'
+               username: 'robot'
                processtable:
                   ANON_MESSAGE: '{message}'
                   FROM_URL: 'https://www.example.com/demo'
