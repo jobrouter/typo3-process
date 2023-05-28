@@ -14,15 +14,16 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Registry;
 
-class TransferStatusDataProviderTest extends TestCase
+final class TransferStatusDataProviderTest extends TestCase
 {
     private TransferStatusDataProvider $subject;
-    private Registry & Stub $registryStub;
-    private TransferRepository & Stub $transferRepositoryStub;
+    private Registry&Stub $registryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
 
     protected function setUp(): void
     {
@@ -35,9 +36,7 @@ class TransferStatusDataProviderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyWhenNoEntriesInTransferTable(): void
     {
         $this->transferRepositoryStub
@@ -56,9 +55,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getNumberOfDays());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyWhenOnlySuccessfulEntriesInTransferTable(): void
     {
         $this->transferRepositoryStub
@@ -77,9 +74,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(42, $actual->getSuccessfulCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyWhenOnlyPendingEntriesInTransferTable(): void
     {
         $this->transferRepositoryStub
@@ -102,9 +97,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getSuccessfulCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyWhenOnlyFailedEntriesInTransferTable(): void
     {
         $this->transferRepositoryStub
@@ -127,9 +120,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getSuccessfulCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyWhenAllStatusesAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -156,9 +147,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(19, $actual->getSuccessfulCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturns1ForGetNumberOfDaysWhenTheEntryIsFromJustNow(): void
     {
         $this->transferRepositoryStub
@@ -170,9 +159,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(1, $actual->getNumberOfDays());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturns2ForGetNumberOfDaysWhenTheEntryIsJustOneDayAndASecondAgo(): void
     {
         $this->transferRepositoryStub
@@ -184,9 +171,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertSame(2, $actual->getNumberOfDays());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsNullForLastRunWhenNotAvailable(): void
     {
         $this->transferRepositoryStub
@@ -198,9 +183,7 @@ class TransferStatusDataProviderTest extends TestCase
         self::assertNull($actual->getLastRun());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDataCorrectlyForLastRun(): void
     {
         $this->transferRepositoryStub

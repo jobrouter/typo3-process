@@ -15,13 +15,14 @@ use Brotkrueml\JobRouterBase\Domain\Dto\TransferReportItem;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 
-class TransferReportDataProviderTest extends TestCase
+final class TransferReportDataProviderTest extends TestCase
 {
-    private TransferRepository & Stub $transferRepositoryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
     private TransferReportDataProvider $subject;
 
     protected function setUp(): void
@@ -35,9 +36,7 @@ class TransferReportDataProviderTest extends TestCase
         $this->subject = new TransferReportDataProvider($this->transferRepositoryStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getItemsReturnsEmptyArrayIfNoErrorsFound(): void
     {
         $this->transferRepositoryStub
@@ -47,9 +46,7 @@ class TransferReportDataProviderTest extends TestCase
         self::assertSame([], $this->subject->getItems());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getItemsReturnsItemsCorrectlyIfErrorsFound(): void
     {
         $transfer1 = Transfer::fromArray([

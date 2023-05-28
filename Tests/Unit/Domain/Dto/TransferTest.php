@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class TransferTest extends TestCase
@@ -24,9 +25,7 @@ final class TransferTest extends TestCase
         $this->subject = new Transfer(1234567890, 42, 'some-correlation');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayWithOnlyConstructorArgumentsSet(): void
     {
         $actual = $this->subject->toArray();
@@ -45,9 +44,7 @@ final class TransferTest extends TestCase
         self::assertSame(0, $actual['encrypted_fields']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayWithAllOtherPropertiesSet(): void
     {
         $this->subject->setType('some type');
@@ -73,9 +70,7 @@ final class TransferTest extends TestCase
         self::assertSame(2, $actual['encrypted_fields']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayReturnsShortenedInitiatorWhenTooLong(): void
     {
         $this->subject->setInitiator(\str_repeat('abc', 100));
@@ -85,9 +80,7 @@ final class TransferTest extends TestCase
         self::assertSame(50, \mb_strlen((string)$actual['initiator']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayReturnsShortenedUsernameWhenTooLong(): void
     {
         $this->subject->setUsername(\str_repeat('abc', 100));
@@ -97,9 +90,7 @@ final class TransferTest extends TestCase
         self::assertSame(50, \mb_strlen((string)$actual['username']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayReturnsShortenedJobfunctionWhenTooLong(): void
     {
         $this->subject->setJobfunction(\str_repeat('abc', 100));
@@ -109,9 +100,7 @@ final class TransferTest extends TestCase
         self::assertSame(50, \mb_strlen((string)$actual['jobfunction']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayReturnsShortenedSummaryWhenTooLong(): void
     {
         $this->subject->setSummary(\str_repeat('abc', 300));

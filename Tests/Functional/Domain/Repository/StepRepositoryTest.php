@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class StepRepositoryTest extends FunctionalTestCase
@@ -41,9 +42,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         $this->subject = new StepRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAll(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -55,9 +54,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(3, $actual[1]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllWithDisabled(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -70,9 +67,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(1, $actual[2]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithRecordFound(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -82,9 +77,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidThrowsExceptionIfRecordNotFound(): void
     {
         $this->expectException(StepNotFoundException::class);
@@ -94,9 +87,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         $this->subject->findByUid(9999);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByHandleWithRecordFound(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -106,9 +97,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByHandleThrowsExceptionIfRecordNotFound(): void
     {
         $this->expectException(StepNotFoundException::class);
@@ -116,9 +105,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         $this->subject->findByHandle('non_existing');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByProcessUidWithoutDisabled(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -129,9 +116,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[0]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByProcessUidWithDisabled(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Steps.csv');
@@ -143,9 +128,7 @@ final class StepRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[1]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByProcessUidAndNoRecordsFound(): void
     {
         $actual = $this->subject->findByProcessUid(9999);

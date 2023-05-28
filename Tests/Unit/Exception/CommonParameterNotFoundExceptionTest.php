@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class CommonParameterNotFoundExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forMethod(): void
     {
         $actual = CommonParameterNotFoundException::forMethod('someMethod');

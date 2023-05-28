@@ -17,6 +17,7 @@ use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Exception\DecryptException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -31,9 +32,7 @@ final class DecrypterTest extends TestCase
         $this->subject = new Decrypter($this->cryptServiceMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function decryptIfEncryptedReturnsTransferModelUntouchedIfItIsNotEncrypted(): void
     {
         $this->cryptServiceMock
@@ -46,9 +45,7 @@ final class DecrypterTest extends TestCase
         self::assertSame($transfer, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function decryptIfEncryptedDecryptsEncryptedTransferFieldsCorrectly(): void
     {
         $cryptServiceValueMap = [
@@ -76,9 +73,7 @@ final class DecrypterTest extends TestCase
         self::assertSame(0, $actual->getEncryptedFields()->__toInt());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function decryptIfEncryptedDoesNotProcessFieldsWhichAreNotEncrypted(): void
     {
         $cryptServiceValueMap = [
@@ -103,9 +98,7 @@ final class DecrypterTest extends TestCase
         self::assertSame(0, $actual->getEncryptedFields()->__toInt());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function decryptIfEncryptedThrowsExceptionWhenValueCannotBeDecrypted(): void
     {
         $this->expectException(DecryptException::class);

@@ -13,6 +13,8 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -20,7 +22,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
-class TransferTypeChartDataProviderTest extends TestCase
+final class TransferTypeChartDataProviderTest extends TestCase
 {
     private TransferRepository & Stub $transferRepositoryStub;
     private TransferTypeChartDataProvider $subject;
@@ -57,10 +59,8 @@ class TransferTypeChartDataProviderTest extends TestCase
         unset($GLOBALS['BE_USER']);
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetChartData
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetChartData')]
     public function getChartData(array $countTypesResult, array $expected): void
     {
         $this->transferRepositoryStub
@@ -71,7 +71,7 @@ class TransferTypeChartDataProviderTest extends TestCase
         self::assertSame($expected, $this->subject->getChartData());
     }
 
-    public function dataProviderForGetChartData(): \Generator
+    public static function dataProviderForGetChartData(): \Generator
     {
         yield 'Returns empty arrays when no transfers available' => [
             [],

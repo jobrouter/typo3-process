@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
 
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
@@ -55,9 +56,7 @@ final class AttachmentDeleterTest extends FunctionalTestCase
         $this->subject = new AttachmentDeleter(new NullLogger(), GeneralUtility::makeInstance(ResourceFactory::class));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteFileDeletesExistingFileAndParentFolderCorrectly(): void
     {
         $attachmentFolder = $this->getRandomAttachmentFolder();
@@ -74,9 +73,7 @@ final class AttachmentDeleterTest extends FunctionalTestCase
         self::assertDirectoryDoesNotExist($absoluteAttachmentFolder);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteFileDeletedExistingFileButDoesNotDeleteParentFolderWhenAnotherFileExists(): void
     {
         $attachmentFolder = $this->getRandomAttachmentFolder();
@@ -95,9 +92,7 @@ final class AttachmentDeleterTest extends FunctionalTestCase
         self::assertDirectoryExists($absoluteAttachmentFolder);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteFileDoesNothingWhenFileWithIdentifierCannotBeResolved(): void
     {
         $attachmentFolder = $this->getRandomAttachmentFolder();

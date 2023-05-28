@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class FileNotFoundExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forIdentifier(): void
     {
         $actual = FileNotFoundException::forIdentifier('someIdentifier');

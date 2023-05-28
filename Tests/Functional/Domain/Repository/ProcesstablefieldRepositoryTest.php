@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class ProcesstablefieldRepositoryTest extends FunctionalTestCase
@@ -40,9 +41,7 @@ final class ProcesstablefieldRepositoryTest extends FunctionalTestCase
         $this->subject = new ProcessTableFieldRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByProcessUid(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Processtablefields.csv');

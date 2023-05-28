@@ -15,6 +15,8 @@ use Brotkrueml\JobRouterBase\Extension as BaseExtension;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -22,9 +24,9 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
-class TransfersPerDayDataProviderTest extends TestCase
+final class TransfersPerDayDataProviderTest extends TestCase
 {
-    private TransferRepository & Stub $transferRepositoryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
     private TransfersPerDayDataProvider $subject;
 
     protected function setUp(): void
@@ -64,10 +66,8 @@ class TransfersPerDayDataProviderTest extends TestCase
         unset($GLOBALS['BE_USER']);
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetChartData
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetChartData')]
     public function getChartData(array $countByDay, array $expected): void
     {
         $this->transferRepositoryStub
@@ -78,10 +78,10 @@ class TransfersPerDayDataProviderTest extends TestCase
         self::assertSame($expected, $this->subject->getChartData());
     }
 
-    public function dataProviderForGetChartData(): \Generator
+    public static function dataProviderForGetChartData(): \Generator
     {
-        $timestamps = $this->getTimestamps();
-        $days = $this->getDays($timestamps);
+        $timestamps = self::getTimestamps();
+        $days = self::getDays($timestamps);
 
         yield 'Returns all counts with 0 when no transfers available' => [
             [],
@@ -155,7 +155,7 @@ class TransfersPerDayDataProviderTest extends TestCase
     /**
      * @return int[]
      */
-    private function getTimestamps(): array
+    private static function getTimestamps(): array
     {
         $today = new \DateTime('now', new \DateTimeZone('UTC'));
         $today->setTime(0, 0);
@@ -173,7 +173,7 @@ class TransfersPerDayDataProviderTest extends TestCase
     /**
      * @return string[]
      */
-    private function getDays(array $timestamps): array
+    private static function getDays(array $timestamps): array
     {
         $days = [];
         foreach ($timestamps as $timestamp) {

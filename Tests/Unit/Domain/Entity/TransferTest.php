@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class TransferTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArray(): void
     {
         $actual = Transfer::fromArray([

@@ -17,6 +17,7 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -58,9 +59,7 @@ final class DeleterTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function runReturns0WhenNoTransfersAreAvailable(): void
     {
         $actual = $this->subject->run(30);
@@ -68,9 +67,7 @@ final class DeleterTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function runReturnsNumberOfSuccessfulDeletedTransfers(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/Deleter.csv');

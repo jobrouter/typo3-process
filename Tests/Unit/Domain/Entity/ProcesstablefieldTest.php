@@ -13,13 +13,12 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ProcesstablefieldTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArray(): void
     {
         $actual = ProcessTableField::fromArray([

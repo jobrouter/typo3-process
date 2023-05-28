@@ -17,6 +17,7 @@ use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -26,8 +27,8 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 final class EncrypterTest extends TestCase
 {
-    private ExtensionConfiguration & Stub $extensionConfigurationStub;
-    private Crypt & MockObject $cryptServiceMock;
+    private ExtensionConfiguration&Stub $extensionConfigurationStub;
+    private Crypt&MockObject $cryptServiceMock;
     private Encrypter $subject;
 
     protected function setUp(): void
@@ -38,9 +39,7 @@ final class EncrypterTest extends TestCase
         $this->subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub, new NullLogger());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function encryptIfConfiguredDoesReturnsTransferModelUntouchedIfEncryptionIsEnabled(): void
     {
         $this->extensionConfigurationStub
@@ -54,9 +53,7 @@ final class EncrypterTest extends TestCase
         self::assertSame($transfer, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function encryptIfConfiguredEncryptsTransferModelDataIfEncryptionIsEnabled(): void
     {
         $this->extensionConfigurationStub
@@ -88,9 +85,7 @@ final class EncrypterTest extends TestCase
         self::assertSame('encrypted summary', $actual->getSummary());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function encryptIfConfiguredDoesNotProcessFieldsWhichAreEmpty(): void
     {
         $this->extensionConfigurationStub
@@ -119,9 +114,7 @@ final class EncrypterTest extends TestCase
         self::assertSame('', $actual->getSummary());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function encryptIfConfiguredReturnsEncryptedTransferIfDataCannotBeEncrypted(): void
     {
         $this->extensionConfigurationStub

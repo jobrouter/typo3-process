@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class PrepareExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forUid(): void
     {
         $actual = PrepareException::forNotWritable();

@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ProcessNotFoundExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forUid(): void
     {
         $actual = ProcessNotFoundException::forUid(42);

@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\PrepareException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
@@ -38,9 +39,7 @@ final class PreparerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storePersistsRecordCorrectly(): void
     {
         $transfer = new Transfer(1234567890, 42, 'some-correlation');
@@ -58,9 +57,7 @@ final class PreparerTest extends TestCase
         $this->subject->store($transfer);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storeThrowsExceptionOnError(): void
     {
         $this->expectException(PrepareException::class);

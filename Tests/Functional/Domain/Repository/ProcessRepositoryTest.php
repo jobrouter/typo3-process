@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
 use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class ProcessRepositoryTest extends FunctionalTestCase
@@ -41,9 +42,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         $this->subject = new ProcessRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAll(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Processes.csv');
@@ -55,9 +54,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         self::assertSame(3, $actual[1]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllWithDisabled(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Processes.csv');
@@ -70,9 +67,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         self::assertSame(1, $actual[2]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithRecordFound(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Processes.csv');
@@ -82,9 +77,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         self::assertSame(3, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithDisabled(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Processes.csv');
@@ -94,9 +87,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         self::assertSame(1, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithDisabledRecordNotFoundAndThrowsException(): void
     {
         $this->expectException(ProcessNotFoundException::class);
@@ -106,9 +97,7 @@ final class ProcessRepositoryTest extends FunctionalTestCase
         $this->subject->findByUid(1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithNotAvailableRecordThrowsException(): void
     {
         $this->expectException(ProcessNotFoundException::class);

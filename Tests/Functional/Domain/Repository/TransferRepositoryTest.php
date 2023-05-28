@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class TransferRepositoryTest extends FunctionalTestCase
@@ -41,9 +42,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         $this->subject = new TransferRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findNotStartedWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->findNotStarted();
@@ -51,9 +50,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findNotStarted(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -67,9 +64,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(6, $actual[3]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findErroneousWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->findErroneous();
@@ -77,9 +72,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findErroneous(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -90,9 +83,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[0]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function add(): void
     {
         $transfer = new Transfer(1234567890, 42, 'some correlation');
@@ -135,9 +126,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame('', (string)$row['start_message']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateStartFields(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -163,9 +152,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame('some message', $row['start_message']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countGroupByStartSuccessWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->countGroupByStartSuccess();
@@ -173,9 +160,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countGroupByStartSuccess(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -189,9 +174,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[1]['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countStartFailedWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->countStartFailed();
@@ -199,9 +182,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countStartFailed(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -211,9 +192,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(1, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countTypesWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->countTypes(30);
@@ -221,9 +200,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countByDayWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->countTypes(30);
@@ -231,9 +208,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findFirstCreationDateWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->findFirstCreationDate();
@@ -241,9 +216,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findFirstCreationDate(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Transfers.csv');
@@ -253,9 +226,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(1111111111, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findForDeletionWithNoEntriesInTransferTable(): void
     {
         $actual = $this->subject->findForDeletion(1111111111);
@@ -263,9 +234,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findForDeletion(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/TransferFindForDeletion.csv');
@@ -281,9 +250,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertNull($actual[2]['process_uid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteWithNonExistingUid(): void
     {
         $actual = $this->subject->delete(9999);
@@ -291,9 +258,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteDeletesGivenIdIfStartWasSuccessful(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/TransferDelete.csv');
@@ -314,9 +279,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $count);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteDoesNotDeleteGivenIdIfStartWasUnsuccessful(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/TransferDelete.csv');

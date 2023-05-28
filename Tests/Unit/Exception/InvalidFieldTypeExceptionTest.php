@@ -13,13 +13,12 @@ namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class InvalidFieldTypeExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forFieldType(): void
     {
         $actual = InvalidFieldTypeException::forFieldType(FieldType::Date);

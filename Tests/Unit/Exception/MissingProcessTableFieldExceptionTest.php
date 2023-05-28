@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MissingProcessTableFieldExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forField(): void
     {
         $actual = MissingProcessTableFieldException::forField(

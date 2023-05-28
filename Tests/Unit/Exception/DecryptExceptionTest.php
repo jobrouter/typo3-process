@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\DecryptException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class DecryptExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forField(): void
     {
         $previous = new \Exception('some exception message');

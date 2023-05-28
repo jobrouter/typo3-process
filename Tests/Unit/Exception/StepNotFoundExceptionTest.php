@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class StepNotFoundExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forUid(): void
     {
         $actual = StepNotFoundException::forUid(42);
@@ -27,9 +26,7 @@ final class StepNotFoundExceptionTest extends TestCase
         self::assertSame(1674204416, $actual->getCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function forHandle(): void
     {
         $actual = StepNotFoundException::forHandle('some_handle');

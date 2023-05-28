@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
 use Brotkrueml\JobRouterProcess\Exception\StartException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class StartExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forUnavailableConnection(): void
     {
         $actual = StartException::forUnavailableConnection('some_process');
