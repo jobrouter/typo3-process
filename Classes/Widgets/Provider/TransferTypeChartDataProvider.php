@@ -79,10 +79,10 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
      */
     private function getChartColours(int $count): array
     {
-        $chartColours = \array_merge([Extension::WIDGET_DEFAULT_CHART_COLOUR], WidgetApi::getDefaultChartColors());
+        $chartColours = [Extension::WIDGET_DEFAULT_CHART_COLOUR, ...WidgetApi::getDefaultChartColors()];
 
         while (\count($chartColours) < $count) {
-            $chartColours = \array_merge($chartColours, $chartColours);
+            $chartColours = [...$chartColours, ...$chartColours];
         }
 
         return \array_slice($chartColours, 0, $count);
