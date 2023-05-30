@@ -26,6 +26,7 @@ setUpDockerComposeDotEnv() {
     echo "PHP_XDEBUG_ON=${PHP_XDEBUG_ON}" >> .env
     echo "PHP_XDEBUG_PORT=${PHP_XDEBUG_PORT}" >> .env
     echo "DOCKER_PHP_IMAGE=${DOCKER_PHP_IMAGE}" >> .env
+    echo "IMAGE_PREFIX=${IMAGE_PREFIX}" >> .env
     echo "TYPO3=${TYPO3}" >> .env
     echo "PHP_VERSION=${PHP_VERSION}" >> .env
     echo "EXTRA_TEST_OPTIONS=${EXTRA_TEST_OPTIONS}" >> .env
@@ -102,8 +103,8 @@ Examples:
     # Run unit tests using PHP 8.1
     ./Build/Scripts/runTests.sh
 
-    # Run unit tests using PHP 7.4
-    ./Build/Scripts/runTests.sh -p 7.4
+    # Run unit tests using PHP 8.2
+    ./Build/Scripts/runTests.sh -p 8.2
 EOF
 
 # Test if docker-compose exists, else exit out with error
@@ -129,7 +130,8 @@ PHP_XDEBUG_ON=0
 PHP_XDEBUG_PORT=9000
 EXTRA_TEST_OPTIONS=""
 SCRIPT_VERBOSE=0
-TYPO3="10"
+TYPO3="11"
+IMAGE_PREFIX="ghcr.io/typo3/"
 
 # Option parsing
 # Reset in case getopts has been used previously in the shell
