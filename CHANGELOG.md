@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2023-05-31
+
 ### Added
 - Allow attachment and date types for an instance start (#9)
 - Compatibility with TYPO3 v12
@@ -152,7 +154,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial pre-release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.0.0...v1.1.0
