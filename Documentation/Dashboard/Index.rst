@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _dashboard-widgets:
 
@@ -16,7 +16,7 @@ With the :ref:`dashboard <ext_dashboard:introduction>` system extension installe
 some widgets can be used to display process statistics. You can find them in the
 :guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 
-.. figure:: _images/dashboard-add-widget.png
+.. figure:: /Images/dashboard-add-widget.png
    :alt: Add JobRouter widgets
    :class: with-border
 
@@ -41,7 +41,7 @@ Instance starts
 The number of instance starts per day can be displayed visually with a dashboard
 widget:
 
-.. figure:: _images/dashboard-widget-instance-starts.png
+.. figure:: /Images/dashboard-widget-instance-starts.png
    :alt: Instance Starts widget
    :class: with-border
 
@@ -59,7 +59,7 @@ Instance start types
 The instance starts for different types can be visually displayed with this
 widget:
 
-.. figure:: _images/dashboard-widget-instance-start-types.png
+.. figure:: /Images/dashboard-widget-instance-start-types.png
    :alt: Instance Start Types widget
    :class: with-border
 
@@ -73,7 +73,7 @@ Instance start status
 
 The status of the instance starts can be shown with this widget:
 
-.. figure:: _images/dashboard-widget-instance-start-status.png
+.. figure:: /Images/dashboard-widget-instance-start-status.png
    :alt: Instance Start Status widget
    :class: with-border
 
@@ -84,7 +84,7 @@ Instance start errors
 
 If errors occur when starting an instance, they can be displayed with this widget:
 
-.. figure:: _images/dashboard-widget-instance-start-error.png
+.. figure:: /Images/dashboard-widget-instance-start-error.png
    :alt: Instance Start Error widget
    :class: with-border
 

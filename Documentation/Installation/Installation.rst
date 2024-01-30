@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _installation:
 
@@ -50,7 +50,7 @@ Composer-based TYPO3 project root, just type:
 
 .. code-block:: bash
 
-   composer req brotkrueml/typo3-jobrouter-process
+   composer req jobrouter/typo3-process
 
 The extension offers some configuration which is explained in the
 :ref:`Configuration <Configuration>` chapter.

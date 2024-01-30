@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. highlight:: bash
 
@@ -23,7 +23,7 @@ To configure the extension, go to :guilabel:`Admin Tools > Settings > Extension
 Configuration` and click on the :guilabel:`Configure extensions` button. Open
 the :guilabel:`jobrouter_process` configuration:
 
-.. figure:: _images/extension-configuration.png
+.. figure:: /Images/extension-configuration.png
    :alt: Options in the extension configuration
 
    Options in the extension configuration
@@ -93,7 +93,7 @@ Logging
 =======
 
 If logging is necessary to track process instance starts and possible warnings
-or errors, you can set up :ref:`log writers <t3api:logging-writers>` depending
+or errors, you can set up :ref:`log writers <t3coreapi:logging-writers>` depending
 on your needs.
 
 **Example:** To log all warnings and higher levels of this extension into a
@@ -105,7 +105,7 @@ package extension:
    use Psr\Log\Level;
    use TYPO3\CMS\Core\Log\Writer\FileWriter;
 
-   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterProcess']['writerConfiguration'][Level::WARNING] = [
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['JobRouter']['AddOn']['Typo3Process']['writerConfiguration'][Level::WARNING] = [
       FileWriter::class => [
          'logFileInfix' => 'jobrouter_process'
       ]

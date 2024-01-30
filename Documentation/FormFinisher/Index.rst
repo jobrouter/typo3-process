@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _form-finisher:
 
@@ -30,7 +30,7 @@ start step.
    :guilabel:`System` > :guilabel:`Configuration` > :guilabel:`Modules` >
    :guilabel:`JobRobot`. You see the following screen:
 
-   .. figure:: _images/jobrobot-configuration.png
+   .. figure:: /Images/jobrobot-configuration.png
       :alt: JobRobot configuration
 
       JobRobot configuration
@@ -42,7 +42,7 @@ start step.
    Then add the robot user to the Job Function of the start step. It can then
    look like this:
 
-   .. figure:: _images/robot-in-job-function.png
+   .. figure:: /Images/robot-in-job-function.png
       :alt: Robot user in Job Function of start step
 
       Robot user in Job Function of start step
@@ -207,7 +207,7 @@ there in a folder named :file:`my_form_uploads`.
    :file:`form_946c84e75f5f118798ccb5e86ac5ca0153f8d82c` and the risk for
    retrieving a file by guessing the folder and file name may be low, it is
    recommended to create a custom :ref:`file storage
-   <t3api:fal-administration-storages>` outside the web root or to apply
+   <t3coreapi:fal-administration-storages>` outside the web root or to apply
    web server restrictions on that storage folder.
 
 When running the :ref:`"clean up transfers" command <command-cleanuptransfers>`,

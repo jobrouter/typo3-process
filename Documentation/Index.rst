@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 =======================
 TYPO3 JobRouter Process
@@ -8,7 +8,7 @@ TYPO3 JobRouter Process
    `jobrouter_process`_
 
 :Package name:
-   `brotkrueml/typo3-jobrouter-process`_
+   `jobrouter/typo3-process`_
 
 :Version:
    |release|
@@ -17,7 +17,7 @@ TYPO3 JobRouter Process
    en
 
 :Author:
-   `Chris Müller`_
+   Chris Müller, JobRouter AG
 
 :License:
    This document is published under the `Creative Commons BY 4.0`_ license.
@@ -37,20 +37,18 @@ This extension connects TYPO3 with processes in a JobRouter® installation.
    :maxdepth: 2
    :titlesonly:
 
-   introduction
-   installation
-   configuration
-   commands
-   module
-   form-finisher
-   dashboard
-   developer
-   upgrade
-   changelog
-   copyright
+   Introduction/Index
+   Installation/Index
+   Configuration/Index
+   Commands/Index
+   Module/Index
+   FormFinisher/Index
+   Dashboard/Index
+   Developer/Index
+   Upgrade/Index
+   Changelog/Index
 
 
-.. _brotkrueml/typo3-jobrouter-process: https://packagist.org/packages/brotkrueml/typo3-jobrouter-process
-.. _Chris Müller: https://github.com/brotkrueml
+.. _jobrouter/typo3-process: https://packagist.org/packages/jobrouter/typo3-process
 .. _Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/
 .. _jobrouter_process: https://extensions.typo3.org/extension/jobrouter_process

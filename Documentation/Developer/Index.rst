@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _developer:
 
@@ -26,7 +26,7 @@ Instances are started asynchronously when submitting a form and using the
 unavailable or in maintenance mode and to avoid long page loads. Let's take a
 look at the flow:
 
-.. figure:: _images/transfer-flow.png
+.. figure:: /Images/transfer-flow.png
    :alt: Transferring data sets
 
    Transferring data sets

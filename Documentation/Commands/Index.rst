@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _commands:
 
@@ -24,13 +24,13 @@ Starting instances
 If you rely on the :ref:`form finisher <form-finisher>` or use the
 :ref:`transfer table <developer-start-instance>` directly to start instances in
 JobRouter® installations, you have to use the start command in the project
-directory for a composer installation
+directory for a Composer-based installation
 
 .. code-block:: bash
 
    vendor/bin/typo3 jobrouter:process:start
 
-In a non-composer installation execute
+In a legacy installation execute
 
 .. code-block:: bash
 
@@ -60,7 +60,7 @@ also logged.
 The last run of the command is displayed in the system information toolbar
 (:guilabel:`Last Instance Start`):
 
-.. figure:: _images/system-information.png
+.. figure:: /Images/system-information.png
    :alt: System information with last run of the start command
 
    System information with last run of the start command
@@ -74,13 +74,13 @@ Clean up transfers
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
 regularly. A command is available for this task. Enter in the project
-directory for a composer installation:
+directory for a Composer-based installation:
 
 .. code-block:: bash
 
    vendor/bin/typo3 jobrouter:process:cleanuptransfers
 
-In a non-composer installation execute:
+In a legacy installation execute:
 
 .. code-block:: bash
 

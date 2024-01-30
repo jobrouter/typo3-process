@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _introduction:
 
@@ -20,8 +20,8 @@ TYPO3 JobRouter Process is a TYPO3 extension for
   :ref:`backend module <module>`
 * Providing a :ref:`form finisher <form-finisher>` to start a process instance
 
-This extension uses the :doc:`JobRouter Client <jobrouter-client:introduction>`
-library and has the :doc:`TYPO3 JobRouter Connector <ext_jobrouter_connector:introduction>`
+This extension uses the `JobRouter REST Client`_ library and has the
+:doc:`TYPO3 JobRouter Connector <ext_jobrouter_connector:introduction>`
 extension as a requirement to define connections to JobRouter® installations.
 
 
@@ -53,5 +53,6 @@ The changes between the different versions can be found in the
 
 
 .. _JobRouter®: https://www.jobrouter.com/
+.. _JobRouter REST Client: https://github.com/jobrouter/php-rest-client
 .. _semantic versioning: https://semver.org/
-.. _TYPO3 JobRouter Process: https://github.com/brotkrueml/typo3-jobrouter-process
+.. _TYPO3 JobRouter Process: https://github.com/jobrouter/typo3-process

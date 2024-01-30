@@ -8,8 +8,8 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_\ ,
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-`Unreleased <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v2.0.0...HEAD>`_
------------------------------------------------------------------------------------------------
+`Unreleased <https://github.com/jobrouter/typo3-process/compare/v2.0.0...HEAD>`_
+------------------------------------------------------------------------------------
 
 Changed
 -------
@@ -18,8 +18,8 @@ Changed
 * Require JobRouter REST Client in version 3
 * Namespace from ``Brotkrueml\JobRouterProcess`` to ``JobRouter\Addon\Typo3Process``
 
-`2.0.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.2.0...v2.0.0>`_ - 2023-05-31
----------------------------------------------------------------------------------------------------------
+`2.0.0 <https://github.com/jobrouter/typo3-process/compare/v1.2.0...v2.0.0>`_ - 2023-05-31
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -46,8 +46,8 @@ Removed
 * Compatibility with PHP 7.4 and 8.0
 * Configuration of log writers in the extension configuration
 
-`1.2.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.1...v1.2.0>`_ - 2022-05-31
----------------------------------------------------------------------------------------------------------
+`1.2.0 <https://github.com/jobrouter/typo3-process/compare/v1.1.1...v1.2.0>`_ - 2022-05-31
+----------------------------------------------------------------------------------------------
 
 Removed
 ^^^^^^^
@@ -55,8 +55,8 @@ Removed
 
 * Compatibility with PHP 7.3
 
-`1.1.1 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.1.0...v1.1.1>`_ - 2022-05-20
----------------------------------------------------------------------------------------------------------
+`1.1.1 <https://github.com/jobrouter/typo3-process/compare/v1.1.0...v1.1.1>`_ - 2022-05-20
+----------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
@@ -65,8 +65,8 @@ Fixed
 * Database error in module DB Check > Records Statistics due to wrong label in TCA
 * Handle multibyte characters correctly when cutting string to specific length for transfer
 
-`1.1.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v1.0.0...v1.1.0>`_ - 2021-11-21
----------------------------------------------------------------------------------------------------------
+`1.1.0 <https://github.com/jobrouter/typo3-process/compare/v1.0.0...v1.1.0>`_ - 2021-11-21
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -87,8 +87,8 @@ Removed
 
 * Compatibility with PHP 7.2
 
-`1.0.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.5.1...v1.0.0>`_ - 2021-03-14
----------------------------------------------------------------------------------------------------------
+`1.0.0 <https://github.com/jobrouter/typo3-process/compare/v0.5.1...v1.0.0>`_ - 2021-03-14
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -102,8 +102,8 @@ Fixed
 
 * Set crdate in transfer table correctly
 
-`0.5.1 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.5.0...v0.5.1>`_ - 2021-03-07
----------------------------------------------------------------------------------------------------------
+`0.5.1 <https://github.com/jobrouter/typo3-process/compare/v0.5.0...v0.5.1>`_ - 2021-03-07
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -117,8 +117,8 @@ Changed
 
 * Raise minimum required version to TYPO3 10.4.11
 
-`0.5.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.4.1...v0.5.0>`_ - 2020-10-19
----------------------------------------------------------------------------------------------------------
+`0.5.0 <https://github.com/jobrouter/typo3-process/compare/v0.4.1...v0.5.0>`_ - 2020-10-19
+----------------------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -135,8 +135,8 @@ Fixed
 * Differentiate between empty string and 0 in form finisher (integer field)
 * Consider maximum length of step parameters
 
-`0.4.1 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.4.0...v0.4.1>`_ - 2020-09-07
----------------------------------------------------------------------------------------------------------
+`0.4.1 <https://github.com/jobrouter/typo3-process/compare/v0.4.0...v0.4.1>`_ - 2020-09-07
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -144,8 +144,8 @@ Added
 
 * Possibility to encrypt transfer data
 
-`0.4.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.3.0...v0.4.0>`_ - 2020-09-02
----------------------------------------------------------------------------------------------------------
+`0.4.0 <https://github.com/jobrouter/typo3-process/compare/v0.3.0...v0.4.0>`_ - 2020-09-02
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -181,8 +181,8 @@ Fixed
 * Show disabled hint in list view
 * Resolve all form values in StartInstanceFinisher (also not available because of unfulfilled conditions)
 
-`0.3.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.2.2...v0.3.0>`_ - 2020-06-06
----------------------------------------------------------------------------------------------------------
+`0.3.0 <https://github.com/jobrouter/typo3-process/compare/v0.2.2...v0.3.0>`_ - 2020-06-06
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -207,8 +207,8 @@ Removed
 
 * Support for TYPO3 v9 LTS
 
-`0.2.2 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.2.1...v0.2.2>`_ - 2020-04-03
----------------------------------------------------------------------------------------------------------
+`0.2.2 <https://github.com/jobrouter/typo3-process/compare/v0.2.1...v0.2.2>`_ - 2020-04-03
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -228,8 +228,8 @@ Fixed
 
 * Assign correct value to process table field when using multi checkbox
 
-`0.2.1 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.2.0...v0.2.1>`_ - 2020-04-01
----------------------------------------------------------------------------------------------------------
+`0.2.1 <https://github.com/jobrouter/typo3-process/compare/v0.2.0...v0.2.1>`_ - 2020-04-01
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -243,8 +243,8 @@ Fixed
 
 * Correct translation for frontend context
 
-`0.2.0 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.1.1...v0.2.0>`_ - 2020-03-30
----------------------------------------------------------------------------------------------------------
+`0.2.0 <https://github.com/jobrouter/typo3-process/compare/v0.1.1...v0.2.0>`_ - 2020-03-30
+----------------------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -258,8 +258,8 @@ Fixed
 
 * Shorten strings to the maximum length of process field in form finisher
 
-`0.1.1 <https://github.com/brotkrueml/typo3-jobrouter-process/compare/v0.1.0...v0.1.1>`_ - 2020-03-02
----------------------------------------------------------------------------------------------------------
+`0.1.1 <https://github.com/jobrouter/typo3-process/compare/v0.1.0...v0.1.1>`_ - 2020-03-02
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -269,7 +269,7 @@ Added
 * Localised label variable resolver for form finisher
 * Display last run of start command in system information toolbar
 
-`0.1.0 <https://github.com/brotkrueml/typo3-jobrouter-process/releases/tag/v0.1.0>`_ - 2020-02-24
------------------------------------------------------------------------------------------------------
+`0.1.0 <https://github.com/jobrouter/typo3-process/releases/tag/v0.1.0>`_ - 2020-02-24
+------------------------------------------------------------------------------------------
 
 Initial pre-release

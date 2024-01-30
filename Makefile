@@ -6,7 +6,7 @@ qa: cs unit-tests phpstan rector-dry yaml-lint
 changelog:
 	m2r2 CHANGELOG.md && \
 	echo ".. _changelog:" | cat - CHANGELOG.rst > /tmp/CHANGELOG.rst && \
-	mv /tmp/CHANGELOG.rst Documentation/changelog.rst && \
+	mv /tmp/CHANGELOG.rst Documentation/Changelog/Index.rst && \
 	rm CHANGELOG.rst
 
 .PHONY: cs

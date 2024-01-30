@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _module:
 
@@ -21,7 +21,7 @@ the module :guilabel:`JobRouter > Processes`.
 On your first visit after installing the extension you will see the following
 screen:
 
-.. figure:: _images/no-process-links-found.png
+.. figure:: /Images/no-process-links-found.png
    :alt: Initial Process module screen
 
    Initial :guilabel:`Process` module screen
@@ -40,7 +40,7 @@ To create a new process link, click the :guilabel:`+ Add process link` button
 in the module header which opens a form. Alternatively, you can use the
 :guilabel:`Create new process link` button.
 
-.. figure:: _images/create-process-link.png
+.. figure:: /Images/create-process-link.png
    :alt: Create a process link
 
    Create a process link
@@ -110,7 +110,7 @@ Process links overview
 After creating one or more process links, you will see an overview of them when
 you open the module:
 
-.. figure:: _images/process-links-overview.png
+.. figure:: /Images/process-links-overview.png
    :alt: Overview of available process links
 
    Overview of available process links
@@ -122,14 +122,14 @@ The defined process table fields are not displayed by default, since the list
 can be very long. You can display the list of process table fields by clicking
 on the count information:
 
-.. figure:: _images/process-links-overview-expanded.png
+.. figure:: /Images/process-links-overview-expanded.png
    :alt: List of process table fields for a process links
 
    List of process table fields for a process links
 
 There are two buttons available for each table link:
 
-.. image:: _images/process-link-buttons.png
+.. image:: /Images/process-link-buttons.png
 
 *  You can edit a table link with the pencil. Alternatively click on the handle
    of the process link to open the edit form.
@@ -151,7 +151,7 @@ To create a new step link, click the :guilabel:`+ Add step link` button in the
 module header, which opens a form. Alternatively, you can use the
 :guilabel:`Create new step link` button.
 
-.. figure:: _images/create-step-link-general.png
+.. figure:: /Images/create-step-link-general.png
    :alt: Create a step link (General)
 
    Create a step link (General)
