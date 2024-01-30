@@ -36,8 +36,7 @@ final class TransferTypeChartDataProvider implements ChartDataProviderInterface
     public function __construct(
         private readonly LanguageServiceFactory $languageServiceFactory,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function setNumberOfDays(int $numberOfDays): void
     {

@@ -23,8 +23,7 @@ final class Step
         public readonly int $processUid,
         public readonly int $stepNumber,
         public readonly bool $disabled,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

@@ -36,8 +36,7 @@ class Deleter
         private readonly LoggerInterface $logger,
         private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function run(int $ageInDays): int
     {

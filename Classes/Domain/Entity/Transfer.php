@@ -35,8 +35,7 @@ final class Transfer
         public readonly bool $startSuccess,
         public readonly ?\DateTimeImmutable $startDate,
         public readonly string $startMessage,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

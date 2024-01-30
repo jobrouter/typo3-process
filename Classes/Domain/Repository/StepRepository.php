@@ -23,8 +23,7 @@ class StepRepository
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
-    ) {
-    }
+    ) {}
 
     /**
      * @return Step[]

@@ -27,8 +27,7 @@ class Encrypter
         private readonly Crypt $cryptService,
         private readonly ExtensionConfiguration $extensionConfiguration,
         private readonly LoggerInterface $logger,
-    ) {
-    }
+    ) {}
 
     public function encryptIfConfigured(Transfer $transfer): Transfer
     {

@@ -50,8 +50,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         private readonly Preparer $preparer,
         private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly StepRepository $stepRepository,
-    ) {
-    }
+    ) {}
 
     protected function process(): void
     {

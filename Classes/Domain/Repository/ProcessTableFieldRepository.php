@@ -23,8 +23,7 @@ class ProcessTableFieldRepository
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
-    ) {
-    }
+    ) {}
 
     /**
      * @return ProcessTableField[]

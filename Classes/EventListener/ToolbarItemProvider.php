@@ -29,8 +29,7 @@ final class ToolbarItemProvider
 
     public function __construct(
         private readonly Registry $registry,
-    ) {
-    }
+    ) {}
 
     public function __invoke(SystemInformationToolbarCollectorEvent $event): void
     {

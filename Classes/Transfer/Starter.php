@@ -54,8 +54,7 @@ class Starter
         private readonly RestClientFactory $restClientFactory,
         private readonly StepRepository $stepRepository,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function run(): CountResult
     {
@@ -207,7 +206,7 @@ class Starter
     {
         $processTableField = \array_filter(
             $processDemand->processTableFields,
-            static fn ($field): bool => $name === $field->name,
+            static fn($field): bool => $name === $field->name,
         );
 
         if ($processTableField === []) {

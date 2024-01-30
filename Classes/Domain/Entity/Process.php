@@ -21,8 +21,7 @@ final class Process
         public readonly string $name,
         public readonly int $connectionUid,
         public readonly bool $disabled,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

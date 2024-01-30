@@ -24,8 +24,7 @@ final class ProcessTableField
         public readonly string $description,
         public readonly FieldType $type,
         public readonly int $fieldSize,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

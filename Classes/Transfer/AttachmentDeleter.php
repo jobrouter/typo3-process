@@ -23,8 +23,7 @@ class AttachmentDeleter
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly ResourceFactory $resourceFactory,
-    ) {
-    }
+    ) {}
 
     /**
      * @param string $file File path with identifier like "1:/user_upload/form_cabd2b9af41347e100bd042d1df1d8eb2543d903/foo.pdf"

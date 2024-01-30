@@ -44,8 +44,7 @@ final class ListController
         private readonly ProcessDemandFactory $processDemandFactory,
         private readonly ProcessRepository $processRepository,
         private readonly UriBuilder $uriBuilder,
-    ) {
-    }
+    ) {}
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface
     {

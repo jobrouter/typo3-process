@@ -71,7 +71,7 @@ final class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                    static fn($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
@@ -108,7 +108,7 @@ final class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                    static fn($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
@@ -145,7 +145,7 @@ final class StartCommandTest extends TestCase
                 Extension::REGISTRY_NAMESPACE,
                 'startCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE,
+                    static fn($subject): bool => $subject['exitCode'] === Command::FAILURE,
                 ),
             );
 

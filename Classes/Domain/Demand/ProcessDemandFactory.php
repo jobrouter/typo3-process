@@ -26,8 +26,7 @@ final class ProcessDemandFactory
         private readonly ConnectionRepository $connectionRepository,
         private readonly ProcessTableFieldRepository $processTableFieldRepository,
         private readonly StepRepository $stepRepository,
-    ) {
-    }
+    ) {}
 
     public function create(Process $process, bool $withDisabled = false): ProcessDemand
     {

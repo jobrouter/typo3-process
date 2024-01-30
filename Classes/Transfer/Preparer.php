@@ -26,8 +26,7 @@ class Preparer
         private readonly Encrypter $encrypter,
         private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function store(Transfer $transfer): void
     {

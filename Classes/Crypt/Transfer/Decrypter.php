@@ -24,8 +24,7 @@ class Decrypter
 
     public function __construct(
         private readonly Crypt $cryptService,
-    ) {
-    }
+    ) {}
 
     public function decryptIfEncrypted(Transfer $transfer): Transfer
     {

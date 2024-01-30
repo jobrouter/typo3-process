@@ -31,6 +31,5 @@ final class ProcessDemand
         public readonly array $processTableFields,
         public readonly array $steps,
         public readonly bool $disabled,
-    ) {
-    }
+    ) {}
 }
