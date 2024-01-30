@@ -22,5 +22,6 @@ What this extension does:
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/process/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterproce) |
 [Changelog](https://github.com/jobrouter/typo3-process/blob/main/CHANGELOG.md) |
+[Issue Tracker](https://github.com/jobrouter/typo3-process/issues) |
 [Extension in TER](https://extensions.typo3.org/extension/jobrouter_process/) |
 [Extension on JobRouter Marketplace](https://marketplace.jobrouter.com/en/product/typo3-jobrouter-process/)
