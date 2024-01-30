@@ -1,5 +1,5 @@
 {
-	"name": "brotkrueml/typo3-jobrouter-process",
+	"name": "jobrouter/typo3-process",
 	"description": "Connect JobRouter® processes with TYPO3",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
@@ -17,8 +17,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/brotkrueml/typo3-jobrouter-process/issues",
-		"source": "https://github.com/brotkrueml/typo3-jobrouter-process",
+		"issues": "https://github.com/jobrouter/typo3-process/issues",
+		"source": "https://github.com/jobrouter/typo3-process",
 		"docs": "https://typo3-jobrouter.readthedocs.io/projects/process/"
 	},
 	"require": {
