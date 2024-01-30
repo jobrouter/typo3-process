@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Entity;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_processtablefield database table

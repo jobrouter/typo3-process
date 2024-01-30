@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Demand;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
+use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
 
 /**
  * @internal

@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Crypt\Transfer;
 
-use Brotkrueml\JobRouterConnector\Exception\CryptException;
-use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Connector\Exception\CryptException;
+use JobRouter\AddOn\Typo3Connector\Service\Crypt;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;

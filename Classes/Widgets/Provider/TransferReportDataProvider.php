@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Dto\TransferReportItem;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferReportItem;
 use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 
 /**

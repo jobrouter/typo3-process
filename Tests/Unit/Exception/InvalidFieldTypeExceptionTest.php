@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Dto\TransferStatus;
-use Brotkrueml\JobRouterBase\Widgets\Provider\TransferStatusDataProviderInterface;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferStatus;
+use JobRouter\AddOn\Typo3Base\Widgets\Provider\TransferStatusDataProviderInterface;
 use TYPO3\CMS\Core\Registry;
 
 /**

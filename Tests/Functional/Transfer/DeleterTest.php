@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
 
-use Brotkrueml\JobRouterConnector\Service\Crypt;
-use Brotkrueml\JobRouterConnector\Service\FileService;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
 use Brotkrueml\JobRouterProcess\Transfer\Deleter;
+use JobRouter\AddOn\Typo3Connector\Service\Crypt;
+use JobRouter\AddOn\Typo3Connector\Service\FileService;
 use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;

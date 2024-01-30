@@ -70,20 +70,20 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Integer->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Date->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Date->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Attachment->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Attachment->value,
                     ],
                 ],
                 'required' => true,
@@ -103,28 +103,28 @@ return [
         ],
     ],
     'types' => [
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value => [
+        (string)JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 --palette--;;textType,
             ',
         ],
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value => [
+        (string)JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Integer->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
             ',
         ],
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value => [
+        (string)JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Date->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
             ',
         ],
-        (string)Brotkrueml\JobRouterBase\Enumeration\FieldType::Attachment->value => [
+        (string)JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Attachment->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,

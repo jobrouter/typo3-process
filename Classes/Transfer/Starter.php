@@ -11,13 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterClient\Client\IncidentsClientDecorator;
-use Brotkrueml\JobRouterClient\Enumerations\Priority;
-use Brotkrueml\JobRouterClient\Model\Incident;
-use Brotkrueml\JobRouterClient\Resource\File;
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\Decrypter;
 use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemand;
 use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemandFactory;
@@ -32,6 +25,13 @@ use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\FileNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\ProcessTableFieldNotFoundException;
 use Brotkrueml\JobRouterProcess\Exception\StartException;
+use JobRouter\AddOn\RestClient\Client\IncidentsClientDecorator;
+use JobRouter\AddOn\RestClient\Enumerations\Priority;
+use JobRouter\AddOn\RestClient\Model\Incident;
+use JobRouter\AddOn\RestClient\Resource\File;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
+use JobRouter\AddOn\Typo3Connector\RestClient\RestClientFactory;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;

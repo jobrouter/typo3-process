@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Exception;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 
 final class InvalidFieldTypeException extends \RuntimeException
 {

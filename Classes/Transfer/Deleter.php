@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Transfer;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Exception\DeleteException;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Connector\Service\Crypt;
 use Psr\Log\LoggerInterface;
 
 /**

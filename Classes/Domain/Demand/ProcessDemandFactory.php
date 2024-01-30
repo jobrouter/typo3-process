@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Demand;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
 use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
 use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
 
 /**
  * @internal

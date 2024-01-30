@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Crypt\Transfer;
 
-use Brotkrueml\JobRouterConnector\Exception\CryptException;
-use Brotkrueml\JobRouterConnector\Service\Crypt;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Connector\Exception\CryptException;
+use JobRouter\AddOn\Typo3Connector\Service\Crypt;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 

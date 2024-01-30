@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess;
 
-use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
-use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
 use Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand;
 use Brotkrueml\JobRouterProcess\Command\StartCommand;
 use Brotkrueml\JobRouterProcess\Controller\ListController;
@@ -21,6 +19,8 @@ use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
+use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
+use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;

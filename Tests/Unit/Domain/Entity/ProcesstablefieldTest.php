@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

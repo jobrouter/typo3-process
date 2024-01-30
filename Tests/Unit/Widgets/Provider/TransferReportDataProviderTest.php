@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Dto\TransferReportItem;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
+use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferReportItem;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

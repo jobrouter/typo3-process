@@ -11,9 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
 
-use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
-use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
 use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
@@ -24,6 +21,9 @@ use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
 use Brotkrueml\JobRouterProcess\Transfer\Preparer;
+use JobRouter\AddOn\Typo3Base\Domain\Finishers\AbstractTransferFinisher;
+use JobRouter\AddOn\Typo3Base\Domain\Preparers\FormFieldValuesPreparer;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 
 /**
  * @internal
