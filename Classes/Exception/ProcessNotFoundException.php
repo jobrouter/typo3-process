@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Exception;
+namespace JobRouter\AddOn\Typo3Process\Exception;
 
 final class ProcessNotFoundException extends \RuntimeException
 {

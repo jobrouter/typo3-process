@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Widgets\Provider;
+namespace JobRouter\AddOn\Typo3Process\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Extension;
 use JobRouter\AddOn\Typo3Base\Extension as BaseExtension;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Process\Extension;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;

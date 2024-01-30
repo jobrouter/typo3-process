@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferTypeChartDataProvider;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;

@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Crypt\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Crypt\Transfer;
 
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Exception\DecryptException;
-use Brotkrueml\JobRouterProcess\Extension;
 use JobRouter\AddOn\Typo3Connector\Exception\CryptException;
 use JobRouter\AddOn\Typo3Connector\Service\Crypt;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Exception\DecryptException;
+use JobRouter\AddOn\Typo3Process\Extension;
 
 class Decrypter
 {

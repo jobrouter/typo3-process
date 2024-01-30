@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Demand;
+namespace JobRouter\AddOn\Typo3Process\Domain\Demand;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
 use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\ProcessTableField;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Step;
 
 /**
  * @internal

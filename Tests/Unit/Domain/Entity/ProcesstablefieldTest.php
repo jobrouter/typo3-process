@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\ProcessTableField;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

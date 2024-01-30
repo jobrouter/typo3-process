@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Tests\Functional\Transfer;
 
-use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
+use JobRouter\AddOn\Typo3Process\Transfer\AttachmentDeleter;
 use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Information\Typo3Version;

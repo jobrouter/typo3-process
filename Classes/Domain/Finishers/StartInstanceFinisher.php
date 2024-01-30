@@ -9,21 +9,21 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Finishers;
+namespace JobRouter\AddOn\Typo3Process\Domain\Finishers;
 
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Entity\ProcessTableField;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use Brotkrueml\JobRouterProcess\Exception\CommonParameterNotFoundException;
-use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
-use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
-use Brotkrueml\JobRouterProcess\Exception\MissingProcessTableFieldException;
-use Brotkrueml\JobRouterProcess\Transfer\Preparer;
 use JobRouter\AddOn\Typo3Base\Domain\Finishers\AbstractTransferFinisher;
 use JobRouter\AddOn\Typo3Base\Domain\Preparers\FormFieldValuesPreparer;
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\ProcessTableField;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Step;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessTableFieldRepository;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\StepRepository;
+use JobRouter\AddOn\Typo3Process\Exception\CommonParameterNotFoundException;
+use JobRouter\AddOn\Typo3Process\Exception\InvalidFieldTypeException;
+use JobRouter\AddOn\Typo3Process\Exception\MissingFinisherOptionException;
+use JobRouter\AddOn\Typo3Process\Exception\MissingProcessTableFieldException;
+use JobRouter\AddOn\Typo3Process\Transfer\Preparer;
 
 /**
  * @internal

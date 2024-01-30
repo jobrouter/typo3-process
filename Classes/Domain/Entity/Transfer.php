@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Entity;
+namespace JobRouter\AddOn\Typo3Process\Domain\Entity;
 
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
 
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_transfer database table

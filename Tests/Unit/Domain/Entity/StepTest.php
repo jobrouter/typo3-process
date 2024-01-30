@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Entity;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Step;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Step;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

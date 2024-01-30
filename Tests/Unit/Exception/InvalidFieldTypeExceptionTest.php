@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Exception;
 
-use Brotkrueml\JobRouterProcess\Exception\InvalidFieldTypeException;
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Process\Exception\InvalidFieldTypeException;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

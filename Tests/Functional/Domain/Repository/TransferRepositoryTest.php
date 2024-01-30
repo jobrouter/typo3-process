@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Process\Tests\Functional\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

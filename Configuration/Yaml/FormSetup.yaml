@@ -29,7 +29,7 @@ TYPO3:
                           templateName: 'Inspector-RemoveElementEditor'
           finishersDefinition:
             JobRouterStartInstance:
-              implementationClassName: 'Brotkrueml\JobRouterProcess\Domain\Finishers\StartInstanceFinisher'
+              implementationClassName: 'JobRouter\AddOn\Typo3Process\Domain\Finishers\StartInstanceFinisher'
               formEditor:
                 iconIdentifier: 'form-finisher'
                 label: 'formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label'

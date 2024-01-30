@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Exception;
 
-use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use JobRouter\AddOn\Typo3Process\Exception\StepNotFoundException;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

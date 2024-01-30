@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Process\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer as TransferDto;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer as TransferDto;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Transfer;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 

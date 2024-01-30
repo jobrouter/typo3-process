@@ -53,10 +53,10 @@ controller:
 
    namespace MyVendor\MyExtension\Controller;
 
-   use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-   use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-   use Brotkrueml\JobRouterProcess\Exception\PrepareException;
-   use Brotkrueml\JobRouterProcess\Transfer\Preparer;
+   use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+   use JobRouter\AddOn\Typo3Process\Domain\Repository\StepRepository;
+   use JobRouter\AddOn\Typo3Process\Exception\PrepareException;
+   use JobRouter\AddOn\Typo3Process\Transfer\Preparer;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    final class MyController extends ActionController

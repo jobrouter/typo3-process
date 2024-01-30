@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Widgets\Provider;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer;
-use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferReportItem;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Transfer;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferReportDataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

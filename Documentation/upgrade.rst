@@ -19,5 +19,5 @@ Version 2 of this extension introduced some breaking changes, notably:
 
 *  The Extbase model classes are gone. Instead there are now immutable entity
    classes for process, processtablefield, step and transfer under the namespace
-   :php:`Brotkrueml\JobRouterProcess\Domain\Entity`. There are also no getters
+   :php:`JobRouter\AddOn\Typo3Process\Domain\Entity`. There are also no getters
    available anymore, instead use the public properties (which are readonly).

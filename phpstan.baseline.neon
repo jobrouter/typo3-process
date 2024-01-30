@@ -1,7 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method set\\(\\) on Brotkrueml\\\\JobRouterProcess\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
+			message: "#^Cannot call method set\\(\\) on JobRouter\\\\AddOn\\\\Typo3Process\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
 
@@ -31,7 +31,7 @@ parameters:
 			path: Classes/Transfer/Deleter.php
 
 		-
-			message: "#^Property Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Deleter\\:\\:\\$attachmentFieldsForProcess \\(array\\<int, array\\<string\\>\\>\\) does not accept array\\<int\\|string, array\\<string\\>\\>\\.$#"
+			message: "#^Property JobRouter\\\\AddOn\\\\Typo3Process\\\\Transfer\\\\Deleter\\:\\:\\$attachmentFieldsForProcess \\(array\\<int, array\\<string\\>\\>\\) does not accept array\\<int\\|string, array\\<string\\>\\>\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
 
@@ -41,6 +41,6 @@ parameters:
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Cognitive complexity for \"Brotkrueml\\\\JobRouterProcess\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
+			message: "#^Cognitive complexity for \"JobRouter\\\\AddOn\\\\Typo3Process\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
 			count: 1
 			path: Classes/Transfer/Starter.php

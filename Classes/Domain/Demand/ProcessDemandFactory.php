@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Demand;
+namespace JobRouter\AddOn\Typo3Process\Domain\Demand;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
 use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
 use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Process;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessTableFieldRepository;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\StepRepository;
 
 /**
  * @internal

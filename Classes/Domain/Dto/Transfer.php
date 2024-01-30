@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Dto;
+namespace JobRouter\AddOn\Typo3Process\Domain\Dto;
 
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Domain\Entity\Transfer as TransferEntity;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Transfer as TransferEntity;
 
 final class Transfer
 {

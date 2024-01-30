@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Functional\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Tests\Functional\Transfer;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessTableFieldRepository;
-use Brotkrueml\JobRouterProcess\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterProcess\Transfer\AttachmentDeleter;
-use Brotkrueml\JobRouterProcess\Transfer\Deleter;
 use JobRouter\AddOn\Typo3Connector\Service\Crypt;
 use JobRouter\AddOn\Typo3Connector\Service\FileService;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessTableFieldRepository;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Process\Transfer\AttachmentDeleter;
+use JobRouter\AddOn\Typo3Process\Transfer\Deleter;
 use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Resource\ResourceFactory;

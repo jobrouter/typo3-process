@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Crypt\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Crypt\Transfer;
 
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\Encrypter;
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Extension;
 use JobRouter\AddOn\Typo3Connector\Exception\CryptException;
 use JobRouter\AddOn\Typo3Connector\Service\Crypt;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\Encrypter;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Extension;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;

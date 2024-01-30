@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Domain\Dto;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Domain\Dto;
 
-use Brotkrueml\JobRouterProcess\Crypt\Transfer\EncryptedFieldsBitSet;
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Entity;
+namespace JobRouter\AddOn\Typo3Process\Domain\Entity;
 
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_process database table

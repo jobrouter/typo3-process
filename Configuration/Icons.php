@@ -12,14 +12,14 @@ declare(strict_types=1);
 return [
     'jobrouter-module-process' => [
         'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-module.svg',
+        'source' => 'EXT:' . JobRouter\AddOn\Typo3Process\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-module.svg',
     ],
     'jobrouter-process-toolbar' => [
         'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-toolbar.svg',
+        'source' => 'EXT:' . JobRouter\AddOn\Typo3Process\Extension::KEY . '/Resources/Public/Icons/jobrouter-process-toolbar.svg',
     ],
     'jobrouter-action-open-designer' => [
         'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/action-open-designer.svg',
+        'source' => 'EXT:' . JobRouter\AddOn\Typo3Process\Extension::KEY . '/Resources/Public/Icons/action-open-designer.svg',
     ],
 ];

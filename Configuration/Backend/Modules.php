@@ -9,8 +9,8 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterProcess\Controller\ListController;
-use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Process\Controller\ListController;
+use JobRouter\AddOn\Typo3Process\Extension;
 
 return [
     // "Data" module

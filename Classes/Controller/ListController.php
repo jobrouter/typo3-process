@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Controller;
+namespace JobRouter\AddOn\Typo3Process\Controller;
 
-use Brotkrueml\JobRouterProcess\Domain\Demand\ProcessDemandFactory;
-use Brotkrueml\JobRouterProcess\Domain\Repository\ProcessRepository;
-use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Process\Domain\Demand\ProcessDemandFactory;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessRepository;
+use JobRouter\AddOn\Typo3Process\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;

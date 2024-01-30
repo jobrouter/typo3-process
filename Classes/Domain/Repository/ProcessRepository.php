@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Process\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Domain\Entity\Process;
-use Brotkrueml\JobRouterProcess\Exception\ProcessNotFoundException;
+use JobRouter\AddOn\Typo3Process\Domain\Entity\Process;
+use JobRouter\AddOn\Typo3Process\Exception\ProcessNotFoundException;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;

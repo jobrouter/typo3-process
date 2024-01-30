@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Command;
+namespace JobRouter\AddOn\Typo3Process\Command;
 
-use Brotkrueml\JobRouterProcess\Exception\DeleteException;
-use Brotkrueml\JobRouterProcess\Transfer\Deleter;
+use JobRouter\AddOn\Typo3Process\Exception\DeleteException;
+use JobRouter\AddOn\Typo3Process\Transfer\Deleter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -11,16 +11,16 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterProcess;
 
-use Brotkrueml\JobRouterProcess\Command\CleanUpTransfersCommand;
-use Brotkrueml\JobRouterProcess\Command\StartCommand;
-use Brotkrueml\JobRouterProcess\Controller\ListController;
-use Brotkrueml\JobRouterProcess\EventListener\ToolbarItemProvider;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferReportDataProvider;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransfersPerDayDataProvider;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferStatusDataProvider;
-use Brotkrueml\JobRouterProcess\Widgets\Provider\TransferTypeChartDataProvider;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
+use JobRouter\AddOn\Typo3Process\Command\CleanUpTransfersCommand;
+use JobRouter\AddOn\Typo3Process\Command\StartCommand;
+use JobRouter\AddOn\Typo3Process\Controller\ListController;
+use JobRouter\AddOn\Typo3Process\EventListener\ToolbarItemProvider;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferReportDataProvider;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransfersPerDayDataProvider;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferStatusDataProvider;
+use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferTypeChartDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
@@ -38,7 +38,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         ->private();
 
     $services
-        ->load('Brotkrueml\JobRouterProcess\\', '../Classes/*')
+        ->load('JobRouter\AddOn\Typo3Process\\', '../Classes/*')
         ->exclude('../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php}');
 
     $services

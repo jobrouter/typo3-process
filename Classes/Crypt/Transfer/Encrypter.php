@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Crypt\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Crypt\Transfer;
 
-use Brotkrueml\JobRouterProcess\Domain\Dto\Transfer;
-use Brotkrueml\JobRouterProcess\Extension;
 use JobRouter\AddOn\Typo3Connector\Exception\CryptException;
 use JobRouter\AddOn\Typo3Connector\Service\Crypt;
+use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
+use JobRouter\AddOn\Typo3Process\Extension;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 

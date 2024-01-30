@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Functional\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Process\Tests\Functional\Domain\Repository;
 
-use Brotkrueml\JobRouterProcess\Domain\Repository\StepRepository;
-use Brotkrueml\JobRouterProcess\Exception\StepNotFoundException;
+use JobRouter\AddOn\Typo3Process\Domain\Repository\StepRepository;
+use JobRouter\AddOn\Typo3Process\Exception\StepNotFoundException;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

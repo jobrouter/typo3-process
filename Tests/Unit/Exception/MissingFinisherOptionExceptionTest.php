@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Tests\Unit\Exception;
+namespace JobRouter\AddOn\Typo3Process\Tests\Unit\Exception;
 
-use Brotkrueml\JobRouterProcess\Exception\MissingFinisherOptionException;
+use JobRouter\AddOn\Typo3Process\Exception\MissingFinisherOptionException;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

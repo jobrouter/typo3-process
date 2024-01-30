@@ -9,7 +9,7 @@
 
 return [
     'ctrl' => [
-        'title' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step',
+        'title' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step',
         'label' => 'name',
         'descriptionColumn' => 'description',
         'tstamp' => 'tstamp',
@@ -20,7 +20,7 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary,description',
-        'iconfile' => 'EXT:' . Brotkrueml\JobRouterProcess\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg',
+        'iconfile' => 'EXT:' . JobRouter\AddOn\Typo3Process\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg',
         'hideTable' => true,
     ],
     'columns' => [
@@ -40,7 +40,7 @@ return [
         ],
 
         'handle' => [
-            'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.handle',
+            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.handle',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -50,7 +50,7 @@ return [
             ],
         ],
         'name' => [
-            'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.name',
+            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -60,7 +60,7 @@ return [
             ],
         ],
         'process' => [
-            'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.process',
+            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.process',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -71,7 +71,7 @@ return [
             ],
         ],
         'step_number' => [
-            'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.step_number',
+            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.step_number',
             'config' => [
                 'type' => 'number',
                 'size' => 5,
@@ -80,7 +80,7 @@ return [
             ],
         ],
         'description' => [
-            'label' => Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.description',
+            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.description',
             'config' => [
                 'type' => 'text',
                 'rows' => 5,
@@ -92,7 +92,7 @@ return [
         '1' => [
             'showitem' => '
                 name, handle, process, step_number,
-                --div--;' . Brotkrueml\JobRouterProcess\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
+                --div--;' . JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,

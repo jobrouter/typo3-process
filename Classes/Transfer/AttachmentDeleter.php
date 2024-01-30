@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Transfer;
+namespace JobRouter\AddOn\Typo3Process\Transfer;
 
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Core\Environment;

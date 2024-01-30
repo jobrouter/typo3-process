@@ -1,7 +1,7 @@
 <?php
 
-use Brotkrueml\JobRouterProcess\Controller\ListController;
-use Brotkrueml\JobRouterProcess\Extension;
+use JobRouter\AddOn\Typo3Process\Controller\ListController;
+use JobRouter\AddOn\Typo3Process\Extension;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 

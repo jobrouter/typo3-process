@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess\Domain\Dto;
+namespace JobRouter\AddOn\Typo3Process\Domain\Dto;
 
 /**
  * @internal
