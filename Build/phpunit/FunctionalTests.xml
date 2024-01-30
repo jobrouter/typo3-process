@@ -16,7 +16,6 @@
     beStrictAboutTestsThatDoNotTestAnything="false"
     failOnWarning="true"
     failOnRisky="true"
-    testdox="true"
 >
     <testsuites>
         <testsuite name="Functional tests">
