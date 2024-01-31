@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterProcess;
+namespace JobRouter\AddOn\Typo3Process;
 
 use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
@@ -90,7 +90,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ->call('setNumberOfDays', ['%jobrouter_process.widget.typeOfInstanceStarts.numberOfDays%']);
 
         $services
-            ->set('dashboard.widget.brotkrueml.jobrouter_process.transfersPerDay')
+            ->set('dashboard.widget.jobrouter_process.transfersPerDay')
             ->class(BarChartWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransfersPerDayDataProvider::class))
@@ -111,7 +111,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ]);
 
         $services
-            ->set('dashboard.widget.brotkrueml.jobrouter_process.typeOfInstanceStarts')
+            ->set('dashboard.widget.jobrouter_process.typeOfInstanceStarts')
             ->class(DoughnutChartWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
@@ -132,7 +132,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ]);
 
         $services
-            ->set('dashboard.widget.brotkrueml.jobrouter_process.statusOfInstanceStarts')
+            ->set('dashboard.widget.jobrouter_process.statusOfInstanceStarts')
             ->class(TransferStatusWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
@@ -152,7 +152,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             ]);
 
         $services
-            ->set('dashboard.widget.brotkrueml.jobrouter_process.transferReport')
+            ->set('dashboard.widget.jobrouter_process.transferReport')
             ->class(TransferReportWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
