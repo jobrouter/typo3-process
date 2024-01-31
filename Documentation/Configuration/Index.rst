@@ -44,7 +44,7 @@ finisher.
    ensures confidentiality and integrity!
 
 .. important::
-   If you lose or change the encryption key (generated with the :doc:`JobRouter
+   If you lose or change the encryption key (generated with the :ref:`JobRouter
    Connector extension <ext_jobrouter_connector:introduction>`), data cannot
    be decrypted by the :ref:`start process command <command-start>` anymore!
 

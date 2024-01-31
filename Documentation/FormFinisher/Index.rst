@@ -223,8 +223,8 @@ You can use variables in the common parameters, such as :yaml:`summary` or
 :yaml:`initiator`, and in the process table fields.
 
 For more information have a look into the available :ref:`variable resolvers
-<ext_jobrouter_base:variable-resolvers>`. You can also write your :ref:`own
-variable resolvers <developer-variable-resolvers>`.
+<ext_jobrouter_base:variable-resolvers>`. You can also write your
+:ref:`own variable resolvers <ext_jobrouter_base:developer-variable-resolvers>`.
 
 
-.. _overwritten in your form configuration: https://docs.typo3.org/c/typo3/cms-form/11.5/en-us/I/Config/proto/formElements/formElementTypes/FileUpload.html#properties-savetofilemount
+.. _overwritten in your form configuration: https://docs.typo3.org/c/typo3/cms-form/12.4/en-us/I/Config/proto/formElements/formElementTypes/FileUpload.html#properties-savetofilemount

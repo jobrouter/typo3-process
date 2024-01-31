@@ -19,7 +19,7 @@ What this extension does:
 | 2.x            | 11.5 / 12.4 | ≥ 8.1 | Security fixes                               |
 | 1.x            | 10.4 / 11.5 | ≥ 7.4 | Security fixes, end of life expected: Oct 24 |
 
-[Documentation](https://typo3-jobrouter.readthedocs.io/projects/process/) |
+[Documentation](https://docs.typo3.org/p/jobrouter/typo3-process/main/en-us/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterproce) |
 [Changelog](https://github.com/jobrouter/typo3-process/blob/main/CHANGELOG.md) |
 [Issue Tracker](https://github.com/jobrouter/typo3-process/issues) |
