@@ -14,7 +14,6 @@ namespace JobRouter\AddOn\Typo3Process\Transfer;
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 use JobRouter\AddOn\Typo3Connector\Service\Crypt;
 use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
-use JobRouter\AddOn\Typo3Process\Domain\Entity\Process;
 use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessTableFieldRepository;
 use JobRouter\AddOn\Typo3Process\Domain\Repository\TransferRepository;
 use JobRouter\AddOn\Typo3Process\Exception\DeleteException;

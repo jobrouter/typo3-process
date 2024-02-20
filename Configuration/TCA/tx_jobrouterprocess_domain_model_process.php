@@ -7,9 +7,11 @@
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use JobRouter\AddOn\Typo3Process\Extension;
+
 return [
     'ctrl' => [
-        'title' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process',
+        'title' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process',
         'label' => 'description',
         'label_alt' => 'name',
         'descriptionColumn' => 'description',
@@ -21,7 +23,7 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'name,description',
-        'iconfile' => 'EXT:' . JobRouter\AddOn\Typo3Process\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg',
+        'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg',
         'hideTable' => true,
     ],
     'columns' => [
@@ -41,8 +43,8 @@ return [
         ],
 
         'name' => [
-            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.name',
-            'description' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.name.description',
+            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.name',
+            'description' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.name.description',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -52,7 +54,7 @@ return [
             ],
         ],
         'connection' => [
-            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.connection',
+            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.connection',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -63,7 +65,7 @@ return [
             ],
         ],
         'processtablefields' => [
-            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.processtablefields',
+            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.processtablefields',
             'config' => [
                 'type' => 'inline',
                 'allowed' => 'tx_jobrouterprocess_domain_model_processtablefield',
@@ -84,7 +86,7 @@ return [
             ],
         ],
         'description' => [
-            'label' => JobRouter\AddOn\Typo3Process\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.description',
+            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_process.description',
             'config' => [
                 'type' => 'text',
                 'rows' => 5,
