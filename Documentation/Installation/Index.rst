@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _installation:
 
 ============
@@ -18,7 +16,7 @@ Target group: **Administrators**
 Requirements
 ============
 
-The extension in version |release| is available for TYPO3 v11 LTS and TYPO3 v12
+The extension in version |version| is available for TYPO3 v11 LTS and TYPO3 v12
 LTS.
 
 
@@ -50,7 +48,7 @@ Installation via Composer
 The recommended way to install this extension is by using Composer. In your
 Composer-based TYPO3 project root, just type:
 
-.. code-block:: bash
+.. code-block:: shell
 
    composer req jobrouter/typo3-process
 

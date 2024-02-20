@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _upgrade:
 
 =======
@@ -14,13 +12,13 @@ From version 2.0 to 3.0
 
 The namespace of the JobRouter TYPO3 Process classes have changed from
 
-.. code-block:: text
+.. code-block:: plaintext
 
    \Brotkrueml\JobRouterProcess
 
 to
 
-.. code-block:: text
+.. code-block:: plaintext
 
    \JobRouter\Addon\Typo3Process
 

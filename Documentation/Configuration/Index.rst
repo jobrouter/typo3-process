@@ -1,7 +1,3 @@
-.. include:: /Includes.rst.txt
-
-.. highlight:: bash
-
 .. _configuration:
 
 =============
@@ -63,6 +59,7 @@ are shown. This can be overridden in the :file:`Configuration/Services.yaml`
 of your site package extension (or any other dependent extension):
 
 .. code-block:: yaml
+   :caption: EXT:my_sitepackage/Configuration/Services.yaml
 
    parameters:
       jobrouter_process.widget.transfersPerDay.numberOfDays: 14
@@ -78,6 +75,7 @@ into account for the :ref:`Instance Start Types widget
 dependent extension):
 
 .. code-block:: yaml
+   :caption: EXT:my_sitepackage/Configuration/Services.yaml
 
    parameters:
       jobrouter_process.widget.typeOfInstanceStarts.numberOfDays: 14
@@ -101,6 +99,7 @@ file, add this snippet to the :file:`ext_localconf.php` file of your site
 package extension:
 
 .. code-block:: php
+   :caption: EXT:my_sitepackage/ext_localconf.php
 
    use Psr\Log\Level;
    use TYPO3\CMS\Core\Log\Writer\FileWriter;
