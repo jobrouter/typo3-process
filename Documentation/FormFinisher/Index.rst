@@ -117,7 +117,7 @@ As you can see, you can define some options. These are:
 - `processtable`: You can map the form fields to the process table fields. As
   you can see in the example above, you define the process table field as the
   key (e.g `email_address`) and then map it with the to the form field
-  identifier which is enclosed in curly brackets (e.g. `{email}`).
+  identifier which is enclosed in curly brackets (for example, `{email}`).
   You can also set a static value, combine a static value with a form field
   or map multiple form fields to a process table field.
 
@@ -131,8 +131,8 @@ As you can see, you can define some options. These are:
 
    If the value of a form field is an array, like from a multi checkbox, the
    array is converted to a csv string and stored in the given process table
-   field. The value can be reconverted to an array, e.g. in a JobRouter® rule,
-   with the PHP function `str_getcsv() <https://www.php.net/str_getcsv>`_.
+   field. The value can be reconverted to an array, for example, in a JobRouter®
+   rule, with the PHP function `str_getcsv() <https://www.php.net/str_getcsv>`_.
 
 
 Start multiple instances
