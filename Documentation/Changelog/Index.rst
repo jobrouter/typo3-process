@@ -25,7 +25,7 @@ Changed
 
 
 * Require JobRouter REST Client in version 3
-* Namespace from ``Brotkrueml\JobRouterProcess`` to ``JobRouter\Addon\Typo3Process``
+* Namespace from ``Brotkrueml\JobRouterProcess`` to ``JobRouter\AddOn\Typo3Process``
 
 `2.0.0 <https://github.com/jobrouter/typo3-process/compare/v1.2.0...v2.0.0>`_ - 2023-05-31
 ----------------------------------------------------------------------------------------------
