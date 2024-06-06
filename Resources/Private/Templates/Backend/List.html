@@ -79,7 +79,13 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <be:link.editRecord class="btn btn-default" table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">
+                                    <be:link.editRecord
+                                        class="btn btn-default"
+                                        table="tx_jobrouterprocess_domain_model_process"
+                                        uid="{process.uid}"
+                                        title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}"
+                                        returnUrl="{f:be.uri(route: 'jobrouter_process')}"
+                                    >
                                         <core:icon identifier="actions-open"/>
                                     </be:link.editRecord>
                                     <f:link.external class="btn btn-default" uri="{manageProcessLink}"
@@ -107,7 +113,15 @@
 </f:section>
 
 <f:section name="processName">
-    <be:link.editRecord class="jobrouter-process-link" table="tx_jobrouterprocess_domain_model_process" uid="{process.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}">{process.name}</be:link.editRecord>
+    <be:link.editRecord
+        class="jobrouter-process-link"
+        table="tx_jobrouterprocess_domain_model_process"
+        uid="{process.uid}"
+        title="{f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:action.edit_process')}"
+        returnUrl="{f:be.uri(route: 'jobrouter_process')}"
+    >
+        {process.name}
+    </be:link.editRecord>
     <f:if condition="{process.disabled}">
         ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
     </f:if>
