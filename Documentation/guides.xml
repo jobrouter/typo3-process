@@ -7,7 +7,7 @@
 >
     <project
         title="TYPO3 JobRouter Process"
-        release="3.0.1-dev"
+        release="3.0.1"
         version="3.0"
         copyright="since 2020 Chris Müller, since 2024 JobRouter AG"
     />
