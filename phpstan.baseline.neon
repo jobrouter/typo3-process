@@ -6,6 +6,16 @@ parameters:
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
+			message: "#^Cannot call method setEncryptedFields\\(\\) on JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Encrypter.php
+
+		-
+			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Process\\\\Crypt\\\\Transfer\\\\Encrypter\\:\\:encryptIfConfigured\\(\\) should return JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer but returns JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer\\|null\\.$#"
+			count: 1
+			path: Classes/Crypt/Transfer/Encrypter.php
+
+		-
 			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php

@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 class Encrypter
 {
+    // @todo Get rid of those class properties (see also phpstan baseline)
     private ?Transfer $encryptedTransfer = null;
     private ?EncryptedFieldsBitSet $encryptedFields = null;
 
