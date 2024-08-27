@@ -51,8 +51,8 @@ final class ListController
         $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
 
         $this->pageRenderer->addCssFile('EXT:' . Extension::KEY . '/Resources/Public/Css/styles.css');
-        $this->pageRenderer->loadRequireJsModule(
-            'TYPO3/CMS/JobrouterProcess/ProcessTableFieldsToggler',
+        $this->pageRenderer->loadJavaScriptModule(
+            '@jobrouter/process/process-table-fields-toggler.js',
         );
 
         $this->initializeView();
