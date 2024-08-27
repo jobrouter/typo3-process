@@ -39,7 +39,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services
         ->load('JobRouter\AddOn\Typo3Process\\', '../Classes/*')
-        ->exclude('../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php}');
+        ->exclude('../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php}');
 
     $services
         ->set(ListController::class)
