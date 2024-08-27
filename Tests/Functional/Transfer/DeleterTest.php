@@ -19,6 +19,7 @@ use JobRouter\AddOn\Typo3Process\Transfer\AttachmentDeleter;
 use JobRouter\AddOn\Typo3Process\Transfer\Deleter;
 use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -52,7 +53,7 @@ final class DeleterTest extends FunctionalTestCase
 
         $this->subject = new Deleter(
             $attachmentDeleter,
-            new Crypt(new FileService()),
+            new Crypt(new FileService($this->createStub(ExtensionConfiguration::class))),
             new NullLogger(),
             $processTableFieldRepository,
             $transferRepository,
