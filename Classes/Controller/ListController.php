@@ -22,13 +22,10 @@ use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * @internal
@@ -36,9 +33,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 #[AsController]
 final class ListController
 {
-    private ModuleTemplate $moduleTemplate;
-    private StandaloneView $view;
-
     public function __construct(
         private readonly IconFactory $iconFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
@@ -50,41 +44,31 @@ final class ListController
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface
     {
-        $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
+        $view = $this->moduleTemplateFactory->create($request);
 
         $this->pageRenderer->addCssFile('EXT:' . Extension::KEY . '/Resources/Public/Css/styles.css');
         $this->pageRenderer->loadJavaScriptModule(
             '@jobrouter/process/process-table-fields-toggler.js',
         );
 
-        $this->initializeView();
-
         $processDemands = $this->processDemandFactory->createMultiple(
             $this->processRepository->findAll(true),
             true,
         );
 
-        $this->view->assign('processDemands', $processDemands);
-
         $this->configureDocHeader(
+            $view,
             $request->getAttribute('normalizedParams')?->getRequestUri() ?? '',
         );
 
-        $this->moduleTemplate->setContent($this->view->render());
+        $view->assign('processDemands', $processDemands);
 
-        return new HtmlResponse($this->moduleTemplate->renderContent());
+        return $view->renderResponse('Backend/List');
     }
 
-    private function initializeView(): void
+    private function configureDocHeader(ModuleTemplate $view, string $requestUri): void
     {
-        $this->view = GeneralUtility::makeInstance(StandaloneView::class);
-        $this->view->setTemplate('List');
-        $this->view->setTemplateRootPaths(['EXT:' . Extension::KEY . '/Resources/Private/Templates/Backend']);
-    }
-
-    private function configureDocHeader(string $requestUri): void
-    {
-        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+        $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
 
         $newProcessButton = $buttonBar->makeLinkButton()
             ->setHref((string) $this->uriBuilder->buildUriFromRoute(

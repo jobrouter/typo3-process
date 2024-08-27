@@ -5,9 +5,13 @@
     data-namespace-typo3-fluid="true"
 >
 
-<h1><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+<f:layout name="Module"/>
 
-<f:render section="processDemands" arguments="{processDemands: processDemands}"/>
+<f:section name="Content">
+    <h1><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+
+    <f:render section="processDemands" arguments="{processDemands: processDemands}"/>
+</f:section>
 
 <f:section name="processDemands">
     <h2><f:translate key="LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:processDemands_title"/></h2>
