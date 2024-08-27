@@ -106,28 +106,28 @@ return [
         ],
     ],
     'types' => [
-        (string)FieldType::Text->value => [
+        (string) FieldType::Text->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 --palette--;;textType,
             ',
         ],
-        (string)FieldType::Integer->value => [
+        (string) FieldType::Integer->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
             ',
         ],
-        (string)FieldType::Date->value => [
+        (string) FieldType::Date->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,
                 type,
             ',
         ],
-        (string)FieldType::Attachment->value => [
+        (string) FieldType::Attachment->value => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameDescription,

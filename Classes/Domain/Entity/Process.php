@@ -29,10 +29,10 @@ final class Process
     public static function fromArray(array $data): self
     {
         return new self(
-            (int)$data['uid'],
+            (int) $data['uid'],
             $data['name'],
-            (int)$data['connection'],
-            (bool)$data['disabled'],
+            (int) $data['connection'],
+            (bool) $data['disabled'],
         );
     }
 }

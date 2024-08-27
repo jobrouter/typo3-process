@@ -85,13 +85,13 @@ final class ListController
         $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
 
         $newProcessButton = $buttonBar->makeLinkButton()
-            ->setHref((string)$this->uriBuilder->buildUriFromRoute(
+            ->setHref((string) $this->uriBuilder->buildUriFromRoute(
                 'record_edit',
                 [
                     'edit' => [
                         'tx_jobrouterprocess_domain_model_process' => ['new'],
                     ],
-                    'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
+                    'returnUrl' => (string) $this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
                 ],
             ))
             ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_process'))

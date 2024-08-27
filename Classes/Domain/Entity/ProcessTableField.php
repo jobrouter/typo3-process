@@ -32,11 +32,11 @@ final class ProcessTableField
     public static function fromArray(array $data): self
     {
         return new self(
-            (int)$data['uid'],
+            (int) $data['uid'],
             $data['name'],
             $data['description'],
-            FieldType::from((int)$data['type']),
-            (int)$data['field_size'],
+            FieldType::from((int) $data['type']),
+            (int) $data['field_size'],
         );
     }
 }

@@ -96,7 +96,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             $value = $this->variableResolver->resolve(FieldType::Text, $value);
 
             if ($property === 'priority' || $property === 'pool') {
-                $value = (int)$value;
+                $value = (int) $value;
             }
 
             $this->transfer->{$setter}($value);
@@ -113,7 +113,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return;
         }
 
-        $this->transfer->setType((string)$this->variableResolver->resolve(FieldType::Text, $type));
+        $this->transfer->setType((string) $this->variableResolver->resolve(FieldType::Text, $type));
     }
 
     private function prepareProcessTableForTransfer(): void
@@ -144,7 +144,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
                 $value,
             );
 
-            $value = $this->resolveFormFields($formValues, (string)$value);
+            $value = $this->resolveFormFields($formValues, (string) $value);
 
             $processTable[$processTableField] = $this->considerTypeForFieldValue(
                 $value,
@@ -182,7 +182,7 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         }
 
         if ($type === FieldType::Integer) {
-            return $value === '' ? '' : (int)$value;
+            return $value === '' ? '' : (int) $value;
         }
 
         if ($type === FieldType::Date) {

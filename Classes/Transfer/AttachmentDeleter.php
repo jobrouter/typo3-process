@@ -47,7 +47,7 @@ class AttachmentDeleter
         } else {
             $absoluteFolderPath = $storageConfiguration['basePath'];
         }
-        $absoluteFilePath = \rtrim((string)$absoluteFolderPath, '/') . $fileObject->getIdentifier();
+        $absoluteFilePath = \rtrim((string) $absoluteFolderPath, '/') . $fileObject->getIdentifier();
         if (@\unlink($absoluteFilePath)) {
             $this->logger->info(\sprintf('File "%s" was deleted successfully.', $absoluteFilePath));
         } else {

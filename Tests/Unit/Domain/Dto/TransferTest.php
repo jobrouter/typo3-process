@@ -77,7 +77,7 @@ final class TransferTest extends TestCase
 
         $actual = $this->subject->toArray();
 
-        self::assertSame(50, \mb_strlen((string)$actual['initiator']));
+        self::assertSame(50, \mb_strlen((string) $actual['initiator']));
     }
 
     #[Test]
@@ -87,7 +87,7 @@ final class TransferTest extends TestCase
 
         $actual = $this->subject->toArray();
 
-        self::assertSame(50, \mb_strlen((string)$actual['username']));
+        self::assertSame(50, \mb_strlen((string) $actual['username']));
     }
 
     #[Test]
@@ -97,7 +97,7 @@ final class TransferTest extends TestCase
 
         $actual = $this->subject->toArray();
 
-        self::assertSame(50, \mb_strlen((string)$actual['jobfunction']));
+        self::assertSame(50, \mb_strlen((string) $actual['jobfunction']));
     }
 
     #[Test]
@@ -107,6 +107,6 @@ final class TransferTest extends TestCase
 
         $actual = $this->subject->toArray();
 
-        self::assertSame(255, \mb_strlen((string)$actual['summary']));
+        self::assertSame(255, \mb_strlen((string) $actual['summary']));
     }
 }

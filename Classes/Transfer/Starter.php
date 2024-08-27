@@ -180,7 +180,7 @@ class Starter
 
                 if ($configuredProcessTableField->type === FieldType::Text) {
                     // A numeric static value in form finisher can be an integer
-                    $value = (string)$value;
+                    $value = (string) $value;
 
                     if ($configuredProcessTableField->fieldSize !== 0) {
                         $value = \mb_substr($value, 0, $configuredProcessTableField->fieldSize);

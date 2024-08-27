@@ -80,19 +80,19 @@ class Deleter
     private function deleteTransfer(array $transfer): bool
     {
         if (! isset($this->attachmentFieldsForProcess[$transfer['process_uid']])) {
-            $this->attachmentFieldsForProcess[$transfer['process_uid']] = $this->getAttachmentFieldsForProcess((int)$transfer['process_uid']);
+            $this->attachmentFieldsForProcess[$transfer['process_uid']] = $this->getAttachmentFieldsForProcess((int) $transfer['process_uid']);
         }
 
         if ($this->attachmentFieldsForProcess[$transfer['process_uid']] !== []) {
-            $encryptedFields = new EncryptedFieldsBitSet((int)$transfer['encrypted_fields']);
+            $encryptedFields = new EncryptedFieldsBitSet((int) $transfer['encrypted_fields']);
             if ($encryptedFields->get(EncryptedFieldsBitSet::PROCESSTABLE)) {
-                $transfer['processtable'] = $this->crypt->decrypt((string)$transfer['processtable']);
+                $transfer['processtable'] = $this->crypt->decrypt((string) $transfer['processtable']);
             }
             $processtable = \json_decode($transfer['processtable'], true, flags: \JSON_THROW_ON_ERROR);
             $this->deleteAttachments($processtable, $this->attachmentFieldsForProcess[$transfer['process_uid']]);
         }
 
-        $deletedRows = $this->transferRepository->delete((int)$transfer['uid']);
+        $deletedRows = $this->transferRepository->delete((int) $transfer['uid']);
         if ($deletedRows > 0) {
             $this->logger->info(\sprintf('Transfer with uid "%d" was deleted successfully.', $transfer['uid']));
             return true;

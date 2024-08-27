@@ -121,9 +121,9 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame($transfer->getPool(), $row['pool']);
         self::assertSame($transfer->getProcesstable(), $row['processtable']);
         self::assertSame($transfer->getEncryptedFields()->__toInt(), $row['encrypted_fields']);
-        self::assertSame(0, (int)$row['start_success']);
-        self::assertSame(0, (int)$row['start_date']);
-        self::assertSame('', (string)$row['start_message']);
+        self::assertSame(0, (int) $row['start_success']);
+        self::assertSame(0, (int) $row['start_date']);
+        self::assertSame('', (string) $row['start_message']);
     }
 
     #[Test]
@@ -147,8 +147,8 @@ final class TransferRepositoryTest extends FunctionalTestCase
             )
             ->fetchAssociative();
 
-        self::assertSame(1, (int)$row['start_success']);
-        self::assertSame($date, (int)$row['start_date']);
+        self::assertSame(1, (int) $row['start_success']);
+        self::assertSame($date, (int) $row['start_date']);
         self::assertSame('some message', $row['start_message']);
     }
 
@@ -242,11 +242,11 @@ final class TransferRepositoryTest extends FunctionalTestCase
         $actual = $this->subject->findForDeletion(1666666667);
 
         self::assertCount(3, $actual);
-        self::assertSame(101, (int)$actual[0]['uid']);
-        self::assertSame(11, (int)$actual[0]['process_uid']);
-        self::assertSame(102, (int)$actual[1]['uid']);
+        self::assertSame(101, (int) $actual[0]['uid']);
+        self::assertSame(11, (int) $actual[0]['process_uid']);
+        self::assertSame(102, (int) $actual[1]['uid']);
         self::assertNull($actual[1]['process_uid']);
-        self::assertSame(103, (int)$actual[2]['uid']);
+        self::assertSame(103, (int) $actual[2]['uid']);
         self::assertNull($actual[2]['process_uid']);
     }
 

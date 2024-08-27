@@ -31,12 +31,12 @@ final class Step
     public static function fromArray(array $data): self
     {
         return new self(
-            (int)$data['uid'],
+            (int) $data['uid'],
             $data['handle'],
             $data['name'],
-            (int)$data['process'],
-            (int)$data['step_number'],
-            (bool)$data['disabled'],
+            (int) $data['process'],
+            (int) $data['step_number'],
+            (bool) $data['disabled'],
         );
     }
 }

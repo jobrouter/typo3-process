@@ -76,12 +76,12 @@ final class TransfersPerDayDataProvider implements ChartDataProviderInterface
         $endDate = new \DateTime();
 
         for ($ts = $startDate->format('U'); $ts < $endDate->format('U'); $ts += 86400) {
-            $this->labels[(int)$ts] = \date(
+            $this->labels[(int) $ts] = \date(
                 $languageService->sL(BaseExtension::LANGUAGE_PATH_GENERAL . ':dateFormat'),
-                (int)$ts,
+                (int) $ts,
             );
 
-            $this->data[(int)$ts] = 0;
+            $this->data[(int) $ts] = 0;
         }
 
         foreach ($days as $day) {

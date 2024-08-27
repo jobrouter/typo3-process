@@ -164,7 +164,7 @@ final class TransfersPerDayDataProviderTest extends TestCase
         for ($ts = 4; $ts >= 0; $ts--) {
             $date = clone $today;
             $date->sub(new \DateInterval('P' . $ts . 'D'));
-            $timestamps[] = (int)$date->format('U');
+            $timestamps[] = (int) $date->format('U');
         }
 
         return $timestamps;
