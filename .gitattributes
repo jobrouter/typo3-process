@@ -5,7 +5,6 @@
 /.github export-ignore
 /.gitignore export-ignore
 /.noai export-ignore
-/.phpstorm.meta.php export-ignore
 /Build export-ignore
 /ecs.php export-ignore
 /Makefile export-ignore
