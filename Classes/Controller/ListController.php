@@ -24,7 +24,7 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
-use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
 /**
@@ -35,6 +35,7 @@ final class ListController
 {
     public function __construct(
         private readonly IconFactory $iconFactory,
+        private readonly LanguageServiceFactory $languageServiceFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
         private readonly PageRenderer $pageRenderer,
         private readonly ProcessDemandFactory $processDemandFactory,
@@ -68,6 +69,8 @@ final class ListController
 
     private function configureDocHeader(ModuleTemplate $view, string $requestUri): void
     {
+        $languageService = $this->languageServiceFactory->createFromUserPreferences($this->getBackendUser());
+
         $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
 
         $newProcessButton = $buttonBar->makeLinkButton()
@@ -80,28 +83,23 @@ final class ListController
                     'returnUrl' => (string) $this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
                 ],
             ))
-            ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_process'))
+            ->setTitle($languageService->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_process'))
             ->setShowLabelText(true)
             ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
         $buttonBar->addButton($newProcessButton, buttonGroup: 10);
 
         $reloadButton = $buttonBar->makeLinkButton()
             ->setHref($requestUri)
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload'))
+            ->setTitle($languageService->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($reloadButton, ButtonBar::BUTTON_POSITION_RIGHT);
 
         if ($this->getBackendUser()->mayMakeShortcut()) {
             $shortcutButton = $buttonBar->makeShortcutButton()
                 ->setRouteIdentifier(Extension::MODULE_NAME)
-                ->setDisplayName($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':heading_text'));
+                ->setDisplayName($languageService->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':heading_text'));
             $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
         }
-    }
-
-    private function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
     }
 
     private function getBackendUser(): BackendUserAuthentication
