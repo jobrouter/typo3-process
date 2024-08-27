@@ -73,20 +73,20 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Text->value,
-                        FieldType::Text->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Text->value,
+                        'value' => FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Integer->value,
-                        FieldType::Integer->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Integer->value,
+                        'value' => FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Date->value,
-                        FieldType::Date->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Date->value,
+                        'value' => FieldType::Date->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Attachment->value,
-                        FieldType::Attachment->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Attachment->value,
+                        'value' => FieldType::Attachment->value,
                     ],
                 ],
                 'required' => true,
