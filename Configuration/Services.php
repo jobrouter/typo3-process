@@ -15,7 +15,6 @@ use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
 use JobRouter\AddOn\Typo3Process\Command\CleanUpTransfersCommand;
 use JobRouter\AddOn\Typo3Process\Command\StartCommand;
-use JobRouter\AddOn\Typo3Process\Controller\ListController;
 use JobRouter\AddOn\Typo3Process\EventListener\ToolbarItemProvider;
 use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransfersPerDayDataProvider;
@@ -40,10 +39,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services
         ->load('JobRouter\AddOn\Typo3Process\\', '../Classes/*')
         ->exclude('../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php}');
-
-    $services
-        ->set(ListController::class)
-        ->tag('backend.controller');
 
     $services
         ->set(CleanUpTransfersCommand::class)

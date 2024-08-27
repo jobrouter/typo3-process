@@ -16,6 +16,7 @@ use JobRouter\AddOn\Typo3Process\Domain\Repository\ProcessRepository;
 use JobRouter\AddOn\Typo3Process\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
@@ -32,6 +33,7 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 /**
  * @internal
  */
+#[AsController]
 final class ListController
 {
     private ModuleTemplate $moduleTemplate;
