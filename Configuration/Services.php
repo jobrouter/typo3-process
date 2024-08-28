@@ -87,7 +87,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         $services
             ->set('dashboard.widget.jobrouter_process.transfersPerDay')
             ->class(BarChartWidget::class)
-            ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransfersPerDayDataProvider::class))
             ->arg(
                 '$options',
@@ -108,7 +107,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         $services
             ->set('dashboard.widget.jobrouter_process.typeOfInstanceStarts')
             ->class(DoughnutChartWidget::class)
-            ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferTypeChartDataProvider::class))
             ->arg(
                 '$options',
@@ -129,7 +127,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         $services
             ->set('dashboard.widget.jobrouter_process.statusOfInstanceStarts')
             ->class(TransferStatusWidget::class)
-            ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
             ->arg(
                 '$options',
@@ -149,7 +146,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
         $services
             ->set('dashboard.widget.jobrouter_process.transferReport')
             ->class(TransferReportWidget::class)
-            ->arg('$view', new Reference('dashboard.views.widget'))
             ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
             ->arg(
                 '$options',
