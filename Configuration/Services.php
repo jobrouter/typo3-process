@@ -23,7 +23,6 @@ use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferTypeChartDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
-use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Dashboard\Dashboard;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
 use TYPO3\CMS\Dashboard\Widgets\DoughnutChartWidget;
@@ -67,7 +66,6 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
             'event.listener',
             [
                 'identifier' => 'jobrouter-process/toolbar-item-provider',
-                'event' => SystemInformationToolbarCollectorEvent::class,
             ],
         );
 
