@@ -13,6 +13,7 @@ namespace JobRouter\AddOn\Typo3Process\Command;
 
 use JobRouter\AddOn\Typo3Process\Extension;
 use JobRouter\AddOn\Typo3Process\Transfer\Starter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,6 +26,10 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
+#[AsCommand(
+    name: 'jobrouter:process:start',
+    description: 'Start instances from data stored in the transfer table',
+)]
 final class StartCommand extends Command
 {
     private ?int $startTime = null;
