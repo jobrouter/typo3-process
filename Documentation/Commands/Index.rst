@@ -22,17 +22,21 @@ Starting instances
 If you rely on the :ref:`form finisher <form-finisher>` or use the
 :ref:`transfer table <developer-start-instance>` directly to start instances in
 JobRouter® installations, you have to use the start command in the project
-directory for a Composer-based installation
+directory:
 
-.. code-block:: bash
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:process:start
+   .. group-tab:: Composer-based installation
 
-In a legacy installation execute
+      .. code-block:: bash
 
-.. code-block:: bash
+         vendor/bin/typo3 jobrouter:process:start
 
-   php public/typo3/sysext/core/bin/typo3 jobrouter:process:start
+   .. group-tab:: Legacy installation
+
+      .. code-block:: bash
+
+         php public/typo3/sysext/core/bin/typo3 jobrouter:process:start
 
 In general you should receive a successful answer:
 
@@ -72,17 +76,21 @@ Clean up transfers
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
 regularly. A command is available for this task. Enter in the project
-directory for a Composer-based installation:
+directory:
 
-.. code-block:: bash
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:process:cleanuptransfers
+   .. group-tab:: Composer-based installation
 
-In a legacy installation execute:
+      .. code-block:: bash
 
-.. code-block:: bash
+         vendor/bin/typo3 jobrouter:process:cleanuptransfers
 
-   php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers
+   .. group-tab:: Legacy installation
+
+      .. code-block:: bash
+
+         php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers
 
 In general you should receive a successful answer:
 
@@ -92,6 +100,20 @@ In general you should receive a successful answer:
 
 By default, successful transfer records that are older than 30 days are deleted.
 You can adjust this value by adding an argument to the command:
+
+.. tabs::
+
+   .. group-tab:: Composer-based installation
+
+      .. code-block:: bash
+
+         vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
+
+   .. group-tab:: Legacy installation
+
+      .. code-block:: bash
+
+         php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers 7
 
 .. code-block:: php
 
