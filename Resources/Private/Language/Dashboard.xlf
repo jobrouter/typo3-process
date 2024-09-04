@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2023-01-23T09:19:56Z" product-name="jobrouter_process">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2024-09-04T06:26:48Z" product-name="jobrouter_process">
 		<body>
 			<trans-unit id="dateFormat" resname="dateFormat">
 				<source><![CDATA[Y-m-d]]></source>
@@ -35,23 +35,11 @@
 			<trans-unit id="widgets.statusOfInstanceStarts.title" resname="widgets.statusOfInstanceStarts.title">
 				<source><![CDATA[Instance Start Status]]></source>
 			</trans-unit>
-			<trans-unit id="widgets.transfersPerDay.description" resname="widgets.transfersPerDay.description">
-				<source><![CDATA[Shows the number of instance starts per day.]]></source>
-			</trans-unit>
-			<trans-unit id="widgets.transfersPerDay.title" resname="widgets.transfersPerDay.title">
-				<source><![CDATA[Instance Starts]]></source>
-			</trans-unit>
 			<trans-unit id="widgets.transferReport.description" resname="widgets.transferReport.description">
 				<source><![CDATA[Shows failing process instance starts.]]></source>
 			</trans-unit>
 			<trans-unit id="widgets.transferReport.title" resname="widgets.transferReport.title">
 				<source><![CDATA[Instance Start Errors]]></source>
-			</trans-unit>
-			<trans-unit id="widgets.typeOfInstanceStarts.description" resname="widgets.typeOfInstanceStarts.description">
-				<source><![CDATA[Shows the total numbers of process starts grouped by the type.]]></source>
-			</trans-unit>
-			<trans-unit id="widgets.typeOfInstanceStarts.title" resname="widgets.typeOfInstanceStarts.title">
-				<source><![CDATA[Instance Start Types]]></source>
 			</trans-unit>
 		</body>
 	</file>

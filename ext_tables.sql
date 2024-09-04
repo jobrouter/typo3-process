@@ -29,7 +29,6 @@ CREATE TABLE tx_jobrouterprocess_domain_model_transfer(
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	step_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	correlation_id varchar(255) DEFAULT '' NOT NULL,
-	type varchar(50) DEFAULT '' NOT NULL,
 	initiator varchar(50) DEFAULT '' NOT NULL,
 	username varchar(50) DEFAULT '' NOT NULL,
 	jobfunction varchar(50) DEFAULT '' NOT NULL,

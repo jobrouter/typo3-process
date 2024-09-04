@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Compatibility with TYPO3 v11
+- Widgets "Instance Starts" and "Instance Start Types"
+- "type" option from the "JobRouterStartInstance" form finisher
 
 ## [3.0.1] - 2024-06-06
 

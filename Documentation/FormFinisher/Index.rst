@@ -54,6 +54,9 @@ start step.
 Start instances
 ===============
 
+.. versionchanged:: 4.0
+   The "type" option has been removed as it serves no purpose anymore.
+
 A form finisher `JobRouterStartInstance` is available to start a JobRouter®
 process instance. After submitting a form, the form values are stored in a
 transfer table. A :ref:`command <command-start>`, hopefully executed regularly,
@@ -63,7 +66,7 @@ or network problems. Also the submitting of a form on the website should be as
 fast as possible for a good user experience.
 
 .. note::
-   The finisher can only be used in the YAML form definition, not in the
+   The finisher can only be configured in the YAML form definition, not in the
    :guilabel:`Form` backend module.
 
 
@@ -80,7 +83,6 @@ configuration of the specific form:
          identifier: JobRouterStartInstance
          options:
             handle: 'start_website_contact'
-            type: 'Demo'
             summary: 'Demo Contact'
             # It is important to add the JobRobot username.
             # The concrete name depends on your configuration above,
@@ -98,9 +100,6 @@ As you can see, you can define some options. These are:
 
 - `handle` (required): The step handle defined in the
   :ref:`Processes module <module-create-step-link>`.
-
-- `type`: The type can be used for statistical evaluation in the according
-  :ref:`dashboard widget <dashboard-widget-instance-start-types>`.
 
 - `summary`: The summary of the instance.
 

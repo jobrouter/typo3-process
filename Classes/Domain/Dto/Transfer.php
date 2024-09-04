@@ -25,7 +25,6 @@ final class Transfer
     private const MAX_LENGTH_SUMMARY = 255;
     private const MAX_LENGTH_USERNAME = 50;
 
-    private string $type = '';
     private string $initiator = '';
     private string $username = '';
     private string $jobfunction = '';
@@ -56,16 +55,6 @@ final class Transfer
     public function getCorrelationId(): string
     {
         return $this->correlationId;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): void
-    {
-        $this->type = $type;
     }
 
     public function getInitiator(): string
@@ -159,7 +148,6 @@ final class Transfer
             $entity->correlationId,
         );
 
-        $dto->setType($entity->type);
         $dto->setInitiator($entity->initiator);
         $dto->setUsername($entity->username);
         $dto->setJobfunction($entity->jobfunction);
@@ -183,7 +171,6 @@ final class Transfer
             'crdate' => $this->crdate,
             'step_uid' => $this->stepUid,
             'correlation_id' => $this->correlationId,
-            'type' => $this->type,
             'initiator' => \mb_substr($this->initiator, 0, self::MAX_LENGTH_INITIATOR),
             'username' => \mb_substr($this->username, 0, self::MAX_LENGTH_USERNAME),
             'jobfunction' => \mb_substr($this->jobfunction, 0, self::MAX_LENGTH_JOBFUNCTION),

@@ -33,7 +33,6 @@ final class TransferTest extends TestCase
         self::assertSame(1234567890, $actual['crdate']);
         self::assertSame(42, $actual['step_uid']);
         self::assertSame('some-correlation', $actual['correlation_id']);
-        self::assertSame('', $actual['type']);
         self::assertSame('', $actual['initiator']);
         self::assertSame('', $actual['username']);
         self::assertSame('', $actual['jobfunction']);
@@ -47,7 +46,6 @@ final class TransferTest extends TestCase
     #[Test]
     public function toArrayWithAllOtherPropertiesSet(): void
     {
-        $this->subject->setType('some type');
         $this->subject->setInitiator('some initiator');
         $this->subject->setUsername('some username');
         $this->subject->setJobfunction('some jobfunction');
@@ -59,7 +57,6 @@ final class TransferTest extends TestCase
 
         $actual = $this->subject->toArray();
 
-        self::assertSame('some type', $actual['type']);
         self::assertSame('some initiator', $actual['initiator']);
         self::assertSame('some username', $actual['username']);
         self::assertSame('some jobfunction', $actual['jobfunction']);

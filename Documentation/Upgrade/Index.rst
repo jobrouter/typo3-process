@@ -6,6 +6,15 @@ Upgrade
 
 Target group: **Developers**
 
+From version 3.0 to 4.0
+=======================
+
+The dashboard widgets "Instance Starts" and "Instance Start Types" have been
+removed. If statistics are necessary, use Matomo, Google Analytics or another
+web analytics tool.
+
+The "type" option has been removed from the "JobRouterStartInstance" form
+finisher as it serves no purpose anymore.
 
 From version 2.0 to 3.0
 =======================

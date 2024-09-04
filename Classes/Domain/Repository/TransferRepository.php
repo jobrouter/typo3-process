@@ -158,31 +158,6 @@ class TransferRepository
             ->fetchOne() ?: 0;
     }
 
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    public function countTypes(int $numberOfDays): array
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
-
-        $startDate = $this->getDateBackFromToday($numberOfDays);
-
-        return $queryBuilder
-            ->select('type')
-            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
-            ->from(self::TABLE_NAME)
-            ->where(
-                $queryBuilder->expr()->gte(
-                    'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), Connection::PARAM_INT),
-                ),
-            )
-            ->groupBy('type')
-            ->orderBy('count', 'DESC')
-            ->executeQuery()
-            ->fetchAllAssociative();
-    }
-
     private function getDateBackFromToday(int $numberOfDays): \DateTime
     {
         $startDate = new \DateTime();

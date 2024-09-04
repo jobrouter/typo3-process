@@ -45,46 +45,6 @@ finisher.
    be decrypted by the :ref:`start process command <command-start>` anymore!
 
 
-.. _configuration-dashboard:
-
-Dashboard widget configuration
-==============================
-
-Instance starts
----------------
-
-The number of instance starts by days can be visualised by the widget
-:ref:`Instance Starts <dashboard-widget-instance-starts>`. By default, 14 days
-are shown. This can be overridden in the :file:`Configuration/Services.yaml`
-of your site package extension (or any other dependent extension):
-
-.. code-block:: yaml
-   :caption: EXT:my_sitepackage/Configuration/Services.yaml
-
-   parameters:
-      jobrouter_process.widget.transfersPerDay.numberOfDays: 14
-
-
-Instance start types
---------------------
-
-The instance starts of the last 14 days (including the current day) are taken
-into account for the :ref:`Instance Start Types widget
-<dashboard-widget-instance-start-types>`. This can be overridden in the
-:file:`Configuration/Services.yaml` of your site package extension (or any other
-dependent extension):
-
-.. code-block:: yaml
-   :caption: EXT:my_sitepackage/Configuration/Services.yaml
-
-   parameters:
-      jobrouter_process.widget.typeOfInstanceStarts.numberOfDays: 14
-
-As already mentioned, the current day is also considered. So if you use
-:yaml:`1` for the number of days, the widget will only show instance starts from
-today.
-
-
 .. _configuration-logging:
 
 Logging

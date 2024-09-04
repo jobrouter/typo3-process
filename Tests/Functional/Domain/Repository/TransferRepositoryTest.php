@@ -87,7 +87,6 @@ final class TransferRepositoryTest extends FunctionalTestCase
     public function add(): void
     {
         $transfer = new Transfer(1234567890, 42, 'some correlation');
-        $transfer->setType('some type');
         $transfer->setInitiator('some initiator');
         $transfer->setUsername('some username');
         $transfer->setJobfunction('some jobfunction');
@@ -112,7 +111,6 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame($transfer->getCrdate(), $row['crdate']);
         self::assertSame($transfer->getStepUid(), $row['step_uid']);
         self::assertSame($transfer->getCorrelationId(), $row['correlation_id']);
-        self::assertSame($transfer->getType(), $row['type']);
         self::assertSame($transfer->getInitiator(), $row['initiator']);
         self::assertSame($transfer->getUsername(), $row['username']);
         self::assertSame($transfer->getJobfunction(), $row['jobfunction']);
@@ -190,22 +188,6 @@ final class TransferRepositoryTest extends FunctionalTestCase
         $actual = $this->subject->countStartFailed();
 
         self::assertSame(1, $actual);
-    }
-
-    #[Test]
-    public function countTypesWithNoEntriesInTransferTable(): void
-    {
-        $actual = $this->subject->countTypes(30);
-
-        self::assertSame([], $actual);
-    }
-
-    #[Test]
-    public function countByDayWithNoEntriesInTransferTable(): void
-    {
-        $actual = $this->subject->countTypes(30);
-
-        self::assertSame([], $actual);
     }
 
     #[Test]

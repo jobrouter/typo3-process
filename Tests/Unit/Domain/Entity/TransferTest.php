@@ -25,7 +25,6 @@ final class TransferTest extends TestCase
             'crdate' => '1234567890',
             'step_uid' => '42',
             'correlation_id' => 'some-correlation-id',
-            'type' => 'some type',
             'initiator' => 'some initiator',
             'username' => 'some username',
             'jobfunction' => 'some jobfunction',
@@ -43,7 +42,6 @@ final class TransferTest extends TestCase
         self::assertSame(1234567890, $actual->crdate);
         self::assertSame(42, $actual->stepUid);
         self::assertSame('some-correlation-id', $actual->correlationId);
-        self::assertSame('some type', $actual->type);
         self::assertSame('some initiator', $actual->initiator);
         self::assertSame('some username', $actual->username);
         self::assertSame('some jobfunction', $actual->jobfunction);

@@ -28,9 +28,6 @@ final class Extension
 
     public const REGISTRY_NAMESPACE = 'tx_' . self::KEY;
 
-    public const WIDGET_DEFAULT_CHART_COLOUR = '#fabb00';
-    public const WIDGET_TRANSFER_TYPE_DEFAULT_NUMBER_OF_DAYS = 14;
-
     public const ENCRYPT_DATA_CONFIG_IDENTIFIER = 'encryptTransferData';
     public const ENCRYPTED_TRANSFER_FIELDS = ['processtable', 'summary'];
 }

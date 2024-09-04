@@ -22,6 +22,8 @@ Removed
 
 
 * Compatibility with TYPO3 v11
+* Widgets "Instance Starts" and "Instance Start Types"
+* "type" option from the "JobRouterStartInstance" form finisher
 
 `3.0.1 <https://github.com/jobrouter/typo3-process/compare/v3.0.0...v3.0.1>`_ - 2024-06-06
 ----------------------------------------------------------------------------------------------

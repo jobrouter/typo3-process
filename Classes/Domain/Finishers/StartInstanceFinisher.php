@@ -63,7 +63,6 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
         $this->initialiseTransfer();
         $this->prepareStepParametersForTransfer();
-        $this->prepareTypeForTransfer();
         $this->prepareProcessTableForTransfer();
         $this->preparer->store($this->transfer);
     }
@@ -101,19 +100,6 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
 
             $this->transfer->{$setter}($value);
         }
-    }
-
-    private function prepareTypeForTransfer(): void
-    {
-        $type = $this->parseOption('type');
-        if (! \is_string($type)) {
-            return;
-        }
-        if ($type === '') {
-            return;
-        }
-
-        $this->transfer->setType((string) $this->variableResolver->resolve(FieldType::Text, $type));
     }
 
     private function prepareProcessTableForTransfer(): void
