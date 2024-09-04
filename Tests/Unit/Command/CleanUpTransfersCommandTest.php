@@ -43,7 +43,7 @@ final class CleanUpTransfersCommandTest extends TestCase
 
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[OK] No successful transfers older than 30 days present',
+            '[OK] No successful transfers older than 7 days present',
             $this->commandTester->getDisplay(),
         );
     }
@@ -60,7 +60,7 @@ final class CleanUpTransfersCommandTest extends TestCase
 
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[OK] 1 successful transfer older than 30 days deleted',
+            '[OK] 1 successful transfer older than 7 days deleted',
             $this->commandTester->getDisplay(),
         );
     }
@@ -77,7 +77,7 @@ final class CleanUpTransfersCommandTest extends TestCase
 
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[OK] 42 successful transfers older than 30 days deleted',
+            '[OK] 42 successful transfers older than 7 days deleted',
             $this->commandTester->getDisplay(),
         );
     }

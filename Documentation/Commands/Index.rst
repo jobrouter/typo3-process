@@ -73,6 +73,10 @@ The last run of the command is displayed in the system information toolbar
 Clean up transfers
 ------------------
 
+.. versionchanged::
+   The default value for the "ageOfDays" option has been lowered from 30 days
+   to 7 days.
+
 After successfully starting instances from the transfer table, these transfers
 are marked as successful. They may contain sensitive data and should be deleted
 regularly. A command is available for this task. Enter in the project
@@ -96,7 +100,7 @@ In general you should receive a successful answer:
 
 .. code-block:: text
 
-   [OK] 42 successful transfers older than 30 days deleted
+   [OK] 42 successful transfers older than 7 days deleted
 
 By default, successful transfer records that are older than 30 days are deleted.
 You can adjust this value by adding an argument to the command:
@@ -107,19 +111,15 @@ You can adjust this value by adding an argument to the command:
 
       .. code-block:: bash
 
-         vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
+         vendor/bin/typo3 jobrouter:process:cleanuptransfers 14
 
    .. group-tab:: Legacy installation
 
       .. code-block:: bash
 
-         php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers 7
+         php public/typo3/sysext/core/bin/typo3 jobrouter:process:cleanuptransfers 14
 
-.. code-block:: php
-
-   vendor/bin/typo3 jobrouter:process:cleanuptransfers 7
-
-Now successful transfer records that are older than seven days are deleted. If
+Now successful transfer records that are older than 14 days are deleted. If
 you use `0` as argument, all successful transfers are deleted.
 
 .. important::

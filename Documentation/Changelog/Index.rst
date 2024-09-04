@@ -17,6 +17,12 @@ Added
 
 * Compatibility with TYPO3 v13
 
+Changed
+^^^^^^^
+
+
+* Default value of "ageOfDays" option in cleanup command lowered from 30 to 7 days
+
 Removed
 ^^^^^^^
 

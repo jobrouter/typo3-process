@@ -30,7 +30,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class CleanUpTransfersCommand extends Command
 {
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';
-    private const DEFAULT_AGE_IN_DAYS = 30;
+    private const DEFAULT_AGE_IN_DAYS = 7;
 
     public function __construct(
         private readonly Deleter $deleter,
