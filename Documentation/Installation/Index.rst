@@ -17,7 +17,7 @@ Requirements
 ============
 
 .. note::
-   The extension in version |release| supports TYPO3 v12 LTS and TYPO3 v13.
+   The extension in version |release| supports TYPO3 v12 LTS and TYPO3 v13 LTS.
 
 
 .. _version-matrix:
@@ -28,7 +28,7 @@ Version matrix
 ================= ========== ===========
 JobRouter Process PHP        TYPO3
 ================= ========== ===========
-4.0               8.1 - 8.4  12.4 - 13.4
+4.0               8.1 - 8.4  12.4 / 13.4
 ----------------- ---------- -----------
 3.0               8.1 - 8.3  11.5 / 12.4
 ----------------- ---------- -----------
