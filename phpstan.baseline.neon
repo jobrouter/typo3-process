@@ -1,56 +1,73 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method set\\(\\) on JobRouter\\\\AddOn\\\\Typo3Process\\\\Crypt\\\\Transfer\\\\EncryptedFieldsBitSet\\|null\\.$#"
+			message: '#^Cannot call method set\(\) on JobRouter\\AddOn\\Typo3Process\\Crypt\\Transfer\\EncryptedFieldsBitSet\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Cannot call method setEncryptedFields\\(\\) on JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer\\|null\\.$#"
+			message: '#^Cannot call method setEncryptedFields\(\) on JobRouter\\AddOn\\Typo3Process\\Domain\\Dto\\Transfer\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Process\\\\Crypt\\\\Transfer\\\\Encrypter\\:\\:encryptIfConfigured\\(\\) should return JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer but returns JobRouter\\\\AddOn\\\\Typo3Process\\\\Domain\\\\Dto\\\\Transfer\\|null\\.$#"
+			message: '#^Method JobRouter\\AddOn\\Typo3Process\\Crypt\\Transfer\\Encrypter\:\:encryptIfConfigured\(\) should return JobRouter\\AddOn\\Typo3Process\\Domain\\Dto\\Transfer but returns JobRouter\\AddOn\\Typo3Process\\Domain\\Dto\\Transfer\|null\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Crypt/Transfer/Encrypter.php
 
 		-
-			message: "#^\"@\\\\rmdir\\(\\$parentFolder\\)\" is forbidden to use$#"
+			message: '#^"@\\rmdir\(\$parentFolder\)" is forbidden to use$#'
+			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^\"@\\\\unlink\\(\\$absoluteFilePath\\)\" is forbidden to use$#"
+			message: '#^"@\\unlink\(\$absoluteFilePath\)" is forbidden to use$#'
+			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^Cannot call method getIdentifier\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			message: '#^Cannot call method getIdentifier\(\) on TYPO3\\CMS\\Core\\Resource\\File\|TYPO3\\CMS\\Core\\Resource\\ProcessedFile\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^Cannot call method getStorage\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			message: '#^Cannot call method getStorage\(\) on TYPO3\\CMS\\Core\\Resource\\File\|TYPO3\\CMS\\Core\\Resource\\ProcessedFile\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, int\\|string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, list\<string\>\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Transfer/AttachmentDeleter.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, int\|string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Transfer/Deleter.php
 
 		-
-			message: "#^Property JobRouter\\\\AddOn\\\\Typo3Process\\\\Transfer\\\\Deleter\\:\\:\\$attachmentFieldsForProcess \\(array\\<int, array\\<string\\>\\>\\) does not accept array\\<int\\|string, array\\<string\\>\\>\\.$#"
+			message: '#^Property JobRouter\\AddOn\\Typo3Process\\Transfer\\Deleter\:\:\$attachmentFieldsForProcess \(array\<int, array\<string\>\>\) does not accept array\<int\|string, array\<string\>\>\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: Classes/Transfer/Deleter.php
 
 		-
-			message: "#^Class cognitive complexity is 28, keep it under 25$#"
+			message: '#^Class cognitive complexity is 28, keep it under 25$#'
+			identifier: complexity.classLike
 			count: 1
 			path: Classes/Transfer/Starter.php
 
 		-
-			message: "#^Cognitive complexity for \"JobRouter\\\\AddOn\\\\Typo3Process\\\\Transfer\\\\Starter\\:\\:createIncidentFromTransferItem\\(\\)\" is 21, keep it under 10$#"
+			message: '#^Cognitive complexity for "JobRouter\\AddOn\\Typo3Process\\Transfer\\Starter\:\:createIncidentFromTransferItem\(\)" is 21, keep it under 10$#'
+			identifier: complexity.functionLike
 			count: 1
 			path: Classes/Transfer/Starter.php

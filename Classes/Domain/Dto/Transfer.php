@@ -166,7 +166,6 @@ final class Transfer
      */
     public function toArray(): array
     {
-        // @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
         return [
             'crdate' => $this->crdate,
             'step_uid' => $this->stepUid,
