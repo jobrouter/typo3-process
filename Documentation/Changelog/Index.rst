@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/jobrouter/typo3-process/compare/v4.0.0...HEAD>`_
 ------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Finisher preset identified by "JobRouterStartInstance" could not be found
+
 `4.0.0 <https://github.com/jobrouter/typo3-process/compare/v3.0.1...v4.0.0>`_ - 2024-10-01
 ----------------------------------------------------------------------------------------------
 

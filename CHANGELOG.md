@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Finisher preset identified by "JobRouterStartInstance" could not be found
+
 ## [4.0.0] - 2024-10-01
 
 ### Added
