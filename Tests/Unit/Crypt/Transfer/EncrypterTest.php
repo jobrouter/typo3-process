@@ -33,7 +33,7 @@ final class EncrypterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->extensionConfigurationStub = $this->createStub(ExtensionConfiguration::class);
+        $this->extensionConfigurationStub = self::createStub(ExtensionConfiguration::class);
         $this->cryptServiceMock = $this->createMock(Crypt::class);
 
         $this->subject = new Encrypter($this->cryptServiceMock, $this->extensionConfigurationStub, new NullLogger());

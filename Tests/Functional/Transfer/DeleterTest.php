@@ -53,7 +53,7 @@ final class DeleterTest extends FunctionalTestCase
 
         $this->subject = new Deleter(
             $attachmentDeleter,
-            new Crypt(new FileService($this->createStub(ExtensionConfiguration::class))),
+            new Crypt(new FileService(self::createStub(ExtensionConfiguration::class))),
             new NullLogger(),
             $processTableFieldRepository,
             $transferRepository,

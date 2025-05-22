@@ -31,7 +31,7 @@ final class TransferReportDataProviderTest extends TestCase
             self::markTestSkipped('Dashboard system extension not available');
         }
 
-        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
+        $this->transferRepositoryStub = self::createStub(TransferRepository::class);
 
         $this->subject = new TransferReportDataProvider($this->transferRepositoryStub);
     }
