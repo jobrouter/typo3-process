@@ -64,7 +64,5 @@ Installation in the extension manager
 =====================================
 
 You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
-See :ref:`t3start:extensions_legacy_management` for a manual how to
-install an extension.
 
 .. _TYPO3 Extension Repository (TER): https://extensions.typo3.org/extension/jobrouter_process
