@@ -63,6 +63,7 @@ The extension offers some configuration which is explained in the
 Installation in the extension manager
 =====================================
 
-You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
+In a classic installation, you can also install the extension from the
+`TYPO3 Extension Repository (TER)`_.
 
 .. _TYPO3 Extension Repository (TER): https://extensions.typo3.org/extension/jobrouter_process
