@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Form.xlf" date="2020-09-26T17:19:48Z" product-name="jobrouter_process">
+	<file source-language="en" original="EXT:jobrouter_process/Resources/Private/Language/Form.xlf" datatype="plaintext" product-name="jobrouter_process" date="2026-04-15T14:38:58+02:00">
 		<body>
-			<trans-unit id="formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label" resname="formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label">
-				<source><![CDATA[Start JobRouter Instance]]></source>
+			<trans-unit id="formEditor.elements.Form.finisher.JobRouterStartInstance.editor.header.label">
+				<source>Start JobRouter Instance</source>
 			</trans-unit>
 		</body>
 	</file>

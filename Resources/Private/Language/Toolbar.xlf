@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" date="2021-12-20T16:17:45Z" product-name="jobrouter_process">
+	<file source-language="en" original="EXT:jobrouter_process/Resources/Private/Language/Toolbar.xlf" datatype="plaintext" product-name="jobrouter_process" date="2026-04-15T14:39:10+02:00">
 		<body>
-			<trans-unit id="startCommand.lastRunLabel" resname="startCommand.lastRunLabel">
-				<source><![CDATA[Last Instance Start]]></source>
+			<trans-unit id="startCommand.lastRunLabel">
+				<source>Last Instance Start</source>
 			</trans-unit>
-			<trans-unit id="startCommand.lastRunMessage" resname="startCommand.lastRunMessage">
-				<source><![CDATA[%s at %s (%s)]]></source>
+			<trans-unit id="startCommand.lastRunMessage">
+				<source>%s at %s (%s)</source>
 			</trans-unit>
-			<trans-unit id="status.overdue" resname="status.overdue">
-				<source><![CDATA[overdue]]></source>
+			<trans-unit id="status.overdue">
+				<source>overdue</source>
 			</trans-unit>
-			<trans-unit id="status.success" resname="status.success">
-				<source><![CDATA[success]]></source>
+			<trans-unit id="status.success">
+				<source>success</source>
 			</trans-unit>
-			<trans-unit id="status.warning" resname="status.warning">
-				<source><![CDATA[warnings]]></source>
+			<trans-unit id="status.warning">
+				<source>warnings</source>
 			</trans-unit>
-			<trans-unit id="toolbar.neverExecuted" resname="toolbar.neverExecuted">
-				<source><![CDATA[Never executed]]></source>
+			<trans-unit id="toolbar.neverExecuted">
+				<source>Never executed</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -1,45 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" date="2024-09-04T06:26:48Z" product-name="jobrouter_process">
+	<file source-language="en" original="EXT:jobrouter_process/Resources/Private/Language/Dashboard.xlf" datatype="plaintext" product-name="jobrouter_process" date="2026-04-15T14:38:23+02:00">
 		<body>
-			<trans-unit id="dateFormat" resname="dateFormat">
-				<source><![CDATA[Y-m-d]]></source>
+			<trans-unit id="dateFormat">
+				<source>Y-m-d</source>
 			</trans-unit>
-			<trans-unit id="lastRun" resname="lastRun">
-				<source><![CDATA[Last run]]></source>
+			<trans-unit id="lastRun">
+				<source>Last run</source>
 			</trans-unit>
-			<trans-unit id="lastRun.noInformation" resname="lastRun.noInformation">
-				<source><![CDATA[No information available, perhaps never been run?]]></source>
+			<trans-unit id="lastRun.noInformation">
+				<source>No information available, perhaps never been run?</source>
 			</trans-unit>
-			<trans-unit id="numberOfStarts" resname="numberOfStarts">
-				<source><![CDATA[Number of starts]]></source>
+			<trans-unit id="numberOfStarts">
+				<source>Number of starts</source>
 			</trans-unit>
-			<trans-unit id="status.failed" resname="status.failed">
-				<source><![CDATA[Failed]]></source>
+			<trans-unit id="status.failed">
+				<source>Failed</source>
 			</trans-unit>
-			<trans-unit id="status.pending" resname="status.pending">
-				<source><![CDATA[Pending]]></source>
+			<trans-unit id="status.pending">
+				<source>Pending</source>
 			</trans-unit>
-			<trans-unit id="status.successful" resname="status.successful">
-				<source><![CDATA[Successful]]></source>
+			<trans-unit id="status.successful">
+				<source>Successful</source>
 			</trans-unit>
-			<trans-unit id="timeFormat" resname="timeFormat">
-				<source><![CDATA[H:i]]></source>
+			<trans-unit id="timeFormat">
+				<source>H:i</source>
 			</trans-unit>
-			<trans-unit id="unknown" resname="unknown">
-				<source><![CDATA[unknown]]></source>
+			<trans-unit id="unknown">
+				<source>unknown</source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfInstanceStarts.description" resname="widgets.statusOfInstanceStarts.description">
-				<source><![CDATA[Shows the status of process starts.]]></source>
+			<trans-unit id="widgets.statusOfInstanceStarts.description">
+				<source>Shows the status of process starts.</source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfInstanceStarts.title" resname="widgets.statusOfInstanceStarts.title">
-				<source><![CDATA[Instance Start Status]]></source>
+			<trans-unit id="widgets.statusOfInstanceStarts.title">
+				<source>Instance Start Status</source>
 			</trans-unit>
-			<trans-unit id="widgets.transferReport.description" resname="widgets.transferReport.description">
-				<source><![CDATA[Shows failing process instance starts.]]></source>
+			<trans-unit id="widgets.transferReport.description">
+				<source>Shows failing process instance starts.</source>
 			</trans-unit>
-			<trans-unit id="widgets.transferReport.title" resname="widgets.transferReport.title">
-				<source><![CDATA[Instance Start Errors]]></source>
+			<trans-unit id="widgets.transferReport.title">
+				<source>Instance Start Errors</source>
 			</trans-unit>
 		</body>
 	</file>
