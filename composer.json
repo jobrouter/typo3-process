@@ -74,6 +74,7 @@
 		},
 		"typo3/cms": {
 			"extension-key": "jobrouter_process",
+			"version": "5.0.0-dev",
 			"web-dir": ".Build/web"
 		}
 	}
