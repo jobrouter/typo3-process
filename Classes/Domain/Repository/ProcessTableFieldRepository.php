@@ -17,12 +17,12 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 /**
  * @internal
  */
-class ProcessTableFieldRepository
+readonly class ProcessTableFieldRepository
 {
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_processtablefield';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**

@@ -18,11 +18,11 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 /**
  * @internal
  */
-class AttachmentDeleter
+readonly class AttachmentDeleter
 {
     public function __construct(
-        private readonly LoggerInterface $logger,
-        private readonly ResourceFactory $resourceFactory,
+        private LoggerInterface $logger,
+        private ResourceFactory $resourceFactory,
     ) {}
 
     /**

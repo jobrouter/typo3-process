@@ -19,12 +19,12 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 /**
  * @internal
  */
-class TransferRepository
+readonly class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterprocess_domain_model_transfer';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**

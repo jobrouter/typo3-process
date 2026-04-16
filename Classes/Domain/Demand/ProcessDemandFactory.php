@@ -20,12 +20,12 @@ use JobRouter\AddOn\Typo3Process\Domain\Repository\StepRepository;
 /**
  * @internal
  */
-final class ProcessDemandFactory
+final readonly class ProcessDemandFactory
 {
     public function __construct(
-        private readonly ConnectionRepository $connectionRepository,
-        private readonly ProcessTableFieldRepository $processTableFieldRepository,
-        private readonly StepRepository $stepRepository,
+        private ConnectionRepository $connectionRepository,
+        private ProcessTableFieldRepository $processTableFieldRepository,
+        private StepRepository $stepRepository,
     ) {}
 
     public function create(Process $process, bool $withDisabled = false): ProcessDemand

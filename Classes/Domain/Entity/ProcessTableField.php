@@ -16,14 +16,14 @@ use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_processtablefield database table
  */
-final class ProcessTableField
+final readonly class ProcessTableField
 {
     private function __construct(
-        public readonly int $uid,
-        public readonly string $name,
-        public readonly string $description,
-        public readonly FieldType $type,
-        public readonly int $fieldSize,
+        public int $uid,
+        public string $name,
+        public string $description,
+        public FieldType $type,
+        public int $fieldSize,
     ) {}
 
     /**

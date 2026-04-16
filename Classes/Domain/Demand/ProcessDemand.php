@@ -18,18 +18,18 @@ use JobRouter\AddOn\Typo3Process\Domain\Entity\Step;
 /**
  * @internal
  */
-final class ProcessDemand
+final readonly class ProcessDemand
 {
     /**
      * @param ProcessTableField[] $processTableFields
      * @param Step[] $steps
      */
     public function __construct(
-        public readonly int $uid,
-        public readonly string $name,
-        public readonly ?Connection $connection,
-        public readonly array $processTableFields,
-        public readonly array $steps,
-        public readonly bool $disabled,
+        public int $uid,
+        public string $name,
+        public ?Connection $connection,
+        public array $processTableFields,
+        public array $steps,
+        public bool $disabled,
     ) {}
 }

@@ -14,7 +14,7 @@ namespace JobRouter\AddOn\Typo3Process;
 /**
  * @internal
  */
-final class Extension
+final readonly class Extension
 {
     public const KEY = 'jobrouter_process';
 

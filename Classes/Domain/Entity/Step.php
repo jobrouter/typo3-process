@@ -14,15 +14,15 @@ namespace JobRouter\AddOn\Typo3Process\Domain\Entity;
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_step database table
  */
-final class Step
+final readonly class Step
 {
     private function __construct(
-        public readonly int $uid,
-        public readonly string $handle,
-        public readonly string $name,
-        public readonly int $processUid,
-        public readonly int $stepNumber,
-        public readonly bool $disabled,
+        public int $uid,
+        public string $handle,
+        public string $name,
+        public int $processUid,
+        public int $stepNumber,
+        public bool $disabled,
     ) {}
 
     /**

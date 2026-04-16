@@ -31,16 +31,16 @@ use TYPO3\CMS\Core\Page\PageRenderer;
  * @internal
  */
 #[AsController]
-final class ListController
+final readonly class ListController
 {
     public function __construct(
-        private readonly IconFactory $iconFactory,
-        private readonly LanguageServiceFactory $languageServiceFactory,
-        private readonly ModuleTemplateFactory $moduleTemplateFactory,
-        private readonly PageRenderer $pageRenderer,
-        private readonly ProcessDemandFactory $processDemandFactory,
-        private readonly ProcessRepository $processRepository,
-        private readonly UriBuilder $uriBuilder,
+        private IconFactory $iconFactory,
+        private LanguageServiceFactory $languageServiceFactory,
+        private ModuleTemplateFactory $moduleTemplateFactory,
+        private PageRenderer $pageRenderer,
+        private ProcessDemandFactory $processDemandFactory,
+        private ProcessRepository $processRepository,
+        private UriBuilder $uriBuilder,
     ) {}
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface

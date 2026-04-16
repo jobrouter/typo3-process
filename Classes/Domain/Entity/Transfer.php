@@ -16,24 +16,24 @@ use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
 /**
  * The entity represents a row from the tx_jobrouterprocess_domain_model_transfer database table
  */
-final class Transfer
+final readonly class Transfer
 {
     private function __construct(
-        public readonly int $uid,
-        public readonly int $crdate,
-        public readonly int $stepUid,
-        public readonly string $correlationId,
-        public readonly string $initiator,
-        public readonly string $username,
-        public readonly string $jobfunction,
-        public readonly string $summary,
-        public readonly int $priority,
-        public readonly int $pool,
-        public readonly string $processtable,
-        public readonly EncryptedFieldsBitSet $encryptedFields,
-        public readonly bool $startSuccess,
-        public readonly ?\DateTimeImmutable $startDate,
-        public readonly string $startMessage,
+        public int $uid,
+        public int $crdate,
+        public int $stepUid,
+        public string $correlationId,
+        public string $initiator,
+        public string $username,
+        public string $jobfunction,
+        public string $summary,
+        public int $priority,
+        public int $pool,
+        public string $processtable,
+        public EncryptedFieldsBitSet $encryptedFields,
+        public bool $startSuccess,
+        public ?\DateTimeImmutable $startDate,
+        public string $startMessage,
     ) {}
 
     /**

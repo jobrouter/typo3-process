@@ -20,12 +20,12 @@ use Psr\Log\LoggerInterface;
 /**
  * @api
  */
-class Preparer
+readonly class Preparer
 {
     public function __construct(
-        private readonly Encrypter $encrypter,
-        private readonly LoggerInterface $logger,
-        private readonly TransferRepository $transferRepository,
+        private Encrypter $encrypter,
+        private LoggerInterface $logger,
+        private TransferRepository $transferRepository,
     ) {}
 
     public function store(Transfer $transfer): void
