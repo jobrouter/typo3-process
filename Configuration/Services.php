@@ -13,7 +13,6 @@ namespace JobRouter\AddOn\Typo3Process;
 
 use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
-use JobRouter\AddOn\Typo3Process\EventListener\ToolbarItemProvider;
 use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Process\Widgets\Provider\TransferStatusDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -26,21 +25,16 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
     $services
         ->defaults()
         ->autowire()
-        ->autoconfigure()
-        ->private();
+        ->autoconfigure();
 
     $services
         ->load('JobRouter\AddOn\Typo3Process\\', '../Classes/*')
-        ->exclude('../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php}');
-
-    $services
-        ->set(ToolbarItemProvider::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-process/toolbar-item-provider',
-            ],
-        );
+        ->exclude([
+            __DIR__ . '/../Classes/Extension.php',
+            __DIR__ . '/../Classes/Domain/Dto/',
+            __DIR__ . '/../Classes/Domain/Entity/',
+            __DIR__ . '/../Classes/Exception/',
+        ]);
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $services
