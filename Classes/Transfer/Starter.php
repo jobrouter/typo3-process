@@ -206,7 +206,7 @@ class Starter
     {
         $processTableField = \array_filter(
             $processDemand->processTableFields,
-            static fn($field): bool => $name === $field->name,
+            static fn(ProcessTableField $field): bool => $name === $field->name,
         );
 
         if ($processTableField === []) {

@@ -88,7 +88,7 @@ class Deleter
             if ($encryptedFields->get(EncryptedFieldsBitSet::PROCESSTABLE)) {
                 $transfer['processtable'] = $this->crypt->decrypt((string) $transfer['processtable']);
             }
-            $processtable = \json_decode($transfer['processtable'], true, flags: \JSON_THROW_ON_ERROR);
+            $processtable = \json_decode((string) $transfer['processtable'], true, flags: \JSON_THROW_ON_ERROR);
             $this->deleteAttachments($processtable, $this->attachmentFieldsForProcess[$transfer['process_uid']]);
         }
 

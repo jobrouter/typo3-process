@@ -49,12 +49,6 @@ parameters:
 			path: Classes/Transfer/AttachmentDeleter.php
 
 		-
-			message: '#^Parameter \#1 \$json of function json_decode expects string, int\|string\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
 			message: '#^Property JobRouter\\AddOn\\Typo3Process\\Transfer\\Deleter\:\:\$attachmentFieldsForProcess \(array\<int, array\<string\>\>\) does not accept array\<int\|string, array\<string\>\>\.$#'
 			identifier: assign.propertyType
 			count: 1
