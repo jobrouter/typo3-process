@@ -33,7 +33,12 @@
                         <f:variable name="manageProcessLink">{process.connection.baseUrl}?cmd=OpenDesigner&processname={process.name}</f:variable>
                         <tr>
                             <td><f:render section="processName" arguments="{process: process}"/></td>
-                            <td>{process.connection.name}</td>
+                            <td>
+                                {process.connection.name}
+                                <f:if condition="{process.connection.disabled}">
+                                    ({f:translate(key: 'LLL:EXT:jobrouter_process/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                                </f:if>
+                            </td>
                             <td>
                                 <f:if condition="{process.steps}">
                                     <ul class="jobrouter-process-items">
