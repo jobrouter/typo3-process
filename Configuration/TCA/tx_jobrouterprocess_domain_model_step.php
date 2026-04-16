@@ -28,21 +28,6 @@ return [
         'hideTable' => true,
     ],
     'columns' => [
-        'disabled' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'value' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-
         'handle' => [
             'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.handle',
             'config' => [
@@ -81,14 +66,6 @@ return [
                 'size' => 5,
                 'max' => 5,
                 'required' => true,
-            ],
-        ],
-        'description' => [
-            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterprocess_domain_model_step.description',
-            'config' => [
-                'type' => 'text',
-                'rows' => 5,
-                'cols' => 30,
             ],
         ],
     ],

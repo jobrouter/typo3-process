@@ -14,9 +14,6 @@
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.connection">
 				<source>Connection</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_process.description">
-				<source>Description</source>
-			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_process.name">
 				<source>Process Name</source>
 			</trans-unit>
@@ -46,9 +43,6 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_step">
 				<source>JobRouter Process Step Link</source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterprocess_domain_model_step.description">
-				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterprocess_domain_model_step.handle">
 				<source>Handle</source>
