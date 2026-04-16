@@ -7,18 +7,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 defined('TYPO3') || die();
 
 ExtensionManagementUtility::addTypoScriptSetup('
-    module.tx_jobrouterprocess {
-      view {
-        templateRootPaths {
-          0 = EXT:jobrouter_process/Resources/Private/Templates/Backend/
-        }
-
-        layoutRootPaths {
-          0 = EXT:jobrouter_process/Resources/Private/Layouts/
-        }
-      }
-    }
-
     module.tx_form {
       settings {
         yamlConfigurations {
