@@ -45,6 +45,12 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        'label' => '',
+                        'value' => '',
+                    ],
+                ],
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
                 'eval' => 'int',
