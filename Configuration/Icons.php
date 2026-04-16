@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 use JobRouter\AddOn\Typo3Process\Extension;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
+use TYPO3\CMS\Core\Imaging\IconProvider\SvgSpriteIconProvider;
 use TYPO3\CMS\Core\Information\Typo3Version;
 
 $icons = [
@@ -23,8 +24,8 @@ $icons = [
         'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/jobrouter-process-toolbar.svg',
     ],
     'jobrouter-action-open-designer' => [
-        'provider' => SvgIconProvider::class,
-        'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/action-open-designer.svg',
+        'provider' => SvgSpriteIconProvider::class,
+        'sprite' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/action-open-designer.svg#jobrouter-action-open-designer',
     ],
 ];
 
