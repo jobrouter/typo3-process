@@ -1,0 +1,6 @@
+imports:
+  - { resource: 'EXT:jobrouter_process/Configuration/Form/Base/Finishers/JobRouterStartInstance.yaml' }
+
+name: jobrouter-process/base
+label: "JobRouter Process"
+priority: 1581265491
