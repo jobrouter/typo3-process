@@ -17,6 +17,7 @@ use JobRouter\AddOn\Typo3Process\Crypt\Transfer\Decrypter;
 use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
 use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
 use JobRouter\AddOn\Typo3Process\Exception\DecryptException;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -99,6 +100,7 @@ final class DecrypterTest extends TestCase
     }
 
     #[Test]
+    #[AllowMockObjectsWithoutExpectations]
     public function decryptIfEncryptedThrowsExceptionWhenValueCannotBeDecrypted(): void
     {
         $this->expectException(DecryptException::class);
@@ -106,6 +108,7 @@ final class DecrypterTest extends TestCase
         $this->expectExceptionMessage('Field "processtable" in transfer cannot be decrypted, reason: some crypt error');
 
         $this->cryptServiceMock
+            ->expects(self::once())
             ->method('decrypt')
             ->willThrowException(new CryptException('some crypt error'));
 

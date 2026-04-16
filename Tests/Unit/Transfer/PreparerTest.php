@@ -69,6 +69,7 @@ final class PreparerTest extends TestCase
             ->method('encryptIfConfigured')
             ->willReturn(new Transfer(1234567890, 42, 'some-correlation'));
         $this->transferRepositoryMock
+            ->expects(self::once())
             ->method('add')
             ->willReturn(0);
 

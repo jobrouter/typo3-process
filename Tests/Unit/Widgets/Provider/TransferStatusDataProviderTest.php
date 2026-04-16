@@ -192,9 +192,11 @@ final class TransferStatusDataProviderTest extends TestCase
 
         $this->registryStub
             ->method('get')
-            ->with(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun')
-            ->willReturn([
-                'start' => 1598978286,
+            ->willReturnMap([
+                [
+                    Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', [
+                        'start' => 1598978286,
+                    ]],
             ]);
 
         $expected = new \DateTimeImmutable('@1598978286');

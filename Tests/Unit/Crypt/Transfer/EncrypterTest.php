@@ -17,6 +17,7 @@ use JobRouter\AddOn\Typo3Process\Crypt\Transfer\EncryptedFieldsBitSet;
 use JobRouter\AddOn\Typo3Process\Crypt\Transfer\Encrypter;
 use JobRouter\AddOn\Typo3Process\Domain\Dto\Transfer;
 use JobRouter\AddOn\Typo3Process\Extension;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -40,12 +41,14 @@ final class EncrypterTest extends TestCase
     }
 
     #[Test]
+    #[AllowMockObjectsWithoutExpectations]
     public function encryptIfConfiguredDoesReturnsTransferModelUntouchedIfEncryptionIsEnabled(): void
     {
         $this->extensionConfigurationStub
             ->method('get')
-            ->with(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)
-            ->willReturn(false);
+            ->willReturnMap([
+                [Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER, false],
+            ]);
 
         $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $actual = $this->subject->encryptIfConfigured($transfer);
@@ -58,17 +61,17 @@ final class EncrypterTest extends TestCase
     {
         $this->extensionConfigurationStub
             ->method('get')
-            ->with(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)
-            ->willReturn(true);
+            ->willReturnMap([
+                [Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER, true],
+            ]);
 
-        $cryptServiceReturnMap = [
-            ['processtable',  'encrypted processtable'],
-            ['summary', 'encrypted summary'],
-        ];
         $this->cryptServiceMock
             ->expects(self::exactly(2))
             ->method('encrypt')
-            ->willReturnMap($cryptServiceReturnMap);
+            ->willReturnMap([
+                ['processtable',  'encrypted processtable'],
+                ['summary', 'encrypted summary'],
+            ]);
 
         $transfer = new Transfer(1234567890, 42, 'some-correlation');
         $transfer->setProcesstable('processtable');
@@ -90,8 +93,9 @@ final class EncrypterTest extends TestCase
     {
         $this->extensionConfigurationStub
             ->method('get')
-            ->with(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)
-            ->willReturn(true);
+            ->willReturnMap([
+                [Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER, true],
+            ]);
 
         $cryptServiceReturnMap = [
             ['processtable',  'encrypted processtable'],
@@ -115,12 +119,14 @@ final class EncrypterTest extends TestCase
     }
 
     #[Test]
+    #[AllowMockObjectsWithoutExpectations]
     public function encryptIfConfiguredReturnsEncryptedTransferIfDataCannotBeEncrypted(): void
     {
         $this->extensionConfigurationStub
             ->method('get')
-            ->with(Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER)
-            ->willReturn(true);
+            ->willReturnMap([
+                [Extension::KEY, Extension::ENCRYPT_DATA_CONFIG_IDENTIFIER, true],
+            ]);
 
         $this->cryptServiceMock
             ->method('encrypt')
