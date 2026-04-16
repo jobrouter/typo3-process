@@ -23,7 +23,6 @@ return [
         'sortby' => 'sorting',
         'type' => 'type',
         'rootLevel' => 1,
-        'searchFields' => 'name,description',
         'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_processtablefields.svg',
         'hideTable' => true,
     ],
@@ -56,6 +55,7 @@ return [
                 'max' => 20,
                 'eval' => 'trim',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'description' => [
@@ -65,6 +65,7 @@ return [
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'trim',
+                'searchable' => true,
             ],
         ],
         'type' => [

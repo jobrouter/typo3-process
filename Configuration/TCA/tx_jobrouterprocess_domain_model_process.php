@@ -24,7 +24,6 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'name,description',
         'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_process.svg',
         'hideTable' => true,
     ],
@@ -38,6 +37,7 @@ return [
                 'max' => 255,
                 'eval' => 'alphanum_x,trim',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'connection' => [

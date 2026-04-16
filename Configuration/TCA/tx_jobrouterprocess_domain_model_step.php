@@ -23,7 +23,6 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'handle,name,processname,initiator,username,jobfunction,summary,description',
         'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterprocess_domain_model_step.svg',
         'hideTable' => true,
     ],
@@ -36,6 +35,7 @@ return [
                 'max' => 30,
                 'eval' => 'alphanum_x,trim,unique',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'name' => [
@@ -46,6 +46,7 @@ return [
                 'max' => 255,
                 'eval' => 'trim',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'process' => [
