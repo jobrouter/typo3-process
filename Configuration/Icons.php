@@ -11,8 +11,9 @@ declare(strict_types=1);
 
 use JobRouter\AddOn\Typo3Process\Extension;
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
+use TYPO3\CMS\Core\Information\Typo3Version;
 
-return [
+$icons = [
     'jobrouter-module-process' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/jobrouter-process-module.svg',
@@ -26,3 +27,10 @@ return [
         'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/action-open-designer.svg',
     ],
 ];
+
+// @todo Remove, once compatibility with TYPO3 v13 is removed
+if ((new Typo3Version())->getMajorVersion() < 14) {
+    $icons['jobrouter-module-process']['source'] = 'EXT:' . Extension::KEY . '/Resources/Public/Icons/jobrouter-process-module-v13.svg';
+}
+
+return $icons;
