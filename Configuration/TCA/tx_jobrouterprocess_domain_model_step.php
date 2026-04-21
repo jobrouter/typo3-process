@@ -79,13 +79,22 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-                name, handle, process, step_number,
+                --palette--;;nameHandle,
+                --palette--;;processStepNumber,
                 --div--;' . Extension::LANGUAGE_PATH_DATABASE . ':tab.parameters,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
                 description,
         ',
+        ],
+    ],
+    'palettes' => [
+        'nameHandle' => [
+            'showitem' => 'name, handle',
+        ],
+        'processStepNumber' => [
+            'showitem' => 'process, step_number',
         ],
     ],
 ];
