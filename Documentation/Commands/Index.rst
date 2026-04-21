@@ -32,7 +32,7 @@ directory:
 
          vendor/bin/typo3 jobrouter:process:start
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: bash
 
@@ -90,7 +90,7 @@ directory:
 
          vendor/bin/typo3 jobrouter:process:cleanuptransfers
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: bash
 
@@ -113,7 +113,7 @@ You can adjust this value by adding an argument to the command:
 
          vendor/bin/typo3 jobrouter:process:cleanuptransfers 14
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: bash
 

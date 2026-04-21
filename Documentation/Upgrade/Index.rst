@@ -38,7 +38,7 @@ can set it explicitly:
 
          vendor/bin/typo3 jobrouter:process:cleanuptransfers 30
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: bash
 
