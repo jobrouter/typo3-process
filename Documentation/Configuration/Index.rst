@@ -15,7 +15,7 @@ Target group: **Administrators**
 Extension configuration
 =======================
 
-To configure the extension, go to :guilabel:`Admin Tools > Settings > Extension
+To configure the extension, go to :guilabel:`System > Settings > Extension
 Configuration` and click on the :guilabel:`Configure extensions` button. Open
 the :guilabel:`jobrouter_process` configuration:
 

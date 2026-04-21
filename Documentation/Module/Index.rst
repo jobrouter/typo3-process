@@ -145,9 +145,8 @@ steps that are used to start an instance.
 Create a step link
 ------------------
 
-To create a new step link, click the :guilabel:`+ Add step link` button in the
-module header, which opens a form. Alternatively, you can use the
-:guilabel:`Create new step link` button.
+To create a new step link, click the :guilabel:`Create new step link` link in
+a configured process link, which opens a form.
 
 .. figure:: /Images/create-step-link-general.png
    :alt: Create a step link (General)
