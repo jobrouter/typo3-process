@@ -43,32 +43,3 @@ finisher.
    If you lose or change the encryption key (generated with the :ref:`JobRouter
    Connector extension <ext_jobrouter_connector:introduction>`), data cannot
    be decrypted by the :ref:`start process command <command-start>` anymore!
-
-
-.. _configuration-logging:
-
-Logging
-=======
-
-If logging is necessary to track process instance starts and possible warnings
-or errors, you can set up :ref:`log writers <t3coreapi:logging-writers>` depending
-on your needs.
-
-**Example:** To log all warnings and higher levels of this extension into a
-file, add this snippet to the :file:`ext_localconf.php` file of your site
-package extension:
-
-.. code-block:: php
-   :caption: EXT:my_sitepackage/ext_localconf.php
-
-   use Psr\Log\Level;
-   use TYPO3\CMS\Core\Log\Writer\FileWriter;
-
-   $GLOBALS['TYPO3_CONF_VARS']['LOG']['JobRouter']['AddOn']['Typo3Process']['writerConfiguration'][Level::WARNING] = [
-      FileWriter::class => [
-         'logFileInfix' => 'jobrouter_process'
-      ]
-   ];
-
-The messages are then written to the
-:file:`var/log/typo3_jobrouter_process_<hash>.log` file.
