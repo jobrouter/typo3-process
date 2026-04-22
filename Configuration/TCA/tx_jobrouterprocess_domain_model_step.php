@@ -64,6 +64,7 @@ return [
                 'foreign_table_where' => ' ORDER BY tx_jobrouterprocess_domain_model_process.name',
                 'eval' => 'int',
                 'required' => true,
+                'showIfEmpty' => true,
             ],
         ],
         'step_number' => [

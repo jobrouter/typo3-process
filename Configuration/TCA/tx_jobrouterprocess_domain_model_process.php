@@ -55,6 +55,7 @@ return [
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
                 'eval' => 'int',
                 'required' => 'true',
+                'showIfEmpty' => true,
             ],
         ],
         'processtablefields' => [
