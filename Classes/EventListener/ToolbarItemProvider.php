@@ -39,30 +39,37 @@ final class ToolbarItemProvider
     {
         $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, 'startCommand.lastRun', []);
 
-        $event->getToolbarItem()->addSystemInformation(
-            $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
-            $this->getMessage(),
-            'jobrouter-process-toolbar',
-            $this->getSeverity(),
-        );
+        $event->getToolbarItem()
+            ->addSystemInformation(
+                $this->getLanguageService()
+                    ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunLabel'),
+                $this->getMessage(),
+                'jobrouter-process-toolbar',
+                $this->getSeverity(),
+            );
     }
 
     private function getMessage(): string
     {
         if ($this->lastRunInformation === []) {
-            return $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':toolbar.neverExecuted');
+            return $this->getLanguageService()
+                ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':toolbar.neverExecuted');
         }
 
         if ($this->isWarning()) {
-            $status = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.warning');
+            $status = $this->getLanguageService()
+                ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.warning');
         } elseif ($this->isOverdue()) {
-            $status = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.overdue');
+            $status = $this->getLanguageService()
+                ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.overdue');
         } else {
-            $status = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.success');
+            $status = $this->getLanguageService()
+                ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':status.success');
         }
 
         return \sprintf(
-            $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunMessage'),
+            $this->getLanguageService()
+                ->sL(Extension::LANGUAGE_PATH_TOOLBAR . ':startCommand.lastRunMessage'),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'], $this->lastRunInformation['start'] ?? 0),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'], $this->lastRunInformation['start'] ?? 0),
             $status,

@@ -111,7 +111,9 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
             return;
         }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
-            $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
+            $this->finisherContext->getFormRuntime()
+                ->getFormDefinition()
+                ->getElements(),
             $this->finisherContext->getFormValues(),
         );
         $processTableFields = $this->prepareProcessTableFields();
@@ -172,7 +174,8 @@ final class StartInstanceFinisher extends AbstractTransferFinisher
         }
 
         if ($type === FieldType::Date) {
-            return (new \DateTimeImmutable($value))->setTime(0, 0)->format('c');
+            return (new \DateTimeImmutable($value))->setTime(0, 0)
+                ->format('c');
         }
 
         if ($type === FieldType::Attachment) {

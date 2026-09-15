@@ -77,7 +77,8 @@ final class DeleterTest extends FunctionalTestCase
 
         self::assertSame(2, $actual);
 
-        $connection = $this->getConnectionPool()->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
+        $connection = $this->getConnectionPool()
+            ->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
         $actual = $connection->count('*', 'tx_jobrouterprocess_domain_model_transfer', [
             'uid' => 11,
         ]);

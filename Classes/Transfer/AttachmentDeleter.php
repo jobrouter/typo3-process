@@ -41,7 +41,8 @@ readonly class AttachmentDeleter
             return;
         }
 
-        $storageConfiguration = $fileObject->getStorage()->getConfiguration();
+        $storageConfiguration = $fileObject->getStorage()
+            ->getConfiguration();
         if ($storageConfiguration['pathType'] === 'relative') {
             $absoluteFolderPath = Environment::getPublicPath() . '/' . $storageConfiguration['basePath'];
         } else {

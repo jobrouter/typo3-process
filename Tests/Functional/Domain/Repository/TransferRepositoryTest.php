@@ -249,7 +249,8 @@ final class TransferRepositoryTest extends FunctionalTestCase
 
         self::assertSame(1, $actual);
 
-        $connection = $this->getConnectionPool()->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
+        $connection = $this->getConnectionPool()
+            ->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
         $count = $connection->count(
             '*',
             'tx_jobrouterprocess_domain_model_transfer',
@@ -270,7 +271,8 @@ final class TransferRepositoryTest extends FunctionalTestCase
 
         self::assertSame(0, $actual);
 
-        $connection = $this->getConnectionPool()->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
+        $connection = $this->getConnectionPool()
+            ->getConnectionForTable('tx_jobrouterprocess_domain_model_transfer');
         $count = $connection->count(
             '*',
             'tx_jobrouterprocess_domain_model_transfer',

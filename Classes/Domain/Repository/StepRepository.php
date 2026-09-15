@@ -32,7 +32,8 @@ readonly class StepRepository
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         if ($withDisabled) {
-            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+            $queryBuilder->getRestrictions()
+                ->removeByType(HiddenRestriction::class);
         }
 
         $result = $queryBuilder
@@ -98,14 +99,16 @@ readonly class StepRepository
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         if ($withDisabled) {
-            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+            $queryBuilder->getRestrictions()
+                ->removeByType(HiddenRestriction::class);
         }
 
         $result = $queryBuilder
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('process', $queryBuilder->createNamedParameter($processUid, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->eq('process', $queryBuilder->createNamedParameter($processUid, Connection::PARAM_INT)),
             )
             ->orderBy('uid')
             ->executeQuery();

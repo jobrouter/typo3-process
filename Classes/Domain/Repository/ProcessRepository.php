@@ -32,7 +32,8 @@ readonly class ProcessRepository
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         if ($withDisabled) {
-            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+            $queryBuilder->getRestrictions()
+                ->removeByType(HiddenRestriction::class);
         }
 
         $result = $queryBuilder
@@ -54,14 +55,16 @@ readonly class ProcessRepository
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         if ($withDisabled) {
-            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+            $queryBuilder->getRestrictions()
+                ->removeByType(HiddenRestriction::class);
         }
 
         $row = $queryBuilder
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
             )
             ->executeQuery()
             ->fetchAssociative();

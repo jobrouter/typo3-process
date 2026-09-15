@@ -72,7 +72,8 @@ final readonly class ListController
     {
         $languageService = $this->languageServiceFactory->createFromUserPreferences($this->getBackendUser());
 
-        $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
+        $buttonBar = $view->getDocHeaderComponent()
+            ->getButtonBar();
 
         $newProcessButton = $buttonBar->makeLinkButton()
             ->setHref((string) $this->uriBuilder->buildUriFromRoute(

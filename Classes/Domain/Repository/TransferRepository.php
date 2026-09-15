@@ -61,8 +61,10 @@ readonly class TransferRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('start_success', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
-                $queryBuilder->expr()->neq('start_message', $queryBuilder->createNamedParameter('')),
+                $queryBuilder->expr()
+                    ->eq('start_success', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->neq('start_message', $queryBuilder->createNamedParameter('')),
             )
             ->orderBy('crdate', 'ASC')
             ->executeQuery();
@@ -140,14 +142,16 @@ readonly class TransferRepository
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $whereExpressions = [
-            $queryBuilder->expr()->eq(
-                'start_success',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
-            ),
-            $queryBuilder->expr()->gt(
-                'start_date',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
-            ),
+            $queryBuilder->expr()
+                ->eq(
+                    'start_success',
+                    $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
+                ),
+            $queryBuilder->expr()
+                ->gt(
+                    'start_date',
+                    $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
+                ),
         ];
 
         return $queryBuilder
@@ -189,10 +193,11 @@ readonly class TransferRepository
             ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->gte(
-                    'crdate',
-                    $queryBuilder->createNamedParameter($startDate->format('U'), Connection::PARAM_INT),
-                ),
+                $queryBuilder->expr()
+                    ->gte(
+                        'crdate',
+                        $queryBuilder->createNamedParameter($startDate->format('U'), Connection::PARAM_INT),
+                    ),
             )
             ->groupBy('day')
             ->orderBy('day', 'ASC')
@@ -227,23 +232,27 @@ readonly class TransferRepository
                 't',
                 'tx_jobrouterprocess_domain_model_step',
                 's',
-                $queryBuilder->expr()->eq('t.step_uid', $queryBuilder->quoteIdentifier('s.uid')),
+                $queryBuilder->expr()
+                    ->eq('t.step_uid', $queryBuilder->quoteIdentifier('s.uid')),
             )
             ->leftJoin(
                 's',
                 'tx_jobrouterprocess_domain_model_process',
                 'p',
-                $queryBuilder->expr()->eq('s.process', $queryBuilder->quoteIdentifier('p.uid')),
+                $queryBuilder->expr()
+                    ->eq('s.process', $queryBuilder->quoteIdentifier('p.uid')),
             )
             ->where(
-                $queryBuilder->expr()->eq(
-                    't.start_success',
-                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
-                ),
-                $queryBuilder->expr()->lt(
-                    't.crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestamp, Connection::PARAM_INT),
-                ),
+                $queryBuilder->expr()
+                    ->eq(
+                        't.start_success',
+                        $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
+                    ),
+                $queryBuilder->expr()
+                    ->lt(
+                        't.crdate',
+                        $queryBuilder->createNamedParameter($maximumTimestamp, Connection::PARAM_INT),
+                    ),
             )
             ->orderBy('t.uid')
             ->executeQuery()
